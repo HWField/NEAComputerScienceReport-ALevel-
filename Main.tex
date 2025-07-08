@@ -1,0 +1,25 @@
+\documentclass{report}
+\usepackage{hyperref}
+\usepackage{tikz}
+\usepackage{xcolor}
+\usepackage{float}
+\usepackage[a4paper,margin=1in]{geometry}
+\usepackage[date=comp, urldate=long]{biblatex}
+\addbibresource{References.bib}
+\begin{document}
+
+\title{NEA: Disease Spread Simulation}
+\author{Henry Field}
+\date{\today}
+\maketitle
+
+\tableofcontents
+\newpage
+\include{Chapters/Analysis}
+\chapter{Documented Design}
+\chapter{Technical Solution}
+\chapter{Testing}
+\chapter{Evaluation}
+\chapter{References}
+\printbibliography[heading=bibintoc, title={Bibliography}]
+\end{document}

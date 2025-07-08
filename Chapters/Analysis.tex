@@ -1,0 +1,73 @@
+\chapter{Analysis}
+\section{Project / Problem Description}
+The project aims to simulate the spread of disease within the local community of a city, using a model that would include around 100,000  citizens/agents and 20,000 buildings/nodes. The inspiration for this project came from the recent global pandemic, which highlighted the importance of understanding how diseases spread within communities. By simulating the spread of disease in a specific locality as opposed to on a national/global scale, I hope to contribute to better preparedness and response strategies for communities. The primary objective of this project is to develop a detailed simulation of disease spread in a given city / urban area, which can be used to analyse the effectiveness of various intervention strategies. A secondary goal is to help directly inform the public of the effectiveness of certain strategies to reduce the spread of disease, in an easily digestible (visual / non-numerical) way.
+\section{Client}
+The primary client to my software would be a clinical researcher / policymaker who was looking to implement changes that would protect their population from harm through the spread of disease. I was fortunate to visit the Imperial university Department of Infectious diseases and to speak with both a researcher and a software developer there to discuss my projects objectives and collect their initial thoughts. They were highly supportive of my ideas and provided great insight into some methods I could try and some architectural considerations I should make; Unfortunately I will likely be unable to remain in continuous contact with them over the project's development so I collected their initial thoughts and am potentially looking to be able to get some contacts at Cambridge based research facilities who I can be in more frequent communication with.
+The faculty at Imperial gave me a loose brief from which I can expand, the software should:
+\begin{itemize}
+    \item Give users a space to simulate disease spread in a city
+    \item work on an agent by agent basis for a realistic disease spread
+    \item Utilise real map data for location based modelling
+    \item Utilise ONS data for accurate agent generation
+\end{itemize}
+A secondary Client to my software would be members of the general public who want to easily visualise the impact very small measures (such as face coverings or self-isolation) can make to the larger picture. By making my software very intuitive even to those without scientific it can used to quickly visualise and prove a point to others. A variety of my family members and family friends (from a variety of academic backgrounds including biologists)
+
+\section{Problem Research}
+With the focus of my project beingly highly academic and having a smaller userbase than e.g. a social media app I knew I would have to focus my search for user issues Before beginning any software development. To start I researched the current offerings available to professionals in this industry, these mostly exist in two forms: complete graphical software packages and computational models / algorithms, here are the packages I researched:
+
+\subsection{Gleamviz}
+GLEaMviz (Global Epidemic and Mobility Model) is a computational tool designed to simulate the spread of infectious diseases on a global scale by integrating real-world data on population, human mobility, and disease dynamics. It combines a metapopulation approach—dividing the world into subpopulations connected by transportation networks—with stochastic compartmental models (e.g., SEIR) to simulate disease progression and transmission. By incorporating airline travel, commuting patterns, and demographic information, GLEaMviz enables researchers and public health officials to model outbreak scenarios, assess intervention strategies, and predict potential epidemic outcomes with spatial and temporal precision.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.7\textwidth]{Chapters/Media/Gleamviz.png}
+    \caption{Screenshot of the GLEaMviz simulation interface \cite{GLEAMvizGlobalEpidemic} }
+    \label{fig:gleamviz}
+\end{figure}
+
+Pros
+-	Integrates global mobility
+-	Built in SEIR (susceptible-exposed-infected-recovered) modelling
+-	Intuitive GUI
+-	Robust global simulation	-	Limited spatial resolution for city/village level modelling
+Cons
+-	Closed source and inflexible
+-	Cant simulate detailed intervention modelling
+
+
+\subsection{AnyLogic}
+AnyLogic is a commercial simulation platform that supports multiple modelling paradigms, including agent-based, system dynamics, and discrete-event simulation. Its flexibility allows users to build detailed models of epidemics within cities, hospitals, or regions, integrating individual behaviour, mobility, and interventions. AnyLogic is popular in industry and academia for its visual interface, GIS support, and ability to simulate scenarios involving healthcare logistics or policy interventions. While powerful, its more advanced features require a commercial license and technical expertise.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.7\textwidth]{Chapters/Media/AnyLogic.png}
+    \caption{Screenshot of the GLEaMviz simulation interface \cite{AnyLogicCOVID19Simulation2022} }
+    \label{fig:anylogic}
+\end{figure}
+
+Pros
+-	Powerful agent-based modelling platform
+-	Simple and customisable GUI
+-	Accurately models small areas such as within a store or even a room
+Cons
+-		-	Steep learning curve for project setup
+-	Commercial licence required
+-	Can’t simulate areas larger than a small village
+
+\subsection{Covid-19 Scarios (Neher Labs)}
+COVID-19 Scenarios is an interactive web-based tool created by the Neher Lab for simulating the spread of COVID-19 using a configurable SEIR model. Users can adjust key parameters like R0, hospitalization rates, and intervention timing to explore different pandemic scenarios and healthcare outcomes. While not a full simulation engine, it provides a quick and intuitive way for policymakers and the public to visualize the impact of control measures. Its simplicity and focus on COVID-19 make it accessible but limited in scope and adaptability.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.7\textwidth]{Chapters/Media/AnyLogic.png}
+    \caption{Screenshot of the GLEaMviz simulation interface \cite{AnyLogicCOVID19Simulation2022} }
+    \label{fig:anylogic}
+\end{figure}
+
+
+
+\section{Feasibility}
+\section{Ethical considerations}
+\section{Prototyping}
+\section{Success Criteria For Project}
+\section{Initial Design Considerations}
