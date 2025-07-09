@@ -3,8 +3,16 @@
 \usepackage{tikz}
 \usepackage{xcolor}
 \usepackage{float}
+\usepackage{notoccite}
 \usepackage[a4paper,margin=1in]{geometry}
-\usepackage[date=comp, urldate=long]{biblatex}
+\usepackage[
+    backend=biber,
+    style=numeric,
+    sorting=none,
+    sortcites=true,
+    date=comp,
+    urldate=long
+]{biblatex}
 \addbibresource{References.bib}
 \begin{document}
 

@@ -20,7 +20,7 @@ GLEaMviz (Global Epidemic and Mobility Model) is a computational tool designed t
 
 \begin{figure}[H]
     \centering
-    \includegraphics[width=0.7\textwidth]{Chapters/Media/Gleamviz.png}
+    \includegraphics[width=0.7\textwidth]{Chapters/AnalysisMedia/Gleamviz.png}
     \caption[GLEaMviz simulation interface]{Screenshot of the GLEaMviz simulation interface \autocite{GLEAMvizGlobalEpidemic}}
     \label{fig:gleamviz}
 \end{figure}
@@ -40,8 +40,8 @@ AnyLogic is a commercial simulation platform that supports multiple modelling pa
 
 \begin{figure}[H]
     \centering
-    \includegraphics[width=0.7\textwidth]{Chapters/Media/AnyLogic.png}
-    \caption[GLEaMviz simulation interface ]{Screenshot of the GLEaMviz simulation interface \autocite{AnyLogicCOVID19Simulation2022} }
+    \includegraphics[width=0.7\textwidth]{Chapters/AnalysisMedia/AnyLogic.png}
+    \caption[GLEaMviz simulation interface]{Screenshot of the Anylogic interface simulating an office floor \autocite{AnyLogicCOVID19Simulation2022} }
     \label{fig:anylogic}
 \end{figure}
 
@@ -59,15 +59,286 @@ COVID-19 Scenarios is an interactive web-based tool created by the Neher Lab for
 
 \begin{figure}[H]
     \centering
-    \includegraphics[width=0.7\textwidth]{Chapters/Media/AnyLogic.png}
-    \caption[GLEaMviz simulation interface]{Screenshot of the GLEaMviz simulation interface  }
-    \label{fig:anylogic}
+    \includegraphics[width=0.7\textwidth]{Chapters/AnalysisMedia/Covid19Scenarios.png}
+    \caption[]{Screenshot of the Neher Labs Anylsis system \autocite{COVID19Scenarios} }
+    \label{fig:Covid-19scenarios}
 \end{figure}
 
 
+\subsection{FRED (Fast Epidemiological Dynamic Simulator)}
+FRED is an agent-based epidemic modelling system developed by the University of Pittsburgh, designed to simulate infectious disease transmission at the individual level using real census data and synthetic populations. It allows detailed modelling of social contact patterns within households, schools, workplaces, and communities, making it ideal for city-level or regional policy planning in the United States. FRED supports a wide range of disease models and interventions, though its geographic coverage is primarily US focused, and it requires some programming effort to customize.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.5\textwidth]{Chapters/AnalysisMedia/FRED.png}
+    \caption[]{Screenshot of the FRED interface \autocite{grefenstetteFREDFrameworkReconstructing2013} }
+    \label{fig:fred}
+\end{figure}
+Pros
+-	Agent based, fine scale model similar to what I’m trying to produce
+-	Uses real census / demographic data from online government sources
+-	Open source and extensible	-	U.S. centric and difficult to customise for other nations
+Cons
+-	Steep learning curve requiring programming
+-	Very simplistic,  outdated interface
+-	simulation appears random due to ‘popping in to view’
+
+
+\subsection{EpiModel}
+EpiModel is an open-source R package for simulating and analysing the spread of infectious diseases using deterministic, stochastic, and network-based compartmental models. It offers a flexible framework for modelling complex transmission dynamics, including sexual networks, social distancing, and other behavioural factors. EpiModel is well-suited for academic research and policy studies and allows users to build custom disease models with full control over parameters and structure. However, it requires proficiency in R and is not optimized for high-resolution spatial modelling.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.7\textwidth]{Chapters/AnalysisMedia/EpiModel.png}
+    \caption[]{An application of EpiModel \autocite{declassifiedmalaysiaUsingEpiModelIgraph2024}}
+    \label{fig:EpiModel}
+\end{figure}
+Pros
+-	Supports deterministic, stochastic, and network-based models
+-	Highly Flexible and extensible
+-	Great for research and education	-	Requires strong  programming skills to customise
+Cons
+-	Cant support GIS data or global mobility
+-	No GUI available
+
+
+\subsection{EpiSimdemics}
+EpiSimdemics is a scalable, high-resolution agent-based modelling framework developed for simulating the spread of infectious diseases through detailed social contact networks. It models individual-level interactions across various locations such as homes, schools, and workplaces, allowing for fine-grained intervention testing like school closures or targeted quarantines. Designed for large urban areas or regional populations, it supports policy simulations with realistic behavioural components. However, its complexity and limited public accessibility make it more suitable for research collaborations than casual use.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.4\textwidth]{Chapters/AnalysisMedia/EpiSimdemics.png}
+    \caption[]{EpiSimdemics City Simulation \autocite{inproceedings}}
+    \label{fig:EpiSimdemics}
+\end{figure}
+
+Pros
+-	Large scale agent-based simulation (cities / counties)
+-	Handles individual behaviours
+-	Highly detailed results
+Cons
+-	No Gui for use / requires expert guidance / training	-	Complex setup
+-	Not open source / limited to government use
+-	High computational workload for resource
+
+
+\subsection{OpenABM}
+OpenABM-Covid19 is a lightweight, open-source agent-based simulation model tailored to study the effects of non-pharmaceutical interventions on COVID-19 transmission. Written in Python and grounded in demographic and mobility data, it simulates detailed contact patterns across households, workplaces, and public spaces. The model is designed to be transparent, easy to adapt, and useful for both researchers and policymakers. While currently COVID-specific, its modular structure allows adaptation to other diseases with some effort.
+Pros
+-	Open source
+-	Well documented
+-	Provides detailed intervention testing
+-	Supports age structured population
+Cons
+-	Focused on covid-19
+-	Requires coding skills (python)
+
+\subsection{SimInf}
+SimInf is an R-based modelling framework for simulating stochastic compartmental models (such as SEIR) in spatially structured populations. It is designed for speed and scalability, using C/C++ for backend computation while integrating with R for analysis and visualization. SimInf is particularly suited for scenarios involving many small subpopulations connected by movement or trade, such as livestock disease spread or localized outbreaks. It’s powerful for structured models but lacks agent-based or behaviour-driven simulation capabilities.
+Pros
+-	Fast simulations
+Cons
+-	Complex data analysis built in	-	Requires familiarity in C and R
+-	Uses compartment model, not models so less accurate
+
+\subsection{Flute}
+FluTE is an agent-based epidemic model designed specifically to simulate the spread of influenza within structured populations, using realistic household, workplace, and school networks. It incorporates age-stratified interactions and intervention strategies like vaccination and antiviral distribution. Though originally built for U.S. populations, it can be adapted to other contexts with sufficient demographic data. FluTE is open-source and efficient but relatively rigid in scope, requiring C++ programming knowledge to modify or extend.
+Pros
+-	Agent based
+-	Grounded on realistic demographic and household structures
+-	Open source	-	Written in c++ and is hard to modify
+Cons
+-	Primarily US focused
+\subsection{EMOD (Epidemiological MODelling software)}
+EMOD is a flexible, open-source epidemiological modelling platform developed by the Institute for Disease Modelling. It supports highly detailed, agent-based simulations of diseases such as malaria, HIV, tuberculosis, and COVID-19, incorporating biological, environmental, and behavioural factors. EMOD is particularly strong in modelling vector-borne and sexually transmitted infections with age-structured and geographically targeted interventions. Though powerful, it has a steep learning curve and requires configuration via JSON files and scripting in Python or C++.
+Pros
+-	Very detailed agent-based disease modelling
+-	Highly customisable transmission dynamics
+-	Official tool from institute for disease modelling 	-	High barrier to entry needing configuration and code knowledge
+
+Cons
+-	Steeper learning curve
+-	No GUI
+
+Next I investigated some more context to understand the industry of epidemics and computational modelling:
+
+\subsection{Epidemics Research}
+Next I investigated some more context to understand the industry of epidemics and computational modelling:
+\begin{enumerate}
+    \item Agent based computational modelling \autocite{bissettAgentBasedComputationalEpidemiological2021}
+    \item Algebraic frameworks for structured epidemic modelling \autocite{libkindAlgebraicFrameworkStructured2022}
+    \item Challenges of modelling interventions for future pandemics \autocite{kretzschmarChallengesModellingInterventions2022}
+\end{enumerate}
 
 \section{Feasibility}
+\subsection{Dataset Acquisition}
+\begin{itemize}
+    \item Project will rely on accurate maps of buildings and roads for virtual agents to navigate around, this data will be sourced from OpenStreetMap’s using their TurboAPI to interface with my Flask server API, I tested the ability of this link to handle the 20,000 target building node and It succeed without issue and in a reasonable time
+    \item Agent behaviours will predominantly be driven by ONS reporting data on roles within the country or by custom user input. This same data will be used for all simulations (non unique) and can therefore be manually parsed into the system (e.g. Combining nursing, hospice care and doctors into one category of ‘medical worker’) by myself minimising complexity, I have ensured I can access this data in my data tests
+    \item Disease profile data will be manually inputted by the user on a simulation by simulation basis, I will suggest some sources (and provide preset options by default)
+\end{itemize}
+
+
+
+\subsection{Time Feasibility}
+\begin{itemize}
+    \item The Nea Project gives me plenty of time to spend planning my software thoroughly and then in development
+    \item I will plan my time carefully and create clear milestones for the goals of my project
+    \item
+          -	I will start by producing a MVP (minimum viable product) which enables me to spot sections that will require attention then others, my Python API for example will likely be almost complete after this first iteration
+\end{itemize}
+\subsection{Skills Feasibility}
+\begin{itemize}
+    \item I already have experience using Python Flask to create flexible APIs and connecting to DBs for longer term, indexed storage
+    \item I have a strong understanding of web based technologies and client-server data models however the complex 3d visualisation I want to implement will be new to me, but have been theoretically tested in my 3js testing
+    \item I have a moderate understanding of Postgres database platforms but have never used location based node storage or stored this quantity of simulation data
+    \item I have a basic understanding of the c\# language which I will need to implement to run my simulation loop optimally, I will likely need to learn new libraries and skills for optimal data manipulation
+    \item The biological skills required are new to me (having only GCSE level biology to draw from) however I only need to learn high concept techniques which I fully feasible
+    \item The mathematical skills required I already have to complete the simulation algorithms
+    \item I will need to learn some new statistical techniques to present data to users in the most optimal way
+\end{itemize}
+\subsection{Resource Feasibility}
+\begin{itemize}
+    \item I am fortunate to have access to an M2 Pro based MacBook Pro which enables me to run simulation locally whilst on the go, I am also able to test hosting all aspects of my project locally to be accessed a small number of users
+    \item I also have access to a faster, GPU accelerated workstation at home which I can use for larger simulations and more public hosting thanks to a fibre internet connection
+    \item Additionally I can utilise cloud resources for deployment / maximally sized simulations though this would come with expense
+\end{itemize}
 \section{Ethical considerations}
+\begin{itemize}
+    \item Project will focus on some topics that users might find distressing / upsetting, messaging should therefore always be clear, considerate, and impartial
+    \item Simulation will draw from multiple data sources, and whilst most will be anonymised care will be taken to ensure that no data included could be traced back to real individuals, preserving anonymity and confidentiality.
+    \item Simulation results must be clearly disclaimed as not exact predictions
+    \item Synthetic population will contain patterns that inadvertently reflect bias, whilst this may be desirable when looking at local disease control the results cannot be extrapolated to all scenarios
+    \item Simplified visualisations might encourage/discourage certain behaviours if misunderstood, prominent message should ensure users appreciate the academic intent of the software
+\end{itemize}
 \section{Prototyping}
-\section{Success Criteria For Project}
+There are many aspects of my project that utilise technical concepts and techniques that are new to me so I have tested each element in isolation to ensure feasibility
+\subsection{Data Acquisition}
+
+To test the OpenStreetMap’s Api, I created a simple webpage that allows a user to select a geographic area and load in all of the streets and buildings from that area. This website was very successful and I was able to add building classification to the system using node data from open street maps, not all buildings had their function defined however all state owned buildings did including hospitals, education establishments and also many office buildings. For buildings that do not have data and appear in the simulation I will write an algorithm to assume they are residential unless they are enclosed by another building type (and are presumably an unlabelled extension) or are within a ‘business district’ in which they copy their nearby building types also taking account of their size and land shape. See image below
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.7\textwidth]{Chapters/AnalysisMedia/OSMTest.png}
+    \caption[]{OpenStreetMap data acquisition test}
+    \label{fig:OSMTest}
+\end{figure}
+
+I also spent some time on the ONS website file store to find data on employment classifications of workers, this was hugely successful I found employment data dating from 2025 to 1980 years which is perfect for my agent generation algorithm
+
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.7\textwidth]{Chapters/AnalysisMedia/ONSTest.png}
+    \caption[]{ONS data acquisition test}
+    \label{fig:ONSTest}
+\end{figure}
+
+\subsection{Api}
+I already have experience using flask to create rich API’s and web socket connections to stream between client and backend software. I was aware that to track every agent movement (~13 bytes per agent x 100,000 agents = 1.3MB) in addition to statistics for each tick was quite a lot of data especially if the user was skipping through the simulation at high speed (resulting in more ticks per second read), I tested a simple client/server interface and was able to achieve over 100 ticks per second (on chrome, firefox and other non chromium browser have much lower WebSocket bandwidths unfortunately), and that was without any optimisation but had excellent network connection between two devices on the same network.
+\subsection{Data Visualisation}
+to test some data visualisation and some brief physical interaction created a simplistic physics model that could visualise the spread of disease in a 3d model. This also gave me the opportunity to test some biological reporting tools such as R rate (I still have some work to do here however).
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.7\textwidth]{Chapters/AnalysisMedia/3DTest.png}
+    \caption[]{3D visualisation test}
+    \label{fig:3DTest}
+\end{figure}
+
+\subsection{Simulation Server}
+With such a large number of agents being simulated I was aware that this would have a heavy compute premium, especially since I wanted the simulation to simulate at a rate of 1 virtual day per couple of real world seconds. Unsure whether my preferred programming language of python would be suitable I created a simple ‘benchmark’ which loaded 100,000 agents and 50,000 nodes into memory and simulated them each being assigned a new location and potentially a new state (infected, cured etc) per tick.
+In my first python iteration which used large lists for all data, the data calculated at 1.5 Ticks per second which was far too slow to be useful, bearing in mind this benchmark was very simplistic and purely focused on randomising movement for each agent this was glacial.
+To try and remain within the python ecosystem I looked to implement python numba to handle such large variables. I found that this tool hugely improved the performance (to 211 ticks / s) but hugely increased system memory usage (4x non numba) which would make my backend system non scalable, the codebase also became lightly less readable / maintainable
+Concerned with low performance (even with the numba addition) I decided to recreate my program in C\# - a compiled language. I found an immediate, huge improvement to 1599 Ticks per second with code that was functionally the same differing only in language. Whilst it might therefore seem sensible to fully work within C\# I am far more familiar with python tooling for data analysis and Api functionality
+
+\subsection{Data Storage and streaming}
+With my dual system of python API / analysis layer and C\# simulation layer planned I needed to test a method to stream data between the two
+Initially I thought to store every simulation movement and path trace etc inside a Postgres DB however this resulted in my device resource utilisation spiking and C\# ticks per second falling to 12 due to the heavy read/write penalty of interacting with so many queries, even with batch processing I only gained a couple more Ticks per second. Testing with python caused the Ticks/s to fall so low my 10minute run only parsed 3 ticks, completely unusable
+With database writing written off (at least for main data streaming) I instead decided to test direct socket connections between python and C\# and [INSERT RESULTS HERE]
+\section{Success Criteria for Project}
+To reflect on my progress I have formed some firm success criteria that I must meet at various stages of my software development
+\subsection{Platform Access}
+\begin{enumerate}
+    \item Users can access the website on any internet connected device
+    \item Users log in to the portal and establish a connection with backend end compute servers
+    \item Users can view previous simulations, browse a library of examples / other users published simulations or create a new one
+\end{enumerate}
+\subsection{Simulation Setup}
+\begin{enumerate}
+    \item Users can select a geographic area for the simulation to run on from a map of the world. Area size can range from neighbourhood to large city
+    \item Users can generate a synthesised populated of up to 100,000 people
+    \item Users can automatically utilise statistical data to allocate population with roles and behaviours
+    \item Users can generate disease(s) to be used in simulations
+\end{enumerate}
+
+\subsection{Disease Spread Simulation}
+\begin{enumerate}
+    \item Simulation runs in ticks (lasting e.g. 30 minutes each)
+    \item Simulation accurately models disease progression through SEIR compartments for each agent
+    \item Each tick agents are moved around the map based on their routine, job, and behaviours
+    \item Disease spread is then calculated based on agents’ health stats and disease transmissibility (R rate) data if applicable
+\end{enumerate}
+
+\subsection{User Interaction}
+\begin{enumerate}
+    \item Users can pause, resume and scrub forward/background through the simulation timeline
+    \item Users can apply a various of mitigations such as closing buildings, routes and enforcing policies such as self-isolation and mask wearing
+\end{enumerate}
+
+\subsection{Output and Visualisation}
+\begin{enumerate}
+    \item The simulation streams real time data to the client’s browser and stores data in a database for post simulation analysis
+    \item A live3d map of all locations and agents fills the user’s view
+    \item Supporting statistics (infection spread curves, recovered, susceptible etc) are displayed around
+    \item Users receive non-technical, intuitive explanations of outcomes via tooltips or guided UI messages.
+\end{enumerate}
+
+\subsection{Simulation Speed}
+\begin{enumerate}
+    \item Simulation must run at minimum speed of 1 simulated day per real time second (when running one dedicated simulation)
+    \item System can handle 100,000 agents and 20,000 nodes as an expected data set
+    \item Data storage and retrieval latency remains under 2 seconds from client request -> visualisation
+\end{enumerate}
+
+\subsection{User Interface}
+\begin{enumerate}
+    \item  Interface should be intuitive and can be used by a non-expert with minimal training (<5minutes)
+    \item Results can be easily interpreted without expert knowledge in industry
+    \item Controls are well placed and responsive
+    \item Colour, icon, size and placement are used to provide visual hierarchy
+\end{enumerate}
+
+\subsection{Accessibility}
+\begin{enumerate}
+    \item Software has full audio descriptions of any visual functions to provide ease of use for those with visual impairments
+    \item Bold Contrast on all interface options
+    \item Software functionals on all major browser engines (Chromium, Webkit [safari], Gecko [Firefox])
+\end{enumerate}
+
+\subsection{Robustness}
+\begin{enumerate}
+    \item  System validates all user input without crashing
+    \item Calculation / system overloads are gracefully handled with a server refresh and simulation reload
+\end{enumerate}
+
+\subsection{Maintainability}
+\begin{enumerate}
+\item Whilst an academic project, all code should be well maintained on GIT, issues tracked, Formatting standards upheld and documentation robust
+\item Software hosting process is documented, and code is designed with ‘zero vendor lock in’ and can be easily self-hosted
+\end{enumerate}
+\subsection{Validation}
+\begin{enumerate}
+    \item Model outputs are tested against real world result data from epidemics / pandemics to ensure accuracy (within the range expected for a semi-random disease spread)
+    \item Should aim for Positive feedback to be received from multiple industry experts
+\end{enumerate}
 \section{Initial Design Considerations}
+
+Having researched a variety of methods to display user information and complete my simulation I am currently working to this technical stack (from user facing to simulation):
+\begin{itemize}
+    \item \textbf{Frontend:} Vue Js for dynamic content rendering
+    \item \textbf{Backend:} Python Flask API for data handling and simulation control, C\# for the simulation engine
+    \item \textbf{Database:} PostgreSQL with PostGIS extension for spatial data storage
+    \item \textbf{Hosting:} potentially Docker containers for deployment, potentially on a cloud platform like AWS or DigitalOcean, alternatively can fully self-host
+\end{itemize}
+This combination of technologies allows me to full utilise Object Orientated Programming (OOP) techniques to create a modular, maintainable codebase that can be easily extended in the future. The use of Python and C\# allows me to leverage the strengths of both languages, with Python handling simulation control and data analysis while C\# provides high performance for the simulation engine. The PostgreSQL database with PostGIS will enable efficient storage and retrieval of spatial data, which is crucial for simulating disease spread in a city / urban environment.

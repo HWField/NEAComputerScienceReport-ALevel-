@@ -1,5 +1,6 @@
 ## Core latex/pdflatex auxiliary files:
 **/*.aux
+**/*.pdf
 **/*.lof
 **/*.log
 **/*.lot
@@ -14,7 +15,7 @@
 **/*.fdb_latexmk
 **/*.blg
 **/*.bbl
-
+**/*.DS_Store
 ## Intermediate documents:
 *.dvi
 *.xdv
