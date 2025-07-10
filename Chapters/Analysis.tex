@@ -14,8 +14,8 @@ A secondary Client to my software would be members of the general public who wan
 
 \section{Problem Research}
 With the focus of my project beingly highly academic and having a smaller userbase than e.g. a social media app I knew I would have to focus my search for user issues Before beginning any software development. To start I researched the current offerings available to professionals in this industry, these mostly exist in two forms: complete graphical software packages and computational models / algorithms, here are the packages I researched:
-
-\subsection{Gleamviz}
+\subsection{Existing Software}
+\subsubsection{Gleamviz}
 GLEaMviz (Global Epidemic and Mobility Model) is a computational tool designed to simulate the spread of infectious diseases on a global scale by integrating real-world data on population, human mobility, and disease dynamics. It combines a metapopulation approach—dividing the world into subpopulations connected by transportation networks—with stochastic compartmental models (e.g., SEIR) to simulate disease progression and transmission. By incorporating airline travel, commuting patterns, and demographic information, GLEaMviz enables researchers and public health officials to model outbreak scenarios, assess intervention strategies, and predict potential epidemic outcomes with spatial and temporal precision.
 
 \begin{figure}[H]
@@ -35,7 +35,7 @@ Cons
 -	Can't simulate detailed intervention modelling
 
 
-\subsection{AnyLogic}
+\subsubsection{AnyLogic}
 AnyLogic is a commercial simulation platform that supports multiple modelling paradigms, including agent-based, system dynamics, and discrete-event simulation. Its flexibility allows users to build detailed models of epidemics within cities, hospitals, or regions, integrating individual behaviour, mobility, and interventions. AnyLogic is popular in industry and academia for its visual interface, GIS support, and ability to simulate scenarios involving healthcare logistics or policy interventions. While powerful, its more advanced features require a commercial license and technical expertise.
 
 \begin{figure}[H]
@@ -54,7 +54,7 @@ Cons
 -	Commercial licence required
 -	Can’t simulate areas larger than a small village
 
-\subsection{Covid-19 scenarios (Neher Labs)}
+\subsubsection{Covid-19 scenarios (Neher Labs)}
 COVID-19 Scenarios is an interactive web-based tool created by the Neher Lab for simulating the spread of COVID-19 using a configurable SEIR model. Users can adjust key parameters like R0, hospitalization rates, and intervention timing to explore different pandemic scenarios and healthcare outcomes. While not a full simulation engine, it provides a quick and intuitive way for policymakers and the public to visualize the impact of control measures. Its simplicity and focus on COVID-19 make it accessible but limited in scope and adaptability.
 
 \begin{figure}[H]
@@ -65,7 +65,7 @@ COVID-19 Scenarios is an interactive web-based tool created by the Neher Lab for
 \end{figure}
 
 
-\subsection{FRED (Fast Epidemiological Dynamic Simulator)}
+\subsubsection{FRED (Fast Epidemiological Dynamic Simulator)}
 FRED is an agent-based epidemic modelling system developed by the University of Pittsburgh, designed to simulate infectious disease transmission at the individual level using real census data and synthetic populations. It allows detailed modelling of social contact patterns within households, schools, workplaces, and communities, making it ideal for city-level or regional policy planning in the United States. FRED supports a wide range of disease models and interventions, though its geographic coverage is primarily US focused, and it requires some programming effort to customize.
 
 \begin{figure}[H]
@@ -84,7 +84,7 @@ Cons
 -	simulation appears random due to ‘popping in to view’
 
 
-\subsection{EpiModel}
+\subsubsection{EpiModel}
 EpiModel is an open-source R package for simulating and analysing the spread of infectious diseases using deterministic, stochastic, and network-based compartmental models. It offers a flexible framework for modelling complex transmission dynamics, including sexual networks, social distancing, and other behavioural factors. EpiModel is well-suited for academic research and policy studies and allows users to build custom disease models with full control over parameters and structure. However, it requires proficiency in R and is not optimized for high-resolution spatial modelling.
 
 \begin{figure}[H]
@@ -102,7 +102,7 @@ Cons
 -	No GUI available
 
 
-\subsection{EpiSimdemics}
+\subsubsection{EpiSimdemics}
 EpiSimdemics is a scalable, high-resolution agent-based modelling framework developed for simulating the spread of infectious diseases through detailed social contact networks. It models individual-level interactions across various locations such as homes, schools, and workplaces, allowing for fine-grained intervention testing like school closures or targeted quarantines. Designed for large urban areas or regional populations, it supports policy simulations with realistic behavioural components. However, its complexity and limited public accessibility make it more suitable for research collaborations than casual use.
 
 \begin{figure}[H]
@@ -122,7 +122,7 @@ Cons
 -	High computational workload for resource
 
 
-\subsection{OpenABM}
+\subsubsection{OpenABM}
 OpenABM-Covid19 is a lightweight, open-source agent-based simulation model tailored to study the effects of non-pharmaceutical interventions on COVID-19 transmission. Written in Python and grounded in demographic and mobility data, it simulates detailed contact patterns across households, workplaces, and public spaces. The model is designed to be transparent, easy to adapt, and useful for both researchers and policymakers. While currently COVID-specific, its modular structure allows adaptation to other diseases with some effort.
 Pros
 -	Open source
@@ -133,7 +133,7 @@ Cons
 -	Focused on covid-19
 -	Requires coding skills (python)
 
-\subsection{SimInf}
+\subsubsection{SimInf}
 SimInf is an R-based modelling framework for simulating stochastic compartmental models (such as SEIR) in spatially structured populations. It is designed for speed and scalability, using C/C++ for backend computation while integrating with R for analysis and visualization. SimInf is particularly suited for scenarios involving many small subpopulations connected by movement or trade, such as livestock disease spread or localized outbreaks. It’s powerful for structured models but lacks agent-based or behaviour-driven simulation capabilities.
 Pros
 -	Fast simulations
@@ -141,7 +141,7 @@ Cons
 -	Complex data analysis built in	-	Requires familiarity in C and R
 -	Uses compartment model, not models so less accurate
 
-\subsection{Flute}
+\subsubsection{Flute}
 FluTE is an agent-based epidemic model designed specifically to simulate the spread of influenza within structured populations, using realistic household, workplace, and school networks. It incorporates age-stratified interactions and intervention strategies like vaccination and antiviral distribution. Though originally built for U.S. populations, it can be adapted to other contexts with sufficient demographic data. FluTE is open-source and efficient but relatively rigid in scope, requiring C++ programming knowledge to modify or extend.
 Pros
 -	Agent based
@@ -149,7 +149,7 @@ Pros
 -	Open source	-	Written in c++ and is hard to modify
 Cons
 -	Primarily US focused
-\subsection{EMOD (Epidemiological MODelling software)}
+\subsubsection{EMOD (Epidemiological MODelling software)}
 EMOD is a flexible, open-source epidemiological modelling platform developed by the Institute for Disease Modelling. It supports highly detailed, agent-based simulations of diseases such as malaria, HIV, tuberculosis, and COVID-19, incorporating biological, environmental, and behavioural factors. EMOD is particularly strong in modelling vector-borne and sexually transmitted infections with age-structured and geographically targeted interventions. Though powerful, it has a steep learning curve and requires configuration via JSON files and scripting in Python or C++.
 Pros
 -	Very detailed agent-based disease modelling
@@ -164,11 +164,13 @@ Next I investigated some more context to understand the industry of epidemics an
 
 \subsection{Epidemics Research}
 Next I investigated some more context to understand the industry of epidemics and computational modelling:
-\begin{enumerate}
-    \item Agent based computational modelling \autocite{bissettAgentBasedComputationalEpidemiological2021}
-    \item Algebraic frameworks for structured epidemic modelling \autocite{libkindAlgebraicFrameworkStructured2022}
-    \item Challenges of modelling interventions for future pandemics \autocite{kretzschmarChallengesModellingInterventions2022}
-\end{enumerate}
+\subsubsection{Agent Based Computational Modelling}{}
+Agent based computational modelling \autocite{bissettAgentBasedComputationalEpidemiological2021}
+\subsubsection{Algebraic frameworks for structured epidemic modelling}
+Algebraic frameworks for structured epidemic modelling \autocite{libkindAlgebraicFrameworkStructured2022}
+\subsubsection{Challenges of modelling interventions for future pandemics}
+Challenges of modelling interventions for future pandemics \autocite{kretzschmarChallengesModellingInterventions2022}
+
 
 \section{Feasibility}
 \subsection{Dataset Acquisition}
@@ -324,8 +326,8 @@ To reflect on my progress I have formed some firm success criteria that I must m
 
 \subsection{Maintainability}
 \begin{enumerate}
-\item Whilst an academic project, all code should be well maintained on GIT, issues tracked, Formatting standards upheld and documentation robust
-\item Software hosting process is documented, and code is designed with ‘zero vendor lock in’ and can be easily self-hosted
+    \item Whilst an academic project, all code should be well maintained on GIT, issues tracked, Formatting standards upheld and documentation robust
+    \item Software hosting process is documented, and code is designed with ‘zero vendor lock in’ and can be easily self-hosted
 \end{enumerate}
 \subsection{Validation}
 \begin{enumerate}
@@ -343,7 +345,7 @@ Having researched a variety of methods to display user information and complete 
 \end{itemize}
 This combination of technologies allows me to full utilise Object Orientated Programming (OOP) techniques to create a modular, maintainable codebase that can be easily extended in the future. The use of Python and C\# allows me to leverage the strengths of both languages, with Python handling simulation control and data analysis while C\# provides high performance for the simulation engine. The PostgreSQL database with PostGIS will enable efficient storage and retrieval of spatial data, which is crucial for simulating disease spread in a city / urban environment.
 \begin{figure}[H]
-\input{Chapters/AnalysisMedia/umlDiagram.tex}
-  \caption{UML class diagram of the disease simulation system.}
-  \label{fig:umlDiagram}
+    \input{Chapters/AnalysisMedia/umlDiagram.tex}
+    \caption{UML class diagram of the disease simulation system.}
+    \label{fig:umlDiagram}
 \end{figure}

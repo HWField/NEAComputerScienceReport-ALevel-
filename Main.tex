@@ -6,7 +6,30 @@
 \usepackage{xcolor}
 \usepackage{float}
 \usepackage{notoccite}
-\usepackage[a4paper,margin=1in]{geometry}
+\usepackage{titlesec}
+\usepackage{etoolbox}
+% for header and footer
+\usepackage[a4paper, margin=1in, headheight=16pt]{geometry}  % Ensures enough space for header
+
+% Header/Footer setup
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+\fancyhf{}  % clear all headers and footers
+\renewcommand{\sectionmark}[1]{\markright{#1}}
+% Define a command to set up = header/footer 
+\newcommand{\myfancysetup}{
+  \fancyhead[L]{Henry Field - Computer Science NEA}
+  \fancyhead[R]{\rightmark}
+  \fancyfoot[L]{Candidate Number: \textbf{1749}\\Center Number: \textbf{58231}}
+  \fancyfoot[R]{Page \thepage}
+  \renewcommand{\headrulewidth}{0.4pt}
+  \renewcommand{\footrulewidth}{0pt}
+}
+% Apply the setup to both 'fancy' and 'plain' page styles
+\myfancysetup
+\fancypagestyle{plain}{\myfancysetup}
+
+
 \usepackage[
     backend=biber,
     style=numeric,
@@ -15,6 +38,7 @@
     date=comp,
     urldate=long
 ]{biblatex}
+
 \addbibresource{References.bib}
 \begin{document}
 
@@ -22,7 +46,7 @@
 \author{Henry Field}
 \date{\today}
 \maketitle
-
+\setcounter{tocdepth}{5}
 \tableofcontents
 \newpage
 \include{Chapters/Analysis}
