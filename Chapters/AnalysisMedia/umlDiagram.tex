@@ -1,0 +1,47 @@
+% diagrams/disease_uml.tex
+
+\begin{tikzpicture}
+
+  \umlclass[x=0, y=0]{Disease}{
+    - name : String \\
+    - deathRate : Float \\
+    - infectionRate : Float \\
+    - colour : String
+  }{}
+
+  \umlclass[x=-6, y=-6]{Agent}{
+    - name : String \\
+    - health : Float \\
+    - status : String \\
+    - home : Node \\
+    - workplace : Node \\
+    - currentLocation : Node \\
+    - role : Role
+  }{}
+
+  \umlclass[x=0, y=-6]{Node}{
+    - type : String \\
+    - capacity : Int \\
+    - location : Coord \\
+    - currentOccupants : List<Agent>
+  }{}
+
+  \umlclass[x=6, y=-6]{Role}{
+    - type : String \\
+    - startTime : Time \\
+    - lunchBreak : Time \\
+    - endTime : Time \\
+    - priority : Int
+  }{}
+
+  \umlclass[x=3, y=-12]{Mitigation}{
+    - name : String \\
+    - effect : String
+  }{}
+
+  \umluniassoc[arg1=*, arg2=1, mult1=1, mult2=*]{Agent}{Node}
+  \umluniassoc[arg1=1, arg2=*]{Agent}{Role}
+  \umluniassoc[arg1=*, arg2=1]{Agent}{Disease}
+  \umluniassoc[arg1=*, arg2=1]{Mitigation}{Disease}
+
+\end{tikzpicture}
