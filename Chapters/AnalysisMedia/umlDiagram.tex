@@ -1,47 +1,73 @@
-% diagrams/disease_uml.tex
 
+\begin{center}
 \begin{tikzpicture}
 
-  \umlclass[x=0, y=0]{Disease}{
-    - name : String \\
-    - deathRate : Float \\
-    - infectionRate : Float \\
-    - colour : String
-  }{}
+  \begin{umlpackage}[x=0,y=0]{SimulationSystem}
 
-  \umlclass[x=-6, y=-6]{Agent}{
-    - name : String \\
-    - health : Float \\
-    - status : String \\
-    - home : Node \\
-    - workplace : Node \\
-    - currentLocation : Node \\
-    - role : Role
-  }{}
+    % Class: Agent
+    \umlclass[x=0, y=0]{Agent}{
+      - Name : String \\
+      - Health : Float \\
+      - Status : String \\
+      - Role : Roles \\
+      - Home : Node \\
+      - Workplace : Node \\
+      - Location : Node
+    }{}
 
-  \umlclass[x=0, y=-6]{Node}{
-    - type : String \\
-    - capacity : Int \\
-    - location : Coord \\
-    - currentOccupants : List<Agent>
-  }{}
+    % Class: Node
+    \umlclass[x=6, y=0]{Node}{
+      - Type : String \\
+      - Capacity : Int \\
+      - Location : String \\
+      - CurrentOccupants : Agent[]
+    }{}
 
-  \umlclass[x=6, y=-6]{Role}{
-    - type : String \\
-    - startTime : Time \\
-    - lunchBreak : Time \\
-    - endTime : Time \\
-    - priority : Int
-  }{}
+    % Class: Roles
+    \umlclass[x=6, y=-5]{Roles}{
+      - Type : String \\
+      - StartTime : Time \\
+      - LunchBreak : Time \\
+      - EndTime : Time \\
+      - Priority : Int
+    }{}
 
-  \umlclass[x=3, y=-12]{Mitigation}{
-    - name : String \\
-    - effect : String
-  }{}
+    % Class: Disease
+    \umlclass[x=0, y=-5]{Disease}{
+      - Name : String \\
+      - DeathRate : Float \\
+      - InfectionRate : Float \\
+      - Colour : String
+    }{}
 
-  \umluniassoc[arg1=*, arg2=1, mult1=1, mult2=*]{Agent}{Node}
-  \umluniassoc[arg1=1, arg2=*]{Agent}{Role}
-  \umluniassoc[arg1=*, arg2=1]{Agent}{Disease}
-  \umluniassoc[arg1=*, arg2=1]{Mitigation}{Disease}
+    % Class: Simulation
+    \umlclass[x=3, y=-10]{Simulation}{
+      - Agents : Agent[] \\
+      - Nodes : Node[] \\
+      - Roles : Roles[] \\
+      - Disease : Disease
+    }{}
+
+    % Class: Account
+    \umlclass[x=3, y=-15]{Account}{
+      - Name : String \\
+      - Email : String \\
+      - Password : String \\
+      - Simulations : Simulation[]
+    }{}
+
+    % Associations
+    \umluniassoc{Agent}{Node}       % Home
+    \umluniassoc{Agent}{Node}       % Workplace
+    \umluniassoc{Agent}{Roles}
+    \umluniassoc{Node}{Agent}    % CurrentOccupants
+    \umluniassoc{Simulation}{Agent}
+    \umluniassoc{Simulation}{Node}
+    \umluniassoc{Simulation}{Roles}
+    \umluniassoc{Simulation}{Disease}
+    \umluniassoc{Account}{Simulation}
+
+  \end{umlpackage}
 
 \end{tikzpicture}
+\end{center}

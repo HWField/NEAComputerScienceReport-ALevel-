@@ -1,19 +1,58 @@
 \chapter{Analysis}
-\section{Project / Problem Description}
-The project aims to simulate the spread of disease within the local community of a city, using a model that would include around 100,000  citizens/agents and 20,000 buildings/nodes. The inspiration for this project came from the recent global pandemic, which highlighted the importance of understanding how diseases spread within communities. By simulating the spread of disease in a specific locality as opposed to on a national/global scale, I hope to contribute to better preparedness and response strategies for communities. The primary objective of this project is to develop a detailed simulation of disease spread in a given city / urban area, which can be used to analyse the effectiveness of various intervention strategies. A secondary goal is to help directly inform the public of the effectiveness of certain strategies to reduce the spread of disease, in an easily digestible (visual / non-numerical) way.
+\section{Introduction to the Problem}
+Understanding how infectious diseases spread through urban environments is a complex and urgent problem, especially in light of recent global health crises. During pandemics, decision-makers rely on accurate models to evaluate the effectiveness of public health interventions such as social distancing, lockdowns, and vaccination. However, many existing simulations operate at national or global scales, often lacking the granularity needed to inform decisions at the community level.
+
+This project seeks to address this gap by simulating disease spread within a city-sized environment, consisting of approximately 100,000 agents (representing individuals) and 20,000 nodes (representing buildings or gathering points). The problem being tackled is how to model and visualize disease transmission within a realistic, localized setting, so that the impact of specific strategies (e.g., closing schools or limiting public transport) can be analyzed.
+
+The aim is to design and implement a simulation that accurately reflects how a disease could spread through a densely populated urban area, based on various parameters such as agent mobility, infection rate, and building density. The solution will not only allow for analysis of intervention strategies, but also provide a clear, visual representation of disease progression over time—making the data accessible and informative for both experts and the general public.
+
+This project combines elements of agent-based moddelling, data visualization, and algorithmic design to address a real-world problem through computational means.
+
 \section{Client}
-The primary client to my software would be a clinical researcher / policymaker who was looking to implement changes that would protect their population from harm through the spread of disease. I was fortunate to visit the Imperial university Department of Infectious diseases and to speak with both a researcher and a software developer there to discuss my projects objectives and collect their initial thoughts. They were highly supportive of my ideas and provided great insight into some methods I could try and some architectural considerations I should make; Unfortunately I will likely be unable to remain in continuous contact with them over the project's development so I collected their initial thoughts and am potentially looking to be able to get some contacts at Cambridge based research facilities who I can be in more frequent communication with.
+\subsection{Introduction of client}
+The primary client to my software would be a clinical researcher / policymaker who is looking to implement changes that would protect their population from harm through the spread of disease. I was fortunate to visit the Imperial university Department of Infectious diseases and to speak with both a researcher and a software developer there to discuss my projects objectives and collect their initial thoughts. They were highly supportive of my ideas and provided great insight into some methods I could try and some architectural considerations I should make. Unfortunately I will likely be unable to remain in continuous contact with them over the project's development so I collected their initial thoughts and am potentially looking to be able to get some contacts at Cambridge based research facilities who I can be in more frequent communication with.
+
 The faculty at Imperial gave me a loose brief from which I can expand, the software should:
 \begin{itemize}
     \item Give users a space to simulate disease spread in a city
     \item work on an agent by agent basis for a realistic disease spread
     \item Utilise real map data for location based modelling
-    \item Utilise ONS data for accurate agent generation
+    \item Utilise population data for accurate agent generation
 \end{itemize}
-A secondary Client to my software would be members of the general public who want to easily visualise the impact very small measures (such as face coverings or self-isolation) can make to the larger picture. By making my software very intuitive even to those without scientific it can used to quickly visualise and prove a point to others. A variety of my family members and family friends (from a variety of academic backgrounds including biologists)
+
+A secondary Client to my software would be members of the general public who want to easily visualise the impact very small measures (such as face coverings or self-isolation) can make to the larger picture. By making my software very intuitive even to those without scientific it can used to quickly visualise and prove a point to others. A variety of my family members and family friends (from a variety of academic backgrounds including biologists) have agreed to test my software and provide feedback on its usability and intuitiveness. I will also be able to use their feedback to improve the software's accessibility for those without a scientific background.
+
+\subsection{Client Interview}
+
+\begin{center}
+    \textbf{Interview With x: Q \& A}
+\end{center}
+
+
+
+\begin{description}
+    \item[Q:] What is the main goal you would like this simulation software to achieve?
+    \item[A:] The main goal is to provide a tool that can simulate disease spread at a city level, allowing us to test the impact of different interventions and policies in a realistic, data-driven environment.
+
+    \item[Q:] What features are most important for your research or decision-making?
+    \item[A:] The ability to use real map and population data, simulate individual agent behaviours, and visualize the effects of interventions like school closures or mask mandates are essential. Clear, accessible output is also important for communicating results.
+
+    \item[Q:] What challenges do you face with current modelling tools?
+    \item[A:] Most existing tools are either too broad in scope (national/global) or too technical for non-experts. They often lack flexibility, detailed local modelling, or require significant programming expertise.
+
+    \item[Q:] How important is accessibility for non-expert users?
+    \item[A:] Very important. Policymakers and the public need to understand the results without needing a technical background. Intuitive interfaces and clear visualizations are key.
+
+    \item[Q:] What data sources do you recommend for agent and location generation?
+    \item[A:] OpenStreetMap for geographic data and ONS for population demographics are good choices. Disease parameters should be customizable, with presets for common scenarios.
+
+    \item[Q:] How would you measure the success of this software?
+    \item[A:] Success would be measured by its ability to accurately simulate scenarios, provide actionable insights, and be usable by both researchers and the public. Validation against real-world data and positive feedback from experts would be ideal.
+\end{description}
+
 
 \section{Problem Research}
-With the focus of my project beingly highly academic and having a smaller userbase than e.g. a social media app I knew I would have to focus my search for user issues Before beginning any software development. To start I researched the current offerings available to professionals in this industry, these mostly exist in two forms: complete graphical software packages and computational models / algorithms, here are the packages I researched:
+With the focus of my project being academic in nature and having a smaller userbase than e.g. a social media app I knew I would have to focus my search for user issues before beginning any software development. To start I researched the current offerings available to professionals in this industry, these mostly exist in two forms: complete graphical software packages and computational models / algorithms, here are the packages I researched:
 \subsection{Existing Software}
 \subsubsection{Gleamviz}
 GLEaMviz (Global Epidemic and Mobility Model) is a computational tool designed to simulate the spread of infectious diseases on a global scale by integrating real-world data on population, human mobility, and disease dynamics. It combines a metapopulation approach—dividing the world into subpopulations connected by transportation networks—with stochastic compartmental models (e.g., SEIR) to simulate disease progression and transmission. By incorporating airline travel, commuting patterns, and demographic information, GLEaMviz enables researchers and public health officials to model outbreak scenarios, assess intervention strategies, and predict potential epidemic outcomes with spatial and temporal precision.
@@ -165,14 +204,70 @@ Next I investigated some more context to understand the industry of epidemics an
 \subsection{Epidemics Research}
 Next I investigated some more context to understand the industry of epidemics and computational modelling:
 \subsubsection{Agent Based Computational Modelling}{}
-Agent based computational modelling \autocite{bissettAgentBasedComputationalEpidemiological2021}
-\subsubsection{Algebraic frameworks for structured epidemic modelling}
-Algebraic frameworks for structured epidemic modelling \autocite{libkindAlgebraicFrameworkStructured2022}
-\subsubsection{Challenges of modelling interventions for future pandemics}
-Challenges of modelling interventions for future pandemics \autocite{kretzschmarChallengesModellingInterventions2022}
+\textbf{Source:} \autocite{bissettAgentBasedComputationalEpidemiological2021}
 
+The paper explores the use of agent-based models (ABMs) to simulate the spread of infectious diseases in human populations. It presents a modular framework that integrates synthetic population generation, contact network modeling, and disease transmission dynamics. By creating detailed, data-driven simulations of how individuals interact in households, schools, workplaces, and public spaces, the model allows for realistic analysis of disease spread. The paper emphasizes the scalability of their system, which is capable of simulating populations at city or even national scale, and highlights the importance of modeling localized interactions to understand how outbreaks evolve and respond to different interventions.
+
+The paper especially highlights the difficulty of generating realistic populations as data can often be hard to come by. To tackle these challenges the researchers propose a more mathematical model that utilises randomness between known nodes / data to help facilitate the flow of a population in a given time frame. Helpfiully the paper explores the variables required to maximise the realism of the the model using 'digital twins' such as:
+
+\begin{itemize}
+    \item age
+    \item demographic
+    \item home location
+    \item work role (such as students, carers, medical staff etc)
+\end{itemize}
+
+While the acquisition of this data is given US based sources, I have found that the UK has similar data available from the ONS (Office for National Statistics) which I can use to generate my agents.
+This research is particularly relevant to my project as it supports the use of agent-based models to evaluate intervention strategies such as lockdowns or school closures, and demonstrates how visualizations and scenario testing can guide public health decisions. The emphasis on realistic network generation and flexible disease modelling aligns closely with the goals of my NEA: to create a dynamic, localized disease simulation that can help visualize how different public health measures affect transmission within a community. Whilst this paper focused on a highly mathematical and graphical model of calculation, I can adapt these ideas to fit within my project which is much more visual and based on real world data.
+
+\subsubsection{Algebraic frameworks for structured epidemic modelling}
+\textbf{Source:} \autocite{libkindAlgebraicFrameworkStructured2022}
+
+This paper gives an in-depth view to them mathematical modelling of epidemics. It provides a number of formulas and mathematical ideas that can use the gathered, compartmented data to create a scalable model of infection spread.
+
+equations such as:
+
+
+\[
+    u_s = \sum_{t \in p(s)} \phi_t - \sum_{t \in r^{-1}(s)} \phi_t, \quad \text{where} \quad \phi_t := \beta_t \prod_{s \in r(t)} u_s
+\]
+
+\begin{center}
+    \begin{itemize}
+        \item \textbf{\( u_s \)}: The value at node or state \( s \); represents something like the number or probability of individuals in a particular disease state (e.g., infected or susceptible).
+
+        \item \textbf{\( p(s) \)}: The set of transitions \( t \) that lead \emph{into} state \( s \) (postconditions).
+
+        \item \textbf{\( r^{-1}(s) \)}: The set of transitions \( t \) that lead \emph{out of} state \( s \) (preconditions).
+
+        \item \textbf{\( \sum_{t \in p(s)} \phi_t \)}: The total inflow into state \( s \), contributed by transitions entering that state.
+
+        \item \textbf{\( \sum_{t \in r^{-1}(s)} \phi_t \)}: The total outflow from state \( s \), due to transitions exiting that state.
+
+        \item \textbf{\( \phi_t \)}: The value or "flow" associated with transition \( t \); represents how much effect the transition has.
+
+        \item \textbf{\( \beta_t \)}: A rate constant for transition \( t \); models the likelihood or strength of the transition (e.g., infection rate).
+
+        \item \textbf{\( r(t) \)}: The set of input states (preconditions) required for transition \( t \) to occur.
+
+        \item \textbf{\( \prod_{s \in r(t)} u_s \)}: A product of the values of all input states for transition \( t \); shows how multiple states contribute multiplicatively to the transition (e.g., an infection requires both a susceptible and an infected individual).
+    \end{itemize}
+\end{center}
+model how the value at a node (e.g. the number of people in a certain disease state) changes based on the rates of transitions going into and out of it. It's a generalized form of a flow equation, similar to what's seen in SIR-type epidemiological models, but more flexible and structured to fit into computational frameworks like agent-based models or Petri nets. Whilst equations like these are not directly applicable to my project, they do provide a strong mathematical basis for the algorithms I will need to implement to simulate disease spread. I will likely need to use some of these equations to calculate the rate of infection and recovery in my simulation.
+
+\subsubsection{Challenges of modelling interventions for future pandemics}
+\textbf{Source:} \autocite{kretzschmarChallengesModellingInterventions2022}
+
+This research paper focuses on the logistical challenges of modelling such as a complex behaviour as disease propagation and human behaviour. It is highly useful as i can ensure the assumptions i make when compiling data are valid and that I can ensure the data I collect is accurate and useful for my simulation. The paper highlights the importance of using real world data to inform the model, and how this can be used to create a more realistic simulation. It also discusses the challenges of modelling interventions, such as social distancing and lockdowns, and how these can be incorporated into the simulation.
+
+The researcher on parameter selection says, 
+\begin{quote}
+\textit{“ one goal is to estimate parameters that have not been measured by fitting to those that have been measured; the second goal is to fit a model to observations up to the present in order to predict what will happen in the future.”}
+\end{quote}
+This quote nicely sums the complexity of modelling disease spread and the need for accurate data to inform the model (otherwise the produced simulation output will be of no use). It also highlights the importance of being able to predict future outcomes based on current data, which is a key goal of my project.
 
 \section{Feasibility}
+With an ambitious goal to achieve, I need to ensure that my project is feasible in terms of time, skills, and resources. Below I outline the feasibility of my project in a variety of areas:
 \subsection{Dataset Acquisition}
 \begin{itemize}
     \item Project will rely on accurate maps of buildings and roads for virtual agents to navigate around, this data will be sourced from OpenStreetMap’s using their TurboAPI to interface with my Flask server API, I tested the ability of this link to handle the 20,000 target building node and It succeed without issue and in a reasonable time
@@ -256,8 +351,8 @@ Concerned with low performance (even with the numba addition) I decided to recre
 
 \subsection{Data Storage and streaming}
 With my dual system of python API / analysis layer and C\# simulation layer planned I needed to test a method to stream data between the two
-Initially I thought to store every simulation movement and path trace etc inside a Postgres DB however this resulted in my device resource utilisation spiking and C\# ticks per second falling to 12 due to the heavy read/write penalty of interacting with so many queries, even with batch processing I only gained a couple more Ticks per second. Testing with python caused the Ticks/s to fall so low my 10minute run only parsed 3 ticks, completely unusable
-With database writing written off (at least for main data streaming) I instead decided to test direct socket connections between python and C\# and [INSERT RESULTS HERE]
+Initially I thought to store every simulation movement and path trace etc inside a Postgres DB however this resulted in my device resource utilisation spiking and C\# ticks per second falling to 12 due to the heavy read/write penalty of interacting with so many queries, even with batch processing I only gained a couple more Ticks per second. Testing with python caused the Ticks/s to fall so low my 10minute run only parsed 3 ticks, completely unusable.
+With database writing written off (at least for main data streaming) I instead decided to test direct socket connections between python and C\# and found much greater success
 \section{Success Criteria for Project}
 To reflect on my progress I have formed some firm success criteria that I must meet at various stages of my software development
 \subsection{Platform Access}
@@ -343,9 +438,30 @@ Having researched a variety of methods to display user information and complete 
     \item \textbf{Database:} PostgreSQL with PostGIS extension for spatial data storage
     \item \textbf{Hosting:} potentially Docker containers for deployment, potentially on a cloud platform like AWS or DigitalOcean, alternatively can fully self-host
 \end{itemize}
+
 This combination of technologies allows me to full utilise Object Orientated Programming (OOP) techniques to create a modular, maintainable codebase that can be easily extended in the future. The use of Python and C\# allows me to leverage the strengths of both languages, with Python handling simulation control and data analysis while C\# provides high performance for the simulation engine. The PostgreSQL database with PostGIS will enable efficient storage and retrieval of spatial data, which is crucial for simulating disease spread in a city / urban environment.
+
+\subsection{UML Class Diagram}
 \begin{figure}[H]
     \input{Chapters/AnalysisMedia/umlDiagram.tex}
     \caption{UML class diagram of the disease simulation system.}
     \label{fig:umlDiagram}
 \end{figure}
+
+\subsection{Tick Sequence}
+The fundemantal time span of my simulation is a 'tick' which represents a period of time in which the simulation runs and agents can move, interact and change state. The tick sequence is as follows:
+\begin{enumerate}
+    \item \textbf{Agent Movement:} Each agent moves to a new location based on their routine and the current state of the simulation. This movement is influenced by their role (e.g., student, worker) and the locations of buildings in the simulation.
+    \item \textbf{Disease Spread Calculation:} After all agents have moved, the simulation calculates the spread of disease based on the current state of each agent and the disease profile. This includes determining which agents become infected, recover, or remain susceptible.
+    \item \textbf{State Update:} Each agent's state is updated based on the disease spread calculation. This may involve changing their health status (e.g., from susceptible to infected) and updating their health statistics (e.g., R0, recovery rate).
+    \item \textbf{Data Storage:} The current state of the simulation, including agent locations and health statistics, is stored in the database for later analysis. This allows users to review the simulation results and visualize the spread of disease over time.
+    \item \textbf{User Interaction:} Users can interact with the simulation by pausing, resuming, or scrubbing through the timeline. They can also apply interventions, such as closing buildings or enforcing policies, which will affect the next tick's agent movement and disease spread.
+\end{enumerate}
+
+Choosing the duration of a tick is a difficult balancing act as i want to maximise simulation precision whilst also maintaining acceptible simulation speed. For example a tick time of 1minute would allow for a huge number of agent interactions and an excellent 'slow motion' effect for the viewer however would take much longer to compute, inversely a tick duration of an entire day woudl result in missing the nuance of E.g. going to collect a meal and interacting with other agents in the same venue. I have therefore settled on a tick duration of 30 minutes which allows for a good balance of agent interaction and simulation speed. This duration allows for enough time for agents to move around, interact with others, and for the disease to spread realistically, while still being fast enough to keep the simulation engaging and responsive to user input. Should a user wish to view the simulation at a high speed each day will only involve 48 ticks (a week would be 336 ticks) which my testing found to be a quick computation time enabling multi month and year long simulation to be run in minutes rather than hours.
+
+
+
+
+
+
