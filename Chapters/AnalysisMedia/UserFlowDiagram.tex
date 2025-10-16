@@ -1,0 +1,38 @@
+\begin{center}
+\begin{tikzpicture}[
+  node distance=1.8cm and 1.5cm,
+  every node/.style={draw, rounded corners, minimum width=3.5cm, minimum height=1cm, align=center},
+  arrow/.style={ thick},
+]
+
+% Main vertical sequence
+\node (login)        {User Logs In};
+\node (createSim)    [below=of login] {Create Simulation};
+\node (genPop)       [below=of createSim] {Generate Population};
+\node (runSeq)       [below=of genPop] {Run Simulation Sequence};
+\node (mitigations)  [below=of runSeq] {Implement Mitigations};
+\node (skipBack)     [below=of mitigations] {Skip Back in Time};
+\node (review)       [below=of skipBack] {Review Scenario};
+\node (analyze)      [below=of review] {Analyze Results};
+
+% Side branches
+\node (loadSim)      [left=of createSim] {Load Existing\\Simulation};
+\node (adjustParams) [right=of genPop] {Adjust\\Parameters};
+\node (altScenario)  [right=of mitigations] {Run\\Alternative Scenario};
+
+% Arrows - main flow
+\draw[arrow] (login)        -- (createSim);
+\draw[arrow] (createSim)    -- (genPop);
+\draw[arrow] (genPop)       -- (runSeq);
+\draw[arrow] (runSeq)       -- (mitigations);
+\draw[arrow] (mitigations)  -- (skipBack);
+\draw[arrow] (skipBack)     -- (review);
+\draw[arrow] (review)       -- (analyze);
+
+% Arrows - side branches
+\draw[arrow] (loadSim.east)      -- (createSim.west);
+\draw[arrow] (genPop.east)       -- (adjustParams.west);
+\draw[arrow] (mitigations.east)  -- (altScenario.west);
+
+\end{tikzpicture}
+\end{center}

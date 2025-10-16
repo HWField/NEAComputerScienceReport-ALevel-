@@ -9,7 +9,7 @@
       - Name : String \\
       - Health : Float \\
       - Status : String \\
-      - Role : Roles \\
+      - Role : Role \\
       - Home : Node \\
       - Workplace : Node \\
       - Location : Node
@@ -23,8 +23,8 @@
       - CurrentOccupants : Agent[]
     }{}
 
-    % Class: Roles
-    \umlclass[x=6, y=-5]{Roles}{
+    % Class: Role
+    \umlclass[x=6, y=-5]{Role}{
       - Type : String \\
       - StartTime : Time \\
       - LunchBreak : Time \\
@@ -44,7 +44,7 @@
     \umlclass[x=3, y=-10]{Simulation}{
       - Agents : Agent[] \\
       - Nodes : Node[] \\
-      - Roles : Roles[] \\
+      - Roles : Role[] \\
       - Disease : Disease
     }{}
 
@@ -59,11 +59,11 @@
     % Associations
     \umluniassoc{Agent}{Node}       % Home
     \umluniassoc{Agent}{Node}       % Workplace
-    \umluniassoc{Agent}{Roles}
+    \umluniassoc{Agent}{Role}
     \umluniassoc{Node}{Agent}    % CurrentOccupants
     \umluniassoc{Simulation}{Agent}
     \umluniassoc{Simulation}{Node}
-    \umluniassoc{Simulation}{Roles}
+    \umluniassoc{Simulation}{Role}
     \umluniassoc{Simulation}{Disease}
     \umluniassoc{Account}{Simulation}
 

@@ -5,13 +5,18 @@
 \usetikzlibrary{positioning}
 \usepackage{extensions/tikz-uml}
 \usepackage{xcolor}
+\usepackage{tcolorbox} 
+
+\usepackage{titling}  
+\usepackage{caption} 
 \usepackage{float}
 \usepackage{amsmath}
 \usepackage{notoccite}
+\usepackage{wallpaper}
 \usepackage{titlesec}
 \usepackage{etoolbox}
 \usepackage{parskip}
-
+\usepackage{censor} 
 % for header and footer
 \usepackage[a4paper, margin=1in, headheight=16pt]{geometry}  % Ensures enough space for header
 
@@ -33,6 +38,9 @@
 \myfancysetup
 \fancypagestyle{plain}{\myfancysetup}
 
+% for code highlighting and listings
+\usepackage{minted}
+
 
 \usepackage[
     backend=biber,
@@ -46,10 +54,25 @@
 \addbibresource{References.bib}
 \begin{document}
 
+% Set background image
+\ThisLRCornerWallPaper{1.0}{BackgroundImage.png}
+
+% Customize title
+\pretitle{\begin{center}\Huge\bfseries\color{white}}
+    \posttitle{\end{center}\vspace{2em}}
+\preauthor{\begin{center}\huge\color{white}}
+    \postauthor{\end{center}\vspace{1.5em}}
+\predate{\begin{center}\color{white}\large}
+    \postdate{\end{center}}
+
+% Title content
 \title{NEA: Disease Spread Simulation}
 \author{Henry Field}
 \date{\today}
+
+% \begin{document}
 \maketitle
+\thispagestyle{empty} % removes page number
 \setcounter{tocdepth}{5}
 \tableofcontents
 \newpage

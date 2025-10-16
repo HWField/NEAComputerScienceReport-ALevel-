@@ -6,11 +6,13 @@ This project seeks to address this gap by simulating disease spread within a cit
 
 The aim is to design and implement a simulation that accurately reflects how a disease could spread through a densely populated urban area, based on various parameters such as agent mobility, infection rate, and building density. The solution will not only allow for analysis of intervention strategies, but also provide a clear, visual representation of disease progression over time—making the data accessible and informative for both experts and the general public.
 
+This gives the project a secondary goal of being an educational tool, helping users understand the dynamics of disease spread and the potential impact of public health measures, however small and simple they may be. By combining agent-based modeling with real-world data, the project aims to create a flexible, user-friendly platform that can be used by researchers, policymakers, and the public to explore epidemic scenarios in a city context.
+
 This project combines elements of agent-based moddelling, data visualization, and algorithmic design to address a real-world problem through computational means.
 
 \section{Client}
-\subsection{Introduction of client}
-The primary client to my software would be a clinical researcher / policymaker who is looking to implement changes that would protect their population from harm through the spread of disease. I was fortunate to visit the Imperial university Department of Infectious diseases and to speak with both a researcher and a software developer there to discuss my projects objectives and collect their initial thoughts. They were highly supportive of my ideas and provided great insight into some methods I could try and some architectural considerations I should make. Unfortunately I will likely be unable to remain in continuous contact with them over the project's development so I collected their initial thoughts and am potentially looking to be able to get some contacts at Cambridge based research facilities who I can be in more frequent communication with.
+\subsection{Introduction to client(s)}
+The primary client to my software would be a clinical researcher / policymaker who is looking to implement changes that would protect their population from harm through the spread of disease. I was fortunate to visit the Imperial university Department of Infectious diseases and to speak with both a researcher and a software developer there to discuss my projects objectives and collect their initial thoughts. They were highly supportive of my ideas and provided great insight into some methods I could try and some architectural considerations I should make. Unfortunately I will likely be unable to remain in continuous contact with them over the project's development so I collected their summarised thoughts below.
 
 The faculty at Imperial gave me a loose brief from which I can expand, the software should:
 \begin{itemize}
@@ -20,35 +22,55 @@ The faculty at Imperial gave me a loose brief from which I can expand, the softw
     \item Utilise population data for accurate agent generation
 \end{itemize}
 
-A secondary Client to my software would be members of the general public who want to easily visualise the impact very small measures (such as face coverings or self-isolation) can make to the larger picture. By making my software very intuitive even to those without scientific it can used to quickly visualise and prove a point to others. A variety of my family members and family friends (from a variety of academic backgrounds including biologists) have agreed to test my software and provide feedback on its usability and intuitiveness. I will also be able to use their feedback to improve the software's accessibility for those without a scientific background.
+I was incredibly fortunate to connect with 2 Researchers at the Cambridge Biomedical Campus called Dr Tan and Dr Jin. Whilst not directly working in the field of epidemiology, they both utilise simulation software heavily to help guide their research in adjacent fields. They have kindly offered to remain in continuous contact with me throughout my project to provide feedback on my software and to help guide my design decisions. They have also agreed to test my software once it is complete and provide feedback on its usability and intuitiveness.
+
+A secondary Client to my software would be members of the general-public who want to easily visualise the impact very small measures (such as face coverings or self-isolation) can make to the larger picture. By making my software very intuitive even to those without scientific it can used to quickly visualise and prove a point to others. A variety of my family members and family friends (from a variety of academic backgrounds including biologists) have agreed to test my software and provide feedback on its usability and intuitiveness. I will also be able to use their feedback to improve the software's accessibility for those without a scientific background.
 
 \subsection{Client Interview}
 
 \begin{center}
-    \textbf{Interview With x: Q \& A}
+    \textit{Interviews With Dr Tan and Dr Jin: Scheduled for 25 August 2025}
+
+    \begin{center}
+        \textbf{\emph{Note:}} \\
+        \emph{These interviews had to unfortunately be postponed to Early September due to scheduling conflicts. I have been able to discuss my project informally with them however and will be able to include their feedback in my final report. I am keen to wait for their availability as they are experts in the field of biological research and will be able to provide invaluable feedback on my project.}
+    \end{center}
+
 \end{center}
 
+\subsection{Interview with User x}
+\blackout{User X} is very keen to learn more about the steps she and her family can take to help prepare themselves for a repeat of a large scale pandemic. 
+
+When covid impacted her area she was scared at the lack of tools she had at her disposal and the reliance she had to have on governing bodies to relay factual information. She has some awareness of the tools large research organizations have access to from documentaries and more theatrical portrays but always assumed to the complexity of these technologies would place them far outside her reach.
+
+When asked what she would like to gain from my project she spoke about an ability to make information much more easily digestible and useable by the public. She did have some concerns about how this simplicity could impact the overall usefulness of the results (potentially making them harmful if too oversimplified) and would want to see some data to verify my projects outcomes can align with peer-reviewed research.
+
+Whilst she has access to a laptop it became clear over the course of the interview that it would be unfeasible and unwanted to run a large simulation on local hardware, and so I will explore runnings compute on a centralised server and streaming results to the user. This additionally open opportunities to support users on mobile devices such as smartphones and tablets making my software more mass market.
+
+% \begin{center}
+%     \textbf{Interview With x: Q \& A}
+% \end{center}
 
 
-\begin{description}
-    \item[Q:] What is the main goal you would like this simulation software to achieve?
-    \item[A:] The main goal is to provide a tool that can simulate disease spread at a city level, allowing us to test the impact of different interventions and policies in a realistic, data-driven environment.
+% \begin{description}
+%     \item[Q:] What is the main goal you would like this simulation software to achieve?
+%     \item[A:] The main goal is to provide a tool that can simulate disease spread at a city level, allowing us to test the impact of different interventions and policies in a realistic, data-driven environment.
 
-    \item[Q:] What features are most important for your research or decision-making?
-    \item[A:] The ability to use real map and population data, simulate individual agent behaviours, and visualize the effects of interventions like school closures or mask mandates are essential. Clear, accessible output is also important for communicating results.
+%     \item[Q:] What features are most important for your research or decision-making?
+%     \item[A:] The ability to use real map and population data, simulate individual agent behaviours, and visualize the effects of interventions like school closures or mask mandates are essential. Clear, accessible output is also important for communicating results.
 
-    \item[Q:] What challenges do you face with current modelling tools?
-    \item[A:] Most existing tools are either too broad in scope (national/global) or too technical for non-experts. They often lack flexibility, detailed local modelling, or require significant programming expertise.
+%     \item[Q:] What challenges do you face with current modelling tools?
+%     \item[A:] Most existing tools are either too broad in scope (national/global) or too technical for non-experts. They often lack flexibility, detailed local modelling, or require significant programming expertise.
 
-    \item[Q:] How important is accessibility for non-expert users?
-    \item[A:] Very important. Policymakers and the public need to understand the results without needing a technical background. Intuitive interfaces and clear visualizations are key.
+%     \item[Q:] How important is accessibility for non-expert users?
+%     \item[A:] Very important. Policymakers and the public need to understand the results without needing a technical background. Intuitive interfaces and clear visualizations are key.
 
-    \item[Q:] What data sources do you recommend for agent and location generation?
-    \item[A:] OpenStreetMap for geographic data and ONS for population demographics are good choices. Disease parameters should be customizable, with presets for common scenarios.
+%     \item[Q:] What data sources do you recommend for agent and location generation?
+%     \item[A:] OpenStreetMap for geographic data and ONS for population demographics are good choices. Disease parameters should be customizable, with presets for common scenarios.
 
-    \item[Q:] How would you measure the success of this software?
-    \item[A:] Success would be measured by its ability to accurately simulate scenarios, provide actionable insights, and be usable by both researchers and the public. Validation against real-world data and positive feedback from experts would be ideal.
-\end{description}
+%     \item[Q:] How would you measure the success of this software?
+%     \item[A:] Success would be measured by its ability to accurately simulate scenarios, provide actionable insights, and be usable by both researchers and the public. Validation against real-world data and positive feedback from experts would be ideal.
+% \end{description}
 
 
 \section{Problem Research}
@@ -188,7 +210,7 @@ Pros
 -	Open source	-	Written in c++ and is hard to modify
 Cons
 -	Primarily US focused
-\subsubsection{EMOD (Epidemiological MODelling software)}
+\subsubsection{EMOD (Epidemiological Modelling software)}
 EMOD is a flexible, open-source epidemiological modelling platform developed by the Institute for Disease Modelling. It supports highly detailed, agent-based simulations of diseases such as malaria, HIV, tuberculosis, and COVID-19, incorporating biological, environmental, and behavioural factors. EMOD is particularly strong in modelling vector-borne and sexually transmitted infections with age-structured and geographically targeted interventions. Though powerful, it has a steep learning curve and requires configuration via JSON files and scripting in Python or C++.
 Pros
 -	Very detailed agent-based disease modelling
@@ -200,6 +222,19 @@ Cons
 -	No GUI
 
 Next I investigated some more context to understand the industry of epidemics and computational modelling:
+
+
+\subsubsection{Summary of Existing Software Research}
+From this software I have discovered that all of the existing packages are either highly targeted at small scale simulations such as within a single office building environment or rely on huge datasets on the scale of countries to produce a realistic simulation. I have also found that most of the existing software packages are either closed source or require a high level of technical knowledge to use effectively. This means that there is a gap in the market for a user-friendly, open-source simulation tool that can be used by both researchers and the general public to simulate disease spread at a city / regional level.
+
+From trying out the software that was openly available I have found some usability improvements that can be made to ease the learning curve of a new user such as:
+\begin{itemize}
+    \item Clearer instructions and documentation
+    \item Inbuilt location selection map to easily select the area to simulate
+    \item Better visualisations of the simulation results
+    \item Ability to rewind and fast forward the simulation to make modifications and quickly see results
+    \item provide presets for all parameters to make it easier for non-experts to get started whilst also enabling in depth customisation and tweaking
+\end{itemize}
 
 \subsection{Epidemics Research}
 Next I investigated some more context to understand the industry of epidemics and computational modelling:
@@ -258,7 +293,7 @@ model how the value at a node (e.g. the number of people in a certain disease st
 \subsubsection{Challenges of modelling interventions for future pandemics}
 \textbf{Source:} \autocite{kretzschmarChallengesModellingInterventions2022}
 
-This research paper focuses on the logistical challenges of modelling such as a complex behaviour as disease propagation and human behaviour. It is highly useful as i can ensure the assumptions i make when compiling data are valid and that I can ensure the data I collect is accurate and useful for my simulation. The paper highlights the importance of using real world data to inform the model, and how this can be used to create a more realistic simulation. It also discusses the challenges of modelling interventions, such as social distancing and lockdowns, and how these can be incorporated into the simulation.
+This research paper focuses on the logistical challenges of modelling such as a complex behaviour as disease propagation and human behaviour. It is highly useful as i can ensure the assumptions i make when compiling data are valid and that I can ensure the data I collect is accurate and useful for my simulation. The paper highlights the importance of using real world data to inform the model, and how this can be used to create a more realistic simulation. 
 
 The researcher on parameter selection says, 
 \begin{quote}
@@ -266,6 +301,80 @@ The researcher on parameter selection says,
 \end{quote}
 This quote nicely sums the complexity of modelling disease spread and the need for accurate data to inform the model (otherwise the produced simulation output will be of no use). It also highlights the importance of being able to predict future outcomes based on current data, which is a key goal of my project.
 
+
+\subsection{challenges of using data from multiple sources}
+\textbf{Source:} \autocite{deangelisFourKeyChallenges2015}
+
+This paper discusses both the benefits and negatives the use of multiple data sources can have. Benefits include a greater accuracy in the population spread such as covering a wider demographic. This can be a huge positive for a simulation as it may pickup on details previously missed by other data sets.
+
+However it can also come with a number of challenges such as::
+\begin{itemize}
+    \item \textbf{Data Quality}: Different sources may have varying levels of accuracy, completeness, and reliability. Inconsistent data quality can lead to misleading results.
+    \item \textbf{Data Integration}: Combining data from multiple sources often requires complex integration processes, which can introduce errors or biases if not done carefully.
+    \item \textbf{Data Compatibility}: Different datasets may use different formats, units, or definitions, making it challenging to align them for analysis and risk double-counting entities skewing the results.
+    \item \textbf{Data Timeliness}: Data from different sources may be collected at different times, leading to discrepancies in the temporal relevance of the information.
+    \end{itemize}
+
+
+\subsection{Parameters to model}
+To produce a realistic simulation I will need to ensure I have a good understanding of the parameters that will drive the simulation. From some of the research I have done I have identified the following key categories which will need to be modelled and made configurable to the user:
+\subsubsection{Agent Parameters}
+For each agent in the simulation I will need to genereate a unique medical profile, daily routine and intention state system. These will each be fairly simplistic in nature to reduce compute time per simulation tick however the large quantity of agents at once will ensure the overall result is realistic. The parameteters I will need to model for each agent are:
+\begin{itemize}
+    \item Age
+    \item Immunity Level
+    \item ChronicConditions
+    \item InfectionSucceptibility
+\end{itemize}
+Additionally each agent will have a daily routine which will determine their movement around the map. This will be based on their age and role in society. To help seperate agents into these categories i will assign each a role from the list below:
+\begin{itemize}
+    \item Student
+    \item Office worker
+    \item Medical worker
+    \item Retail worker
+    \item Elderly / Retired
+    \item Service worker
+\end{itemize}
+
+Whilst this list doesn't cover every member of society it enables me to simulate the vast majority of influential events that occur between population members.
+
+The user will be able to either select a population preset (based on the map area they have chosen) or customise the percentage of each role in the population to simulate different areas (e.g. a university town will have a higher percentage of students than a rural village). Each role will have a predefined daily routine which can be tweaked by the user if desired. For example, a student may have a routine that includes going to school, studying, and socialising with friends, whereas an elderly person may have a routine that includes going to the park, visiting family, and attending community events.
+
+Each routine will be generated at system setup however agents have the flexability to deviate from this routine based on their intention state. For example, if an agent is feeling unwell they may choose to stay home instead of going to work or school. This will be determined by a simple intention state system which will be influenced by the agent's health status and the current state of the epidemic.
+
+\subsubsection{Building Parameters}
+Like agents, each building in the simulation will also need to have a unique profile to determine how it interacts with the wider simulation. Hospital buildings for example need to store their capacity and current occupancy to determine if they can accept new patients. 
+
+Here is a list of building types my simulation will support:
+\begin{itemize}
+    \item Residential
+    \item Office building
+    \item Education building
+    \item Medical building
+    \item Retail building
+    \item Leisure building
+\end{itemize}
+
+\subsubsection{Building Parameters}
+my research indicates that these building types cover the vast majority of interactions between agents in a city environment. Each building will have a unique profile based on its type, for example a residential building will have a capacity based on the number of units it contains, whereas a retail building will have a capacity based on its square footage and fire safety regulations.
+
+\subsubsection{Map Areas}
+Each simulation will rely on a physical map area selected by the user. I intedent to implement a preset + "flexi" system which enables users to base a simulation on a prestored location (E.g. Cambridge) or select any map area by dropping a pin on a map. All data is sourced from OpenStreetMap's API which provides a wealth of data on buildings, roads, and other points of interest. 
+
+using this data I can generate buildings and agent populations that are representative of the real world. 
+
+\subsubsection{Disease Parameters}
+Finally, the disease itself will need to be modelled to determine how it spreads and how it affects agents. The parameters I will need to model for the disease are:
+\begin{itemize}
+    \item Infection Rate
+    \item Recovery Rate
+    \item Mortality Rate
+    \item Incubation Period
+    \item Symptom Severity
+    \item Transmission Mode (e.g., airborne, contact)
+    \item Immunity Duration
+    \item Asymptomatic Rate
+\end{itemize}
 \section{Feasibility}
 With an ambitious goal to achieve, I need to ensure that my project is feasible in terms of time, skills, and resources. Below I outline the feasibility of my project in a variety of areas:
 \subsection{Dataset Acquisition}
@@ -296,8 +405,8 @@ With an ambitious goal to achieve, I need to ensure that my project is feasible 
 \end{itemize}
 \subsection{Resource Feasibility}
 \begin{itemize}
-    \item I am fortunate to have access to an M2 Pro based MacBook Pro which enables me to run simulation locally whilst on the go, I am also able to test hosting all aspects of my project locally to be accessed a small number of users
-    \item I also have access to a faster, GPU accelerated workstation at home which I can use for larger simulations and more public hosting thanks to a fibre internet connection
+    \item I am fortunate to have access to an M2 Pro based MacBook Pro which enables me to run simulation locally whilst on the go, I am also able to test hosting all aspects of my project locally to be accessed by a small number of users
+    \item I also have access to a faster, GPU accelerated workstation at home which I can use for larger simulations and more public hosting thanks to a robust fibre internet connection and Battery backup systems
     \item Additionally I can utilise cloud resources for deployment / maximally sized simulations though this would come with expense
 \end{itemize}
 \section{Ethical considerations}
@@ -321,7 +430,15 @@ To test the OpenStreetMap’s Api, I created a simple webpage that allows a user
     \label{fig:OSMTest}
 \end{figure}
 
-I also spent some time on the ONS website file store to find data on employment classifications of workers, this was hugely successful I found employment data dating from 2025 to 1980 years which is perfect for my agent generation algorithm
+Please find a section of the code used to import data from the OpenStreetMap API. Currently this test uses the frontend to call data however my final implementation will use a Flask API to handle the requests and return data to the client. This has the dual advantage of caching data serverside for repeated requests (reducing API usage) and also allowing me to implement a more complex data structure for the returned, filtered and processed data (e.g. returning a list of buildings with their classification, size and location rather than just a raw list of nodes).
+
+\vspace{1em}
+\noindent\textbf{Code: \texttt{OpenStreetMapTest.js}}
+\vspace{0.5em}
+\inputminted[linenos, tabsize=1, breaklines]{js}{Chapters/AnalysisMedia/OpenStreetMapTest.js}
+
+
+I also spent some time on the ONS website file store to find data on employment classifications of workers, this was hugely successful I found employment data dating from 2025 to 1980 years which is perfect for my agent generation algorithm. Helpfully it is also filtered by region, year and by employment type, this will allow me to create a realistic population of agents that can be used in my simulation. I have also found some more in depth Council data on the number of people living in my area which will help me to generate an even more realistic population density for my local simulation.
 
 
 \begin{figure}[H]
@@ -343,22 +460,39 @@ to test some data visualisation and some brief physical interaction created a si
     \label{fig:3DTest}
 \end{figure}
 
+\subsection{Further Visualisation}
+To Further explore some visualisation techniques I created a simulated 3d map of a city and populated it with animated agents. I found that using ThreeJS I was able to create a highly optimised 3d environment that could be rendered in a web browser. I was able to load in a small urban environment and agent population and animate them moving around the map at a smooth, steady. Whilst this prototype doesn't utilise realistic data it showcases some of the visual effects that are possible and often key to getting end users attention towards my platform.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.7\textwidth]{Chapters/AnalysisMedia/3dMap.png}
+    \caption[]{advanced 3D visualisation test}
+\end{figure}
+
 \subsection{Simulation Server}
-With such a large number of agents being simulated I was aware that this would have a heavy compute premium, especially since I wanted the simulation to simulate at a rate of 1 virtual day per couple of real world seconds. Unsure whether my preferred programming language of python would be suitable I created a simple ‘benchmark’ which loaded 100,000 agents and 50,000 nodes into memory and simulated them each being assigned a new location and potentially a new state (infected, cured etc) per tick.
-In my first python iteration which used large lists for all data, the data calculated at 1.5 Ticks per second which was far too slow to be useful, bearing in mind this benchmark was very simplistic and purely focused on randomising movement for each agent this was glacial.
-To try and remain within the python ecosystem I looked to implement python numba to handle such large variables. I found that this tool hugely improved the performance (to 211 ticks / s) but hugely increased system memory usage (4x non numba) which would make my backend system non scalable, the codebase also became lightly less readable / maintainable
-Concerned with low performance (even with the numba addition) I decided to recreate my program in C\# - a compiled language. I found an immediate, huge improvement to 1599 Ticks per second with code that was functionally the same differing only in language. Whilst it might therefore seem sensible to fully work within C\# I am far more familiar with python tooling for data analysis and Api functionality
+With such a large number of agents being simulated I was aware that this would have a heavy compute premium, especially since I wanted the simulation to simulate at a rate of 1 virtual day per couple of real world seconds. Unsure whether my preferred programming language of python would be suitable I created a simple benchmark which loaded 100,000 agents and 50,000 nodes into memory and simulated them each being assigned a new location and potentially a new state (infected, cured etc) per tick.
+In my first python iteration, which used large lists for all data, the data calculated at 1.5 Ticks per second which was far too slow to be useful, bearing in mind this benchmark was very simplistic and purely focused on randomising movement for each agent this was glacial.
+To try and remain within the python ecosystem I looked to implement python numba to handle such large variables. I found that this tool hugely improved the performance (to 211 ticks / s) but hugely increased system memory usage (4x non numba) which would make my backend system non-scalable, the codebase also became less readable / maintainable
+
+Concerned with low performance (even with the addition of numba) I decided to recreate my program in C\# - a compiled language. I found an immediate, huge improvement to 1599 Ticks per second with code that was functionally the same differing only in language. Whilst it might therefore seem sensible to fully work within C\# I am far more familiar with python tooling for data analysis and Api functionality especailly whilst developing for Web platfoms. I therefore want to integrate the two technologies with C\# handling the simulation loop and python handling the API and analysis layer.
 
 \subsection{Data Storage and streaming}
-With my dual system of python API / analysis layer and C\# simulation layer planned I needed to test a method to stream data between the two
-Initially I thought to store every simulation movement and path trace etc inside a Postgres DB however this resulted in my device resource utilisation spiking and C\# ticks per second falling to 12 due to the heavy read/write penalty of interacting with so many queries, even with batch processing I only gained a couple more Ticks per second. Testing with python caused the Ticks/s to fall so low my 10minute run only parsed 3 ticks, completely unusable.
-With database writing written off (at least for main data streaming) I instead decided to test direct socket connections between python and C\# and found much greater success
+With my dual system of python API / analysis layer and C\# simulation layer planned I needed to test a method to stream data between the two for real time previewing and also longer term storage.
+
+Initially I thought to store every simulation movement and path trace etc inside a Postgres DB however this resulted in my device resource utilisation spiking and C\# ticks per second falling to 12 due to the heavy read/write penalty of interacting with so many queries whilst also mutating so much data, even with batch processing I only gained a couple more Ticks per second. 
+
+Testing with python then reading the data in real-time caused the Ticks/s to fall so low my 10minute run only parsed 3 ticks - completely unusable. It was at this point I came to the conclusion that whilst real-time streaming of the entire simulation would not be possible, that wasn't necessarily an issue. Such a large amount of data to populate to the user would definitely have hit web socket limitations and previewing 100,000 agents in a useful way would have been next to impossible. I therefore decided to only stream key statistics to the user such as number of infected, recovered, susceptible etc in addition to streaming a small subset of agents (e.g. 1000) to show movement and spread. This would be far more useful to the user and would allow me to store all data in a memory cache (which batch writes to a database) for post simulation analysis without impacting the simulation performance.
+
+Should a user want more detailed data they can always download the entire simulation data set for offline analysis.
+
+
+\subsection{Summary of Prototyping}
 \section{Success Criteria for Project}
 To reflect on my progress I have formed some firm success criteria that I must meet at various stages of my software development
 \subsection{Platform Access}
 \begin{enumerate}
     \item Users can access the website on any internet connected device
-    \item Users log in to the portal and establish a connection with backend end compute servers
+    \item Users log in to the portal and establish a connection with backend compute servers
     \item Users can view previous simulations, browse a library of examples / other users published simulations or create a new one
 \end{enumerate}
 \subsection{Simulation Setup}
@@ -381,12 +515,14 @@ To reflect on my progress I have formed some firm success criteria that I must m
 \begin{enumerate}
     \item Users can pause, resume and scrub forward/background through the simulation timeline
     \item Users can apply a various of mitigations such as closing buildings, routes and enforcing policies such as self-isolation and mask wearing
+    \item If users make alterations during simulation, simulation will 'recompile' (recompute future date) to account for new mitigations
+    \item Users can adjust disease parameters mid-simulation if required
 \end{enumerate}
 
 \subsection{Output and Visualisation}
 \begin{enumerate}
-    \item The simulation streams real time data to the client’s browser and stores data in a database for post simulation analysis
-    \item A live3d map of all locations and agents fills the user’s view
+    \item The simulation streams real time data to the client's browser and stores data in a database for post simulation analysis
+    \item A live 3d map of all locations and agents fills the user's view
     \item Supporting statistics (infection spread curves, recovered, susceptible etc) are displayed around
     \item Users receive non-technical, intuitive explanations of outcomes via tooltips or guided UI messages.
 \end{enumerate}
@@ -395,12 +531,12 @@ To reflect on my progress I have formed some firm success criteria that I must m
 \begin{enumerate}
     \item Simulation must run at minimum speed of 1 simulated day per real time second (when running one dedicated simulation)
     \item System can handle 100,000 agents and 20,000 nodes as an expected data set
-    \item Data storage and retrieval latency remains under 2 seconds from client request -> visualisation
+    \item Data storage and retrieval latency remains under 2 seconds from client request to visualisation
 \end{enumerate}
 
 \subsection{User Interface}
 \begin{enumerate}
-    \item  Interface should be intuitive and can be used by a non-expert with minimal training (<5minutes)
+    \item  Interface should be intuitive and can be used by a non-expert with minimal training (< 5minutes)
     \item Results can be easily interpreted without expert knowledge in industry
     \item Controls are well placed and responsive
     \item Colour, icon, size and placement are used to provide visual hierarchy
@@ -421,7 +557,7 @@ To reflect on my progress I have formed some firm success criteria that I must m
 
 \subsection{Maintainability}
 \begin{enumerate}
-    \item Whilst an academic project, all code should be well maintained on GIT, issues tracked, Formatting standards upheld and documentation robust
+    \item Whilst an academic project, all code should be well maintained on GIT, issues tracked, formatting standards upheld and documentation robust
     \item Software hosting process is documented, and code is designed with ‘zero vendor lock in’ and can be easily self-hosted
 \end{enumerate}
 \subsection{Validation}
@@ -429,24 +565,43 @@ To reflect on my progress I have formed some firm success criteria that I must m
     \item Model outputs are tested against real world result data from epidemics / pandemics to ensure accuracy (within the range expected for a semi-random disease spread)
     \item Should aim for Positive feedback to be received from multiple industry experts
 \end{enumerate}
+
+
 \section{Initial Design Considerations}
 
 Having researched a variety of methods to display user information and complete my simulation I am currently working to this technical stack (from user facing to simulation):
 \begin{itemize}
-    \item \textbf{Frontend:} Vue Js for dynamic content rendering
+    \item \textbf{Frontend:} Vue Js for dynamic content rendering and managing state sync with server
     \item \textbf{Backend:} Python Flask API for data handling and simulation control, C\# for the simulation engine
-    \item \textbf{Database:} PostgreSQL with PostGIS extension for spatial data storage
-    \item \textbf{Hosting:} potentially Docker containers for deployment, potentially on a cloud platform like AWS or DigitalOcean, alternatively can fully self-host
+    \item \textbf{3D Visualisation:} Three.js for rendering the 3D city and agents in the browser
+    \item \textbf{Data Streaming:} WebSockets for real-time communication between client and server,
+    \item \textbf{Other Network Data:} REST Api calls for non real time data such as initial map and population data, allows me to easily authenticate users via JWT (JSON Web Tokens).
+    \item \textbf{Database:} PostgreSQL with PostGIS extension for spatial data storage allowing me to efficently compute across large spatial areas
+    \item \textbf{Hosting:} potentially Docker containers for deployment, potentially on a cloud platform like AWS or DigitalOcean, alternatively can fully self-host on a home kubernetes cluster
 \end{itemize}
 
-This combination of technologies allows me to full utilise Object Orientated Programming (OOP) techniques to create a modular, maintainable codebase that can be easily extended in the future. The use of Python and C\# allows me to leverage the strengths of both languages, with Python handling simulation control and data analysis while C\# provides high performance for the simulation engine. The PostgreSQL database with PostGIS will enable efficient storage and retrieval of spatial data, which is crucial for simulating disease spread in a city / urban environment.
+This combination of technologies allows me to full utilise Object Orientated Programming (OOP) techniques to create a modular, maintainable codebase that can be easily extended in the future. 
+The use of Python and C\# allows me to leverage the strengths of both languages, with Python handling simulation control and data analysis (aided by some advanced libraries created by data analysists) while C\# provides high performance for the simulation engine. The PostgreSQL database with PostGIS will enable efficient storage and retrieval of spatial data (in addition to user credentials etc), which is crucial for simulating disease spread in a city / urban environment.
 
 \subsection{UML Class Diagram}
+This diamgram illustrates the key classes and their relationships within the disease simulation system. It includes classes for agents, diseases, locations, and the simulation engine itself. Each class has attributes and methods that define its behaviour and interactions with other classes. This diagram serves as a blueprint for the system architecture, guiding the implementation of the simulation logic and data structures.
 \begin{figure}[H]
     \input{Chapters/AnalysisMedia/umlDiagram.tex}
     \caption{UML class diagram of the disease simulation system.}
     \label{fig:umlDiagram}
 \end{figure}
+
+\subsection{User Flow}
+This diagram illustrates the user flow through the simulation system, from logging in to analyzing results. It shows the main sequence of actions a user can take, including creating or loading simulations, generating populations, running simulations, implementing mitigations, and reviewing results. Side branches indicate additional options available to users, such as adjusting parameters or running alternative scenarios.
+
+\begin{figure}
+    \input{Chapters/AnalysisMedia/UserFlowDiagram.tex}
+    \caption{User flow diagram for the disease simulation system.}
+    \label{fig:userFlowDiagram}
+\end{figure}
+
+
+
 
 \subsection{Tick Sequence}
 The fundemantal time span of my simulation is a 'tick' which represents a period of time in which the simulation runs and agents can move, interact and change state. The tick sequence is as follows:
@@ -461,7 +616,13 @@ The fundemantal time span of my simulation is a 'tick' which represents a period
 Choosing the duration of a tick is a difficult balancing act as i want to maximise simulation precision whilst also maintaining acceptible simulation speed. For example a tick time of 1minute would allow for a huge number of agent interactions and an excellent 'slow motion' effect for the viewer however would take much longer to compute, inversely a tick duration of an entire day woudl result in missing the nuance of E.g. going to collect a meal and interacting with other agents in the same venue. I have therefore settled on a tick duration of 30 minutes which allows for a good balance of agent interaction and simulation speed. This duration allows for enough time for agents to move around, interact with others, and for the disease to spread realistically, while still being fast enough to keep the simulation engaging and responsive to user input. Should a user wish to view the simulation at a high speed each day will only involve 48 ticks (a week would be 336 ticks) which my testing found to be a quick computation time enabling multi month and year long simulation to be run in minutes rather than hours.
 
 
+\subsection{Code deployment}
 
+One area of knowledge I wanted to build on during this project was the professional deployment and long term maintaining of a larger codebase. I am already familiar with Git and version control techniques for simple workflows however i wanted to push myself to learn more advanced techniques such as Actions, pull requests across multiple branches and issue tracking. To begin this process I set up a GitHub repository for my project and will be using it to track my progress and manage my codebase. I have also set up a basic CI/CD pipeline using GitHub Actions to automatically run tests and deploy my code to a staging environment whenever I push changes to the main branch. Whilst I was use linting systems such as ESlint in combination with strict type checking in c\#, Typescript and python (to the best of its ability) This won't always catch logical issues. Therefore, this staging environment will run at a dev.domain address allowing me to test my deployment in a pseudo 'live' (fully hosted but not user accessible). This will help me to ensure that any workflow issues are caught early in the development process.
+
+Once a dev build is known stable i can merge changes into my production branch and have the code automatically deployed to my live environment. 
+
+My GitHub action runners will run on virtual Ubuntu nodes, building to Cloudflare Pages to host my frontend and a DigitalOcean droplet to host my backend API. I have chosen these platforms as they are both cost-effective and Industry standard, with good documentation and support. I will also be using Docker to containerise my backend API, allowing for easy deployment and scaling in the future should the need arise.
 
 
 
