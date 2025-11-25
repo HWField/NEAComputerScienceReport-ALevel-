@@ -1,0 +1,1218 @@
+\section{API Documentation}
+
+This section documents the RESTful API endpoints for the epidemic simulation system. 
+The API follows standard HTTP methods and returns JSON responses. 
+All endpoints require authentication unless otherwise specified.
+\vspace{1em}
+\subsection*{HTTP Method Legend}
+\begin{tcolorbox}[colback=gray!5, colframe=gray!50, arc=2mm]
+\begin{tabular}{ll}
+\colorbox{blue}{\textcolor{white}{\textbf{GET}}} & GET operation \\[0.2em]
+\colorbox{green}{\textcolor{white}{\textbf{POST}}} & POST operation \\[0.2em]
+\colorbox{orange}{\textcolor{white}{\textbf{PUT}}} & PUT operation \\[0.2em]
+\colorbox{red}{\textcolor{white}{\textbf{DELETE}}} & DELETE operation \\[0.2em]
+\colorbox{purple}{\textcolor{white}{\textbf{PATCH}}} & PATCH operation \\[0.2em]
+\end{tabular}
+\end{tcolorbox}
+\vspace{1.5em}
+\subsection{Admin Endpoints}
+
+\noindent\textcolor{gray!60}{\rule{\linewidth}{0.5pt}}
+\vspace{0.5em}
+
+\begin{tcolorbox}[
+    colback=red!5,
+    colframe=red,
+    arc=2mm,
+    boxrule=1pt,
+    left=5pt,
+    right=5pt,
+    top=5pt,
+    bottom=5pt
+]
+\noindent\colorbox{red}{\textcolor{white}{\textbf{DELETE}}} 
+\texttt{\large /api/Admin/presets}\\[0.3em]
+\textit{Delete all (non default) presets and their related data}\\[0.3em]
+\vspace{0.3em}
+\textbf{\textcolor{purple}{Responses:}}\\[0.2em]
+\begin{tabular}{|c|p{10cm}|}
+\hline
+\rowcolor{gray!20}
+\textbf{Status Code} & \textbf{Description} \\ \hline
+\colorbox{green!20}{\textbf{200}} & OK \\ \hline
+\end{tabular}
+\end{tcolorbox}
+\vspace{0.5em}
+
+\begin{tcolorbox}[
+    colback=red!5,
+    colframe=red,
+    arc=2mm,
+    boxrule=1pt,
+    left=5pt,
+    right=5pt,
+    top=5pt,
+    bottom=5pt
+]
+\noindent\colorbox{red}{\textcolor{white}{\textbf{DELETE}}} 
+\texttt{\large /api/Admin/simulations}\\[0.3em]
+\textit{Delete all simulations and their related data}\\[0.3em]
+\vspace{0.3em}
+\textbf{\textcolor{purple}{Responses:}}\\[0.2em]
+\begin{tabular}{|c|p{10cm}|}
+\hline
+\rowcolor{gray!20}
+\textbf{Status Code} & \textbf{Description} \\ \hline
+\colorbox{green!20}{\textbf{200}} & OK \\ \hline
+\end{tabular}
+\end{tcolorbox}
+\vspace{0.5em}
+
+\begin{tcolorbox}[
+    colback=blue!5,
+    colframe=blue,
+    arc=2mm,
+    boxrule=1pt,
+    left=5pt,
+    right=5pt,
+    top=5pt,
+    bottom=5pt
+]
+\noindent\colorbox{blue}{\textcolor{white}{\textbf{GET}}} 
+\texttt{\large /api/Admin/stats}\\[0.3em]
+\textit{Get database statistics}\\[0.3em]
+\vspace{0.3em}
+\textbf{\textcolor{purple}{Responses:}}\\[0.2em]
+\begin{tabular}{|c|p{10cm}|}
+\hline
+\rowcolor{gray!20}
+\textbf{Status Code} & \textbf{Description} \\ \hline
+\colorbox{green!20}{\textbf{200}} & OK \\ \hline
+\end{tabular}
+\end{tcolorbox}
+\vspace{0.5em}
+
+\subsection{Auth Endpoints}
+
+\noindent\textcolor{gray!60}{\rule{\linewidth}{0.5pt}}
+\vspace{0.5em}
+
+\begin{tcolorbox}[
+    colback=green!5,
+    colframe=green,
+    arc=2mm,
+    boxrule=1pt,
+    left=5pt,
+    right=5pt,
+    top=5pt,
+    bottom=5pt
+]
+\noindent\colorbox{green}{\textcolor{white}{\textbf{POST}}} 
+\texttt{\large /api/Auth/login}\\[0.3em]
+\textit{Logins a user and issues JWT access and refresh tokens.}\\[0.3em]
+\vspace{0.3em}
+\textbf{\textcolor{green}{Request Body:}}\\[0.2em]
+Schema: \texttt{LoginDto}\\[0.3em]
+\begin{tabular}{|l|l|l|}
+\hline
+\rowcolor{green!10}
+\textbf{Property} & \textbf{Type} & \textbf{Nullable} \\ \hline
+\texttt{username} & string & Yes \\ \hline
+\rowcolor{gray!5}
+\texttt{password} & string & Yes \\ \hline
+\texttt{deviceInfo} & string & Yes \\ \hline
+\end{tabular}\\[0.5em]
+\vspace{0.3em}
+\textbf{\textcolor{purple}{Responses:}}\\[0.2em]
+\begin{tabular}{|c|p{10cm}|}
+\hline
+\rowcolor{gray!20}
+\textbf{Status Code} & \textbf{Description} \\ \hline
+\colorbox{green!20}{\textbf{200}} & OK \\ \hline
+\end{tabular}
+\end{tcolorbox}
+\vspace{0.5em}
+
+\begin{tcolorbox}[
+    colback=green!5,
+    colframe=green,
+    arc=2mm,
+    boxrule=1pt,
+    left=5pt,
+    right=5pt,
+    top=5pt,
+    bottom=5pt
+]
+\noindent\colorbox{green}{\textcolor{white}{\textbf{POST}}} 
+\texttt{\large /api/Auth/logout}\\[0.3em]
+\textit{Revokes a specific refresh token, logging out that device.}\\[0.3em]
+\vspace{0.3em}
+\textbf{\textcolor{green}{Request Body:}}\\[0.2em]
+Schema: \texttt{RefreshDto}\\[0.3em]
+\begin{tabular}{|l|l|l|}
+\hline
+\rowcolor{green!10}
+\textbf{Property} & \textbf{Type} & \textbf{Nullable} \\ \hline
+\texttt{refreshToken} & string & Yes \\ \hline
+\end{tabular}\\[0.5em]
+\vspace{0.3em}
+\textbf{\textcolor{purple}{Responses:}}\\[0.2em]
+\begin{tabular}{|c|p{10cm}|}
+\hline
+\rowcolor{gray!20}
+\textbf{Status Code} & \textbf{Description} \\ \hline
+\colorbox{green!20}{\textbf{200}} & OK \\ \hline
+\end{tabular}
+\end{tcolorbox}
+\vspace{0.5em}
+
+\begin{tcolorbox}[
+    colback=green!5,
+    colframe=green,
+    arc=2mm,
+    boxrule=1pt,
+    left=5pt,
+    right=5pt,
+    top=5pt,
+    bottom=5pt
+]
+\noindent\colorbox{green}{\textcolor{white}{\textbf{POST}}} 
+\texttt{\large /api/Auth/logout-all}\\[0.3em]
+\textit{Revokes all refresh tokens for a user, logging out from all devices.}\\[0.3em]
+\vspace{0.3em}
+\textbf{\textcolor{purple}{Responses:}}\\[0.2em]
+\begin{tabular}{|c|p{10cm}|}
+\hline
+\rowcolor{gray!20}
+\textbf{Status Code} & \textbf{Description} \\ \hline
+\colorbox{green!20}{\textbf{200}} & OK \\ \hline
+\end{tabular}
+\end{tcolorbox}
+\vspace{0.5em}
+
+\begin{tcolorbox}[
+    colback=green!5,
+    colframe=green,
+    arc=2mm,
+    boxrule=1pt,
+    left=5pt,
+    right=5pt,
+    top=5pt,
+    bottom=5pt
+]
+\noindent\colorbox{green}{\textcolor{white}{\textbf{POST}}} 
+\texttt{\large /api/Auth/logout-session}\\[0.3em]
+\textit{Revokes a specific session by its ID, logging out that device. (used by users to manage their sessions)}\\[0.3em]
+\vspace{0.3em}
+\textbf{\textcolor{green}{Request Body:}}\\[0.2em]
+Schema: \texttt{LogoutSessionDto}\\[0.3em]
+\begin{tabular}{|l|l|l|}
+\hline
+\rowcolor{green!10}
+\textbf{Property} & \textbf{Type} & \textbf{Nullable} \\ \hline
+\texttt{sessionId} & integer (int32) & No \\ \hline
+\end{tabular}\\[0.5em]
+\vspace{0.3em}
+\textbf{\textcolor{purple}{Responses:}}\\[0.2em]
+\begin{tabular}{|c|p{10cm}|}
+\hline
+\rowcolor{gray!20}
+\textbf{Status Code} & \textbf{Description} \\ \hline
+\colorbox{green!20}{\textbf{200}} & OK \\ \hline
+\end{tabular}
+\end{tcolorbox}
+\vspace{0.5em}
+
+\begin{tcolorbox}[
+    colback=green!5,
+    colframe=green,
+    arc=2mm,
+    boxrule=1pt,
+    left=5pt,
+    right=5pt,
+    top=5pt,
+    bottom=5pt
+]
+\noindent\colorbox{green}{\textcolor{white}{\textbf{POST}}} 
+\texttt{\large /api/Auth/refresh}\\[0.3em]
+\textit{Refreshes the JWT access token using a valid refresh token.}\\[0.3em]
+\vspace{0.3em}
+\textbf{\textcolor{green}{Request Body:}}\\[0.2em]
+Schema: \texttt{RefreshDto}\\[0.3em]
+\begin{tabular}{|l|l|l|}
+\hline
+\rowcolor{green!10}
+\textbf{Property} & \textbf{Type} & \textbf{Nullable} \\ \hline
+\texttt{refreshToken} & string & Yes \\ \hline
+\end{tabular}\\[0.5em]
+\vspace{0.3em}
+\textbf{\textcolor{purple}{Responses:}}\\[0.2em]
+\begin{tabular}{|c|p{10cm}|}
+\hline
+\rowcolor{gray!20}
+\textbf{Status Code} & \textbf{Description} \\ \hline
+\colorbox{green!20}{\textbf{200}} & OK \\ \hline
+\end{tabular}
+\end{tcolorbox}
+\vspace{0.5em}
+
+\begin{tcolorbox}[
+    colback=green!5,
+    colframe=green,
+    arc=2mm,
+    boxrule=1pt,
+    left=5pt,
+    right=5pt,
+    top=5pt,
+    bottom=5pt
+]
+\noindent\colorbox{green}{\textcolor{white}{\textbf{POST}}} 
+\texttt{\large /api/Auth/register}\\[0.3em]
+\textit{Registers a new user with a username and password.}\\[0.3em]
+\vspace{0.3em}
+\textbf{\textcolor{green}{Request Body:}}\\[0.2em]
+Schema: \texttt{LoginDto}\\[0.3em]
+\begin{tabular}{|l|l|l|}
+\hline
+\rowcolor{green!10}
+\textbf{Property} & \textbf{Type} & \textbf{Nullable} \\ \hline
+\texttt{username} & string & Yes \\ \hline
+\rowcolor{gray!5}
+\texttt{password} & string & Yes \\ \hline
+\texttt{deviceInfo} & string & Yes \\ \hline
+\end{tabular}\\[0.5em]
+\vspace{0.3em}
+\textbf{\textcolor{purple}{Responses:}}\\[0.2em]
+\begin{tabular}{|c|p{10cm}|}
+\hline
+\rowcolor{gray!20}
+\textbf{Status Code} & \textbf{Description} \\ \hline
+\colorbox{green!20}{\textbf{200}} & OK \\ \hline
+\end{tabular}
+\end{tcolorbox}
+\vspace{0.5em}
+
+\begin{tcolorbox}[
+    colback=blue!5,
+    colframe=blue,
+    arc=2mm,
+    boxrule=1pt,
+    left=5pt,
+    right=5pt,
+    top=5pt,
+    bottom=5pt
+]
+\noindent\colorbox{blue}{\textcolor{white}{\textbf{GET}}} 
+\texttt{\large /api/Auth/sessions}\\[0.3em]
+\textit{Returns a list of active sessions (refresh tokens) for the logged-in user.}\\[0.3em]
+\vspace{0.3em}
+\textbf{\textcolor{purple}{Responses:}}\\[0.2em]
+\begin{tabular}{|c|p{10cm}|}
+\hline
+\rowcolor{gray!20}
+\textbf{Status Code} & \textbf{Description} \\ \hline
+\colorbox{green!20}{\textbf{200}} & OK \\ \hline
+\end{tabular}
+\end{tcolorbox}
+\vspace{0.5em}
+
+\subsection{Preset Endpoints}
+
+\noindent\textcolor{gray!60}{\rule{\linewidth}{0.5pt}}
+\vspace{0.5em}
+
+\begin{tcolorbox}[
+    colback=blue!5,
+    colframe=blue,
+    arc=2mm,
+    boxrule=1pt,
+    left=5pt,
+    right=5pt,
+    top=5pt,
+    bottom=5pt
+]
+\noindent\colorbox{blue}{\textcolor{white}{\textbf{GET}}} 
+\texttt{\large /api/Preset/diseases}\\[0.3em]
+\textit{Gets all Disease Presets (for logged in user or all if admin).}\\[0.3em]
+\vspace{0.3em}
+\textbf{\textcolor{purple}{Responses:}}\\[0.2em]
+\begin{tabular}{|c|p{10cm}|}
+\hline
+\rowcolor{gray!20}
+\textbf{Status Code} & \textbf{Description} \\ \hline
+\colorbox{green!20}{\textbf{200}} & OK \\ \hline
+\end{tabular}
+\end{tcolorbox}
+\vspace{0.5em}
+
+\begin{tcolorbox}[
+    colback=red!5,
+    colframe=red,
+    arc=2mm,
+    boxrule=1pt,
+    left=5pt,
+    right=5pt,
+    top=5pt,
+    bottom=5pt
+]
+\noindent\colorbox{red}{\textcolor{white}{\textbf{DELETE}}} 
+\texttt{\large /api/Preset/diseases/\textbackslash{}{id\textbackslash{}}}\\[0.3em]
+\textit{Deletes a Disease Preset.}\\[0.3em]
+\vspace{0.3em}
+\textbf{\textcolor{blue}{Parameters:}}\\[0.2em]
+\begin{tabular}{|l|l|l|}
+\hline
+\rowcolor{gray!20}
+\textbf{Name} & \textbf{Location} & \textbf{Type} \\ \hline
+\texttt{id} & path & \texttt{integer} \\ \hline
+\end{tabular}\\[0.5em]
+\vspace{0.3em}
+\textbf{\textcolor{purple}{Responses:}}\\[0.2em]
+\begin{tabular}{|c|p{10cm}|}
+\hline
+\rowcolor{gray!20}
+\textbf{Status Code} & \textbf{Description} \\ \hline
+\colorbox{green!20}{\textbf{200}} & OK \\ \hline
+\end{tabular}
+\end{tcolorbox}
+\vspace{0.5em}
+
+\begin{tcolorbox}[
+    colback=blue!5,
+    colframe=blue,
+    arc=2mm,
+    boxrule=1pt,
+    left=5pt,
+    right=5pt,
+    top=5pt,
+    bottom=5pt
+]
+\noindent\colorbox{blue}{\textcolor{white}{\textbf{GET}}} 
+\texttt{\large /api/Preset/diseases/\textbackslash{}{id\textbackslash{}}}\\[0.3em]
+\textit{Gets a specific Disease Presets.}\\[0.3em]
+\vspace{0.3em}
+\textbf{\textcolor{blue}{Parameters:}}\\[0.2em]
+\begin{tabular}{|l|l|l|}
+\hline
+\rowcolor{gray!20}
+\textbf{Name} & \textbf{Location} & \textbf{Type} \\ \hline
+\texttt{id} & path & \texttt{integer} \\ \hline
+\end{tabular}\\[0.5em]
+\vspace{0.3em}
+\textbf{\textcolor{purple}{Responses:}}\\[0.2em]
+\begin{tabular}{|c|p{10cm}|}
+\hline
+\rowcolor{gray!20}
+\textbf{Status Code} & \textbf{Description} \\ \hline
+\colorbox{green!20}{\textbf{200}} & OK \\ \hline
+\end{tabular}
+\end{tcolorbox}
+\vspace{0.5em}
+
+\begin{tcolorbox}[
+    colback=orange!5,
+    colframe=orange,
+    arc=2mm,
+    boxrule=1pt,
+    left=5pt,
+    right=5pt,
+    top=5pt,
+    bottom=5pt
+]
+\noindent\colorbox{orange}{\textcolor{white}{\textbf{PUT}}} 
+\texttt{\large /api/Preset/diseases/\textbackslash{}{id\textbackslash{}}}\\[0.3em]
+\textit{Updates a Disease Preset.}\\[0.3em]
+\vspace{0.3em}
+\textbf{\textcolor{blue}{Parameters:}}\\[0.2em]
+\begin{tabular}{|l|l|l|}
+\hline
+\rowcolor{gray!20}
+\textbf{Name} & \textbf{Location} & \textbf{Type} \\ \hline
+\texttt{id} & path & \texttt{integer} \\ \hline
+\end{tabular}\\[0.5em]
+\vspace{0.3em}
+\textbf{\textcolor{green}{Request Body:}}\\[0.2em]
+Schema: \texttt{UpdateDiseasePresetDto}\\[0.3em]
+\begin{tabular}{|l|l|l|}
+\hline
+\rowcolor{green!10}
+\textbf{Property} & \textbf{Type} & \textbf{Nullable} \\ \hline
+\texttt{name} & string & Yes \\ \hline
+\rowcolor{gray!5}
+\texttt{infectionRate} & number (double) & Yes \\ \hline
+\texttt{recoveryRate} & number (double) & Yes \\ \hline
+\rowcolor{gray!5}
+\texttt{mortalityRate} & number (double) & Yes \\ \hline
+\end{tabular}\\[0.5em]
+\vspace{0.3em}
+\textbf{\textcolor{purple}{Responses:}}\\[0.2em]
+\begin{tabular}{|c|p{10cm}|}
+\hline
+\rowcolor{gray!20}
+\textbf{Status Code} & \textbf{Description} \\ \hline
+\colorbox{green!20}{\textbf{200}} & OK \\ \hline
+\end{tabular}
+\end{tcolorbox}
+\vspace{0.5em}
+
+\begin{tcolorbox}[
+    colback=blue!5,
+    colframe=blue,
+    arc=2mm,
+    boxrule=1pt,
+    left=5pt,
+    right=5pt,
+    top=5pt,
+    bottom=5pt
+]
+\noindent\colorbox{blue}{\textcolor{white}{\textbf{GET}}} 
+\texttt{\large /api/Preset/mapareas}\\[0.3em]
+\textit{Gets all Map Area Presets (for logged in user or all if admin).}\\[0.3em]
+\vspace{0.3em}
+\textbf{\textcolor{purple}{Responses:}}\\[0.2em]
+\begin{tabular}{|c|p{10cm}|}
+\hline
+\rowcolor{gray!20}
+\textbf{Status Code} & \textbf{Description} \\ \hline
+\colorbox{green!20}{\textbf{200}} & OK \\ \hline
+\end{tabular}
+\end{tcolorbox}
+\vspace{0.5em}
+
+\begin{tcolorbox}[
+    colback=red!5,
+    colframe=red,
+    arc=2mm,
+    boxrule=1pt,
+    left=5pt,
+    right=5pt,
+    top=5pt,
+    bottom=5pt
+]
+\noindent\colorbox{red}{\textcolor{white}{\textbf{DELETE}}} 
+\texttt{\large /api/Preset/mapareas/\textbackslash{}{id\textbackslash{}}}\\[0.3em]
+\textit{Deletes a MapArea Preset.}\\[0.3em]
+\vspace{0.3em}
+\textbf{\textcolor{blue}{Parameters:}}\\[0.2em]
+\begin{tabular}{|l|l|l|}
+\hline
+\rowcolor{gray!20}
+\textbf{Name} & \textbf{Location} & \textbf{Type} \\ \hline
+\texttt{id} & path & \texttt{integer} \\ \hline
+\end{tabular}\\[0.5em]
+\vspace{0.3em}
+\textbf{\textcolor{purple}{Responses:}}\\[0.2em]
+\begin{tabular}{|c|p{10cm}|}
+\hline
+\rowcolor{gray!20}
+\textbf{Status Code} & \textbf{Description} \\ \hline
+\colorbox{green!20}{\textbf{200}} & OK \\ \hline
+\end{tabular}
+\end{tcolorbox}
+\vspace{0.5em}
+
+\begin{tcolorbox}[
+    colback=blue!5,
+    colframe=blue,
+    arc=2mm,
+    boxrule=1pt,
+    left=5pt,
+    right=5pt,
+    top=5pt,
+    bottom=5pt
+]
+\noindent\colorbox{blue}{\textcolor{white}{\textbf{GET}}} 
+\texttt{\large /api/Preset/mapareas/\textbackslash{}{id\textbackslash{}}}\\[0.3em]
+\textit{Gets a specific MapArea Presets.}\\[0.3em]
+\vspace{0.3em}
+\textbf{\textcolor{blue}{Parameters:}}\\[0.2em]
+\begin{tabular}{|l|l|l|}
+\hline
+\rowcolor{gray!20}
+\textbf{Name} & \textbf{Location} & \textbf{Type} \\ \hline
+\texttt{id} & path & \texttt{integer} \\ \hline
+\end{tabular}\\[0.5em]
+\vspace{0.3em}
+\textbf{\textcolor{purple}{Responses:}}\\[0.2em]
+\begin{tabular}{|c|p{10cm}|}
+\hline
+\rowcolor{gray!20}
+\textbf{Status Code} & \textbf{Description} \\ \hline
+\colorbox{green!20}{\textbf{200}} & OK \\ \hline
+\end{tabular}
+\end{tcolorbox}
+\vspace{0.5em}
+
+\begin{tcolorbox}[
+    colback=orange!5,
+    colframe=orange,
+    arc=2mm,
+    boxrule=1pt,
+    left=5pt,
+    right=5pt,
+    top=5pt,
+    bottom=5pt
+]
+\noindent\colorbox{orange}{\textcolor{white}{\textbf{PUT}}} 
+\texttt{\large /api/Preset/mapareas/\textbackslash{}{id\textbackslash{}}}\\[0.3em]
+\textit{Updates a MapArea Preset.}\\[0.3em]
+\vspace{0.3em}
+\textbf{\textcolor{blue}{Parameters:}}\\[0.2em]
+\begin{tabular}{|l|l|l|}
+\hline
+\rowcolor{gray!20}
+\textbf{Name} & \textbf{Location} & \textbf{Type} \\ \hline
+\texttt{id} & path & \texttt{integer} \\ \hline
+\end{tabular}\\[0.5em]
+\vspace{0.3em}
+\textbf{\textcolor{green}{Request Body:}}\\[0.2em]
+Schema: \texttt{UpdateMapAreaPresetDto}\\[0.3em]
+\begin{tabular}{|l|l|l|}
+\hline
+\rowcolor{green!10}
+\textbf{Property} & \textbf{Type} & \textbf{Nullable} \\ \hline
+\texttt{name} & string & Yes \\ \hline
+\rowcolor{gray!5}
+\texttt{latitude} & number (double) & Yes \\ \hline
+\texttt{longitude} & number (double) & Yes \\ \hline
+\rowcolor{gray!5}
+\texttt{radius} & number (double) & Yes \\ \hline
+\end{tabular}\\[0.5em]
+\vspace{0.3em}
+\textbf{\textcolor{purple}{Responses:}}\\[0.2em]
+\begin{tabular}{|c|p{10cm}|}
+\hline
+\rowcolor{gray!20}
+\textbf{Status Code} & \textbf{Description} \\ \hline
+\colorbox{green!20}{\textbf{200}} & OK \\ \hline
+\end{tabular}
+\end{tcolorbox}
+\vspace{0.5em}
+
+\subsection{Profile Endpoints}
+
+\noindent\textcolor{gray!60}{\rule{\linewidth}{0.5pt}}
+\vspace{0.5em}
+
+\begin{tcolorbox}[
+    colback=red!5,
+    colframe=red,
+    arc=2mm,
+    boxrule=1pt,
+    left=5pt,
+    right=5pt,
+    top=5pt,
+    bottom=5pt
+]
+\noindent\colorbox{red}{\textcolor{white}{\textbf{DELETE}}} 
+\texttt{\large /api/Profile}\\[0.3em]
+\textit{Delete the logged-in user's account}\\[0.3em]
+\vspace{0.3em}
+\textbf{\textcolor{purple}{Responses:}}\\[0.2em]
+\begin{tabular}{|c|p{10cm}|}
+\hline
+\rowcolor{gray!20}
+\textbf{Status Code} & \textbf{Description} \\ \hline
+\colorbox{green!20}{\textbf{200}} & OK \\ \hline
+\end{tabular}
+\end{tcolorbox}
+\vspace{0.5em}
+
+\begin{tcolorbox}[
+    colback=blue!5,
+    colframe=blue,
+    arc=2mm,
+    boxrule=1pt,
+    left=5pt,
+    right=5pt,
+    top=5pt,
+    bottom=5pt
+]
+\noindent\colorbox{blue}{\textcolor{white}{\textbf{GET}}} 
+\texttt{\large /api/Profile}\\[0.3em]
+\textit{Get profile details of the logged-in user}\\[0.3em]
+\vspace{0.3em}
+\textbf{\textcolor{purple}{Responses:}}\\[0.2em]
+\begin{tabular}{|c|p{10cm}|}
+\hline
+\rowcolor{gray!20}
+\textbf{Status Code} & \textbf{Description} \\ \hline
+\colorbox{green!20}{\textbf{200}} & OK \\ \hline
+\end{tabular}
+\end{tcolorbox}
+\vspace{0.5em}
+
+\begin{tcolorbox}[
+    colback=orange!5,
+    colframe=orange,
+    arc=2mm,
+    boxrule=1pt,
+    left=5pt,
+    right=5pt,
+    top=5pt,
+    bottom=5pt
+]
+\noindent\colorbox{orange}{\textcolor{white}{\textbf{PUT}}} 
+\texttt{\large /api/Profile}\\[0.3em]
+\textit{Update profile details of the logged-in user}\\[0.3em]
+\vspace{0.3em}
+\textbf{\textcolor{green}{Request Body:}}\\[0.2em]
+Schema: \texttt{UpdateProfileDto}\\[0.3em]
+\begin{tabular}{|l|l|l|}
+\hline
+\rowcolor{green!10}
+\textbf{Property} & \textbf{Type} & \textbf{Nullable} \\ \hline
+\texttt{username} & string & Yes \\ \hline
+\rowcolor{gray!5}
+\texttt{theme} & string & Yes \\ \hline
+\texttt{streamerMode} & boolean & Yes \\ \hline
+\end{tabular}\\[0.5em]
+\vspace{0.3em}
+\textbf{\textcolor{purple}{Responses:}}\\[0.2em]
+\begin{tabular}{|c|p{10cm}|}
+\hline
+\rowcolor{gray!20}
+\textbf{Status Code} & \textbf{Description} \\ \hline
+\colorbox{green!20}{\textbf{200}} & OK \\ \hline
+\end{tabular}
+\end{tcolorbox}
+\vspace{0.5em}
+
+\begin{tcolorbox}[
+    colback=green!5,
+    colframe=green,
+    arc=2mm,
+    boxrule=1pt,
+    left=5pt,
+    right=5pt,
+    top=5pt,
+    bottom=5pt
+]
+\noindent\colorbox{green}{\textcolor{white}{\textbf{POST}}} 
+\texttt{\large /api/Profile/change-password}\\[0.3em]
+\vspace{0.3em}
+\textbf{\textcolor{green}{Request Body:}}\\[0.2em]
+Schema: \texttt{ChangePasswordDto}\\[0.3em]
+\begin{tabular}{|l|l|l|}
+\hline
+\rowcolor{green!10}
+\textbf{Property} & \textbf{Type} & \textbf{Nullable} \\ \hline
+\texttt{currentPassword} & string & Yes \\ \hline
+\rowcolor{gray!5}
+\texttt{newPassword} & string & Yes \\ \hline
+\end{tabular}\\[0.5em]
+\vspace{0.3em}
+\textbf{\textcolor{purple}{Responses:}}\\[0.2em]
+\begin{tabular}{|c|p{10cm}|}
+\hline
+\rowcolor{gray!20}
+\textbf{Status Code} & \textbf{Description} \\ \hline
+\colorbox{green!20}{\textbf{200}} & OK \\ \hline
+\end{tabular}
+\end{tcolorbox}
+\vspace{0.5em}
+
+\subsection{Simulation Endpoints}
+
+\noindent\textcolor{gray!60}{\rule{\linewidth}{0.5pt}}
+\vspace{0.5em}
+
+\begin{tcolorbox}[
+    colback=blue!5,
+    colframe=blue,
+    arc=2mm,
+    boxrule=1pt,
+    left=5pt,
+    right=5pt,
+    top=5pt,
+    bottom=5pt
+]
+\noindent\colorbox{blue}{\textcolor{white}{\textbf{GET}}} 
+\texttt{\large /api/Simulation}\\[0.3em]
+\textit{Gets all simulations (for loggged in user or all if admin).}\\[0.3em]
+\vspace{0.3em}
+\textbf{\textcolor{purple}{Responses:}}\\[0.2em]
+\begin{tabular}{|c|p{10cm}|}
+\hline
+\rowcolor{gray!20}
+\textbf{Status Code} & \textbf{Description} \\ \hline
+\colorbox{green!20}{\textbf{200}} & OK \\ \hline
+\end{tabular}
+\end{tcolorbox}
+\vspace{0.5em}
+
+\begin{tcolorbox}[
+    colback=green!5,
+    colframe=green,
+    arc=2mm,
+    boxrule=1pt,
+    left=5pt,
+    right=5pt,
+    top=5pt,
+    bottom=5pt
+]
+\noindent\colorbox{green}{\textcolor{white}{\textbf{POST}}} 
+\texttt{\large /api/Simulation}\\[0.3em]
+\textit{Initializes a new epidemic simulation.}\\[0.3em]
+\vspace{0.3em}
+\textbf{\textcolor{green}{Request Body:}}\\[0.2em]
+Schema: \texttt{InitialiseSimulationDto}\\[0.3em]
+\begin{tabular}{|l|l|l|}
+\hline
+\rowcolor{green!10}
+\textbf{Property} & \textbf{Type} & \textbf{Nullable} \\ \hline
+\texttt{simulationName} & string & Yes \\ \hline
+\end{tabular}\\[0.5em]
+\vspace{0.3em}
+\textbf{\textcolor{purple}{Responses:}}\\[0.2em]
+\begin{tabular}{|c|p{10cm}|}
+\hline
+\rowcolor{gray!20}
+\textbf{Status Code} & \textbf{Description} \\ \hline
+\colorbox{green!20}{\textbf{200}} & OK \\ \hline
+\end{tabular}
+\end{tcolorbox}
+\vspace{0.5em}
+
+\begin{tcolorbox}[
+    colback=red!5,
+    colframe=red,
+    arc=2mm,
+    boxrule=1pt,
+    left=5pt,
+    right=5pt,
+    top=5pt,
+    bottom=5pt
+]
+\noindent\colorbox{red}{\textcolor{white}{\textbf{DELETE}}} 
+\texttt{\large /api/Simulation/\textbackslash{}{id\textbackslash{}}}\\[0.3em]
+\textit{Deletes a simulation by ID.}\\[0.3em]
+\vspace{0.3em}
+\textbf{\textcolor{blue}{Parameters:}}\\[0.2em]
+\begin{tabular}{|l|l|l|}
+\hline
+\rowcolor{gray!20}
+\textbf{Name} & \textbf{Location} & \textbf{Type} \\ \hline
+\texttt{id} & path & \texttt{integer} \\ \hline
+\end{tabular}\\[0.5em]
+\vspace{0.3em}
+\textbf{\textcolor{purple}{Responses:}}\\[0.2em]
+\begin{tabular}{|c|p{10cm}|}
+\hline
+\rowcolor{gray!20}
+\textbf{Status Code} & \textbf{Description} \\ \hline
+\colorbox{green!20}{\textbf{200}} & OK \\ \hline
+\end{tabular}
+\end{tcolorbox}
+\vspace{0.5em}
+
+\begin{tcolorbox}[
+    colback=blue!5,
+    colframe=blue,
+    arc=2mm,
+    boxrule=1pt,
+    left=5pt,
+    right=5pt,
+    top=5pt,
+    bottom=5pt
+]
+\noindent\colorbox{blue}{\textcolor{white}{\textbf{GET}}} 
+\texttt{\large /api/Simulation/\textbackslash{}{id\textbackslash{}}}\\[0.3em]
+\textit{Gets a specific simulation (user must be owner or be admin).}\\[0.3em]
+\vspace{0.3em}
+\textbf{\textcolor{blue}{Parameters:}}\\[0.2em]
+\begin{tabular}{|l|l|l|}
+\hline
+\rowcolor{gray!20}
+\textbf{Name} & \textbf{Location} & \textbf{Type} \\ \hline
+\texttt{id} & path & \texttt{integer} \\ \hline
+\end{tabular}\\[0.5em]
+\vspace{0.3em}
+\textbf{\textcolor{purple}{Responses:}}\\[0.2em]
+\begin{tabular}{|c|p{10cm}|}
+\hline
+\rowcolor{gray!20}
+\textbf{Status Code} & \textbf{Description} \\ \hline
+\colorbox{green!20}{\textbf{200}} & OK \\ \hline
+\end{tabular}
+\end{tcolorbox}
+\vspace{0.5em}
+
+\begin{tcolorbox}[
+    colback=green!5,
+    colframe=green,
+    arc=2mm,
+    boxrule=1pt,
+    left=5pt,
+    right=5pt,
+    top=5pt,
+    bottom=5pt
+]
+\noindent\colorbox{green}{\textcolor{white}{\textbf{POST}}} 
+\texttt{\large /api/Simulation/\textbackslash{}{id\textbackslash{}}/disease}\\[0.3em]
+\textit{Configure the disease for the simulation.}\\[0.3em]
+\textbf{Description:} You can either use a predefined Disease preset (`PresetId`) or define a custom disease\\[0.5em]
+\vspace{0.3em}
+\textbf{\textcolor{blue}{Parameters:}}\\[0.2em]
+\begin{tabular}{|l|l|l|}
+\hline
+\rowcolor{gray!20}
+\textbf{Name} & \textbf{Location} & \textbf{Type} \\ \hline
+\texttt{id} & path & \texttt{integer} \\ \hline
+\end{tabular}\\[0.5em]
+\vspace{0.3em}
+\textbf{\textcolor{green}{Request Body:}}\\[0.2em]
+Schema: \texttt{SetupDiseaseDto}\\[0.3em]
+\begin{tabular}{|l|l|l|}
+\hline
+\rowcolor{green!10}
+\textbf{Property} & \textbf{Type} & \textbf{Nullable} \\ \hline
+\texttt{presetId} & integer (int32) & Yes \\ \hline
+\rowcolor{gray!5}
+\texttt{name} & string & Yes \\ \hline
+\texttt{infectionRate} & number (double) & Yes \\ \hline
+\rowcolor{gray!5}
+\texttt{recoveryRate} & number (double) & Yes \\ \hline
+\texttt{mortalityRate} & number (double) & Yes \\ \hline
+\rowcolor{gray!5}
+\texttt{savePreset} & boolean & No \\ \hline
+\end{tabular}\\[0.5em]
+\vspace{0.3em}
+\textbf{\textcolor{purple}{Responses:}}\\[0.2em]
+\begin{tabular}{|c|p{10cm}|}
+\hline
+\rowcolor{gray!20}
+\textbf{Status Code} & \textbf{Description} \\ \hline
+\colorbox{green!20}{\textbf{200}} & OK \\ \hline
+\end{tabular}
+\end{tcolorbox}
+\vspace{0.5em}
+
+\begin{tcolorbox}[
+    colback=green!5,
+    colframe=green,
+    arc=2mm,
+    boxrule=1pt,
+    left=5pt,
+    right=5pt,
+    top=5pt,
+    bottom=5pt
+]
+\noindent\colorbox{green}{\textcolor{white}{\textbf{POST}}} 
+\texttt{\large /api/Simulation/\textbackslash{}{id\textbackslash{}}/load}\\[0.3em]
+\textit{Loads the simulation with given ID into memory.}\\[0.3em]
+\vspace{0.3em}
+\textbf{\textcolor{blue}{Parameters:}}\\[0.2em]
+\begin{tabular}{|l|l|l|}
+\hline
+\rowcolor{gray!20}
+\textbf{Name} & \textbf{Location} & \textbf{Type} \\ \hline
+\texttt{id} & path & \texttt{integer} \\ \hline
+\end{tabular}\\[0.5em]
+\vspace{0.3em}
+\textbf{\textcolor{purple}{Responses:}}\\[0.2em]
+\begin{tabular}{|c|p{10cm}|}
+\hline
+\rowcolor{gray!20}
+\textbf{Status Code} & \textbf{Description} \\ \hline
+\colorbox{green!20}{\textbf{200}} & OK \\ \hline
+\end{tabular}
+\end{tcolorbox}
+\vspace{0.5em}
+
+\begin{tcolorbox}[
+    colback=green!5,
+    colframe=green,
+    arc=2mm,
+    boxrule=1pt,
+    left=5pt,
+    right=5pt,
+    top=5pt,
+    bottom=5pt
+]
+\noindent\colorbox{green}{\textcolor{white}{\textbf{POST}}} 
+\texttt{\large /api/Simulation/\textbackslash{}{id\textbackslash{}}/map-area}\\[0.3em]
+\textit{Configure the map area for the simulation.}\\[0.3em]
+\textbf{Description:} This endpoint allows you to associate a geographical area with a simulation.
+You can either use a predefined area preset (`PresetId`) or define a custom area
+using latitude, longitude, and radius in kilometers.\\[0.5em]
+\vspace{0.3em}
+\textbf{\textcolor{blue}{Parameters:}}\\[0.2em]
+\begin{tabular}{|l|l|l|}
+\hline
+\rowcolor{gray!20}
+\textbf{Name} & \textbf{Location} & \textbf{Type} \\ \hline
+\texttt{id} & path & \texttt{integer} \\ \hline
+\end{tabular}\\[0.5em]
+\vspace{0.3em}
+\textbf{\textcolor{green}{Request Body:}}\\[0.2em]
+Schema: \texttt{SetupMapAreaDto}\\[0.3em]
+\begin{tabular}{|l|l|l|}
+\hline
+\rowcolor{green!10}
+\textbf{Property} & \textbf{Type} & \textbf{Nullable} \\ \hline
+\texttt{presetId} & integer (int32) & Yes \\ \hline
+\rowcolor{gray!5}
+\texttt{presetName} & string & Yes \\ \hline
+\texttt{latitude} & number (double) & Yes \\ \hline
+\rowcolor{gray!5}
+\texttt{longitude} & number (double) & Yes \\ \hline
+\texttt{radiusKm} & number (double) & Yes \\ \hline
+\rowcolor{gray!5}
+\texttt{savePreset} & boolean & Yes \\ \hline
+\end{tabular}\\[0.5em]
+\vspace{0.3em}
+\textbf{\textcolor{purple}{Responses:}}\\[0.2em]
+\begin{tabular}{|c|p{10cm}|}
+\hline
+\rowcolor{gray!20}
+\textbf{Status Code} & \textbf{Description} \\ \hline
+\colorbox{green!20}{\textbf{200}} & OK \\ \hline
+\end{tabular}
+\end{tcolorbox}
+\vspace{0.5em}
+
+\begin{tcolorbox}[
+    colback=green!5,
+    colframe=green,
+    arc=2mm,
+    boxrule=1pt,
+    left=5pt,
+    right=5pt,
+    top=5pt,
+    bottom=5pt
+]
+\noindent\colorbox{green}{\textcolor{white}{\textbf{POST}}} 
+\texttt{\large /api/Simulation/\textbackslash{}{id\textbackslash{}}/pause}\\[0.3em]
+\vspace{0.3em}
+\textbf{\textcolor{blue}{Parameters:}}\\[0.2em]
+\begin{tabular}{|l|l|l|}
+\hline
+\rowcolor{gray!20}
+\textbf{Name} & \textbf{Location} & \textbf{Type} \\ \hline
+\texttt{id} & path & \texttt{integer} \\ \hline
+\end{tabular}\\[0.5em]
+\vspace{0.3em}
+\textbf{\textcolor{purple}{Responses:}}\\[0.2em]
+\begin{tabular}{|c|p{10cm}|}
+\hline
+\rowcolor{gray!20}
+\textbf{Status Code} & \textbf{Description} \\ \hline
+\colorbox{green!20}{\textbf{200}} & OK \\ \hline
+\end{tabular}
+\end{tcolorbox}
+\vspace{0.5em}
+
+\begin{tcolorbox}[
+    colback=green!5,
+    colframe=green,
+    arc=2mm,
+    boxrule=1pt,
+    left=5pt,
+    right=5pt,
+    top=5pt,
+    bottom=5pt
+]
+\noindent\colorbox{green}{\textcolor{white}{\textbf{POST}}} 
+\texttt{\large /api/Simulation/\textbackslash{}{id\textbackslash{}}/population}\\[0.3em]
+\textit{Configure the population for the simulation.}\\[0.3em]
+\vspace{0.3em}
+\textbf{\textcolor{blue}{Parameters:}}\\[0.2em]
+\begin{tabular}{|l|l|l|}
+\hline
+\rowcolor{gray!20}
+\textbf{Name} & \textbf{Location} & \textbf{Type} \\ \hline
+\texttt{id} & path & \texttt{integer} \\ \hline
+\end{tabular}\\[0.5em]
+\vspace{0.3em}
+\textbf{\textcolor{green}{Request Body:}}\\[0.2em]
+Schema: \texttt{SetupPopulationDto}\\[0.3em]
+\begin{tabular}{|l|l|l|}
+\hline
+\rowcolor{green!10}
+\textbf{Property} & \textbf{Type} & \textbf{Nullable} \\ \hline
+\texttt{studentCount} & integer (int32) & No \\ \hline
+\rowcolor{gray!5}
+\texttt{officeWorker} & integer (int32) & No \\ \hline
+\texttt{medicalWorker} & integer (int32) & No \\ \hline
+\rowcolor{gray!5}
+\texttt{elderlyRetiredAgent} & integer (int32) & No \\ \hline
+\texttt{retailWorker} & integer (int32) & No \\ \hline
+\rowcolor{gray!5}
+\texttt{serviceWorker} & integer (int32) & No \\ \hline
+\end{tabular}\\[0.5em]
+\vspace{0.3em}
+\textbf{\textcolor{purple}{Responses:}}\\[0.2em]
+\begin{tabular}{|c|p{10cm}|}
+\hline
+\rowcolor{gray!20}
+\textbf{Status Code} & \textbf{Description} \\ \hline
+\colorbox{green!20}{\textbf{200}} & OK \\ \hline
+\end{tabular}
+\end{tcolorbox}
+\vspace{0.5em}
+
+\begin{tcolorbox}[
+    colback=red!5,
+    colframe=red,
+    arc=2mm,
+    boxrule=1pt,
+    left=5pt,
+    right=5pt,
+    top=5pt,
+    bottom=5pt
+]
+\noindent\colorbox{red}{\textcolor{white}{\textbf{DELETE}}} 
+\texttt{\large /api/Simulation/\textbackslash{}{id\textbackslash{}}/reset}\\[0.3em]
+\textit{Resets a simulation by ID removing all computed data and metrics.}\\[0.3em]
+\vspace{0.3em}
+\textbf{\textcolor{blue}{Parameters:}}\\[0.2em]
+\begin{tabular}{|l|l|l|}
+\hline
+\rowcolor{gray!20}
+\textbf{Name} & \textbf{Location} & \textbf{Type} \\ \hline
+\texttt{id} & path & \texttt{integer} \\ \hline
+\end{tabular}\\[0.5em]
+\vspace{0.3em}
+\textbf{\textcolor{purple}{Responses:}}\\[0.2em]
+\begin{tabular}{|c|p{10cm}|}
+\hline
+\rowcolor{gray!20}
+\textbf{Status Code} & \textbf{Description} \\ \hline
+\colorbox{green!20}{\textbf{200}} & OK \\ \hline
+\end{tabular}
+\end{tcolorbox}
+\vspace{0.5em}
+
+\begin{tcolorbox}[
+    colback=green!5,
+    colframe=green,
+    arc=2mm,
+    boxrule=1pt,
+    left=5pt,
+    right=5pt,
+    top=5pt,
+    bottom=5pt
+]
+\noindent\colorbox{green}{\textcolor{white}{\textbf{POST}}} 
+\texttt{\large /api/Simulation/\textbackslash{}{id\textbackslash{}}/run}\\[0.3em]
+\textit{Runs the simulation with given ID.}\\[0.3em]
+\vspace{0.3em}
+\textbf{\textcolor{blue}{Parameters:}}\\[0.2em]
+\begin{tabular}{|l|l|l|}
+\hline
+\rowcolor{gray!20}
+\textbf{Name} & \textbf{Location} & \textbf{Type} \\ \hline
+\texttt{id} & path & \texttt{integer} \\ \hline
+\end{tabular}\\[0.5em]
+\vspace{0.3em}
+\textbf{\textcolor{green}{Request Body:}}\\[0.2em]
+\vspace{0.3em}
+\textbf{\textcolor{purple}{Responses:}}\\[0.2em]
+\begin{tabular}{|c|p{10cm}|}
+\hline
+\rowcolor{gray!20}
+\textbf{Status Code} & \textbf{Description} \\ \hline
+\colorbox{green!20}{\textbf{200}} & OK \\ \hline
+\end{tabular}
+\end{tcolorbox}
+\vspace{0.5em}
+
+\begin{tcolorbox}[
+    colback=green!5,
+    colframe=green,
+    arc=2mm,
+    boxrule=1pt,
+    left=5pt,
+    right=5pt,
+    top=5pt,
+    bottom=5pt
+]
+\noindent\colorbox{green}{\textcolor{white}{\textbf{POST}}} 
+\texttt{\large /api/Simulation/\textbackslash{}{id\textbackslash{}}/speed}\\[0.3em]
+\textit{Sets the simulation speed multiplier.}\\[0.3em]
+\vspace{0.3em}
+\textbf{\textcolor{blue}{Parameters:}}\\[0.2em]
+\begin{tabular}{|l|l|l|}
+\hline
+\rowcolor{gray!20}
+\textbf{Name} & \textbf{Location} & \textbf{Type} \\ \hline
+\texttt{id} & path & \texttt{integer} \\ \hline
+\end{tabular}\\[0.5em]
+\vspace{0.3em}
+\textbf{\textcolor{green}{Request Body:}}\\[0.2em]
+\vspace{0.3em}
+\textbf{\textcolor{purple}{Responses:}}\\[0.2em]
+\begin{tabular}{|c|p{10cm}|}
+\hline
+\rowcolor{gray!20}
+\textbf{Status Code} & \textbf{Description} \\ \hline
+\colorbox{green!20}{\textbf{200}} & OK \\ \hline
+\end{tabular}
+\end{tcolorbox}
+\vspace{0.5em}
+
+\begin{tcolorbox}[
+    colback=green!5,
+    colframe=green,
+    arc=2mm,
+    boxrule=1pt,
+    left=5pt,
+    right=5pt,
+    top=5pt,
+    bottom=5pt
+]
+\noindent\colorbox{green}{\textcolor{white}{\textbf{POST}}} 
+\texttt{\large /api/Simulation/\textbackslash{}{id\textbackslash{}}/tick}\\[0.3em]
+\textit{Sets current simulation tick.}\\[0.3em]
+\vspace{0.3em}
+\textbf{\textcolor{blue}{Parameters:}}\\[0.2em]
+\begin{tabular}{|l|l|l|}
+\hline
+\rowcolor{gray!20}
+\textbf{Name} & \textbf{Location} & \textbf{Type} \\ \hline
+\texttt{id} & path & \texttt{integer} \\ \hline
+\end{tabular}\\[0.5em]
+\vspace{0.3em}
+\textbf{\textcolor{green}{Request Body:}}\\[0.2em]
+\vspace{0.3em}
+\textbf{\textcolor{purple}{Responses:}}\\[0.2em]
+\begin{tabular}{|c|p{10cm}|}
+\hline
+\rowcolor{gray!20}
+\textbf{Status Code} & \textbf{Description} \\ \hline
+\colorbox{green!20}{\textbf{200}} & OK \\ \hline
+\end{tabular}
+\end{tcolorbox}
+\vspace{0.5em}
+
+\begin{tcolorbox}[
+    colback=green!5,
+    colframe=green,
+    arc=2mm,
+    boxrule=1pt,
+    left=5pt,
+    right=5pt,
+    top=5pt,
+    bottom=5pt
+]
+\noindent\colorbox{green}{\textcolor{white}{\textbf{POST}}} 
+\texttt{\large /api/Simulation/\textbackslash{}{id\textbackslash{}}/unload}\\[0.3em]
+\vspace{0.3em}
+\textbf{\textcolor{blue}{Parameters:}}\\[0.2em]
+\begin{tabular}{|l|l|l|}
+\hline
+\rowcolor{gray!20}
+\textbf{Name} & \textbf{Location} & \textbf{Type} \\ \hline
+\texttt{id} & path & \texttt{integer} \\ \hline
+\end{tabular}\\[0.5em]
+\vspace{0.3em}
+\textbf{\textcolor{purple}{Responses:}}\\[0.2em]
+\begin{tabular}{|c|p{10cm}|}
+\hline
+\rowcolor{gray!20}
+\textbf{Status Code} & \textbf{Description} \\ \hline
+\colorbox{green!20}{\textbf{200}} & OK \\ \hline
+\end{tabular}
+\end{tcolorbox}
+\vspace{0.5em}

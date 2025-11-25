@@ -2,11 +2,13 @@
 \documentclass{report}
 \usepackage{hyperref}
 \usepackage{tikz}
+\usepackage{colortbl}
 \usetikzlibrary{positioning}
 \usepackage{extensions/tikz-uml}
 \usepackage{xcolor}
 \usepackage{tcolorbox} 
-
+% to convert .svg to .pdf
+\usepackage{svg}
 \usepackage{titling}  
 \usepackage{caption} 
 \usepackage{float}
@@ -17,8 +19,11 @@
 \usepackage{etoolbox}
 \usepackage{parskip}
 \usepackage{censor} 
+\usepackage{longtable}
+
 % for header and footer
 \usepackage[a4paper, margin=1in, headheight=16pt]{geometry}  % Ensures enough space for header
+
 
 % Header/Footer setup
 \usepackage{fancyhdr}
@@ -40,6 +45,7 @@
 
 % for code highlighting and listings
 \usepackage{minted}
+
 
 
 \usepackage[
@@ -77,11 +83,17 @@
 \tableofcontents
 \newpage
 \include{Chapters/Analysis}
-\chapter{Documented Design}
-\chapter{Technical Solution}
+\include{Chapters/DocumentedDesign}
+\include{Chapters/TechnicalSolution}
 \chapter{Testing}
 \chapter{Evaluation}
+\include{Chapters/SkillsEvidence}
 \chapter{References}
 \printbibliography[heading=bibintoc, title={Bibliography}]
+
+% Appendices
+\appendix
+\include{Chapters/CodeAppendix}
+\include{Chapters/ConversationTranscripts}
 
 \end{document}

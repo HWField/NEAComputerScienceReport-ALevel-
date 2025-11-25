@@ -1,0 +1,137 @@
+\chapter{Documented Design}
+
+\section{System Overview}
+The system is a full-stack web application designed to simulate epidemic dynamics within large populations in real time. It provides a web-based interface for creating and managing simulations, analysing infection spread, and visualising key metrics. 
+
+The architecture follows a client–server model, with a \textbf{Vue.js} frontend communicating with an \textbf{ASP.NET Core} backend API. Persistent data is stored in a \textbf{PostgreSQL} database, and real-time updates are transmitted to the frontend using \textbf{SignalR} WebSocket connections. 
+
+At its core, the simulation engine models thousands of individual agents, each with defined routines and locations, and processes their interactions to emulate infection spread over time. The design prioritises modularity, scalability, and computational efficiency to allow multiple concurrent simulations without degradation in performance.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.7\textwidth]{Chapters/DocumentedDesignMedia/architecture_diagram.pdf}
+    \caption{High-level architecture of the epidemic simulation system.}
+\end{figure}
+
+\section{System Architecture}
+
+\subsection{Backend Architecture}
+
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.9\textwidth]{Chapters/DocumentedDesignMedia/backend_architecture_diagram.pdf}
+    \caption{Backend architecture components and their interactions.}
+\end{figure}
+
+The backend is implemented using the ASP.NET Core framework and structured according to a modular, service-oriented architecture. Core components include:
+\begin{itemize}
+    \item \textbf{SimulationManager}: Oversees the creation, execution, and disposal of running simulations. Each simulation instance operates within its own isolated \textit{SimulationContext}.
+    \item \textbf{SimulationContext}: Encapsulates all runtime state for a single simulation, including agent data, infection states, and metrics. It handles tick-based progression of the simulation loop.
+    \item \textbf{Services}: Specialised services perform domain-specific tasks:
+    \begin{itemize}
+        \item \textbf{AgentService} – manages agent state and behavioural routines.
+        \item \textbf{InfectionService} – applies infection probability models based on proximity and time of contact.
+        \item \textbf{RoutingService} – determines agent movement paths between buildings or map areas.
+        \item \textbf{SnapshotManager} – periodically records simulation states and summary metrics to the database.
+    \end{itemize}
+    \item \textbf{Controllers}: RESTful API controllers expose endpoints for simulation management, authentication, and data retrieval.
+    \item \textbf{SignalR Hub}: Provides a persistent, bidirectional communication channel for real-time transmission of simulation data and progress updates to connected clients.
+\end{itemize}
+
+The backend uses dependency injection to manage service lifetimes and ensure scalability. Each \textit{SimulationContext} runs independently, allowing multiple users to execute simulations concurrently.
+
+\subsection{Frontend Architecture}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.6\textwidth]{Chapters/DocumentedDesignMedia/frontend_architecture_diagram.pdf}
+    \caption{Frontend architecture components and their interactions.}
+\end{figure}
+
+The frontend is a \textbf{Vue.js 3} single-page application (SPA) that interacts with the backend via REST and WebSocket connections. It is composed of the following key modules:
+\begin{itemize}
+    \item \textbf{Dashboard Module} – provides real-time visualisation of infection metrics, simulation tick rate, and population statistics.
+    \item \textbf{Simulation Management Module} – enables users to create, configure, and launch simulations, specifying parameters such as infection rate, population size, and map configuration.
+    \item \textbf{Account and Authentication Module} – handles login, registration, and token management.
+    \item \textbf{SignalR Integration Layer} – maintains a live WebSocket connection for receiving streaming data and updating the dashboard dynamically.
+\end{itemize}
+
+The frontend employs a component-based design, with reusable UI components bound to reactive data stores. This ensures smooth updates as simulation data changes in real time.
+
+\section{Data Model Design}
+Persistent data is stored in a \textbf{PostgreSQL} database using the \textbf{Entity Framework Core} ORM. The database schema is normalised to third normal form, ensuring consistency and efficient access patterns.
+
+\subsection*{Entity Relationships}
+Key entities include:
+\begin{itemize}
+    \item \textbf{Simulation} – represents a single simulation configuration and metadata (ID, user, parameters, start/end times).
+    \item \textbf{Agent} – represents an individual within the population; linked to a set of routine events and infection states.
+    \item \textbf{Building} – defines physical locations agents can occupy.
+    \item \textbf{RoutineEvent} – models scheduled activities such as movement between buildings.
+    \item \textbf{Snapshot} – stores periodic summaries of infection counts, agent states, and other metrics.
+\end{itemize}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.9\textwidth]{Chapters/DocumentedDesignMedia/er_diagram.pdf}
+    \caption{Entity relationship diagram of the database schema.}
+\end{figure}
+
+\section{Simulation Runtime Design}
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.6\textwidth]{Chapters/DocumentedDesignMedia/runtime_diagram.pdf}
+    \caption{Runtime architecture of the simulation engine.}
+\end{figure}
+The simulation operates on a discrete time-step model (tick-based). Each tick represents a fixed unit of time (e.g., one minute) during which all agents are updated.
+
+\subsection*{Lifecycle Overview}
+\begin{enumerate}
+    \item A user initiates a simulation through the frontend, specifying configuration parameters.
+    \item The \textit{SimulationManager} creates a new \textit{SimulationContext}, which loads agents, buildings, and routines from the database.
+    \item The simulation loop begins, advancing through discrete ticks.
+    \item For each tick:
+    \begin{itemize}
+        \item Agents perform scheduled movements and interactions.
+        \item The \textit{InfectionService} evaluates infection probabilities for contact events.
+        \item The \textit{SnapshotManager} records aggregated statistics at defined intervals.
+        \item The \textit{SignalR Hub} broadcasts updates to connected clients.
+    \end{itemize}
+    \item When complete, results are saved and accessible via the dashboard.
+\end{enumerate}
+
+\subsection*{Runtime Data Structures}
+To maximise simulation performance, runtime entities are represented as tightly packed \textbf{struct arrays} within the simulation engine. These include:
+\begin{itemize}
+    \item \texttt{AgentState[]} – stores position, infection status, and next scheduled action for each agent.
+    \item \texttt{BuildingState[]} – holds occupancy and infection density data.
+    \item \texttt{RoutineEventState[]} – tracks routine activity timings and locations.
+\end{itemize}
+
+This design reduces heap allocation overhead and improves CPU cache locality, allowing the system to efficiently simulate tens of thousands of agents per tick.
+
+\subsection*{Core Algorithms}
+The infection model uses a probabilistic approach. Each contact event between agents $A$ and $B$ with infection states $I_A$ and $I_B$ has a transmission probability $p$ based on distance $d$ and exposure time $t$:
+\[
+p = \beta \cdot e^{-k \cdot d} \cdot (1 - e^{-\lambda t})
+\]
+where $\beta$ is the base infection rate, and $k$, $\lambda$ are constants tuned per simulation type.
+
+Routing and movement are implemented using a weighted random selection of available paths between building nodes, producing realistic population flow dynamics.
+
+\section{Communication and Security Design}
+All client–server interactions are authenticated using \textbf{JWT tokens}. Upon login, the server issues both an access token and a refresh token, which the frontend stores securely and uses to maintain session validity. All REST API and SignalR requests require valid tokens to ensure authorised access.
+
+Real-time communication is handled via \textbf{SignalR}, which establishes a WebSocket connection upon simulation start. Data is streamed incrementally, allowing the frontend to update infection metrics and visualisations live without polling.
+
+Cross-Origin Resource Sharing (CORS) is enabled for the specific frontend domain to maintain security while allowing local development flexibility. All sensitive data (e.g., user credentials, simulation ownership) is transmitted over HTTPS.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.85\textwidth]{Chapters/DocumentedDesignMedia/auth_diagram.pdf}
+    \caption{Authentication and communication flow between frontend and backend.}
+\end{figure}
+
+\section*{Summary}
+The design emphasises modularity, high performance, and scalability. Each subsystem—data model, simulation engine, and communication layer—was engineered to support real-time multi-user simulations with minimal latency. The documented design thus forms a robust blueprint guiding the technical implementation detailed in the following chapter.

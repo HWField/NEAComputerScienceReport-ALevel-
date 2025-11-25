@@ -1,0 +1,2 @@
+latex,
+Inkscape to convert diagram.net to pdf files for use in latex

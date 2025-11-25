@@ -26,20 +26,16 @@ I was incredibly fortunate to connect with 2 Researchers at the Cambridge Biomed
 
 A secondary Client to my software would be members of the general-public who want to easily visualise the impact very small measures (such as face coverings or self-isolation) can make to the larger picture. By making my software very intuitive even to those without scientific it can used to quickly visualise and prove a point to others. A variety of my family members and family friends (from a variety of academic backgrounds including biologists) have agreed to test my software and provide feedback on its usability and intuitiveness. I will also be able to use their feedback to improve the software's accessibility for those without a scientific background.
 
-\subsection{Client Interview}
+\subsection{Interview with Dr Jin}
+\textit{Below is a summary of the key points discussed. For the full transcript please see: \nameref{sec:interview_drjin}}
+\subsection{Interview with Dr Tan}
+\textit{Below is a summary of the key points discussed. For the full transcript please see: \nameref{sec:interview_drtan}}
 
-\begin{center}
-    \textit{Interviews With Dr Tan and Dr Jin: Scheduled for 25 August 2025}
+\subsection{Interview with Sally}
 
-    \begin{center}
-        \textbf{\emph{Note:}} \\
-        \emph{These interviews had to unfortunately be postponed to Early September due to scheduling conflicts. I have been able to discuss my project informally with them however and will be able to include their feedback in my final report. I am keen to wait for their availability as they are experts in the field of biological research and will be able to provide invaluable feedback on my project.}
-    \end{center}
+\textit{Below is a summary of the key points discussed. For the full transcript please see: \nameref{sec:interview_sally}}
 
-\end{center}
-
-\subsection{Interview with User x}
-\blackout{User X} is very keen to learn more about the steps she and her family can take to help prepare themselves for a repeat of a large scale pandemic. 
+Sally is very keen to learn more about the steps she and her family can take to help prepare themselves for a repeat of a large scale pandemic. 
 
 When covid impacted her area she was scared at the lack of tools she had at her disposal and the reliance she had to have on governing bodies to relay factual information. She has some awareness of the tools large research organizations have access to from documentaries and more theatrical portrays but always assumed to the complexity of these technologies would place them far outside her reach.
 
@@ -355,7 +351,6 @@ Here is a list of building types my simulation will support:
     \item Leisure building
 \end{itemize}
 
-\subsubsection{Building Parameters}
 my research indicates that these building types cover the vast majority of interactions between agents in a city environment. Each building will have a unique profile based on its type, for example a residential building will have a capacity based on the number of units it contains, whereas a retail building will have a capacity based on its square footage and fire safety regulations.
 
 \subsubsection{Map Areas}
@@ -497,40 +492,40 @@ To reflect on my progress I have formed some firm success criteria that I must m
 \end{enumerate}
 \subsection{Simulation Setup}
 \begin{enumerate}
-    \item Users can select a geographic area for the simulation to run on from a map of the world. Area size can range from neighbourhood to large city
-    \item Users can generate a synthesised populated of up to 100,000 people
+    \item Users can either select a geographic area for the simulation to run on from a map of the world. Alternatively they can select from a cached preset. Area size can range from neighbourhood to large city
+    \item Users can generate a synthesised populated of up to 1,000,000 people
     \item Users can automatically utilise statistical data to allocate population with roles and behaviours
     \item Users can generate disease(s) to be used in simulations
 \end{enumerate}
 
 \subsection{Disease Spread Simulation}
 \begin{enumerate}
-    \item Simulation runs in ticks (lasting e.g. 30 minutes each)
+    \item Simulation runs in ticks (lasting e.g. 30 minutes each but configurable by user)
     \item Simulation accurately models disease progression through SEIR compartments for each agent
     \item Each tick agents are moved around the map based on their routine, job, and behaviours
-    \item Disease spread is then calculated based on agents’ health stats and disease transmissibility (R rate) data if applicable
+    \item Disease spread is then calculated based on agents’ health stats and disease transmissibility (R rate) data if applicable. Spread interpolates between tick position of agents to maximise accuracy
 \end{enumerate}
 
 \subsection{User Interaction}
 \begin{enumerate}
     \item Users can pause, resume and scrub forward/background through the simulation timeline
-    \item Users can apply a various of mitigations such as closing buildings, routes and enforcing policies such as self-isolation and mask wearing
+    \item Users can apply a variety of mitigations such as closing buildings, routes and enforcing policies such as self-isolation and mask wearing
     \item If users make alterations during simulation, simulation will 'recompile' (recompute future date) to account for new mitigations
-    \item Users can adjust disease parameters mid-simulation if required
+    \item Users can adjust disease \& non 'core' simulation parameters mid-simulation if required
 \end{enumerate}
 
 \subsection{Output and Visualisation}
 \begin{enumerate}
-    \item The simulation streams real time data to the client's browser and stores data in a database for post simulation analysis
-    \item A live 3d map of all locations and agents fills the user's view
+    \item The simulation streams real time analytical data to the client's browser and stores full data in a database for post simulation analysis
+    \item A live 3d map of all locations and agents fills the background of the user's dashboard
     \item Supporting statistics (infection spread curves, recovered, susceptible etc) are displayed around
-    \item Users receive non-technical, intuitive explanations of outcomes via tooltips or guided UI messages.
+    \item Users receive non-technical, intuitive explanations of outcomes via tooltips and guided UI messages.
 \end{enumerate}
 
 \subsection{Simulation Speed}
 \begin{enumerate}
-    \item Simulation must run at minimum speed of 1 simulated day per real time second (when running one dedicated simulation)
-    \item System can handle 100,000 agents and 20,000 nodes as an expected data set
+    \item Simulation must compute at a minimum speed of 1 simulated day per real time second (when running one dedicated simulation)
+    \item System can handle 1,000,000 agents and 20,000 nodes as an expected data set
     \item Data storage and retrieval latency remains under 2 seconds from client request to visualisation
 \end{enumerate}
 
@@ -540,6 +535,12 @@ To reflect on my progress I have formed some firm success criteria that I must m
     \item Results can be easily interpreted without expert knowledge in industry
     \item Controls are well placed and responsive
     \item Colour, icon, size and placement are used to provide visual hierarchy
+\end{enumerate}
+
+\subsection{Platform Scalability}
+\begin{enumerate}
+    \item  Platform should support multiple simulations running concurrently via instanced engines
+    \item System should be able to scale up to 10 concurrent simulations on a single server
 \end{enumerate}
 
 \subsection{Accessibility}
@@ -572,11 +573,11 @@ To reflect on my progress I have formed some firm success criteria that I must m
 Having researched a variety of methods to display user information and complete my simulation I am currently working to this technical stack (from user facing to simulation):
 \begin{itemize}
     \item \textbf{Frontend:} Vue Js for dynamic content rendering and managing state sync with server
-    \item \textbf{Backend:} Python Flask API for data handling and simulation control, C\# for the simulation engine
+    \item \textbf{Backend:} C\# Dotnet API for data handling and simulation control, C\# services for the simulation engine
     \item \textbf{3D Visualisation:} Three.js for rendering the 3D city and agents in the browser
     \item \textbf{Data Streaming:} WebSockets for real-time communication between client and server,
     \item \textbf{Other Network Data:} REST Api calls for non real time data such as initial map and population data, allows me to easily authenticate users via JWT (JSON Web Tokens).
-    \item \textbf{Database:} PostgreSQL with PostGIS extension for spatial data storage allowing me to efficently compute across large spatial areas
+    \item \textbf{Database:} PostgreSQL for simulation data storage allowing me to efficently store and query large amounts of data, Making use of bulk insertions to reduce write times and in memory caching during simulation runtime to reduce read times from repeated requests
     \item \textbf{Hosting:} potentially Docker containers for deployment, potentially on a cloud platform like AWS or DigitalOcean, alternatively can fully self-host on a home kubernetes cluster
 \end{itemize}
 
@@ -584,18 +585,19 @@ This combination of technologies allows me to full utilise Object Orientated Pro
 The use of Python and C\# allows me to leverage the strengths of both languages, with Python handling simulation control and data analysis (aided by some advanced libraries created by data analysists) while C\# provides high performance for the simulation engine. The PostgreSQL database with PostGIS will enable efficient storage and retrieval of spatial data (in addition to user credentials etc), which is crucial for simulating disease spread in a city / urban environment.
 
 \subsection{UML Class Diagram}
-This diamgram illustrates the key classes and their relationships within the disease simulation system. It includes classes for agents, diseases, locations, and the simulation engine itself. Each class has attributes and methods that define its behaviour and interactions with other classes. This diagram serves as a blueprint for the system architecture, guiding the implementation of the simulation logic and data structures.
+This diagram illustrates the key classes and their relationships within the disease simulation system. It includes classes for agents, diseases, locations, and the simulation engine itself. Each class has attributes and methods that define its behaviour and interactions with other classes. This diagram serves as a blueprint for the system architecture, guiding the implementation of the simulation logic and data structures.
 \begin{figure}[H]
-    \input{Chapters/AnalysisMedia/umlDiagram.tex}
+    \centering
+    \includegraphics[width=0.7\textwidth]{Chapters/AnalysisMedia/umlDiagram.pdf}
     \caption{UML class diagram of the disease simulation system.}
-    \label{fig:umlDiagram}
 \end{figure}
 
 \subsection{User Flow}
 This diagram illustrates the user flow through the simulation system, from logging in to analyzing results. It shows the main sequence of actions a user can take, including creating or loading simulations, generating populations, running simulations, implementing mitigations, and reviewing results. Side branches indicate additional options available to users, such as adjusting parameters or running alternative scenarios.
 
-\begin{figure}
-    \input{Chapters/AnalysisMedia/UserFlowDiagram.tex}
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.4\textwidth]{Chapters/AnalysisMedia/userFlowDiagram.pdf}
     \caption{User flow diagram for the disease simulation system.}
     \label{fig:userFlowDiagram}
 \end{figure}
