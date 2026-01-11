@@ -2,6 +2,25 @@
 """
 Code Appendix Generator for LaTeX Report
 Generates a beautifully formatted appendix with all code files from a project directory.
+
+LABEL REFERENCE GUIDE:
+  Each file in the appendix gets a label you can reference in your document.
+  
+  Label format: \label{code:path:to:file}
+  - Forward slashes (/) in paths are replaced with colons (:)
+  - File extensions are included in the label
+  
+  Examples:
+    File: SimulationAPI/Models/Agent.cs
+    Label: \label{code:SimulationAPI:Models:Agent.cs}
+    
+    File: frontend/src/api/simulation.ts  
+    Label: \label{code:frontend:src:api:simulation.ts}
+  
+  How to reference in your document:
+    - Use \nameref{code:path:to:file} to show the filename
+    - Use Section~\ref{code:path:to:file} to show "Section X.Y.Z"
+    - Combine: \nameref{code:path:to:file}, Lines 10--25
 """
 
 import os

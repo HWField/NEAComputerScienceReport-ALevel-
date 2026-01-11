@@ -20,6 +20,9 @@
 \usepackage{parskip}
 \usepackage{censor} 
 \usepackage{longtable}
+\usepackage{booktabs}
+\usepackage{multicol}
+\usepackage{multirow}
 
 % for header and footer
 \usepackage[a4paper, margin=1in, headheight=16pt]{geometry}  % Ensures enough space for header
@@ -45,7 +48,6 @@
 
 % for code highlighting and listings
 \usepackage{minted}
-
 
 
 \usepackage[
@@ -82,16 +84,17 @@
 \setcounter{tocdepth}{5}
 \tableofcontents
 \newpage
-\include{Chapters/Analysis}
-\include{Chapters/DocumentedDesign}
+% \include{Chapters/Analysis}
+% \include{Chapters/DocumentedDesign}
 \include{Chapters/TechnicalSolution}
-\chapter{Testing}
-\chapter{Evaluation}
-\include{Chapters/SkillsEvidence}
-\chapter{References}
+% \chapter{Testing}
+% \chapter{Evaluation}
+% \include{Chapters/SkillsEvidence}
+% \chapter{References}
 \printbibliography[heading=bibintoc, title={Bibliography}]
 
 % Appendices
+
 \appendix
 \include{Chapters/CodeAppendix}
 \include{Chapters/ConversationTranscripts}

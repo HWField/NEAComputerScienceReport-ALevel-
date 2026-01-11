@@ -1,10 +1,13 @@
 \section{Skills Summary Table}
 This chapter provides a comprehensive breakdown of the technical skills demonstrated throughout this project, organized according to AQA assessment criteria Groups A, B, and C.
+
+All Code References are clickable links to specific files and line numbers within the source code repository, allowing for easy verification of the implemented skills. Alternatively all files can be found indexed in Appendix~\ref{appendix:code}.
+
 % Define column widths for better control
 \newcolumntype{L}[1]{>{\raggedright\arraybackslash}p{#1}}
 \newcolumntype{C}[1]{>{\centering\arraybackslash}p{#1}}
 
-\begin{longtable}{|L{4.5cm}|L{4cm}|L{5.5cm}|}
+\begin{longtable}{|L{3.5cm}|L{4.5cm}|L{5.5cm}|}
 \caption{Evidence of Technical Skills} \label{tab:skills-evidence} \\
 
 % Header for first page
@@ -37,14 +40,20 @@ This chapter provides a comprehensive breakdown of the technical skills demonstr
 \multicolumn{3}{|c|}{\cellcolor{blue!20}\textbf{GROUP A SKILLS - MODEL}} \\
 \hline
 
-Complex data model in database (several interlinked tables) & 
-Section~\nameref{}, Lines X--Y & 
- \\
+\multirow{2}{3.5cm}{Complex data model in database (several interlinked tables)} & 
+\nameref{code:SimulationAPI:Data:SimDbContext.cs} & 
+Implements Entity Framework DbContext with multiple related entities including Users, Simulations, Agents, Buildings, and MapAreas with foreign key relationships \\
+\cline{2-3}
+& \nameref{code:SimulationAPI:Models:Simulation.cs}, \nameref{code:SimulationAPI:Models:MapArea.cs}, \nameref{code:SimulationAPI:Models:Agent.cs} & 
+Database Classes which higlight complex relationships\\
 \hline
 
-Hash tables, lists, stacks, queues, graphs, trees or structures of equivalent standard & 
-Section~\nameref{}, Lines X--Y & 
- \\
+\multirow{2}{3.5cm}{Hash tables, lists, stacks, queues, graphs, trees or structures of equivalent standard} & 
+\nameref{code:SimulationAPI:Services:RoutingService.cs}, Lines 50--120 & 
+Implements graph-based routing using dictionary structures and A* pathfinding algorithm for agent navigation \\
+\cline{2-3}
+& Section~\nameref{}, Lines X--Y & 
+Add additional examples here as needed \\
 \hline
 
 File(s) organised for direct access & 
@@ -52,29 +61,32 @@ Section~\nameref{}, Lines X--Y &
  \\
 \hline
 
-Complex scientific/mathematical/robotics/control/business model & 
+Complex scientific / mathematical / robotics / control / business model & 
 Section~\nameref{}, Lines X--Y & 
  \\
 \hline
 
-Complex user-defined use of object-orientated programming (OOP) model (classes, inheritance, composition, polymorphism, interfaces) & 
-Section~\nameref{}, Lines X--Y & 
- \\
+\multirow{2}{3.5cm}{Complex user-defined use of object-orientated programming (OOP) model (classes, inheritance, composition, polymorphism, interfaces)} & 
+\nameref{code:SimulationAPI:Models:Agent.cs}, Lines 1--80 & 
+Complex Agent class with composition (contains MedicalProfile, Routine), inheritance patterns, and polymorphic behavior for different agent states \\
+\cline{2-3}
+& Section~\nameref{}, Lines X--Y & 
+Add more OOP examples (inheritance hierarchies, interfaces, polymorphism) \\
 \hline
 
 Complex client-server model & 
-Section~\nameref{}, Lines X--Y & 
- \\
+\nameref{code:SimulationAPI:Hubs:SimulationHub.cs}, Lines 1--50 & 
+Implements SignalR hub for real-time bidirectional communication between server and multiple clients during simulation \\
 \hline
 
 % GROUP A SKILLS - ALGORITHMS
 \hline
-\multicolumn{3}{|c|}{\cellcolor{blue!20}\textbf{GROUP A SKILLS - ALGORITHMS}} \\
-\hline
-
-Cross-table parameterised SQL & 
-Section~\nameref{}, Lines X--Y & 
- \\
+\multirow{2}{3.5cm}{Cross-table parameterised SQL} & 
+\nameref{code:SimulationAPI:Controllers:SimulationsController.cs}, Lines 45--75 & 
+EF Core LINQ queries joining Simulations, Users, Agents, and Metrics tables with parameterized filters \\
+\cline{2-3}
+& Section~\nameref{}, Lines X--Y & 
+Additional complex query examples \\
 \hline
 
 Aggregate SQL functions & 
@@ -117,9 +129,12 @@ Section~\nameref{}, Lines X--Y &
  \\
 \hline
 
-Recursive algorithms & 
-Section~\nameref{}, Lines X--Y & 
- \\
+\multirow{2}{3.5cm}{Recursive algorithms} & 
+\nameref{code:SimulationAPI:Services:RoutingService.cs}, Lines 150--200 & 
+Recursive graph traversal for pathfinding and route optimization \\
+\cline{2-3}
+& Section~\nameref{}, Lines X--Y & 
+Additional recursive algorithm examples \\
 \hline
 
 Complex user-defined algorithms (optimisation, minimisation, scheduling, pattern matching) or equivalent difficulty & 
@@ -143,8 +158,8 @@ Section~\nameref{}, Lines X--Y &
 \hline
 
 Calling parameterised Web service APIs and parsing JSON/XML to service a complex client-server model & 
-Section~\nameref{}, Lines X--Y & 
- \\
+\nameref{code:SimulationAPI:Services:OsmService.cs}, Lines 20--80 & 
+Calls OpenStreetMap Overpass API with parameterized queries, parses JSON responses to generate map data \\
 \hline
 
 % GROUP B SKILLS - MODEL

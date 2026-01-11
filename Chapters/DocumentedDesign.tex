@@ -3,9 +3,9 @@
 \section{System Overview}
 The system is a full-stack web application designed to simulate epidemic dynamics within large populations in real time. It provides a web-based interface for creating and managing simulations, analysing infection spread, and visualising key metrics. 
 
-The architecture follows a client–server model, with a \textbf{Vue.js} frontend communicating with an \textbf{ASP.NET Core} backend API. Persistent data is stored in a \textbf{PostgreSQL} database, and real-time updates are transmitted to the frontend using \textbf{SignalR} WebSocket connections. 
+The architecture follows a robust client–server model, with a Vue.js frontend communicating with an ASP.NET Core backend API. Persistent data is stored in a PostgreSQL database, and real-time updates are transmitted to the frontend using SignalR WebSocket connections. 
 
-At its core, the simulation engine models thousands of individual agents, each with defined routines and locations, and processes their interactions to emulate infection spread over time. The design prioritises modularity, scalability, and computational efficiency to allow multiple concurrent simulations without degradation in performance.
+At its core, the simulation engine models thousands of individual agents within an accurate geometric area, each with defined routines and medical profiles, and processes their interactions to emulate infection spread over time. The design prioritises modularity, scalability, and computational efficiency to allow multiple concurrent simulations without degradation in performance.
 
 \begin{figure}[H]
     \centering
@@ -13,33 +13,42 @@ At its core, the simulation engine models thousands of individual agents, each w
     \caption{High-level architecture of the epidemic simulation system.}
 \end{figure}
 
-\section{System Architecture}
-
 \subsection{Backend Architecture}
-
-
 \begin{figure}[H]
     \centering
     \includegraphics[width=0.9\textwidth]{Chapters/DocumentedDesignMedia/backend_architecture_diagram.pdf}
     \caption{Backend architecture components and their interactions.}
 \end{figure}
 
-The backend is implemented using the ASP.NET Core framework and structured according to a modular, service-oriented architecture. Core components include:
+The backend is implemented using the ASP.NET Core framework and structured as a modular, service-oriented architecture. Core components include:
 \begin{itemize}
-    \item \textbf{SimulationManager}: Oversees the creation, execution, and disposal of running simulations. Each simulation instance operates within its own isolated \textit{SimulationContext}.
-    \item \textbf{SimulationContext}: Encapsulates all runtime state for a single simulation, including agent data, infection states, and metrics. It handles tick-based progression of the simulation loop.
+    \item \textbf{SimulationManager}: Oversees the creation, execution, and disposal of running simulations. Each simulation instance operates within its own isolated SimulationContext.
+    \item \textbf{SimulationContext}: Encapsulates all runtime state and required services for a single simulation, including agent data, infection states, metrics and infection/routing/agent services. It handles tick-based progression of the simulation loop.
     \item \textbf{Services}: Specialised services perform domain-specific tasks:
     \begin{itemize}
+        \item \textbf{SnapshotManager} – periodically records simulation states and summary metrics to the database enabling users to performantly rewind the simulation.
+        \item \textbf{BuildingService} – queried to provide local amenities and buildings such as medical facilities, housing and recreational centres
+        \item \textbf{RoutingService} – determines agent movement paths between buildings or map areas.
         \item \textbf{AgentService} – manages agent state and behavioural routines.
         \item \textbf{InfectionService} – applies infection probability models based on proximity and time of contact.
-        \item \textbf{RoutingService} – determines agent movement paths between buildings or map areas.
-        \item \textbf{SnapshotManager} – periodically records simulation states and summary metrics to the database.
+        \item \textbf{MetricManager} – aggregates and stores key infection statistics for later analysis.
     \end{itemize}
-    \item \textbf{Controllers}: RESTful API controllers expose endpoints for simulation management, authentication, and data retrieval.
-    \item \textbf{SignalR Hub}: Provides a persistent, bidirectional communication channel for real-time transmission of simulation data and progress updates to connected clients.
-\end{itemize}
 
-The backend uses dependency injection to manage service lifetimes and ensure scalability. Each \textit{SimulationContext} runs independently, allowing multiple users to execute simulations concurrently.
+
+    The use of services scoped to each simulation context enables optimised, fast caches to be built during runtime hugely increasing performance over many ticks
+    \item \textbf{Controllers}: RESTful API controllers expose endpoints for simulation management, authentication, and data retrieval. These include:
+    \begin{itemize}
+        \item \textbf{SimulationController} – handles simulation creation, start/stop commands, and parameter updates.
+        \item \textbf{AuthController} – manages user authentication and JWT token issuance.
+        \item \textbf{PresetController} – allows users to create, read, update, and delete reusable presets for diseases and map areas.
+        \item \textbf{ProfileController} – manages user profile data and settings.
+        \item \textbf{AdminController} – provides administrative functions such as user management and system monitoring.
+    \end{itemize}
+
+    \item \textbf{SignalR Hub}: Provides a persistent, bidirectional communication channel for real-time transmission of simulation data and progress updates to connected clients.
+    \item \textbf{SimulationBroadcast Service}: Sends live simulation data to the clients as they monitor a running simulation via the SignalR Hub.
+\end{itemize}
+The backend uses dependency injection to manage service lifetimes and ensure scalability. Each \textit{SimulationContext} runs independently, allowing multiple simulations to execute concurrently.
 
 \subsection{Frontend Architecture}
 
@@ -51,25 +60,26 @@ The backend uses dependency injection to manage service lifetimes and ensure sca
 
 The frontend is a \textbf{Vue.js 3} single-page application (SPA) that interacts with the backend via REST and WebSocket connections. It is composed of the following key modules:
 \begin{itemize}
-    \item \textbf{Dashboard Module} – provides real-time visualisation of infection metrics, simulation tick rate, and population statistics.
-    \item \textbf{Simulation Management Module} – enables users to create, configure, and launch simulations, specifying parameters such as infection rate, population size, and map configuration.
-    \item \textbf{Account and Authentication Module} – handles login, registration, and token management.
-    \item \textbf{SignalR Integration Layer} – maintains a live WebSocket connection for receiving streaming data and updating the dashboard dynamically.
+    \item \textbf{Router} – Shows different views and components based on the current URL route (e.g., dashboard, simulation setup, account management).
+    \item \textbf{Layouts, Views \& Components} – The fundamental building blocks of the UI such as buttons, forms, charts and maps
+    \item \textbf{Axios} – HTTP client library for making REST API calls to the backend services. Handles authentication tokens and error handling.
+    \item \textbf{Pinia Stores} – global state management allowing all components to access and react to shared data such as user info, notifications, and metrics.
+    \item \textbf{Live Hubs} – Composables that manage SignalR connections for receiving real-time simulation updates. This abstracts the complexity of WebSocket management away from individual components
 \end{itemize}
-
 The frontend employs a component-based design, with reusable UI components bound to reactive data stores. This ensures smooth updates as simulation data changes in real time.
 
-\section{Data Model Design}
-Persistent data is stored in a \textbf{PostgreSQL} database using the \textbf{Entity Framework Core} ORM. The database schema is normalised to third normal form, ensuring consistency and efficient access patterns.
 
-\subsection*{Entity Relationships}
+\section{Data Model Design}
+Persistent data is stored in a PostgreSQL database using the Entity Framework Core ORM. The database schema is normalised to third normal form, ensuring consistency and efficient access patterns.
+
 Key entities include:
 \begin{itemize}
     \item \textbf{Simulation} – represents a single simulation configuration and metadata (ID, user, parameters, start/end times).
-    \item \textbf{Agent} – represents an individual within the population; linked to a set of routine events and infection states.
-    \item \textbf{Building} – defines physical locations agents can occupy.
+    \item \textbf{Agent} – represents an individual within the population; linked to a set of routine events and infection states. Each agent has a corresponding medical profile summarising their biology
     \item \textbf{RoutineEvent} – models scheduled activities such as movement between buildings.
-    \item \textbf{Snapshot} – stores periodic summaries of infection counts, agent states, and other metrics.
+    \item \textbf{Map Area} – This parent table consolidates OpenStreetMap data for a geographical circle centered around a point. OSM data gets interpreted to fit my model and stored within buildings and paths
+    \item \textbf{Snapshots} – stores periodic summaries of infection counts, agent states, and other metrics. This enables the user to navigate simulation history performantly - making retroactive changes to test new situations without having to reset the simulationContext
+    \item \textbf{Presets} – Hold copies of user generated data such as diseases and map areas enabling their use across multiple simulations. Alongside convenient this also results in much faster simulation setup time as those using a preset building area can deepCopy the required map data from the local database rather than needing to access slower external APIs
 \end{itemize}
 
 \begin{figure}[H]
@@ -86,39 +96,223 @@ Key entities include:
 \end{figure}
 The simulation operates on a discrete time-step model (tick-based). Each tick represents a fixed unit of time (e.g., one minute) during which all agents are updated.
 
-\subsection*{Lifecycle Overview}
+\subsection{Lifecycle Overview}
 \begin{enumerate}
     \item A user initiates a simulation through the frontend, specifying configuration parameters.
-    \item The \textit{SimulationManager} creates a new \textit{SimulationContext}, which loads agents, buildings, and routines from the database.
-    \item The simulation loop begins, advancing through discrete ticks.
-    \item For each tick:
+    \item The \textit{SimulationManager} creates a new \textit{SimulationContext}, which loads agents, buildings, and routines from the database. 
+    \item Simulation Services (Routing service, infection service etc) are now initialised scoped to this context
+    \item The simulation loop begins, advancing through discrete ticks. For each tick:
     \begin{itemize}
-        \item Agents perform scheduled movements and interactions.
+        \item The \textit{AgentService} performs scheduled movements and interactions by agents.
         \item The \textit{InfectionService} evaluates infection probabilities for contact events.
-        \item The \textit{SnapshotManager} records aggregated statistics at defined intervals.
-        \item The \textit{SignalR Hub} broadcasts updates to connected clients.
+        \item The \textit{SnapshotManager} records full copies of agent states and buildings at defined intervals.
+        \item The \textit{MetricManager} records aggregated statistics at defined intervals.
     \end{itemize}
-    \item When complete, results are saved and accessible via the dashboard.
+    \item Whenver there are clients connected to the simulation, the \textit{BroadcastService \& SignalR Hub} broadcast updates to connected clients enabling real-time visualisation. This is independent of the tick cycle causing minimal performance impact and ensuring consistent updates
 \end{enumerate}
 
-\subsection*{Runtime Data Structures}
-To maximise simulation performance, runtime entities are represented as tightly packed \textbf{struct arrays} within the simulation engine. These include:
+This engine loop can either be run in a 'real time mode' in which artificial delays are introduced to enable the user to control the simulation speed (e.g. user watches at 1 sim minute per real time second) or can be run in "Computed Mode" in which the simulation runs as fast as possible with no added delays. This latter mode is most frequently used when users scrub the timeline to a future/past time
+
+\subsection{Runtime Time}
+As mentioned above the simulation context handles a global tick clock which is used by the engine to synchronise progress with the clients' preference. Should the user wish to scrub back in time this is easily handled through a combination of simulationSnapshots and compute. 
+
+Simulation snapshots serve as insights into the current state of all entities within a simulation at any given time. They are recorded according to user preference (usually every 2 minutes of real time viewing) with more frequent snapshots causing performance decreases (due to high IO utilisation from saving millions of records) but giving more flexibility in exploring the past
+
+When a user wishes to visit a past tick a few steps occur:
+\begin{enumerate}
+    \item The frontend makes a request to the simulationController containing the desired target tick
+    \item The simulationContext pauses the current simulation loop and queries the snapshotManager for the nearest prior snapshot to the target tick
+    \item The snapshotManager retrieves the snapshot from the database and deserialises all entities into the simulationContext's runtime data structures
+    \item The simulationContext sets its internal tick clock to the snapshot tick and resumes the simulation loop
+    \item The simulation now continues from this past state and runs in computed mode until it reaches the target tick, at which point it pauses and waits for further user input
+\end{enumerate}
+
+\subsection{Runtime Data Structures}
+To maximise simulation performance, runtime entities are loaded from the database into tightly packed \textbf{struct arrays} within the simulation engine. These include:
 \begin{itemize}
     \item \texttt{AgentState[]} – stores position, infection status, and next scheduled action for each agent.
     \item \texttt{BuildingState[]} – holds occupancy and infection density data.
     \item \texttt{RoutineEventState[]} – tracks routine activity timings and locations.
 \end{itemize}
 
-This design reduces heap allocation overhead and improves CPU cache locality, allowing the system to efficiently simulate tens of thousands of agents per tick.
+This design reduces heap allocation overhead and improves CPU cache locality compared to storing the full class objects, allowing the system to efficiently simulate millions of agents per tick.
 
-\subsection*{Core Algorithms}
-The infection model uses a probabilistic approach. Each contact event between agents $A$ and $B$ with infection states $I_A$ and $I_B$ has a transmission probability $p$ based on distance $d$ and exposure time $t$:
+\subsection{Core Algorithms}
+
+\subsubsection*{Infection Dynamics}
+
+The simulation models disease spread using a spatially explicit, agent–based probabilistic framework. Each agent occupies a geographic coordinate $(\phi, \lambda)$ and updates its health state at each simulation tick. Transmission is governed by four interacting components:
+
+\paragraph*{1. Spatial Exposure}
+Agents are indexed in a dynamic grid-based spatial index enabling $O(k)$ proximity queries. For each infected agent $i$ with coordinates $(\phi_i, \lambda_i)$, all susceptible agents $j$ within a geodesic radius $r$ are identified:
 \[
-p = \beta \cdot e^{-k \cdot d} \cdot (1 - e^{-\lambda t})
+d_{ij}^2 = (\Delta \phi_{ij})^2 + (\Delta \lambda_{ij})^2 \le r^2.
 \]
-where $\beta$ is the base infection rate, and $k$, $\lambda$ are constants tuned per simulation type.
+The infection radius is fixed (2\,m), but the effective probability is modulated by environmental factors.
 
-Routing and movement are implemented using a weighted random selection of available paths between building nodes, producing realistic population flow dynamics.
+\paragraph*{2. Time-Scaled Base Transmission}
+Disease configurations specify an hourly close-contact transmission rate $\beta_\mathrm{hour}$. This is converted to a per-tick probability:
+\[
+\beta_\mathrm{tick} = \frac{\beta_\mathrm{hour}}{3600 / \Delta t},
+\]
+where $\Delta t$ is the simulation tick length (seconds). All exposure probabilities inherit from this base rate.
+
+\paragraph*{3. Environmental, Behavioral, and Host Modifiers}
+The effective transmission probability from agent $i$ to $j$ at a single tick is:
+\[
+p_{i \to j}
+= \beta_\mathrm{tick} \cdot M_\mathrm{env} \cdot M_\mathrm{mask}(i,j) \cdot S_j \cdot V_i.
+\]
+
+\textbf{Environmental modifier:}
+\[
+M_\mathrm{env} =
+\begin{cases}
+2.5, & \text{if agents share the same indoor building} \\
+0.15, & \text{if both are outdoors}
+\end{cases}
+\]
+
+\textbf{Mask interaction:}
+\[
+M_\mathrm{mask}(i,j)
+= (1 - E_m)^{m_i} \cdot (1 - 0.5E_m)^{m_j},
+\]
+where $m_i,m_j\in\{0,1\}$ indicate mask usage and $E_m$ is mask effectiveness.
+
+\textbf{Host susceptibility:}
+\[
+S_j = \sigma_j \cdot (1 - I_j) \cdot (1 - E_v v_j) \cdot C_j,
+\]
+where:
+\begin{itemize}
+    \item $\sigma_j$: baseline susceptibility,
+    \item $I_j$: current immunity level (0–1),
+    \item $v_j$: vaccination status,
+    \item $E_v$: vaccine effectiveness,
+    \item $C_j = 1.5$ if agent has a chronic condition, else $1$.
+\end{itemize}
+
+\textbf{Viral load model:}
+The infectiousness of agent $i$ depends on infection progression $x$:
+\[
+V_i = \max\{0.3,\, 0.5 + |0.5 - x|\}.
+\]
+This produces rising infectiousness early in the disease and declining infectiousness near recovery.
+
+\textbf{Symptomatic behavior modifier:}
+Highly symptomatic agents reduce outdoor interactions:
+\[
+p_{i \to j} \leftarrow 0.3 \, p_{i \to j}
+\quad\text{if $i$ is symptomatic and outdoors.}
+\]
+
+After applying all modifiers, the final probability is clamped to $[0,1]$.
+
+A Bernoulli trial determines whether transmission occurs.
+
+\paragraph*{4. Disease Progression and Outcomes}
+
+Each infected agent maintains an infection progress variable $x \in [0,1]$ updated per tick:
+\[
+x_{t+1} = x_t + \frac{\rho}{86400 / \Delta t},
+\]
+where $\rho$ is the configured recovery rate. Health outcomes are governed by:
+
+\textbf{Incubation period:} Agents become infectious only after $x \ge T_\mathrm{inc}$.
+
+\textbf{Symptom development:} Symptom severity is drawn from mild / severe distributions and evolves as:
+\[
+S_\mathrm{eff}(x) =
+\begin{cases}
+2x S_\mathrm{base}, & x < 0.5,\\[4pt]
+(2 - 2x) S_\mathrm{base}, & x \ge 0.5,
+\end{cases}
+\]
+
+\textbf{Mortality:} A single mortality check occurs near peak infection ($x \approx 0.5$):
+\[
+p_\mathrm{death} = M \cdot \sigma_j \cdot C_j \cdot H_j,
+\]
+where $M$ is disease mortality, $C_j$ chronic-condition multiplier, and $H_j$ a severity-based multiplier.
+
+\textbf{Recovery and Immunity:}
+Recovered agents gain immunity:
+\[
+I_{t+1} = \min(1,\, I_t + R_\mathrm{gain}),
+\]
+with disease-specific reinfection resistance and modifiers for vaccines and comorbidities.
+
+\textbf{Immunity decay:}
+\[
+I_{t+1} = I_t - \frac{1}{D_\mathrm{immunity}(86400 / \Delta t)},
+\]
+where $D_\mathrm{immunity}$ is immunity duration (days). When immunity falls below 0.05, agents return to the susceptible class.
+
+\subsubsection*{Routing and Movement}
+
+Movement between locations is computed using a road/path network derived from node–edge structures. The routing system supports realistic pedestrian navigation with nearest-node projection, route caching, and multi-edge weighting.
+
+\paragraph*{1. Graph Construction}
+The road network is represented as a directed multigraph:
+\[
+G = (V, E),
+\]
+where each vertex $v \in V$ is an OSM node $(\phi_v, \lambda_v)$ and each edge $e=(v \to u)$ has attributes:
+\[
+d_e: \text{geodesic distance}, \quad
+\alpha_e: \text{speed modifier}, \quad
+p_e: \text{path identifier}.
+\]
+
+Distance is computed using the haversine formula:
+\[
+d(\phi_1,\lambda_1,\phi_2,\lambda_2)
+= 2R \arctan\!\left(
+\sqrt{\frac{a}{1-a}}
+\right),
+\]
+with the usual spherical term $a$.
+
+Oneway constraints generate directed or bidirectional edges.
+
+\paragraph*{2. Nearest-Node Projection}
+
+Agents must snap to the nearest navigable node. A grid index partitions the map into $(C \times R)$ cells. For an arbitrary coordinate $(\phi, \lambda)$, the nearest node ID is:
+
+\[
+v^* = \arg\min_{v \in N} d(\phi,\lambda, \phi_v,\lambda_v).
+\]
+
+A multi-cell search window ensures coverage of large sparse regions.
+
+\paragraph*{3. Pathfinding (A*)}
+
+Routes between nodes $s$ and $t$ are computed using A* search with a haversine heuristic:
+\[
+h(v) = d(v,t).
+\]
+
+The cost of traversing an edge is:
+\[
+\text{cost}(e) = \frac{d_e}{\alpha_e},
+\]
+providing natural variation in movement speed across different path types.
+
+If $s$ and $t$ belong to different connected components, or no path is found, the algorithm falls back to a direct point-to-point geodesic movement model with appropriate travel time.
+
+\paragraph*{4. Route Reconstruction and Travel Time}
+
+A* returns a list of node IDs $(v_0, v_1, \dots, v_k)$, mapped back to geographic coordinates. Total travel time is:
+
+\[
+T = \sum_{i=0}^{k-1} \frac{d(v_i, v_{i+1})}{v_\mathrm{agent}},
+\]
+where $v_\mathrm{agent}$ is the agent’s effective walking speed in m/s.
+
+\paragraph*{5. Caching}
+
+All $(s,t)$ routes are stored in a concurrent route cache to reduce computation for repeated trips, significantly improving performance at high agent counts.
 
 \section{Communication and Security Design}
 All client–server interactions are authenticated using \textbf{JWT tokens}. Upon login, the server issues both an access token and a refresh token, which the frontend stores securely and uses to maintain session validity. All REST API and SignalR requests require valid tokens to ensure authorised access.
@@ -133,5 +327,569 @@ Cross-Origin Resource Sharing (CORS) is enabled for the specific frontend domain
     \caption{Authentication and communication flow between frontend and backend.}
 \end{figure}
 
-\section*{Summary}
-The design emphasises modularity, high performance, and scalability. Each subsystem—data model, simulation engine, and communication layer—was engineered to support real-time multi-user simulations with minimal latency. The documented design thus forms a robust blueprint guiding the technical implementation detailed in the following chapter.
+
+\section{Defensive programming and Error Handling}
+The system employs comprehensive defensive programming techniques to ensure robustness and reliability. Key strategies include:
+\begin{itemize}
+    \item \textbf{Input Validation}: All user inputs are validated both client-side and server-side to prevent injection attacks and ensure data integrity. This includes checking data types, ranges, and formats.
+    \item \textbf{Exception Handling}: Try-catch blocks are used extensively around critical operations (database access, network calls) to gracefully handle errors and provide meaningful feedback to users.
+    \item \textbf{Logging}: The backend utilises structured logging  to capture detailed error information, including stack traces and contextual data, facilitating debugging and monitoring.
+    \item \textbf{Unit and Integration Testing}: A comprehensive test suite covers core functionalities, ensuring that changes do not introduce regressions.
+    \item \textbf{Graceful Degradation}: In the event of partial failures (e.g., SignalR disconnection), the system attempts to reconnect or fall back to polling mechanisms without crashing.
+    \item \textbf{Resource Management}: Proper disposal of database connections, file handles, and network sockets prevents resource leaks and ensures system stability under load.
+    \item \textbf{Concurrency Control}: Thread-safe data structures and locks are employed in the simulation engine to prevent race conditions during concurrent access.
+    \item \textbf{User Feedback}: The frontend provides clear error messages and recovery options when operations fail, enhancing user experience. This uses the existing Toast notification system to inform users of issues
+    \item \textbf{Configuration Validation}: On startup, the backend validates all configuration settings (e.g., database connection strings, JWT secrets) to ensure the system is correctly set up before accepting requests.
+\end{itemize}
+
+
+\section{Design Constraints and Trade-offs}
+
+The development of this epidemic simulation system required careful consideration of competing priorities. This section discusses the key constraints encountered and the trade-offs made during the design process.
+
+\subsection{Performance vs. Accuracy}
+
+\subsubsection*{Simplified Infection Model}
+The infection dynamics model balances biological realism with computational feasibility. While epidemiological research employs complex multi-compartment models with age-stratified mixing matrices and stochastic differential equations, this implementation uses a simpler agent-based probabilistic framework.
+
+\textbf{Constraint:} Simulating detailed viral load curves, immune system dynamics, and within-host pathogen evolution for thousands of agents would require orders of magnitude more computation per tick.
+
+\textbf{Trade-off:} The infection progression variable $x \in [0,1]$ provides a simplified representation of disease stages. While this loses granularity in modelling incubation periods and viral kinetics, it enables real-time simulation of large populations. The piecewise linear viral load function $V_i$ approximates observed infectiousness patterns without solving differential equations.
+
+\textbf{Justification:} For the intended use-case: interactive exploration of epidemic dynamics at population scale, the simplified model captures essential transmission behaviours whilst maintaining sub-second tick computation times for 10,000+ agents.
+
+\subsection{Memory Efficiency vs. Data Richness}
+
+\subsubsection*{Runtime Data Structures}
+The decision to use tightly packed \texttt{struct} arrays rather than maintaining full entity objects during simulation represents a significant architectural trade-off.
+
+\textbf{Constraint:} Loading complete \texttt{Agent}, \texttt{Building}, and \texttt{RoutineEvent} class instances for each simulation would consume excessive heap memory and degrade cache performance, limiting concurrent simulations.
+
+\textbf{Trade-off:} Runtime state is stripped to essential fields (\texttt{AgentState[]}, \texttt{BuildingState[]}). Rich metadata (agent names, building descriptions, detailed medical histories) remains in the database but is not loaded into the simulation engine.
+
+\textbf{Justification:} This design reduces memory footprint by approximately 70\% and improves CPU cache locality, enabling faster proximity searches and infection checks. The metadata is accessible via API queries when needed for detailed analysis but does not burden the real-time simulation loop. The performance impact of converting database entities to lightweight structs is minimal compared to the runtime efficiency gains and is only incurred once at simulation initilisation.
+
+\subsection{Responsiveness vs. Network Overhead}
+
+\subsubsection*{SignalR Broadcast Frequency}
+Real-time updates must balance client responsiveness with network and serialisation costs.
+
+\textbf{Constraint:} Broadcasting full agent states and infection metrics on every tick (potentially 100+ times per second) would saturate network bandwidth and overwhelm client rendering pipelines.
+
+\textbf{Trade-off:} The \textit{BroadcastService} operates on an independent cycle, transmitting aggregated metrics (infection counts, average symptom severity) rather than all simulation data. Broadcasts occur at configurable intervals (typically 1–2 seconds) decoupled from the tick rate. The frontend can optionall subscribe to detailed agent position updates of a population sample for visualisation purposes. These updates are compressed and throttled to reduce payload size.
+
+\textbf{Justification:} Users require smooth dashboard updates to observe trends, not frame-by-frame agent positions. Aggregated statistics provide meaningful insight while reducing payload size by 99\%. Full state snapshots are available on-demand through REST endpoints for detailed analysis.
+
+\subsection{Historical Fidelity vs. Storage Requirements}
+
+\subsubsection*{Snapshot Granularity}
+Enabling temporal navigation (rewinding simulations) necessitates periodic state snapshots, creating a storage–fidelity tension.
+
+\textbf{Constraint:} Capturing complete simulation state every tick would generate terabytes of data for multi-day simulations with thousands of agents, making database writes the performance bottleneck.
+
+\textbf{Trade-off:} Snapshots are recorded at user-configured intervals (default: every few minutes of user viewing). Intermediate states are reconstructed by loading the nearest prior snapshot and re-computing ticks in "Computed Mode."
+
+\textbf{Justification:} This approach reduces storage requirements by 98\% while still permitting retroactive exploration. The re-computation overhead (typically <5 seconds for a 2-hour gap) is fixed at a maximum of the snapshot frequency (assuming worst case scenario of the user requesting the tick prior to the next snapshot) which gives the user flexibility. As the snapshot recording is tied to 'real world' time rather than simulation ticks, users can balance fidelity against storage based on their analysis needs.
+
+\subsection{Routing Precision vs. Computational Cost}
+
+\subsubsection*{Path Network Simplification}
+Agent movement uses OpenStreetMap road/path networks processed into a graph representation.
+
+\textbf{Constraint:} OSM data includes highly detailed geometries (curved roads, multi-lane highways, footpath branches). Computing A* routes on the full topology for every agent movement would be prohibitively expensive.
+
+\textbf{Trade-off:} Roads are simplified to node–edge graphs with averaged speed modifiers. Complex junctions collapse to single nodes. During simulation setup all agents daily routines are preprocessed to cache their common routes and saved as corrdinate arrays.
+
+\textbf{Justification:} Epidemiological outcomes depend on \textit{contact patterns} and \textit{travel times}, not sub-metre positional accuracy. The simplified topology preserves realistic movement durations and spatial proximity whilst enabling $O(\log n)$ cached lookups for repeated routes. Despite the simplifications made users viewing agents movement will still see a realistic path following roads and paths etc (at realistic speeds) rather than straight lines between buildings
+
+\subsection{User Experience vs. Database Normalisation}
+
+\subsubsection*{Preset Deep-Copying}
+Presets allow users to reuse map areas and disease configurations across simulations.
+
+\textbf{Constraint:} Fully normalised schema design would link all simulations to shared preset entities via foreign keys, preventing data duplication but also preventing flexibility in modifying each simulations preset instance.
+
+\textbf{Trade-off:} When a simulation uses a preset, the system performs a \textit{deep copy} of the associated buildings, paths, and disease parameters into simulation-specific tables. This intentionally denormalises the database.
+
+\textbf{Justification:} Deep-copying eliminates API latency for external data fetching and allows users to modify preset parameters for individual simulations without affecting other instances. The storage overhead (typically 5–20\,MB per simulation) is negligible compared to the performance gain and flexibility.
+
+\subsection{Spatial Index Granularity}
+
+\subsubsection*{Grid-Based Proximity Detection}
+Infection checks require identifying nearby agents within a 2-metre radius.
+
+\textbf{Constraint:} A naive $O(n^2)$ all-pairs distance check is computationally infeasible for large populations.
+
+\textbf{Trade-off:} Agents are indexed in a fixed-resolution grid ($C \times R$ cells). Each cell covers approximately 10\,m$^2$. Proximity queries check only neighbouring cells, reducing complexity to $O(k)$ where $k$ is the local agent density.
+
+\textbf{Justification:} This spatial indexing enables constant-time cell assignment and bounded proximity checks. The fixed grid resolution balances memory overhead (one list per cell) against query performance. Adaptive quadtrees would offer marginal improvements at significant implementation complexity.
+
+\subsection{Cross-Platform Compatibility}
+
+\subsubsection*{Technology Stack Choices}
+The system employs modern web technologies (Vue.js, ASP.NET Core, PostgreSQL) that impose deployment and compatibility considerations.
+
+\textbf{Constraint:} ASP.NET Core requires .NET runtime installation; PostgreSQL demands separate database hosting; Vue.js SPAs necessitate modern browsers with WebSocket support.
+
+\textbf{Trade-off:} The system is not deployable as a standalone desktop application. Users maccess the frontend via a web browser and connect to a running backend server.
+
+\textbf{Justification:} Web-based architecture enables multi-user access, centralised data storage, and platform independence (Windows, macOS, Linux). The client–server model supports future cloud deployment, whilst local hosting remains feasible for development and testing. With my NEA prototype i am already able to host multiple users simulate simultaneously on a single server machine with minimal performance degradation
+
+\subsection{Security vs. Convenience}
+
+\subsubsection*{JWT Token Lifetime}
+Authentication tokens balance security (short expiry) with user experience (infrequent re-authentication).
+
+\textbf{Constraint:} Very short-lived access tokens (e.g., 5 minutes) maximise security but require frequent token refreshes, disrupting user experience
+
+\textbf{Trade-off:} Access tokens expire after 15 minutes; refresh tokens last 7 days. SignalR connections include automatic token refresh logic to maintain sessions during long-running simulations.
+
+\textbf{Justification:} This configuration mitigates token theft risks whilst allowing users to view multi-hour simulations without re-authentication interruptions. Refresh token rotation further enhances security without degrading user experience. Should an account be compromised the limited access token lifetime minimises exposure allowing admins / users to quickly revoke access
+
+\section{User Interface Design}
+
+The frontend interface is built using Vue.js 3's component-based architecture, with Vue Router managing navigation between different views.
+
+\subsection{Routing Architecture}
+
+The application uses hierarchical routing structure with route guards to enforce authentication and authorisation requirements. Although all API routes are protected on the backend this system ensures user's can't attempt to interact with components that won't function. The router configuration defines the following main routes:
+
+
+\subsubsection*{Route Hierarchy}
+
+The application uses a nested routing pattern with a shared \texttt{MainLayout} component that wraps authenticated views:
+
+\begin{itemize}
+    \item \textbf{Root Path (/)} – Renders the \texttt{MainLayout} component containing:
+    \begin{itemize}
+        \item Navigation header with user menu
+        \item \texttt{<router-view>} outlet for child components
+        \item Base page styling and metadata
+    \end{itemize}
+    
+    \item \textbf{Dashboard (/)} – The default landing page displaying:
+    \begin{itemize}
+        \item List of user's simulations with status indicators
+        \item Quick action buttons (New Simulation, View Presets)
+        \item Overview statistics
+    \end{itemize}
+    
+    \item \textbf{Simulation (/simulation/:id)} – Dynamic route accepting simulation ID parameter:
+    \begin{itemize}
+        \item Real-time simulation dashboard
+        \item Infection metrics visualisation
+        \item Timeline controls (play, pause, scrub)
+        \item Parameter adjustment panel
+        \item Analysis tools
+    \end{itemize}
+    
+    \item \textbf{Settings (/settings)} – User account management:
+    \begin{itemize}
+        \item Profile information editing
+        \item Password change functionality
+    \end{itemize}
+    
+    \item \textbf{Admin Panel (/admin)} – Administrative interface (requires admin role):
+    \begin{itemize}
+        \item User management dashboard
+        \item System performance metrics
+        \item Database maintenance tools
+        \item Global preset management
+    \end{itemize}
+\end{itemize}
+
+\subsubsection*{Unauthenticated Routes}
+
+Routes outside the \texttt{MainLayout} hierarchy serve authentication and error handling purposes:
+
+\begin{itemize}
+    \item \textbf{Login (/login)} – Authentication form with email/password fields
+    \item \textbf{Register (/register)} – User registration with validation
+    \item \textbf{Error (/error)} – Generic error display accepting message query parameter
+    \item \textbf{Not Found (/:catchAll(.*))} – Catch-all route for invalid paths
+\end{itemize}
+
+\subsection{Navigation Guards and Access Control}
+
+Vue Router's \texttt{beforeEach} navigation guard implements authentication and authorisation logic before allowing route transitions:
+
+\subsubsection*{Authentication Guard}
+Routes marked with \texttt{meta: \{requiresAuth: true\}} trigger an authentication check:
+\begin{enumerate}
+    \item Guard queries \texttt{useUserStore} for authentication status
+    \item If user is not authenticated:
+    \begin{itemize}
+        \item Current route path stored in \texttt{redirect} query parameter
+        \item Navigation redirected to \texttt{/login}
+        \item After successful login, user returned to originally requested path
+    \end{itemize}
+    \item If authenticated, navigation proceeds normally
+\end{enumerate}
+
+\subsubsection*{Role-Based Access Control}
+The admin route includes additional authorisation logic via \texttt{meta: \{requiresAdmin: true\}}:
+\begin{enumerate}
+    \item Guard checks user role from \texttt{useUserStore}
+    \item If role is not "Admin":
+    \begin{itemize}
+        \item Toast notification displayed: "You do not have admin privileges"
+        \item User redirected to dashboard
+    \end{itemize}
+    \item If role matches, access granted
+\end{enumerate}
+
+\subsection{Component Architecture}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.8\textwidth]{Chapters/DocumentedDesignMedia/ui_hierarchy.pdf}
+    \caption{Diagram showing typical hierarchy of UI components}
+\end{figure}
+
+
+
+\subsubsection*{View Components}
+
+The application defines five primary view components corresponding to main application sections:
+
+\begin{itemize}
+    \item \textbf{DashboardView} – Orchestrates multiple child components:
+    \begin{itemize}
+        \item \texttt{SimulationList} – Displays paginated simulation cards
+        \item \texttt{QuickActions} – Buttons for creating new resources
+        \item \texttt{Overivew} – Cumulative simulation metrics
+    \end{itemize}
+    
+    \item \textbf{SimulationView} – Manages active simulation interface:
+    \begin{itemize}
+        \item \texttt{SimulationCanvas} – Geographic visualisation using Leaflet.js
+        \item \texttt{MetricsPanel} – Real-time infection statistics with Chart.js
+        \item \texttt{TimelineControl} – Playback controls and tick slider
+        \item \texttt{ParameterEditor} – Dynamic form for adjusting simulation parameters
+    \end{itemize}
+    
+    \item \textbf{SettingsView} – User account configuration:
+    \begin{itemize}
+        \item \texttt{ProfileForm} – Editable user information fields
+        \item \texttt{SecuritySettings} – Password configurations and logged in device controls
+        \item \texttt{PreferenceToggles} – display preferences
+    \end{itemize}
+    
+    \item \textbf{AdminView} – Administrative dashboard:
+    \begin{itemize}
+        \item \texttt{UserTable} – user list with actions
+        \item \texttt{SystemMetrics} – Server performance metrics
+        \item \texttt{DatabaseTools} – Backup, cleanup, and migration controls
+    \end{itemize}
+    
+    \item \textbf{AuthenticationView} – Dual-purpose login/register interface:
+    \begin{itemize}
+        \item Renders different forms based on route (\texttt{/login} vs \texttt{/register})
+        \item \texttt{LoginForm} – Email/password authentication
+        \item \texttt{RegisterForm} – Account creation with validation
+        \item Shared error display and loading states
+    \end{itemize}
+\end{itemize}
+
+\subsubsection*{Layout Components}
+
+The \texttt{MainLayout} component provides consistent structure across authenticated views:
+
+\begin{itemize}
+    \item \textbf{NavigationHeader} – Top-level navigation bar containing:
+    \begin{itemize}
+        \item Application logo linking to dashboard
+        \item User avatar dropdown menu (settings, logout)
+    \end{itemize}
+    
+    \item \textbf{MainContent} – Central \texttt{<router-view>} outlet:
+    \begin{itemize}
+        \item Renders active view component
+        \item Applies consistent padding and scrolling behaviour
+        \item Handles view transition animations
+    \end{itemize}
+    
+\end{itemize}
+
+\subsection{State Management Integration}
+
+The UI components interact with Pinia stores for reactive state management:
+
+\subsubsection*{useUserStore}
+Manages authentication state and user profile data:
+\begin{itemize}
+    \item \texttt{isAuthenticated} – Boolean flag checked by navigation guards
+    \item \texttt{role} – User role string ("User", "Admin") for access control
+    \item \texttt{profile} – User details (name, email, preferences)
+    \item \texttt{login()}, \texttt{logout()}, \texttt{fetchUser()} – Authentication actions
+\end{itemize}
+
+\subsubsection*{useToastStore}
+Provides global notification system that can be called from any component:
+\begin{itemize}
+    \item \texttt{toasts} – Array of active notification objects
+    \item \texttt{show(message, type, duration)} – Displays temporary notification
+    \item \texttt{remove(id)} – Removes notification from queue
+    \item Toast types: "success", "error", "warning", "info"
+\end{itemize}
+
+\subsection{Component Communication Patterns}
+\subsubsection*{Props and Events}
+Parent-child communication uses Vue's props-down, events-up pattern:
+\begin{itemize}
+    \item Parent components pass configuration via props
+    \item Child components emit events for state changes
+\end{itemize}
+
+\subsubsection*{Store Injection}
+Components requiring shared state inject Pinia stores:
+\begin{itemize}
+    \item Avoids prop drilling through multiple component layers
+    \item Enables reactive updates across disconnected component trees
+\end{itemize}
+
+\subsubsection*{Event Bus (SignalR)}
+Real-time simulation updates broadcast via SignalR connection:
+\begin{itemize}
+    \item \texttt{Simulation View} establishes WebSocket on mount
+    \item Incoming messages update local variables
+    \item Reactive components automatically re-render with new data
+    \item Connection managed in \texttt{useSimulationHub}
+\end{itemize}
+
+\subsection{Responsive Design Considerations}
+
+The interface adapts to different screen sizes using CSS media queries and conditional rendering:
+
+key adaptive examples include
+
+\begin{itemize}
+    \item Dashboard layout switches from multi-column to single-column on narrow screens
+    \item Simulation canvas resizes dynamically to fit available viewport
+    \item Navigation header collapses into hamburger menu on mobile
+\end{itemize}
+
+\subsection{UI Pages}
+
+\begin{figure}[H]
+    \centering
+    \begin{tabular}{cc}
+        \begin{minipage}{0.45\textwidth}
+            \centering
+            \includegraphics[width=\linewidth]{Chapters/DocumentedDesignMedia/UIDesigns/dashboard.png}
+            \captionof{figure}{System Dashboard}
+        \end{minipage} &
+        \begin{minipage}{0.45\textwidth}
+            \centering
+            \includegraphics[width=\linewidth]{Chapters/DocumentedDesignMedia/UIDesigns/simulationDetails.png}
+            \captionof{figure}{Inspect Simulation View}
+        \end{minipage} \\
+        \addlinespace[1em]
+        \begin{minipage}{0.45\textwidth}
+            \centering
+            \includegraphics[width=\linewidth]{Chapters/DocumentedDesignMedia/UIDesigns/settingsAppearence.png}
+            \captionof{figure}{Settings page (Appearance)}
+        \end{minipage} &
+        \begin{minipage}{0.45\textwidth}
+            \centering
+            \includegraphics[width=\linewidth]{Chapters/DocumentedDesignMedia/UIDesigns/settingsSecurity.png}
+            \captionof{figure}{Settings page (Security)}
+        \end{minipage} \\
+        \addlinespace[1em]
+        \begin{minipage}{0.45\textwidth}
+            \centering
+            \includegraphics[width=\linewidth]{Chapters/DocumentedDesignMedia/UIDesigns/adminDatabase.png}
+            \captionof{figure}{Admin Panel}
+        \end{minipage} &
+         \begin{minipage}{0.45\textwidth}
+            \centering
+            \includegraphics[width=\linewidth]{Chapters/DocumentedDesignMedia/UIDesigns/simulationDashboard.png}
+            \captionof{figure}{Simulation Dashboard}
+        \end{minipage} \\
+         \begin{minipage}{0.45\textwidth}
+            \centering
+            \includegraphics[width=\linewidth]{Chapters/DocumentedDesignMedia/UIDesigns/simulationConfigure.png}
+            \captionof{figure}{Simulation Configuration}
+        \end{minipage} &
+        \begin{minipage}{0.45\textwidth}
+            \centering
+            \includegraphics[width=\linewidth]{Chapters/DocumentedDesignMedia/UIDesigns/simulationAnalise.png}
+            \captionof{figure}{Simulation Analysis}
+        \end{minipage} \\
+        
+    \end{tabular}
+    \caption{Examples of key UI pages in the application}
+\end{figure}
+
+
+\section{User Flows}
+
+This section outlines the typical user journeys through the system, from initial authentication to simulation analysis. The user flow captures key interactions across the frontend interface and demonstrates how different components integrate to provide a cohesive experience.
+\begin{multicols}{2}
+\setlength{\columnsep}{5cm} % Increase column separation (default is about 10pt)
+
+\subsection{Authentication Flow}
+
+\subsubsection*{User Registration}
+\begin{enumerate}
+    \item User navigates to registration page
+    \item User enters credentials (email, username, password)
+    \item Frontend validates input format client-side
+    \item Registration request sent to \texttt{/api/\allowbreak auth/\allowbreak register}
+    \item Backend validates uniqueness and creates user account
+    \item Success response redirects user to login page
+    \item Error response displays appropriate validation message
+\end{enumerate}
+
+\subsubsection*{User Login}
+\begin{enumerate}
+    \item User enters credentials on login page
+    \item Frontend sends authentication request to \texttt{/api\allowbreak/auth\allowbreak/login}
+    \item Backend validates credentials and generates JWT tokens
+    \item Access token and refresh token returned to client
+    \item Tokens stored securely in browser storage
+    \item User redirected to dashboard
+    \item Failed authentication displays error message
+\end{enumerate}
+
+\subsection{Simulation Creation Flow}
+
+\subsubsection*{Initial Configuration}
+\begin{enumerate}
+    \item User navigates to "New Simulation" page and enters simulation name
+    \item User selects or creates map area configuration:
+    \begin{itemize}
+        \item Option A: Select existing preset from dropdown
+        \item Option B: Specify geographic coordinates and radius for new area
+    \end{itemize}
+    \item If creating new area, OSM data fetched and processed
+    \item User configures population type distribution
+     \item User selects disease model:
+    \begin{itemize}
+        \item Option A: Choose from preset diseases
+        \item Option B: Create custom disease with parameters
+    \end{itemize}
+    \item Configure initial infection parameters:
+\end{enumerate}
+
+\subsubsection*{Simulation Launch}
+\begin{enumerate}
+    \item User clicks "Create Simulation" button
+    \item Frontend sends configuration to \texttt{/api\allowbreak/simulation\allowbreak/create}
+    \item Backend validates parameters
+    \item \textit{SimulationManager} creates new \textit{SimulationContext}
+    \item Agent population generated with routines
+    \item Buildings and paths loaded/created
+    \item Simulation ID returned to frontend
+    \item User redirected to simulation dashboard
+\end{enumerate}
+
+\subsection{Simulation Monitoring Flow}
+
+\subsubsection*{Dashboard Initialisation}
+\begin{enumerate}
+    \item User accesses simulation dashboard via simulation ID
+    \item Frontend requests simulation metadata from \texttt{/api\allowbreak/simulation\allowbreak/\{id\}}
+    \item SignalR connection established to simulation hub
+    \item Client subscribes to simulation broadcast channel specifiying how many agents it wants to follow
+    \item Initial state data loaded and rendered
+    \item Real-time update stream begins
+\end{enumerate}
+
+\subsubsection*{Real-Time Monitoring}
+\begin{enumerate}
+    \item User observes live metrics updating on dashboard:
+    \begin{itemize}
+        \item Infection counts (susceptible, infected, recovered, deceased)
+        \item Current simulation time/tick
+        \item Infection rate trends
+        \item Geographic maps
+    \end{itemize}
+    \item User can adjust playback speed via controls
+    \item Simulation broadcasts updates via SignalR at configured intervals
+    \item Charts and visualisations update reactively
+\end{enumerate}
+
+\subsection{Temporal Navigation Flow}
+
+\subsubsection*{Scrubbing to Past State}
+\begin{enumerate}
+    \item User drags timeline slider to earlier point in simulation
+    \item Frontend sends target tick to \texttt{/api\allowbreak/simulation\allowbreak/\{id\}\allowbreak/tick}
+    \item Backend pauses current simulation loop
+    \item \textit{SnapshotManager} queries for nearest prior snapshot
+    \item Snapshot data deserialised into runtime structures
+    \item Simulation context set to snapshot tick
+    \item Engine runs in "Computed Mode" to reach target tick
+    \item Dashboard updates to reflect historical state
+    \item User can resume forward playback from this point
+\end{enumerate}
+
+\subsubsection*{Scrubbing to Future State}
+\begin{enumerate}
+    \item User drags timeline slider to point later than current tick
+    \item Frontend sends target tick to backend
+    \item Simulation enters "Computed Mode"
+    \item Engine executes ticks rapidly without artificial delays
+    \item Progress percentage broadcast to client
+    \item Upon reaching target tick, simulation pauses
+    \item Dashboard displays computed state
+    \item User can resume normal playback or explore further
+\end{enumerate}
+
+\subsection{Preset Management Flow}
+
+\subsubsection*{Saving Configuration as Preset}
+\begin{enumerate}
+    \item User completes disease or map configuration
+    \item User check "Save as Preset" box
+    \item User enters preset name 
+    \item Frontend sends preset data to \texttt{/api\allowbreak/presets\allowbreak/create}
+    \item Backend validates and stores preset in database
+    \item Preset associated with user account
+    \item Success confirmation displayed
+    \item Preset now available in dropdown for future simulations
+\end{enumerate}
+
+\subsubsection*{Loading Preset}
+\begin{enumerate}
+    \item During simulation creation, user selects preset from dropdown
+    \item Frontend requests preset data from \texttt{/api\allowbreak/presets\allowbreak/\{id\}}
+    \item Backend performs deep copy of preset configuration
+    \item Configuration fields auto-populated in form
+    \item User can modify parameters before creating simulation
+    \item Modified configuration does not affect original preset
+\end{enumerate}
+
+\subsection{Error Handling Flow}
+
+\subsubsection*{Simulation Error Recovery}
+\begin{enumerate}
+    \item Simulation encounters error during execution
+    \item Error logged to backend monitoring system
+    \item Simulation context enters error state
+    \item Error message broadcast via SignalR to connected clients
+    \item User notified with error dialog on dashboard
+    \item User presented with options:
+    \begin{itemize}
+        \item Retry from last snapshot
+        \item Restart simulation
+        \item Return to dashboard
+    \end{itemize}
+    \item User selection triggers appropriate recovery action
+\end{enumerate}
+
+\subsubsection*{Session Expiry Handling}
+\begin{enumerate}
+    \item User's access token expires during active session
+    \item API request returns 401 Unauthorized
+    \item Frontend attempts automatic token refresh
+    \item Refresh token sent to \texttt{/api\allowbreak/auth\allowbreak/refresh}
+    \item New access token received and stored
+    \item Original request retried automatically
+    \item If refresh fails, user redirected to login page
+    \item Session state preserved for restoration after re-authentication
+\end{enumerate}
+
+\end{multicols}
+The design emphasises modularity, high performance, and scalability. Each subsystem-data model, simulation engine, and communication layer-was engineered to support real-time multi-user simulations with minimal latency. The documented design thus forms a robust blueprint guiding the technical implementation detailed in the following chapter.

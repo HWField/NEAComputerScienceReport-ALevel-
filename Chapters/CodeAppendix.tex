@@ -3,6 +3,9 @@
 
 This appendix contains the complete source code for the project, organized by directory structure.
 
+\section{.VSCodeCounter}
+\label{code:.VSCodeCounter}
+
 \section{SimulationAPI}
 \label{code:SimulationAPI}
 
@@ -75,12 +78,12 @@ This appendix contains the complete source code for the project, organized by di
 \subsection{DTOs}
 \label{code:SimulationAPI:DTOs}
 
-\paragraph{ChangePasswordDto}
-\label{code:SimulationAPI:DTOs:ChangePasswordDto.cs}
+\paragraph{AuthDtos}
+\label{code:SimulationAPI:DTOs:AuthDtos.cs}
 
-\textbf{File:} \texttt{SimulationAPI/DTOs/ChangePasswordDto.cs}
+\textbf{File:} \texttt{SimulationAPI/DTOs/AuthDtos.cs}
 
-\inputminted[linenos, tabsize=1, breaklines]{csharp}{/Users/Henry/Desktop/NEAComputerScience/SimulationAPI/DTOs/ChangePasswordDto.cs}
+\inputminted[linenos, tabsize=1, breaklines]{csharp}{/Users/Henry/Desktop/NEAComputerScience/SimulationAPI/DTOs/AuthDtos.cs}
 
 \paragraph{CreateSimulationDto}
 \label{code:SimulationAPI:DTOs:CreateSimulationDto.cs}
@@ -89,19 +92,12 @@ This appendix contains the complete source code for the project, organized by di
 
 \inputminted[linenos, tabsize=1, breaklines]{csharp}{/Users/Henry/Desktop/NEAComputerScience/SimulationAPI/DTOs/CreateSimulationDto.cs}
 
-\paragraph{LoginDto}
-\label{code:SimulationAPI:DTOs:LoginDto.cs}
+\paragraph{MitigationDtos}
+\label{code:SimulationAPI:DTOs:MitigationDtos.cs}
 
-\textbf{File:} \texttt{SimulationAPI/DTOs/LoginDto.cs}
+\textbf{File:} \texttt{SimulationAPI/DTOs/MitigationDtos.cs}
 
-\inputminted[linenos, tabsize=1, breaklines]{csharp}{/Users/Henry/Desktop/NEAComputerScience/SimulationAPI/DTOs/LoginDto.cs}
-
-\paragraph{LogoutAllDto}
-\label{code:SimulationAPI:DTOs:LogoutAllDto.cs}
-
-\textbf{File:} \texttt{SimulationAPI/DTOs/LogoutAllDto.cs}
-
-\inputminted[linenos, tabsize=1, breaklines]{csharp}{/Users/Henry/Desktop/NEAComputerScience/SimulationAPI/DTOs/LogoutAllDto.cs}
+\inputminted[linenos, tabsize=1, breaklines]{csharp}{/Users/Henry/Desktop/NEAComputerScience/SimulationAPI/DTOs/MitigationDtos.cs}
 
 \paragraph{RefreshDto}
 \label{code:SimulationAPI:DTOs:RefreshDto.cs}
@@ -123,6 +119,13 @@ This appendix contains the complete source code for the project, organized by di
 \textbf{File:} \texttt{SimulationAPI/DTOs/UpdateProfileDto.cs}
 
 \inputminted[linenos, tabsize=1, breaklines]{csharp}{/Users/Henry/Desktop/NEAComputerScience/SimulationAPI/DTOs/UpdateProfileDto.cs}
+
+\paragraph{UpdateSimulationDto}
+\label{code:SimulationAPI:DTOs:UpdateSimulationDto.cs}
+
+\textbf{File:} \texttt{SimulationAPI/DTOs/UpdateSimulationDto.cs}
+
+\inputminted[linenos, tabsize=1, breaklines]{csharp}{/Users/Henry/Desktop/NEAComputerScience/SimulationAPI/DTOs/UpdateSimulationDto.cs}
 
 \subsection{Data}
 \label{code:SimulationAPI:Data}
@@ -265,13 +268,6 @@ This appendix contains the complete source code for the project, organized by di
 
 \inputminted[linenos, tabsize=1, breaklines]{csharp}{/Users/Henry/Desktop/NEAComputerScience/SimulationAPI/Services/AgentService.cs}
 
-\paragraph{AgentTrackingService}
-\label{code:SimulationAPI:Services:AgentTrackingService.cs}
-
-\textbf{File:} \texttt{SimulationAPI/Services/AgentTrackingService.cs}
-
-\inputminted[linenos, tabsize=1, breaklines]{csharp}{/Users/Henry/Desktop/NEAComputerScience/SimulationAPI/Services/AgentTrackingService.cs}
-
 \paragraph{BuildingCapacityCalculator}
 \label{code:SimulationAPI:Services:BuildingCapacityCalculator.cs}
 
@@ -320,6 +316,13 @@ This appendix contains the complete source code for the project, organized by di
 \textbf{File:} \texttt{SimulationAPI/Services/RoutingService.cs}
 
 \inputminted[linenos, tabsize=1, breaklines]{csharp}{/Users/Henry/Desktop/NEAComputerScience/SimulationAPI/Services/RoutingService.cs}
+
+\paragraph{SimulationBroadcastService}
+\label{code:SimulationAPI:Services:SimulationBroadcastService.cs}
+
+\textbf{File:} \texttt{SimulationAPI/Services/SimulationBroadcastService.cs}
+
+\inputminted[linenos, tabsize=1, breaklines]{csharp}{/Users/Henry/Desktop/NEAComputerScience/SimulationAPI/Services/SimulationBroadcastService.cs}
 
 \subsection{Simulation}
 \label{code:SimulationAPI:Simulation}
@@ -517,6 +520,20 @@ This appendix contains the complete source code for the project, organized by di
 
 \inputminted[linenos, tabsize=1, breaklines]{vue}{/Users/Henry/Desktop/NEAComputerScience/frontend/src/components/Navbar.vue}
 
+\paragraph{SimulationAnalyse}
+\label{code:frontend:src:components:SimulationAnalyse.vue}
+
+\textbf{File:} \texttt{frontend/src/components/SimulationAnalyse.vue}
+
+\inputminted[linenos, tabsize=1, breaklines]{vue}{/Users/Henry/Desktop/NEAComputerScience/frontend/src/components/SimulationAnalyse.vue}
+
+\paragraph{SimulationConfigure}
+\label{code:frontend:src:components:SimulationConfigure.vue}
+
+\textbf{File:} \texttt{frontend/src/components/SimulationConfigure.vue}
+
+\inputminted[linenos, tabsize=1, breaklines]{vue}{/Users/Henry/Desktop/NEAComputerScience/frontend/src/components/SimulationConfigure.vue}
+
 \paragraph{SimulationDetailsModal}
 \label{code:frontend:src:components:SimulationDetailsModal.vue}
 
@@ -530,6 +547,58 @@ This appendix contains the complete source code for the project, organized by di
 \textbf{File:} \texttt{frontend/src/components/SimulationMap.vue}
 
 \inputminted[linenos, tabsize=1, breaklines]{vue}{/Users/Henry/Desktop/NEAComputerScience/frontend/src/components/SimulationMap.vue}
+
+\paragraph{SimulationSimulate}
+\label{code:frontend:src:components:SimulationSimulate.vue}
+
+\textbf{File:} \texttt{frontend/src/components/SimulationSimulate.vue}
+
+\inputminted[linenos, tabsize=1, breaklines]{vue}{/Users/Henry/Desktop/NEAComputerScience/frontend/src/components/SimulationSimulate.vue}
+
+\paragraph{charts}
+\label{code:frontend:src:components:charts}
+
+\paragraph{ActiveCasesChart}
+\label{code:frontend:src:components:charts:ActiveCasesChart.vue}
+
+\textbf{File:} \texttt{frontend/src/components/charts/ActiveCasesChart.vue}
+
+\inputminted[linenos, tabsize=1, breaklines]{vue}{/Users/Henry/Desktop/NEAComputerScience/frontend/src/components/charts/ActiveCasesChart.vue}
+
+\paragraph{DailyInfectionsChart}
+\label{code:frontend:src:components:charts:DailyInfectionsChart.vue}
+
+\textbf{File:} \texttt{frontend/src/components/charts/DailyInfectionsChart.vue}
+
+\inputminted[linenos, tabsize=1, breaklines]{vue}{/Users/Henry/Desktop/NEAComputerScience/frontend/src/components/charts/DailyInfectionsChart.vue}
+
+\paragraph{InfectionTimelineChart}
+\label{code:frontend:src:components:charts:InfectionTimelineChart.vue}
+
+\textbf{File:} \texttt{frontend/src/components/charts/InfectionTimelineChart.vue}
+
+\inputminted[linenos, tabsize=1, breaklines]{vue}{/Users/Henry/Desktop/NEAComputerScience/frontend/src/components/charts/InfectionTimelineChart.vue}
+
+\paragraph{MetricsSummary}
+\label{code:frontend:src:components:charts:MetricsSummary.vue}
+
+\textbf{File:} \texttt{frontend/src/components/charts/MetricsSummary.vue}
+
+\inputminted[linenos, tabsize=1, breaklines]{vue}{/Users/Henry/Desktop/NEAComputerScience/frontend/src/components/charts/MetricsSummary.vue}
+
+\paragraph{PopulationStackedChart}
+\label{code:frontend:src:components:charts:PopulationStackedChart.vue}
+
+\textbf{File:} \texttt{frontend/src/components/charts/PopulationStackedChart.vue}
+
+\inputminted[linenos, tabsize=1, breaklines]{vue}{/Users/Henry/Desktop/NEAComputerScience/frontend/src/components/charts/PopulationStackedChart.vue}
+
+\paragraph{RValueChart}
+\label{code:frontend:src:components:charts:RValueChart.vue}
+
+\textbf{File:} \texttt{frontend/src/components/charts/RValueChart.vue}
+
+\inputminted[linenos, tabsize=1, breaklines]{vue}{/Users/Henry/Desktop/NEAComputerScience/frontend/src/components/charts/RValueChart.vue}
 
 \subsubsection{composables}
 \label{code:frontend:src:composables}
@@ -608,13 +677,6 @@ This appendix contains the complete source code for the project, organized by di
 \textbf{File:} \texttt{frontend/src/views/error.vue}
 
 \inputminted[linenos, tabsize=1, breaklines]{vue}{/Users/Henry/Desktop/NEAComputerScience/frontend/src/views/error.vue}
-
-\paragraph{help}
-\label{code:frontend:src:views:help.vue}
-
-\textbf{File:} \texttt{frontend/src/views/help.vue}
-
-\inputminted[linenos, tabsize=1, breaklines]{vue}{/Users/Henry/Desktop/NEAComputerScience/frontend/src/views/help.vue}
 
 \paragraph{settings}
 \label{code:frontend:src:views:settings.vue}
