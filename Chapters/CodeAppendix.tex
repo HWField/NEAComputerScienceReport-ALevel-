@@ -1,693 +1,933 @@
-\chapter{Code Listing}
+\chapter{Code Listings}
 \label{appendix:code}
 
-This appendix contains the complete source code for the project, organized by directory structure.
-
-\section{.VSCodeCounter}
-\label{code:.VSCodeCounter}
-
-\section{SimulationAPI}
-\label{code:SimulationAPI}
-
-\subsection{Program}
-\label{code:SimulationAPI:Program.cs}
-
-\textbf{File:} \texttt{SimulationAPI/Program.cs}
-
-\inputminted[linenos, tabsize=1, breaklines]{csharp}{/Users/Henry/Desktop/NEAComputerScience/SimulationAPI/Program.cs}
-
-\subsection{appsettings.Development}
-\label{code:SimulationAPI:appsettings.Development.json}
-
-\textbf{File:} \texttt{SimulationAPI/appsettings.Development.json}
-
-\inputminted[linenos, tabsize=1, breaklines]{json}{/Users/Henry/Desktop/NEAComputerScience/SimulationAPI/appsettings.Development.json}
-
-\subsection{appsettings}
-\label{code:SimulationAPI:appsettings.json}
-
-\textbf{File:} \texttt{SimulationAPI/appsettings.json}
-
-\inputminted[linenos, tabsize=1, breaklines]{json}{/Users/Henry/Desktop/NEAComputerScience/SimulationAPI/appsettings.json}
-
-\subsection{swagger}
-\label{code:SimulationAPI:swagger.json}
-
-\textbf{File:} \texttt{SimulationAPI/swagger.json}
-
-\inputminted[linenos, tabsize=1, breaklines]{json}{/Users/Henry/Desktop/NEAComputerScience/SimulationAPI/swagger.json}
-
-\subsection{Controllers}
-\label{code:SimulationAPI:Controllers}
-
-\paragraph{AdminController}
-\label{code:SimulationAPI:Controllers:AdminController.cs}
-
-\textbf{File:} \texttt{SimulationAPI/Controllers/AdminController.cs}
-
-\inputminted[linenos, tabsize=1, breaklines]{csharp}{/Users/Henry/Desktop/NEAComputerScience/SimulationAPI/Controllers/AdminController.cs}
-
-\paragraph{AuthController}
-\label{code:SimulationAPI:Controllers:AuthController.cs}
-
-\textbf{File:} \texttt{SimulationAPI/Controllers/AuthController.cs}
-
-\inputminted[linenos, tabsize=1, breaklines]{csharp}{/Users/Henry/Desktop/NEAComputerScience/SimulationAPI/Controllers/AuthController.cs}
-
-\paragraph{PresetController}
-\label{code:SimulationAPI:Controllers:PresetController.cs}
-
-\textbf{File:} \texttt{SimulationAPI/Controllers/PresetController.cs}
-
-\inputminted[linenos, tabsize=1, breaklines]{csharp}{/Users/Henry/Desktop/NEAComputerScience/SimulationAPI/Controllers/PresetController.cs}
-
-\paragraph{ProfileController}
-\label{code:SimulationAPI:Controllers:ProfileController.cs}
-
-\textbf{File:} \texttt{SimulationAPI/Controllers/ProfileController.cs}
-
-\inputminted[linenos, tabsize=1, breaklines]{csharp}{/Users/Henry/Desktop/NEAComputerScience/SimulationAPI/Controllers/ProfileController.cs}
-
-\paragraph{SimulationsController}
-\label{code:SimulationAPI:Controllers:SimulationsController.cs}
-
-\textbf{File:} \texttt{SimulationAPI/Controllers/SimulationsController.cs}
-
-\inputminted[linenos, tabsize=1, breaklines]{csharp}{/Users/Henry/Desktop/NEAComputerScience/SimulationAPI/Controllers/SimulationsController.cs}
-
-\subsection{DTOs}
-\label{code:SimulationAPI:DTOs}
-
-\paragraph{AuthDtos}
-\label{code:SimulationAPI:DTOs:AuthDtos.cs}
-
-\textbf{File:} \texttt{SimulationAPI/DTOs/AuthDtos.cs}
-
-\inputminted[linenos, tabsize=1, breaklines]{csharp}{/Users/Henry/Desktop/NEAComputerScience/SimulationAPI/DTOs/AuthDtos.cs}
-
-\paragraph{CreateSimulationDto}
-\label{code:SimulationAPI:DTOs:CreateSimulationDto.cs}
-
-\textbf{File:} \texttt{SimulationAPI/DTOs/CreateSimulationDto.cs}
-
-\inputminted[linenos, tabsize=1, breaklines]{csharp}{/Users/Henry/Desktop/NEAComputerScience/SimulationAPI/DTOs/CreateSimulationDto.cs}
-
-\paragraph{MitigationDtos}
-\label{code:SimulationAPI:DTOs:MitigationDtos.cs}
-
-\textbf{File:} \texttt{SimulationAPI/DTOs/MitigationDtos.cs}
-
-\inputminted[linenos, tabsize=1, breaklines]{csharp}{/Users/Henry/Desktop/NEAComputerScience/SimulationAPI/DTOs/MitigationDtos.cs}
-
-\paragraph{RefreshDto}
-\label{code:SimulationAPI:DTOs:RefreshDto.cs}
-
-\textbf{File:} \texttt{SimulationAPI/DTOs/RefreshDto.cs}
-
-\inputminted[linenos, tabsize=1, breaklines]{csharp}{/Users/Henry/Desktop/NEAComputerScience/SimulationAPI/DTOs/RefreshDto.cs}
-
-\paragraph{UpdatePresetDto}
-\label{code:SimulationAPI:DTOs:UpdatePresetDto.cs}
-
-\textbf{File:} \texttt{SimulationAPI/DTOs/UpdatePresetDto.cs}
-
-\inputminted[linenos, tabsize=1, breaklines]{csharp}{/Users/Henry/Desktop/NEAComputerScience/SimulationAPI/DTOs/UpdatePresetDto.cs}
-
-\paragraph{UpdateProfileDto}
-\label{code:SimulationAPI:DTOs:UpdateProfileDto.cs}
-
-\textbf{File:} \texttt{SimulationAPI/DTOs/UpdateProfileDto.cs}
-
-\inputminted[linenos, tabsize=1, breaklines]{csharp}{/Users/Henry/Desktop/NEAComputerScience/SimulationAPI/DTOs/UpdateProfileDto.cs}
-
-\paragraph{UpdateSimulationDto}
-\label{code:SimulationAPI:DTOs:UpdateSimulationDto.cs}
-
-\textbf{File:} \texttt{SimulationAPI/DTOs/UpdateSimulationDto.cs}
-
-\inputminted[linenos, tabsize=1, breaklines]{csharp}{/Users/Henry/Desktop/NEAComputerScience/SimulationAPI/DTOs/UpdateSimulationDto.cs}
-
-\subsection{Data}
-\label{code:SimulationAPI:Data}
-
-\paragraph{SimDbContext}
-\label{code:SimulationAPI:Data:SimDbContext.cs}
-
-\textbf{File:} \texttt{SimulationAPI/Data/SimDbContext.cs}
-
-\inputminted[linenos, tabsize=1, breaklines]{csharp}{/Users/Henry/Desktop/NEAComputerScience/SimulationAPI/Data/SimDbContext.cs}
-
-\subsection{Hubs}
-\label{code:SimulationAPI:Hubs}
-
-\paragraph{SimulationHub}
-\label{code:SimulationAPI:Hubs:SimulationHub.cs}
-
-\textbf{File:} \texttt{SimulationAPI/Hubs/SimulationHub.cs}
-
-\inputminted[linenos, tabsize=1, breaklines]{csharp}{/Users/Henry/Desktop/NEAComputerScience/SimulationAPI/Hubs/SimulationHub.cs}
-
-\subsection{Models}
-\label{code:SimulationAPI:Models}
-
-\paragraph{Agent}
-\label{code:SimulationAPI:Models:Agent.cs}
-
-\textbf{File:} \texttt{SimulationAPI/Models/Agent.cs}
-
-\inputminted[linenos, tabsize=1, breaklines]{csharp}{/Users/Henry/Desktop/NEAComputerScience/SimulationAPI/Models/Agent.cs}
-
-\paragraph{Building}
-\label{code:SimulationAPI:Models:Building.cs}
-
-\textbf{File:} \texttt{SimulationAPI/Models/Building.cs}
-
-\inputminted[linenos, tabsize=1, breaklines]{csharp}{/Users/Henry/Desktop/NEAComputerScience/SimulationAPI/Models/Building.cs}
-
-\paragraph{Disease}
-\label{code:SimulationAPI:Models:Disease.cs}
-
-\textbf{File:} \texttt{SimulationAPI/Models/Disease.cs}
-
-\inputminted[linenos, tabsize=1, breaklines]{csharp}{/Users/Henry/Desktop/NEAComputerScience/SimulationAPI/Models/Disease.cs}
-
-\paragraph{MapArea}
-\label{code:SimulationAPI:Models:MapArea.cs}
-
-\textbf{File:} \texttt{SimulationAPI/Models/MapArea.cs}
-
-\inputminted[linenos, tabsize=1, breaklines]{csharp}{/Users/Henry/Desktop/NEAComputerScience/SimulationAPI/Models/MapArea.cs}
-
-\paragraph{MedicalProfile}
-\label{code:SimulationAPI:Models:MedicalProfile.cs}
-
-\textbf{File:} \texttt{SimulationAPI/Models/MedicalProfile.cs}
-
-\inputminted[linenos, tabsize=1, breaklines]{csharp}{/Users/Henry/Desktop/NEAComputerScience/SimulationAPI/Models/MedicalProfile.cs}
-
-\paragraph{Mitigation}
-\label{code:SimulationAPI:Models:Mitigation.cs}
-
-\textbf{File:} \texttt{SimulationAPI/Models/Mitigation.cs}
-
-\inputminted[linenos, tabsize=1, breaklines]{csharp}{/Users/Henry/Desktop/NEAComputerScience/SimulationAPI/Models/Mitigation.cs}
-
-\paragraph{Path}
-\label{code:SimulationAPI:Models:Path.cs}
-
-\textbf{File:} \texttt{SimulationAPI/Models/Path.cs}
-
-\inputminted[linenos, tabsize=1, breaklines]{csharp}{/Users/Henry/Desktop/NEAComputerScience/SimulationAPI/Models/Path.cs}
-
-\paragraph{Presets}
-\label{code:SimulationAPI:Models:Presets.cs}
-
-\textbf{File:} \texttt{SimulationAPI/Models/Presets.cs}
-
-\inputminted[linenos, tabsize=1, breaklines]{csharp}{/Users/Henry/Desktop/NEAComputerScience/SimulationAPI/Models/Presets.cs}
-
-\paragraph{RefreshToken}
-\label{code:SimulationAPI:Models:RefreshToken.cs}
-
-\textbf{File:} \texttt{SimulationAPI/Models/RefreshToken.cs}
-
-\inputminted[linenos, tabsize=1, breaklines]{csharp}{/Users/Henry/Desktop/NEAComputerScience/SimulationAPI/Models/RefreshToken.cs}
-
-\paragraph{Routine}
-\label{code:SimulationAPI:Models:Routine.cs}
-
-\textbf{File:} \texttt{SimulationAPI/Models/Routine.cs}
-
-\inputminted[linenos, tabsize=1, breaklines]{csharp}{/Users/Henry/Desktop/NEAComputerScience/SimulationAPI/Models/Routine.cs}
-
-\paragraph{Simulation}
-\label{code:SimulationAPI:Models:Simulation.cs}
-
-\textbf{File:} \texttt{SimulationAPI/Models/Simulation.cs}
-
-\inputminted[linenos, tabsize=1, breaklines]{csharp}{/Users/Henry/Desktop/NEAComputerScience/SimulationAPI/Models/Simulation.cs}
-
-\paragraph{SimulationMetric}
-\label{code:SimulationAPI:Models:SimulationMetric.cs}
-
-\textbf{File:} \texttt{SimulationAPI/Models/SimulationMetric.cs}
-
-\inputminted[linenos, tabsize=1, breaklines]{csharp}{/Users/Henry/Desktop/NEAComputerScience/SimulationAPI/Models/SimulationMetric.cs}
-
-\paragraph{SimulationSnapshot}
-\label{code:SimulationAPI:Models:SimulationSnapshot.cs}
-
-\textbf{File:} \texttt{SimulationAPI/Models/SimulationSnapshot.cs}
-
-\inputminted[linenos, tabsize=1, breaklines]{csharp}{/Users/Henry/Desktop/NEAComputerScience/SimulationAPI/Models/SimulationSnapshot.cs}
-
-\paragraph{User}
-\label{code:SimulationAPI:Models:User.cs}
-
-\textbf{File:} \texttt{SimulationAPI/Models/User.cs}
-
-\inputminted[linenos, tabsize=1, breaklines]{csharp}{/Users/Henry/Desktop/NEAComputerScience/SimulationAPI/Models/User.cs}
-
-\subsection{Properties}
-\label{code:SimulationAPI:Properties}
-
-\paragraph{launchSettings}
-\label{code:SimulationAPI:Properties:launchSettings.json}
-
-\textbf{File:} \texttt{SimulationAPI/Properties/launchSettings.json}
-
-\inputminted[linenos, tabsize=1, breaklines]{json}{/Users/Henry/Desktop/NEAComputerScience/SimulationAPI/Properties/launchSettings.json}
-
-\subsection{Services}
-\label{code:SimulationAPI:Services}
-
-\paragraph{AgentService}
-\label{code:SimulationAPI:Services:AgentService.cs}
-
-\textbf{File:} \texttt{SimulationAPI/Services/AgentService.cs}
-
-\inputminted[linenos, tabsize=1, breaklines]{csharp}{/Users/Henry/Desktop/NEAComputerScience/SimulationAPI/Services/AgentService.cs}
-
-\paragraph{BuildingCapacityCalculator}
-\label{code:SimulationAPI:Services:BuildingCapacityCalculator.cs}
-
-\textbf{File:} \texttt{SimulationAPI/Services/BuildingCapacityCalculator.cs}
-
-\inputminted[linenos, tabsize=1, breaklines]{csharp}{/Users/Henry/Desktop/NEAComputerScience/SimulationAPI/Services/BuildingCapacityCalculator.cs}
-
-\paragraph{BuildingService}
-\label{code:SimulationAPI:Services:BuildingService.cs}
-
-\textbf{File:} \texttt{SimulationAPI/Services/BuildingService.cs}
-
-\inputminted[linenos, tabsize=1, breaklines]{csharp}{/Users/Henry/Desktop/NEAComputerScience/SimulationAPI/Services/BuildingService.cs}
-
-\paragraph{InfectionService}
-\label{code:SimulationAPI:Services:InfectionService.cs}
-
-\textbf{File:} \texttt{SimulationAPI/Services/InfectionService.cs}
-
-\inputminted[linenos, tabsize=1, breaklines]{csharp}{/Users/Henry/Desktop/NEAComputerScience/SimulationAPI/Services/InfectionService.cs}
-
-\paragraph{MovementSystem}
-\label{code:SimulationAPI:Services:MovementSystem.cs}
-
-\textbf{File:} \texttt{SimulationAPI/Services/MovementSystem.cs}
-
-\inputminted[linenos, tabsize=1, breaklines]{csharp}{/Users/Henry/Desktop/NEAComputerScience/SimulationAPI/Services/MovementSystem.cs}
-
-\paragraph{OsmService}
-\label{code:SimulationAPI:Services:OsmService.cs}
-
-\textbf{File:} \texttt{SimulationAPI/Services/OsmService.cs}
-
-\inputminted[linenos, tabsize=1, breaklines]{csharp}{/Users/Henry/Desktop/NEAComputerScience/SimulationAPI/Services/OsmService.cs}
-
-\paragraph{PresetService}
-\label{code:SimulationAPI:Services:PresetService.cs}
-
-\textbf{File:} \texttt{SimulationAPI/Services/PresetService.cs}
-
-\inputminted[linenos, tabsize=1, breaklines]{csharp}{/Users/Henry/Desktop/NEAComputerScience/SimulationAPI/Services/PresetService.cs}
-
-\paragraph{RoutingService}
-\label{code:SimulationAPI:Services:RoutingService.cs}
-
-\textbf{File:} \texttt{SimulationAPI/Services/RoutingService.cs}
-
-\inputminted[linenos, tabsize=1, breaklines]{csharp}{/Users/Henry/Desktop/NEAComputerScience/SimulationAPI/Services/RoutingService.cs}
-
-\paragraph{SimulationBroadcastService}
-\label{code:SimulationAPI:Services:SimulationBroadcastService.cs}
-
-\textbf{File:} \texttt{SimulationAPI/Services/SimulationBroadcastService.cs}
-
-\inputminted[linenos, tabsize=1, breaklines]{csharp}{/Users/Henry/Desktop/NEAComputerScience/SimulationAPI/Services/SimulationBroadcastService.cs}
-
-\subsection{Simulation}
-\label{code:SimulationAPI:Simulation}
-
-\paragraph{MetricManager}
-\label{code:SimulationAPI:Simulation:MetricManager.cs}
-
-\textbf{File:} \texttt{SimulationAPI/Simulation/MetricManager.cs}
-
-\inputminted[linenos, tabsize=1, breaklines]{csharp}{/Users/Henry/Desktop/NEAComputerScience/SimulationAPI/Simulation/MetricManager.cs}
-
-\paragraph{SimulationContext}
-\label{code:SimulationAPI:Simulation:SimulationContext.cs}
-
-\textbf{File:} \texttt{SimulationAPI/Simulation/SimulationContext.cs}
-
-\inputminted[linenos, tabsize=1, breaklines]{csharp}{/Users/Henry/Desktop/NEAComputerScience/SimulationAPI/Simulation/SimulationContext.cs}
-
-\paragraph{SimulationEngine}
-\label{code:SimulationAPI:Simulation:SimulationEngine.cs}
-
-\textbf{File:} \texttt{SimulationAPI/Simulation/SimulationEngine.cs}
-
-\inputminted[linenos, tabsize=1, breaklines]{csharp}{/Users/Henry/Desktop/NEAComputerScience/SimulationAPI/Simulation/SimulationEngine.cs}
-
-\paragraph{SimulationManager}
-\label{code:SimulationAPI:Simulation:SimulationManager.cs}
-
-\textbf{File:} \texttt{SimulationAPI/Simulation/SimulationManager.cs}
-
-\inputminted[linenos, tabsize=1, breaklines]{csharp}{/Users/Henry/Desktop/NEAComputerScience/SimulationAPI/Simulation/SimulationManager.cs}
-
-\paragraph{SimulationSetup}
-\label{code:SimulationAPI:Simulation:SimulationSetup.cs}
-
-\textbf{File:} \texttt{SimulationAPI/Simulation/SimulationSetup.cs}
-
-\inputminted[linenos, tabsize=1, breaklines]{csharp}{/Users/Henry/Desktop/NEAComputerScience/SimulationAPI/Simulation/SimulationSetup.cs}
-
-\paragraph{SnapshotManager}
-\label{code:SimulationAPI:Simulation:SnapshotManager.cs}
-
-\textbf{File:} \texttt{SimulationAPI/Simulation/SnapshotManager.cs}
-
-\inputminted[linenos, tabsize=1, breaklines]{csharp}{/Users/Henry/Desktop/NEAComputerScience/SimulationAPI/Simulation/SnapshotManager.cs}
-
-\subsubsection{Structs}
-\label{code:SimulationAPI:Simulation:Structs}
-
-\paragraph{RuntimeStates}
-\label{code:SimulationAPI:Simulation:Structs:RuntimeStates.cs}
-
-\textbf{File:} \texttt{SimulationAPI/Simulation/Structs/RuntimeStates.cs}
-
-\inputminted[linenos, tabsize=1, breaklines]{csharp}{/Users/Henry/Desktop/NEAComputerScience/SimulationAPI/Simulation/Structs/RuntimeStates.cs}
-
-\subsection{Utils}
-\label{code:SimulationAPI:Utils}
-
-\paragraph{SimulationTimeHelper}
-\label{code:SimulationAPI:Utils:SimulationTimeHelper.cs}
-
-\textbf{File:} \texttt{SimulationAPI/Utils/SimulationTimeHelper.cs}
-
-\inputminted[linenos, tabsize=1, breaklines]{csharp}{/Users/Henry/Desktop/NEAComputerScience/SimulationAPI/Utils/SimulationTimeHelper.cs}
-
-\section{frontend}
-\label{code:frontend}
-
-\subsection{.eslintrc-auto-import}
-\label{code:frontend:.eslintrc-auto-import.json}
-
-\textbf{File:} \texttt{frontend/.eslintrc-auto-import.json}
-
-\inputminted[linenos, tabsize=1, breaklines]{json}{/Users/Henry/Desktop/NEAComputerScience/frontend/.eslintrc-auto-import.json}
-
-\subsection{auto-imports.d}
-\label{code:frontend:auto-imports.d.ts}
-
-\textbf{File:} \texttt{frontend/auto-imports.d.ts}
-
-\inputminted[linenos, tabsize=1, breaklines]{typescript}{/Users/Henry/Desktop/NEAComputerScience/frontend/auto-imports.d.ts}
-
-\subsection{components.d}
-\label{code:frontend:components.d.ts}
-
-\textbf{File:} \texttt{frontend/components.d.ts}
-
-\inputminted[linenos, tabsize=1, breaklines]{typescript}{/Users/Henry/Desktop/NEAComputerScience/frontend/components.d.ts}
-
-\subsection{index}
+This appendix contains the complete source code for the project.
+
+\section{Index}
+\textbf{Frontend}
+\begin{itemize}
+  \item \texttt{frontend (32 files)}
+    \begin{itemize}
+      \item \texttt{src (30 files)}
+        \begin{itemize}
+          \item \texttt{api (2 files)}
+            \begin{itemize}
+              \item \nameref{code:frontend:src:api:axios.js}
+              \item \nameref{code:frontend:src:api:simulation.ts}
+            \end{itemize}
+          \item \texttt{components (14 files)}
+            \begin{itemize}
+              \item \texttt{charts (6 files)}
+                \begin{itemize}
+                  \item \nameref{code:frontend:src:components:charts:ActiveCasesChart.vue}
+                  \item \nameref{code:frontend:src:components:charts:DailyInfectionsChart.vue}
+                  \item \nameref{code:frontend:src:components:charts:InfectionTimelineChart.vue}
+                  \item \nameref{code:frontend:src:components:charts:MetricsSummary.vue}
+                  \item \nameref{code:frontend:src:components:charts:PopulationStackedChart.vue}
+                  \item \nameref{code:frontend:src:components:charts:RValueChart.vue}
+                \end{itemize}
+              \item \nameref{code:frontend:src:components:AppToast.vue}
+              \item \nameref{code:frontend:src:components:CreateSimulationModal.vue}
+              \item \nameref{code:frontend:src:components:Navbar.vue}
+              \item \nameref{code:frontend:src:components:SimulationAnalyse.vue}
+              \item \nameref{code:frontend:src:components:SimulationConfigure.vue}
+              \item \nameref{code:frontend:src:components:SimulationDetailsModal.vue}
+              \item \nameref{code:frontend:src:components:SimulationMap.vue}
+              \item \nameref{code:frontend:src:components:SimulationSimulate.vue}
+            \end{itemize}
+          \item \texttt{composables (1 file)}
+            \begin{itemize}
+              \item \nameref{code:frontend:src:composables:useSimulationHub.ts}
+            \end{itemize}
+          \item \texttt{layouts (1 file)}
+            \begin{itemize}
+              \item \nameref{code:frontend:src:layouts:MainLayout.vue}
+            \end{itemize}
+          \item \texttt{router (1 file)}
+            \begin{itemize}
+              \item \nameref{code:frontend:src:router:index.ts}
+            \end{itemize}
+          \item \texttt{stores (2 files)}
+            \begin{itemize}
+              \item \nameref{code:frontend:src:stores:useToastStore.ts}
+              \item \nameref{code:frontend:src:stores:useUserStore.js}
+            \end{itemize}
+          \item \texttt{views (6 files)}
+            \begin{itemize}
+              \item \nameref{code:frontend:src:views:admin.vue}
+              \item \nameref{code:frontend:src:views:authentication.vue}
+              \item \nameref{code:frontend:src:views:dashboard.vue}
+              \item \nameref{code:frontend:src:views:error.vue}
+              \item \nameref{code:frontend:src:views:settings.vue}
+              \item \nameref{code:frontend:src:views:simulation.vue}
+            \end{itemize}
+          \item \nameref{code:frontend:src:App.vue}
+          \item \nameref{code:frontend:src:main.ts}
+          \item \nameref{code:frontend:src:style.css}
+        \end{itemize}
+      \item \nameref{code:frontend:index.html}
+      \item \nameref{code:frontend:vite.config.ts}
+    \end{itemize}
+\end{itemize}
+
+\textbf{Backend}
+\begin{itemize}
+  \item \texttt{SimulationAPI (46 files)}
+    \begin{itemize}
+      \item \texttt{Controllers (5 files)}
+        \begin{itemize}
+          \item \nameref{code:SimulationAPI:Controllers:AdminController.cs}
+          \item \nameref{code:SimulationAPI:Controllers:AuthController.cs}
+          \item \nameref{code:SimulationAPI:Controllers:PresetController.cs}
+          \item \nameref{code:SimulationAPI:Controllers:ProfileController.cs}
+          \item \nameref{code:SimulationAPI:Controllers:SimulationsController.cs}
+        \end{itemize}
+      \item \texttt{DTOs (7 files)}
+        \begin{itemize}
+          \item \nameref{code:SimulationAPI:DTOs:AuthDtos.cs}
+          \item \nameref{code:SimulationAPI:DTOs:CreateSimulationDto.cs}
+          \item \nameref{code:SimulationAPI:DTOs:MitigationDtos.cs}
+          \item \nameref{code:SimulationAPI:DTOs:RefreshDto.cs}
+          \item \nameref{code:SimulationAPI:DTOs:UpdatePresetDto.cs}
+          \item \nameref{code:SimulationAPI:DTOs:UpdateProfileDto.cs}
+          \item \nameref{code:SimulationAPI:DTOs:UpdateSimulationDto.cs}
+        \end{itemize}
+      \item \texttt{Data (1 file)}
+        \begin{itemize}
+          \item \nameref{code:SimulationAPI:Data:SimDbContext.cs}
+        \end{itemize}
+      \item \texttt{Hubs (1 file)}
+        \begin{itemize}
+          \item \nameref{code:SimulationAPI:Hubs:SimulationHub.cs}
+        \end{itemize}
+      \item \texttt{Models (14 files)}
+        \begin{itemize}
+          \item \nameref{code:SimulationAPI:Models:Agent.cs}
+          \item \nameref{code:SimulationAPI:Models:Building.cs}
+          \item \nameref{code:SimulationAPI:Models:Disease.cs}
+          \item \nameref{code:SimulationAPI:Models:MapArea.cs}
+          \item \nameref{code:SimulationAPI:Models:MedicalProfile.cs}
+          \item \nameref{code:SimulationAPI:Models:Mitigation.cs}
+          \item \nameref{code:SimulationAPI:Models:Path.cs}
+          \item \nameref{code:SimulationAPI:Models:Presets.cs}
+          \item \nameref{code:SimulationAPI:Models:RefreshToken.cs}
+          \item \nameref{code:SimulationAPI:Models:Routine.cs}
+          \item \nameref{code:SimulationAPI:Models:Simulation.cs}
+          \item \nameref{code:SimulationAPI:Models:SimulationMetric.cs}
+          \item \nameref{code:SimulationAPI:Models:SimulationSnapshot.cs}
+          \item \nameref{code:SimulationAPI:Models:User.cs}
+        \end{itemize}
+      \item \texttt{Services (9 files)}
+        \begin{itemize}
+          \item \nameref{code:SimulationAPI:Services:AgentService.cs}
+          \item \nameref{code:SimulationAPI:Services:BuildingCapacityCalculator.cs}
+          \item \nameref{code:SimulationAPI:Services:BuildingService.cs}
+          \item \nameref{code:SimulationAPI:Services:InfectionService.cs}
+          \item \nameref{code:SimulationAPI:Services:MovementSystem.cs}
+          \item \nameref{code:SimulationAPI:Services:OsmService.cs}
+          \item \nameref{code:SimulationAPI:Services:PresetService.cs}
+          \item \nameref{code:SimulationAPI:Services:RoutingService.cs}
+          \item \nameref{code:SimulationAPI:Services:SimulationBroadcastService.cs}
+        \end{itemize}
+      \item \texttt{Simulation (7 files)}
+        \begin{itemize}
+          \item \texttt{Structs (1 file)}
+            \begin{itemize}
+              \item \nameref{code:SimulationAPI:Simulation:Structs:RuntimeStates.cs}
+            \end{itemize}
+          \item \nameref{code:SimulationAPI:Simulation:MetricManager.cs}
+          \item \nameref{code:SimulationAPI:Simulation:SimulationContext.cs}
+          \item \nameref{code:SimulationAPI:Simulation:SimulationEngine.cs}
+          \item \nameref{code:SimulationAPI:Simulation:SimulationManager.cs}
+          \item \nameref{code:SimulationAPI:Simulation:SimulationSetup.cs}
+          \item \nameref{code:SimulationAPI:Simulation:SnapshotManager.cs}
+        \end{itemize}
+      \item \texttt{Utils (1 file)}
+        \begin{itemize}
+          \item \nameref{code:SimulationAPI:Utils:SimulationTimeHelper.cs}
+        \end{itemize}
+      \item \nameref{code:SimulationAPI:Program.cs}
+    \end{itemize}
+\end{itemize}
+\newpage
+\section{Frontend}
+\makeatletter
+\subsection*{index.html}
+frontend/index.html
+\phantomsection
+\def\@currentlabelname{index.html}
 \label{code:frontend:index.html}
+\makeatother
 
-\textbf{File:} \texttt{frontend/index.html}
+\inputminted[linenos,breaklines,tabsize=2]{html}{/Users/Henry/Desktop/NEAComputerScience/frontend/index.html}
 
-\inputminted[linenos, tabsize=1, breaklines]{html}{/Users/Henry/Desktop/NEAComputerScience/frontend/index.html}
-
-\subsection{package}
-\label{code:frontend:package.json}
-
-\textbf{File:} \texttt{frontend/package.json}
-
-\inputminted[linenos, tabsize=1, breaklines]{json}{/Users/Henry/Desktop/NEAComputerScience/frontend/package.json}
-
-\subsection{tsconfig.app}
-\label{code:frontend:tsconfig.app.json}
-
-\textbf{File:} \texttt{frontend/tsconfig.app.json}
-
-\inputminted[linenos, tabsize=1, breaklines]{json}{/Users/Henry/Desktop/NEAComputerScience/frontend/tsconfig.app.json}
-
-\subsection{tsconfig}
-\label{code:frontend:tsconfig.json}
-
-\textbf{File:} \texttt{frontend/tsconfig.json}
-
-\inputminted[linenos, tabsize=1, breaklines]{json}{/Users/Henry/Desktop/NEAComputerScience/frontend/tsconfig.json}
-
-\subsection{tsconfig.node}
-\label{code:frontend:tsconfig.node.json}
-
-\textbf{File:} \texttt{frontend/tsconfig.node.json}
-
-\inputminted[linenos, tabsize=1, breaklines]{json}{/Users/Henry/Desktop/NEAComputerScience/frontend/tsconfig.node.json}
-
-\subsection{vite.config}
-\label{code:frontend:vite.config.ts}
-
-\textbf{File:} \texttt{frontend/vite.config.ts}
-
-\inputminted[linenos, tabsize=1, breaklines]{typescript}{/Users/Henry/Desktop/NEAComputerScience/frontend/vite.config.ts}
-
-\subsection{src}
-\label{code:frontend:src}
-
-\paragraph{App}
+\makeatletter
+\subsection*{App.vue}
+frontend/src/App.vue
+\phantomsection
+\def\@currentlabelname{App.vue}
 \label{code:frontend:src:App.vue}
+\makeatother
 
-\textbf{File:} \texttt{frontend/src/App.vue}
+\inputminted[linenos,breaklines,tabsize=2]{vue}{/Users/Henry/Desktop/NEAComputerScience/frontend/src/App.vue}
 
-\inputminted[linenos, tabsize=1, breaklines]{vue}{/Users/Henry/Desktop/NEAComputerScience/frontend/src/App.vue}
-
-\paragraph{main}
-\label{code:frontend:src:main.ts}
-
-\textbf{File:} \texttt{frontend/src/main.ts}
-
-\inputminted[linenos, tabsize=1, breaklines]{typescript}{/Users/Henry/Desktop/NEAComputerScience/frontend/src/main.ts}
-
-\paragraph{style}
-\label{code:frontend:src:style.css}
-
-\textbf{File:} \texttt{frontend/src/style.css}
-
-\inputminted[linenos, tabsize=1, breaklines]{css}{/Users/Henry/Desktop/NEAComputerScience/frontend/src/style.css}
-
-\subsubsection{api}
-\label{code:frontend:src:api}
-
-\paragraph{axios}
+\makeatletter
+\subsection*{axios.js}
+frontend/src/api/axios.js
+\phantomsection
+\def\@currentlabelname{axios.js}
 \label{code:frontend:src:api:axios.js}
+\makeatother
 
-\textbf{File:} \texttt{frontend/src/api/axios.js}
+\inputminted[linenos,breaklines,tabsize=2]{javascript}{/Users/Henry/Desktop/NEAComputerScience/frontend/src/api/axios.js}
 
-\inputminted[linenos, tabsize=1, breaklines]{javascript}{/Users/Henry/Desktop/NEAComputerScience/frontend/src/api/axios.js}
-
-\paragraph{simulation}
+\makeatletter
+\subsection*{simulation.ts}
+frontend/src/api/simulation.ts
+\phantomsection
+\def\@currentlabelname{simulation.ts}
 \label{code:frontend:src:api:simulation.ts}
+\makeatother
 
-\textbf{File:} \texttt{frontend/src/api/simulation.ts}
+\inputminted[linenos,breaklines,tabsize=2]{typescript}{/Users/Henry/Desktop/NEAComputerScience/frontend/src/api/simulation.ts}
 
-\inputminted[linenos, tabsize=1, breaklines]{typescript}{/Users/Henry/Desktop/NEAComputerScience/frontend/src/api/simulation.ts}
-
-\subsubsection{components}
-\label{code:frontend:src:components}
-
-\paragraph{AppToast}
+\makeatletter
+\subsection*{AppToast.vue}
+frontend/src/components/AppToast.vue
+\phantomsection
+\def\@currentlabelname{AppToast.vue}
 \label{code:frontend:src:components:AppToast.vue}
+\makeatother
 
-\textbf{File:} \texttt{frontend/src/components/AppToast.vue}
+\inputminted[linenos,breaklines,tabsize=2]{vue}{/Users/Henry/Desktop/NEAComputerScience/frontend/src/components/AppToast.vue}
 
-\inputminted[linenos, tabsize=1, breaklines]{vue}{/Users/Henry/Desktop/NEAComputerScience/frontend/src/components/AppToast.vue}
-
-\paragraph{CreateSimulationModal}
+\makeatletter
+\subsection*{CreateSimulationModal.vue}
+frontend/src/components/CreateSimulationModal.vue
+\phantomsection
+\def\@currentlabelname{CreateSimulationModal.vue}
 \label{code:frontend:src:components:CreateSimulationModal.vue}
+\makeatother
 
-\textbf{File:} \texttt{frontend/src/components/CreateSimulationModal.vue}
+\inputminted[linenos,breaklines,tabsize=2]{vue}{/Users/Henry/Desktop/NEAComputerScience/frontend/src/components/CreateSimulationModal.vue}
 
-\inputminted[linenos, tabsize=1, breaklines]{vue}{/Users/Henry/Desktop/NEAComputerScience/frontend/src/components/CreateSimulationModal.vue}
-
-\paragraph{Navbar}
+\makeatletter
+\subsection*{Navbar.vue}
+frontend/src/components/Navbar.vue
+\phantomsection
+\def\@currentlabelname{Navbar.vue}
 \label{code:frontend:src:components:Navbar.vue}
+\makeatother
 
-\textbf{File:} \texttt{frontend/src/components/Navbar.vue}
+\inputminted[linenos,breaklines,tabsize=2]{vue}{/Users/Henry/Desktop/NEAComputerScience/frontend/src/components/Navbar.vue}
 
-\inputminted[linenos, tabsize=1, breaklines]{vue}{/Users/Henry/Desktop/NEAComputerScience/frontend/src/components/Navbar.vue}
-
-\paragraph{SimulationAnalyse}
+\makeatletter
+\subsection*{SimulationAnalyse.vue}
+frontend/src/components/SimulationAnalyse.vue
+\phantomsection
+\def\@currentlabelname{SimulationAnalyse.vue}
 \label{code:frontend:src:components:SimulationAnalyse.vue}
+\makeatother
 
-\textbf{File:} \texttt{frontend/src/components/SimulationAnalyse.vue}
+\inputminted[linenos,breaklines,tabsize=2]{vue}{/Users/Henry/Desktop/NEAComputerScience/frontend/src/components/SimulationAnalyse.vue}
 
-\inputminted[linenos, tabsize=1, breaklines]{vue}{/Users/Henry/Desktop/NEAComputerScience/frontend/src/components/SimulationAnalyse.vue}
-
-\paragraph{SimulationConfigure}
+\makeatletter
+\subsection*{SimulationConfigure.vue}
+frontend/src/components/SimulationConfigure.vue
+\phantomsection
+\def\@currentlabelname{SimulationConfigure.vue}
 \label{code:frontend:src:components:SimulationConfigure.vue}
+\makeatother
 
-\textbf{File:} \texttt{frontend/src/components/SimulationConfigure.vue}
+\inputminted[linenos,breaklines,tabsize=2]{vue}{/Users/Henry/Desktop/NEAComputerScience/frontend/src/components/SimulationConfigure.vue}
 
-\inputminted[linenos, tabsize=1, breaklines]{vue}{/Users/Henry/Desktop/NEAComputerScience/frontend/src/components/SimulationConfigure.vue}
-
-\paragraph{SimulationDetailsModal}
+\makeatletter
+\subsection*{SimulationDetailsModal.vue}
+frontend/src/components/SimulationDetailsModal.vue
+\phantomsection
+\def\@currentlabelname{SimulationDetailsModal.vue}
 \label{code:frontend:src:components:SimulationDetailsModal.vue}
+\makeatother
 
-\textbf{File:} \texttt{frontend/src/components/SimulationDetailsModal.vue}
+\inputminted[linenos,breaklines,tabsize=2]{vue}{/Users/Henry/Desktop/NEAComputerScience/frontend/src/components/SimulationDetailsModal.vue}
 
-\inputminted[linenos, tabsize=1, breaklines]{vue}{/Users/Henry/Desktop/NEAComputerScience/frontend/src/components/SimulationDetailsModal.vue}
-
-\paragraph{SimulationMap}
+\makeatletter
+\subsection*{SimulationMap.vue}
+frontend/src/components/SimulationMap.vue
+\phantomsection
+\def\@currentlabelname{SimulationMap.vue}
 \label{code:frontend:src:components:SimulationMap.vue}
+\makeatother
 
-\textbf{File:} \texttt{frontend/src/components/SimulationMap.vue}
+\inputminted[linenos,breaklines,tabsize=2]{vue}{/Users/Henry/Desktop/NEAComputerScience/frontend/src/components/SimulationMap.vue}
 
-\inputminted[linenos, tabsize=1, breaklines]{vue}{/Users/Henry/Desktop/NEAComputerScience/frontend/src/components/SimulationMap.vue}
-
-\paragraph{SimulationSimulate}
+\makeatletter
+\subsection*{SimulationSimulate.vue}
+frontend/src/components/SimulationSimulate.vue
+\phantomsection
+\def\@currentlabelname{SimulationSimulate.vue}
 \label{code:frontend:src:components:SimulationSimulate.vue}
+\makeatother
 
-\textbf{File:} \texttt{frontend/src/components/SimulationSimulate.vue}
+\inputminted[linenos,breaklines,tabsize=2]{vue}{/Users/Henry/Desktop/NEAComputerScience/frontend/src/components/SimulationSimulate.vue}
 
-\inputminted[linenos, tabsize=1, breaklines]{vue}{/Users/Henry/Desktop/NEAComputerScience/frontend/src/components/SimulationSimulate.vue}
-
-\paragraph{charts}
-\label{code:frontend:src:components:charts}
-
-\paragraph{ActiveCasesChart}
+\makeatletter
+\subsection*{ActiveCasesChart.vue}
+frontend/src/components/charts/ActiveCasesChart.vue
+\phantomsection
+\def\@currentlabelname{ActiveCasesChart.vue}
 \label{code:frontend:src:components:charts:ActiveCasesChart.vue}
+\makeatother
 
-\textbf{File:} \texttt{frontend/src/components/charts/ActiveCasesChart.vue}
+\inputminted[linenos,breaklines,tabsize=2]{vue}{/Users/Henry/Desktop/NEAComputerScience/frontend/src/components/charts/ActiveCasesChart.vue}
 
-\inputminted[linenos, tabsize=1, breaklines]{vue}{/Users/Henry/Desktop/NEAComputerScience/frontend/src/components/charts/ActiveCasesChart.vue}
-
-\paragraph{DailyInfectionsChart}
+\makeatletter
+\subsection*{DailyInfectionsChart.vue}
+frontend/src/components/charts/DailyInfectionsChart.vue
+\phantomsection
+\def\@currentlabelname{DailyInfectionsChart.vue}
 \label{code:frontend:src:components:charts:DailyInfectionsChart.vue}
+\makeatother
 
-\textbf{File:} \texttt{frontend/src/components/charts/DailyInfectionsChart.vue}
+\inputminted[linenos,breaklines,tabsize=2]{vue}{/Users/Henry/Desktop/NEAComputerScience/frontend/src/components/charts/DailyInfectionsChart.vue}
 
-\inputminted[linenos, tabsize=1, breaklines]{vue}{/Users/Henry/Desktop/NEAComputerScience/frontend/src/components/charts/DailyInfectionsChart.vue}
-
-\paragraph{InfectionTimelineChart}
+\makeatletter
+\subsection*{InfectionTimelineChart.vue}
+frontend/src/components/charts/InfectionTimelineChart.vue
+\phantomsection
+\def\@currentlabelname{InfectionTimelineChart.vue}
 \label{code:frontend:src:components:charts:InfectionTimelineChart.vue}
+\makeatother
 
-\textbf{File:} \texttt{frontend/src/components/charts/InfectionTimelineChart.vue}
+\inputminted[linenos,breaklines,tabsize=2]{vue}{/Users/Henry/Desktop/NEAComputerScience/frontend/src/components/charts/InfectionTimelineChart.vue}
 
-\inputminted[linenos, tabsize=1, breaklines]{vue}{/Users/Henry/Desktop/NEAComputerScience/frontend/src/components/charts/InfectionTimelineChart.vue}
-
-\paragraph{MetricsSummary}
+\makeatletter
+\subsection*{MetricsSummary.vue}
+frontend/src/components/charts/MetricsSummary.vue
+\phantomsection
+\def\@currentlabelname{MetricsSummary.vue}
 \label{code:frontend:src:components:charts:MetricsSummary.vue}
+\makeatother
 
-\textbf{File:} \texttt{frontend/src/components/charts/MetricsSummary.vue}
+\inputminted[linenos,breaklines,tabsize=2]{vue}{/Users/Henry/Desktop/NEAComputerScience/frontend/src/components/charts/MetricsSummary.vue}
 
-\inputminted[linenos, tabsize=1, breaklines]{vue}{/Users/Henry/Desktop/NEAComputerScience/frontend/src/components/charts/MetricsSummary.vue}
-
-\paragraph{PopulationStackedChart}
+\makeatletter
+\subsection*{PopulationStackedChart.vue}
+frontend/src/components/charts/PopulationStackedChart.vue
+\phantomsection
+\def\@currentlabelname{PopulationStackedChart.vue}
 \label{code:frontend:src:components:charts:PopulationStackedChart.vue}
+\makeatother
 
-\textbf{File:} \texttt{frontend/src/components/charts/PopulationStackedChart.vue}
+\inputminted[linenos,breaklines,tabsize=2]{vue}{/Users/Henry/Desktop/NEAComputerScience/frontend/src/components/charts/PopulationStackedChart.vue}
 
-\inputminted[linenos, tabsize=1, breaklines]{vue}{/Users/Henry/Desktop/NEAComputerScience/frontend/src/components/charts/PopulationStackedChart.vue}
-
-\paragraph{RValueChart}
+\makeatletter
+\subsection*{RValueChart.vue}
+frontend/src/components/charts/RValueChart.vue
+\phantomsection
+\def\@currentlabelname{RValueChart.vue}
 \label{code:frontend:src:components:charts:RValueChart.vue}
+\makeatother
 
-\textbf{File:} \texttt{frontend/src/components/charts/RValueChart.vue}
+\inputminted[linenos,breaklines,tabsize=2]{vue}{/Users/Henry/Desktop/NEAComputerScience/frontend/src/components/charts/RValueChart.vue}
 
-\inputminted[linenos, tabsize=1, breaklines]{vue}{/Users/Henry/Desktop/NEAComputerScience/frontend/src/components/charts/RValueChart.vue}
-
-\subsubsection{composables}
-\label{code:frontend:src:composables}
-
-\paragraph{useSimulationHub}
+\makeatletter
+\subsection*{useSimulationHub.ts}
+frontend/src/composables/useSimulationHub.ts
+\phantomsection
+\def\@currentlabelname{useSimulationHub.ts}
 \label{code:frontend:src:composables:useSimulationHub.ts}
+\makeatother
 
-\textbf{File:} \texttt{frontend/src/composables/useSimulationHub.ts}
+\inputminted[linenos,breaklines,tabsize=2]{typescript}{/Users/Henry/Desktop/NEAComputerScience/frontend/src/composables/useSimulationHub.ts}
 
-\inputminted[linenos, tabsize=1, breaklines]{typescript}{/Users/Henry/Desktop/NEAComputerScience/frontend/src/composables/useSimulationHub.ts}
-
-\subsubsection{layouts}
-\label{code:frontend:src:layouts}
-
-\paragraph{MainLayout}
+\makeatletter
+\subsection*{MainLayout.vue}
+frontend/src/layouts/MainLayout.vue
+\phantomsection
+\def\@currentlabelname{MainLayout.vue}
 \label{code:frontend:src:layouts:MainLayout.vue}
+\makeatother
 
-\textbf{File:} \texttt{frontend/src/layouts/MainLayout.vue}
+\inputminted[linenos,breaklines,tabsize=2]{vue}{/Users/Henry/Desktop/NEAComputerScience/frontend/src/layouts/MainLayout.vue}
 
-\inputminted[linenos, tabsize=1, breaklines]{vue}{/Users/Henry/Desktop/NEAComputerScience/frontend/src/layouts/MainLayout.vue}
+\makeatletter
+\subsection*{main.ts}
+frontend/src/main.ts
+\phantomsection
+\def\@currentlabelname{main.ts}
+\label{code:frontend:src:main.ts}
+\makeatother
 
-\subsubsection{router}
-\label{code:frontend:src:router}
+\inputminted[linenos,breaklines,tabsize=2]{typescript}{/Users/Henry/Desktop/NEAComputerScience/frontend/src/main.ts}
 
-\paragraph{index}
+\makeatletter
+\subsection*{index.ts}
+frontend/src/router/index.ts
+\phantomsection
+\def\@currentlabelname{index.ts}
 \label{code:frontend:src:router:index.ts}
+\makeatother
 
-\textbf{File:} \texttt{frontend/src/router/index.ts}
+\inputminted[linenos,breaklines,tabsize=2]{typescript}{/Users/Henry/Desktop/NEAComputerScience/frontend/src/router/index.ts}
 
-\inputminted[linenos, tabsize=1, breaklines]{typescript}{/Users/Henry/Desktop/NEAComputerScience/frontend/src/router/index.ts}
-
-\subsubsection{stores}
-\label{code:frontend:src:stores}
-
-\paragraph{useToastStore}
+\makeatletter
+\subsection*{useToastStore.ts}
+frontend/src/stores/useToastStore.ts
+\phantomsection
+\def\@currentlabelname{useToastStore.ts}
 \label{code:frontend:src:stores:useToastStore.ts}
+\makeatother
 
-\textbf{File:} \texttt{frontend/src/stores/useToastStore.ts}
+\inputminted[linenos,breaklines,tabsize=2]{typescript}{/Users/Henry/Desktop/NEAComputerScience/frontend/src/stores/useToastStore.ts}
 
-\inputminted[linenos, tabsize=1, breaklines]{typescript}{/Users/Henry/Desktop/NEAComputerScience/frontend/src/stores/useToastStore.ts}
-
-\paragraph{useUserStore}
+\makeatletter
+\subsection*{useUserStore.js}
+frontend/src/stores/useUserStore.js
+\phantomsection
+\def\@currentlabelname{useUserStore.js}
 \label{code:frontend:src:stores:useUserStore.js}
+\makeatother
 
-\textbf{File:} \texttt{frontend/src/stores/useUserStore.js}
+\inputminted[linenos,breaklines,tabsize=2]{javascript}{/Users/Henry/Desktop/NEAComputerScience/frontend/src/stores/useUserStore.js}
 
-\inputminted[linenos, tabsize=1, breaklines]{javascript}{/Users/Henry/Desktop/NEAComputerScience/frontend/src/stores/useUserStore.js}
+\makeatletter
+\subsection*{style.css}
+frontend/src/style.css
+\phantomsection
+\def\@currentlabelname{style.css}
+\label{code:frontend:src:style.css}
+\makeatother
 
-\subsubsection{views}
-\label{code:frontend:src:views}
+\inputminted[linenos,breaklines,tabsize=2]{css}{/Users/Henry/Desktop/NEAComputerScience/frontend/src/style.css}
 
-\paragraph{admin}
+\makeatletter
+\subsection*{admin.vue}
+frontend/src/views/admin.vue
+\phantomsection
+\def\@currentlabelname{admin.vue}
 \label{code:frontend:src:views:admin.vue}
+\makeatother
 
-\textbf{File:} \texttt{frontend/src/views/admin.vue}
+\inputminted[linenos,breaklines,tabsize=2]{vue}{/Users/Henry/Desktop/NEAComputerScience/frontend/src/views/admin.vue}
 
-\inputminted[linenos, tabsize=1, breaklines]{vue}{/Users/Henry/Desktop/NEAComputerScience/frontend/src/views/admin.vue}
-
-\paragraph{authentication}
+\makeatletter
+\subsection*{authentication.vue}
+frontend/src/views/authentication.vue
+\phantomsection
+\def\@currentlabelname{authentication.vue}
 \label{code:frontend:src:views:authentication.vue}
+\makeatother
 
-\textbf{File:} \texttt{frontend/src/views/authentication.vue}
+\inputminted[linenos,breaklines,tabsize=2]{vue}{/Users/Henry/Desktop/NEAComputerScience/frontend/src/views/authentication.vue}
 
-\inputminted[linenos, tabsize=1, breaklines]{vue}{/Users/Henry/Desktop/NEAComputerScience/frontend/src/views/authentication.vue}
-
-\paragraph{dashboard}
+\makeatletter
+\subsection*{dashboard.vue}
+frontend/src/views/dashboard.vue
+\phantomsection
+\def\@currentlabelname{dashboard.vue}
 \label{code:frontend:src:views:dashboard.vue}
+\makeatother
 
-\textbf{File:} \texttt{frontend/src/views/dashboard.vue}
+\inputminted[linenos,breaklines,tabsize=2]{vue}{/Users/Henry/Desktop/NEAComputerScience/frontend/src/views/dashboard.vue}
 
-\inputminted[linenos, tabsize=1, breaklines]{vue}{/Users/Henry/Desktop/NEAComputerScience/frontend/src/views/dashboard.vue}
-
-\paragraph{error}
+\makeatletter
+\subsection*{error.vue}
+frontend/src/views/error.vue
+\phantomsection
+\def\@currentlabelname{error.vue}
 \label{code:frontend:src:views:error.vue}
+\makeatother
 
-\textbf{File:} \texttt{frontend/src/views/error.vue}
+\inputminted[linenos,breaklines,tabsize=2]{vue}{/Users/Henry/Desktop/NEAComputerScience/frontend/src/views/error.vue}
 
-\inputminted[linenos, tabsize=1, breaklines]{vue}{/Users/Henry/Desktop/NEAComputerScience/frontend/src/views/error.vue}
-
-\paragraph{settings}
+\makeatletter
+\subsection*{settings.vue}
+frontend/src/views/settings.vue
+\phantomsection
+\def\@currentlabelname{settings.vue}
 \label{code:frontend:src:views:settings.vue}
+\makeatother
 
-\textbf{File:} \texttt{frontend/src/views/settings.vue}
+\inputminted[linenos,breaklines,tabsize=2]{vue}{/Users/Henry/Desktop/NEAComputerScience/frontend/src/views/settings.vue}
 
-\inputminted[linenos, tabsize=1, breaklines]{vue}{/Users/Henry/Desktop/NEAComputerScience/frontend/src/views/settings.vue}
-
-\paragraph{simulation}
+\makeatletter
+\subsection*{simulation.vue}
+frontend/src/views/simulation.vue
+\phantomsection
+\def\@currentlabelname{simulation.vue}
 \label{code:frontend:src:views:simulation.vue}
+\makeatother
 
-\textbf{File:} \texttt{frontend/src/views/simulation.vue}
+\inputminted[linenos,breaklines,tabsize=2]{vue}{/Users/Henry/Desktop/NEAComputerScience/frontend/src/views/simulation.vue}
 
-\inputminted[linenos, tabsize=1, breaklines]{vue}{/Users/Henry/Desktop/NEAComputerScience/frontend/src/views/simulation.vue}
+\makeatletter
+\subsection*{vite.config.ts}
+frontend/vite.config.ts
+\phantomsection
+\def\@currentlabelname{vite.config.ts}
+\label{code:frontend:vite.config.ts}
+\makeatother
+
+\inputminted[linenos,breaklines,tabsize=2]{typescript}{/Users/Henry/Desktop/NEAComputerScience/frontend/vite.config.ts}
+
+\section{Backend}
+\makeatletter
+\subsection*{AdminController.cs}
+SimulationAPI/Controllers/AdminController.cs
+\phantomsection
+\def\@currentlabelname{AdminController.cs}
+\label{code:SimulationAPI:Controllers:AdminController.cs}
+\makeatother
+
+\inputminted[linenos,breaklines,tabsize=2]{csharp}{/Users/Henry/Desktop/NEAComputerScience/SimulationAPI/Controllers/AdminController.cs}
+
+\makeatletter
+\subsection*{AuthController.cs}
+SimulationAPI/Controllers/AuthController.cs
+\phantomsection
+\def\@currentlabelname{AuthController.cs}
+\label{code:SimulationAPI:Controllers:AuthController.cs}
+\makeatother
+
+\inputminted[linenos,breaklines,tabsize=2]{csharp}{/Users/Henry/Desktop/NEAComputerScience/SimulationAPI/Controllers/AuthController.cs}
+
+\makeatletter
+\subsection*{PresetController.cs}
+SimulationAPI/Controllers/PresetController.cs
+\phantomsection
+\def\@currentlabelname{PresetController.cs}
+\label{code:SimulationAPI:Controllers:PresetController.cs}
+\makeatother
+
+\inputminted[linenos,breaklines,tabsize=2]{csharp}{/Users/Henry/Desktop/NEAComputerScience/SimulationAPI/Controllers/PresetController.cs}
+
+\makeatletter
+\subsection*{ProfileController.cs}
+SimulationAPI/Controllers/ProfileController.cs
+\phantomsection
+\def\@currentlabelname{ProfileController.cs}
+\label{code:SimulationAPI:Controllers:ProfileController.cs}
+\makeatother
+
+\inputminted[linenos,breaklines,tabsize=2]{csharp}{/Users/Henry/Desktop/NEAComputerScience/SimulationAPI/Controllers/ProfileController.cs}
+
+\makeatletter
+\subsection*{SimulationsController.cs}
+SimulationAPI/Controllers/SimulationsController.cs
+\phantomsection
+\def\@currentlabelname{SimulationsController.cs}
+\label{code:SimulationAPI:Controllers:SimulationsController.cs}
+\makeatother
+
+\inputminted[linenos,breaklines,tabsize=2]{csharp}{/Users/Henry/Desktop/NEAComputerScience/SimulationAPI/Controllers/SimulationsController.cs}
+
+\makeatletter
+\subsection*{AuthDtos.cs}
+SimulationAPI/DTOs/AuthDtos.cs
+\phantomsection
+\def\@currentlabelname{AuthDtos.cs}
+\label{code:SimulationAPI:DTOs:AuthDtos.cs}
+\makeatother
+
+\inputminted[linenos,breaklines,tabsize=2]{csharp}{/Users/Henry/Desktop/NEAComputerScience/SimulationAPI/DTOs/AuthDtos.cs}
+
+\makeatletter
+\subsection*{CreateSimulationDto.cs}
+SimulationAPI/DTOs/CreateSimulationDto.cs
+\phantomsection
+\def\@currentlabelname{CreateSimulationDto.cs}
+\label{code:SimulationAPI:DTOs:CreateSimulationDto.cs}
+\makeatother
+
+\inputminted[linenos,breaklines,tabsize=2]{csharp}{/Users/Henry/Desktop/NEAComputerScience/SimulationAPI/DTOs/CreateSimulationDto.cs}
+
+\makeatletter
+\subsection*{MitigationDtos.cs}
+SimulationAPI/DTOs/MitigationDtos.cs
+\phantomsection
+\def\@currentlabelname{MitigationDtos.cs}
+\label{code:SimulationAPI:DTOs:MitigationDtos.cs}
+\makeatother
+
+\inputminted[linenos,breaklines,tabsize=2]{csharp}{/Users/Henry/Desktop/NEAComputerScience/SimulationAPI/DTOs/MitigationDtos.cs}
+
+\makeatletter
+\subsection*{RefreshDto.cs}
+SimulationAPI/DTOs/RefreshDto.cs
+\phantomsection
+\def\@currentlabelname{RefreshDto.cs}
+\label{code:SimulationAPI:DTOs:RefreshDto.cs}
+\makeatother
+
+\inputminted[linenos,breaklines,tabsize=2]{csharp}{/Users/Henry/Desktop/NEAComputerScience/SimulationAPI/DTOs/RefreshDto.cs}
+
+\makeatletter
+\subsection*{UpdatePresetDto.cs}
+SimulationAPI/DTOs/UpdatePresetDto.cs
+\phantomsection
+\def\@currentlabelname{UpdatePresetDto.cs}
+\label{code:SimulationAPI:DTOs:UpdatePresetDto.cs}
+\makeatother
+
+\inputminted[linenos,breaklines,tabsize=2]{csharp}{/Users/Henry/Desktop/NEAComputerScience/SimulationAPI/DTOs/UpdatePresetDto.cs}
+
+\makeatletter
+\subsection*{UpdateProfileDto.cs}
+SimulationAPI/DTOs/UpdateProfileDto.cs
+\phantomsection
+\def\@currentlabelname{UpdateProfileDto.cs}
+\label{code:SimulationAPI:DTOs:UpdateProfileDto.cs}
+\makeatother
+
+\inputminted[linenos,breaklines,tabsize=2]{csharp}{/Users/Henry/Desktop/NEAComputerScience/SimulationAPI/DTOs/UpdateProfileDto.cs}
+
+\makeatletter
+\subsection*{UpdateSimulationDto.cs}
+SimulationAPI/DTOs/UpdateSimulationDto.cs
+\phantomsection
+\def\@currentlabelname{UpdateSimulationDto.cs}
+\label{code:SimulationAPI:DTOs:UpdateSimulationDto.cs}
+\makeatother
+
+\inputminted[linenos,breaklines,tabsize=2]{csharp}{/Users/Henry/Desktop/NEAComputerScience/SimulationAPI/DTOs/UpdateSimulationDto.cs}
+
+\makeatletter
+\subsection*{SimDbContext.cs}
+SimulationAPI/Data/SimDbContext.cs
+\phantomsection
+\def\@currentlabelname{SimDbContext.cs}
+\label{code:SimulationAPI:Data:SimDbContext.cs}
+\makeatother
+
+\inputminted[linenos,breaklines,tabsize=2]{csharp}{/Users/Henry/Desktop/NEAComputerScience/SimulationAPI/Data/SimDbContext.cs}
+
+\makeatletter
+\subsection*{SimulationHub.cs}
+SimulationAPI/Hubs/SimulationHub.cs
+\phantomsection
+\def\@currentlabelname{SimulationHub.cs}
+\label{code:SimulationAPI:Hubs:SimulationHub.cs}
+\makeatother
+
+\inputminted[linenos,breaklines,tabsize=2]{csharp}{/Users/Henry/Desktop/NEAComputerScience/SimulationAPI/Hubs/SimulationHub.cs}
+
+\makeatletter
+\subsection*{Agent.cs}
+SimulationAPI/Models/Agent.cs
+\phantomsection
+\def\@currentlabelname{Agent.cs}
+\label{code:SimulationAPI:Models:Agent.cs}
+\makeatother
+
+\inputminted[linenos,breaklines,tabsize=2]{csharp}{/Users/Henry/Desktop/NEAComputerScience/SimulationAPI/Models/Agent.cs}
+
+\makeatletter
+\subsection*{Building.cs}
+SimulationAPI/Models/Building.cs
+\phantomsection
+\def\@currentlabelname{Building.cs}
+\label{code:SimulationAPI:Models:Building.cs}
+\makeatother
+
+\inputminted[linenos,breaklines,tabsize=2]{csharp}{/Users/Henry/Desktop/NEAComputerScience/SimulationAPI/Models/Building.cs}
+
+\makeatletter
+\subsection*{Disease.cs}
+SimulationAPI/Models/Disease.cs
+\phantomsection
+\def\@currentlabelname{Disease.cs}
+\label{code:SimulationAPI:Models:Disease.cs}
+\makeatother
+
+\inputminted[linenos,breaklines,tabsize=2]{csharp}{/Users/Henry/Desktop/NEAComputerScience/SimulationAPI/Models/Disease.cs}
+
+\makeatletter
+\subsection*{MapArea.cs}
+SimulationAPI/Models/MapArea.cs
+\phantomsection
+\def\@currentlabelname{MapArea.cs}
+\label{code:SimulationAPI:Models:MapArea.cs}
+\makeatother
+
+\inputminted[linenos,breaklines,tabsize=2]{csharp}{/Users/Henry/Desktop/NEAComputerScience/SimulationAPI/Models/MapArea.cs}
+
+\makeatletter
+\subsection*{MedicalProfile.cs}
+SimulationAPI/Models/MedicalProfile.cs
+\phantomsection
+\def\@currentlabelname{MedicalProfile.cs}
+\label{code:SimulationAPI:Models:MedicalProfile.cs}
+\makeatother
+
+\inputminted[linenos,breaklines,tabsize=2]{csharp}{/Users/Henry/Desktop/NEAComputerScience/SimulationAPI/Models/MedicalProfile.cs}
+
+\makeatletter
+\subsection*{Mitigation.cs}
+SimulationAPI/Models/Mitigation.cs
+\phantomsection
+\def\@currentlabelname{Mitigation.cs}
+\label{code:SimulationAPI:Models:Mitigation.cs}
+\makeatother
+
+\inputminted[linenos,breaklines,tabsize=2]{csharp}{/Users/Henry/Desktop/NEAComputerScience/SimulationAPI/Models/Mitigation.cs}
+
+\makeatletter
+\subsection*{Path.cs}
+SimulationAPI/Models/Path.cs
+\phantomsection
+\def\@currentlabelname{Path.cs}
+\label{code:SimulationAPI:Models:Path.cs}
+\makeatother
+
+\inputminted[linenos,breaklines,tabsize=2]{csharp}{/Users/Henry/Desktop/NEAComputerScience/SimulationAPI/Models/Path.cs}
+
+\makeatletter
+\subsection*{Presets.cs}
+SimulationAPI/Models/Presets.cs
+\phantomsection
+\def\@currentlabelname{Presets.cs}
+\label{code:SimulationAPI:Models:Presets.cs}
+\makeatother
+
+\inputminted[linenos,breaklines,tabsize=2]{csharp}{/Users/Henry/Desktop/NEAComputerScience/SimulationAPI/Models/Presets.cs}
+
+\makeatletter
+\subsection*{RefreshToken.cs}
+SimulationAPI/Models/RefreshToken.cs
+\phantomsection
+\def\@currentlabelname{RefreshToken.cs}
+\label{code:SimulationAPI:Models:RefreshToken.cs}
+\makeatother
+
+\inputminted[linenos,breaklines,tabsize=2]{csharp}{/Users/Henry/Desktop/NEAComputerScience/SimulationAPI/Models/RefreshToken.cs}
+
+\makeatletter
+\subsection*{Routine.cs}
+SimulationAPI/Models/Routine.cs
+\phantomsection
+\def\@currentlabelname{Routine.cs}
+\label{code:SimulationAPI:Models:Routine.cs}
+\makeatother
+
+\inputminted[linenos,breaklines,tabsize=2]{csharp}{/Users/Henry/Desktop/NEAComputerScience/SimulationAPI/Models/Routine.cs}
+
+\makeatletter
+\subsection*{Simulation.cs}
+SimulationAPI/Models/Simulation.cs
+\phantomsection
+\def\@currentlabelname{Simulation.cs}
+\label{code:SimulationAPI:Models:Simulation.cs}
+\makeatother
+
+\inputminted[linenos,breaklines,tabsize=2]{csharp}{/Users/Henry/Desktop/NEAComputerScience/SimulationAPI/Models/Simulation.cs}
+
+\makeatletter
+\subsection*{SimulationMetric.cs}
+SimulationAPI/Models/SimulationMetric.cs
+\phantomsection
+\def\@currentlabelname{SimulationMetric.cs}
+\label{code:SimulationAPI:Models:SimulationMetric.cs}
+\makeatother
+
+\inputminted[linenos,breaklines,tabsize=2]{csharp}{/Users/Henry/Desktop/NEAComputerScience/SimulationAPI/Models/SimulationMetric.cs}
+
+\makeatletter
+\subsection*{SimulationSnapshot.cs}
+SimulationAPI/Models/SimulationSnapshot.cs
+\phantomsection
+\def\@currentlabelname{SimulationSnapshot.cs}
+\label{code:SimulationAPI:Models:SimulationSnapshot.cs}
+\makeatother
+
+\inputminted[linenos,breaklines,tabsize=2]{csharp}{/Users/Henry/Desktop/NEAComputerScience/SimulationAPI/Models/SimulationSnapshot.cs}
+
+\makeatletter
+\subsection*{User.cs}
+SimulationAPI/Models/User.cs
+\phantomsection
+\def\@currentlabelname{User.cs}
+\label{code:SimulationAPI:Models:User.cs}
+\makeatother
+
+\inputminted[linenos,breaklines,tabsize=2]{csharp}{/Users/Henry/Desktop/NEAComputerScience/SimulationAPI/Models/User.cs}
+
+\makeatletter
+\subsection*{Program.cs}
+SimulationAPI/Program.cs
+\phantomsection
+\def\@currentlabelname{Program.cs}
+\label{code:SimulationAPI:Program.cs}
+\makeatother
+
+\inputminted[linenos,breaklines,tabsize=2]{csharp}{/Users/Henry/Desktop/NEAComputerScience/SimulationAPI/Program.cs}
+
+\makeatletter
+\subsection*{AgentService.cs}
+SimulationAPI/Services/AgentService.cs
+\phantomsection
+\def\@currentlabelname{AgentService.cs}
+\label{code:SimulationAPI:Services:AgentService.cs}
+\makeatother
+
+\inputminted[linenos,breaklines,tabsize=2]{csharp}{/Users/Henry/Desktop/NEAComputerScience/SimulationAPI/Services/AgentService.cs}
+
+\makeatletter
+\subsection*{BuildingCapacityCalculator.cs}
+SimulationAPI/Services/BuildingCapacityCalculator.cs
+\phantomsection
+\def\@currentlabelname{BuildingCapacityCalculator.cs}
+\label{code:SimulationAPI:Services:BuildingCapacityCalculator.cs}
+\makeatother
+
+\inputminted[linenos,breaklines,tabsize=2]{csharp}{/Users/Henry/Desktop/NEAComputerScience/SimulationAPI/Services/BuildingCapacityCalculator.cs}
+
+\makeatletter
+\subsection*{BuildingService.cs}
+SimulationAPI/Services/BuildingService.cs
+\phantomsection
+\def\@currentlabelname{BuildingService.cs}
+\label{code:SimulationAPI:Services:BuildingService.cs}
+\makeatother
+
+\inputminted[linenos,breaklines,tabsize=2]{csharp}{/Users/Henry/Desktop/NEAComputerScience/SimulationAPI/Services/BuildingService.cs}
+
+\makeatletter
+\subsection*{InfectionService.cs}
+SimulationAPI/Services/InfectionService.cs
+\phantomsection
+\def\@currentlabelname{InfectionService.cs}
+\label{code:SimulationAPI:Services:InfectionService.cs}
+\makeatother
+
+\inputminted[linenos,breaklines,tabsize=2]{csharp}{/Users/Henry/Desktop/NEAComputerScience/SimulationAPI/Services/InfectionService.cs}
+
+\makeatletter
+\subsection*{MovementSystem.cs}
+SimulationAPI/Services/MovementSystem.cs
+\phantomsection
+\def\@currentlabelname{MovementSystem.cs}
+\label{code:SimulationAPI:Services:MovementSystem.cs}
+\makeatother
+
+\inputminted[linenos,breaklines,tabsize=2]{csharp}{/Users/Henry/Desktop/NEAComputerScience/SimulationAPI/Services/MovementSystem.cs}
+
+\makeatletter
+\subsection*{OsmService.cs}
+SimulationAPI/Services/OsmService.cs
+\phantomsection
+\def\@currentlabelname{OsmService.cs}
+\label{code:SimulationAPI:Services:OsmService.cs}
+\makeatother
+
+\inputminted[linenos,breaklines,tabsize=2]{csharp}{/Users/Henry/Desktop/NEAComputerScience/SimulationAPI/Services/OsmService.cs}
+
+\makeatletter
+\subsection*{PresetService.cs}
+SimulationAPI/Services/PresetService.cs
+\phantomsection
+\def\@currentlabelname{PresetService.cs}
+\label{code:SimulationAPI:Services:PresetService.cs}
+\makeatother
+
+\inputminted[linenos,breaklines,tabsize=2]{csharp}{/Users/Henry/Desktop/NEAComputerScience/SimulationAPI/Services/PresetService.cs}
+
+\makeatletter
+\subsection*{RoutingService.cs}
+SimulationAPI/Services/RoutingService.cs
+\phantomsection
+\def\@currentlabelname{RoutingService.cs}
+\label{code:SimulationAPI:Services:RoutingService.cs}
+\makeatother
+
+\inputminted[linenos,breaklines,tabsize=2]{csharp}{/Users/Henry/Desktop/NEAComputerScience/SimulationAPI/Services/RoutingService.cs}
+
+\makeatletter
+\subsection*{SimulationBroadcastService.cs}
+SimulationAPI/Services/SimulationBroadcastService.cs
+\phantomsection
+\def\@currentlabelname{SimulationBroadcastService.cs}
+\label{code:SimulationAPI:Services:SimulationBroadcastService.cs}
+\makeatother
+
+\inputminted[linenos,breaklines,tabsize=2]{csharp}{/Users/Henry/Desktop/NEAComputerScience/SimulationAPI/Services/SimulationBroadcastService.cs}
+
+\makeatletter
+\subsection*{MetricManager.cs}
+SimulationAPI/Simulation/MetricManager.cs
+\phantomsection
+\def\@currentlabelname{MetricManager.cs}
+\label{code:SimulationAPI:Simulation:MetricManager.cs}
+\makeatother
+
+\inputminted[linenos,breaklines,tabsize=2]{csharp}{/Users/Henry/Desktop/NEAComputerScience/SimulationAPI/Simulation/MetricManager.cs}
+
+\makeatletter
+\subsection*{SimulationContext.cs}
+SimulationAPI/Simulation/SimulationContext.cs
+\phantomsection
+\def\@currentlabelname{SimulationContext.cs}
+\label{code:SimulationAPI:Simulation:SimulationContext.cs}
+\makeatother
+
+\inputminted[linenos,breaklines,tabsize=2]{csharp}{/Users/Henry/Desktop/NEAComputerScience/SimulationAPI/Simulation/SimulationContext.cs}
+
+\makeatletter
+\subsection*{SimulationEngine.cs}
+SimulationAPI/Simulation/SimulationEngine.cs
+\phantomsection
+\def\@currentlabelname{SimulationEngine.cs}
+\label{code:SimulationAPI:Simulation:SimulationEngine.cs}
+\makeatother
+
+\inputminted[linenos,breaklines,tabsize=2]{csharp}{/Users/Henry/Desktop/NEAComputerScience/SimulationAPI/Simulation/SimulationEngine.cs}
+
+\makeatletter
+\subsection*{SimulationManager.cs}
+SimulationAPI/Simulation/SimulationManager.cs
+\phantomsection
+\def\@currentlabelname{SimulationManager.cs}
+\label{code:SimulationAPI:Simulation:SimulationManager.cs}
+\makeatother
+
+\inputminted[linenos,breaklines,tabsize=2]{csharp}{/Users/Henry/Desktop/NEAComputerScience/SimulationAPI/Simulation/SimulationManager.cs}
+
+\makeatletter
+\subsection*{SimulationSetup.cs}
+SimulationAPI/Simulation/SimulationSetup.cs
+\phantomsection
+\def\@currentlabelname{SimulationSetup.cs}
+\label{code:SimulationAPI:Simulation:SimulationSetup.cs}
+\makeatother
+
+\inputminted[linenos,breaklines,tabsize=2]{csharp}{/Users/Henry/Desktop/NEAComputerScience/SimulationAPI/Simulation/SimulationSetup.cs}
+
+\makeatletter
+\subsection*{SnapshotManager.cs}
+SimulationAPI/Simulation/SnapshotManager.cs
+\phantomsection
+\def\@currentlabelname{SnapshotManager.cs}
+\label{code:SimulationAPI:Simulation:SnapshotManager.cs}
+\makeatother
+
+\inputminted[linenos,breaklines,tabsize=2]{csharp}{/Users/Henry/Desktop/NEAComputerScience/SimulationAPI/Simulation/SnapshotManager.cs}
+
+\makeatletter
+\subsection*{RuntimeStates.cs}
+SimulationAPI/Simulation/Structs/RuntimeStates.cs
+\phantomsection
+\def\@currentlabelname{RuntimeStates.cs}
+\label{code:SimulationAPI:Simulation:Structs:RuntimeStates.cs}
+\makeatother
+
+\inputminted[linenos,breaklines,tabsize=2]{csharp}{/Users/Henry/Desktop/NEAComputerScience/SimulationAPI/Simulation/Structs/RuntimeStates.cs}
+
+\makeatletter
+\subsection*{SimulationTimeHelper.cs}
+SimulationAPI/Utils/SimulationTimeHelper.cs
+\phantomsection
+\def\@currentlabelname{SimulationTimeHelper.cs}
+\label{code:SimulationAPI:Utils:SimulationTimeHelper.cs}
+\makeatother
+
+\inputminted[linenos,breaklines,tabsize=2]{csharp}{/Users/Henry/Desktop/NEAComputerScience/SimulationAPI/Utils/SimulationTimeHelper.cs}

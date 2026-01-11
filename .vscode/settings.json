@@ -30,6 +30,7 @@
       "name": "latexmk (xelatex)",
       "tools": ["xelatexmk"]
     },
+
     {
       "name": "pdflatex -> bibtex -> pdflatex * 2",
       "tools": ["pdflatex", "bibtex", "pdflatex", "pdflatex"]
@@ -70,7 +71,13 @@
     {
       "name": "xelatexmk",
       "command": "/Library/TeX/texbin/latexmk",
-      "args": ["-xelatex", "-interaction=nonstopmode", "-synctex=1", "%DOC%"]
+      "args": [
+        "-xelatex",
+        "-interaction=nonstopmode",
+        "-synctex=1",
+        "-f",
+        "%DOC%"
+      ]
     },
     {
       "name": "pdflatex",
