@@ -1,6 +1,8 @@
 % !TeX root = Main.tex
 \documentclass{report}
 \usepackage{hyperref}
+
+\usepackage{fontspec}
 \usepackage{tikz}
 \usepackage{colortbl}
 \usetikzlibrary{positioning}
@@ -31,19 +33,19 @@
 
 % Header/Footer setup
 \usepackage{fancyhdr}
-\usepackage{enumitem}
-\setlistdepth{9}
-\setlist[itemize,1]{label=$\bullet$}
-\setlist[itemize,2]{label=$\bullet$}
-\setlist[itemize,3]{label=$\bullet$}
-\setlist[itemize,4]{label=$\bullet$}
-\setlist[itemize,5]{label=$\bullet$}
-\setlist[itemize,6]{label=$\bullet$}
-\setlist[itemize,7]{label=$\bullet$}
-\setlist[itemize,8]{label=$\bullet$}
-\setlist[itemize,9]{label=$\bullet$}
+% \usepackage{enumitem}
+% \setlistdepth{9}
+% \setlist[itemize,1]{label=$\bullet$}
+% \setlist[itemize,2]{label=$\bullet$}
+% \setlist[itemize,3]{label=$\bullet$}
+% \setlist[itemize,4]{label=$\bullet$}
+% \setlist[itemize,5]{label=$\bullet$}
+% \setlist[itemize,6]{label=$\bullet$}
+% \setlist[itemize,7]{label=$\bullet$}
+% \setlist[itemize,8]{label=$\bullet$}
+% \setlist[itemize,9]{label=$\bullet$}
 
-\renewlist{itemize}{itemize}{10}
+% \renewlist{itemize}{itemize}{10}
 \pagestyle{fancy}
 \fancyhf{}  % clear all headers and footers
 \renewcommand{\sectionmark}[1]{\markright{#1}}
@@ -62,7 +64,13 @@
 
 % for code highlighting and listings
 \usepackage{minted}
-
+\setminted{
+  breaklines,
+  autogobble,
+  fontsize=\small,
+  encoding=utf8,
+  texcomments=false
+}
 
 \usepackage[
     backend=biber,
@@ -74,10 +82,11 @@
 ]{biblatex}
 
 \addbibresource{References.bib}
+\setmonofont{DejaVu Sans Mono}
 \begin{document}
 
 % Set background image
-\ThisLRCornerWallPaper{1.0}{BackgroundImage.png}
+\ThisLRCornerWallPaper{1.0}{BackgroundImage.png} 
 
 % Customize title
 \pretitle{\begin{center}\Huge\bfseries\color{white}}
@@ -103,13 +112,11 @@
 \include{Chapters/TechnicalSolution}
 \chapter{Testing}
 \chapter{Evaluation}
-\include{Chapters/SkillsEvidence}
+
 \printbibliography[heading=bibintoc, title={Bibliography}]
 
 % Appendices
-
 \appendix
 \include{Chapters/CodeAppendix}
 \include{Chapters/ConversationTranscripts}
-
 \end{document}

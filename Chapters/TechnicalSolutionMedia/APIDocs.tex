@@ -974,6 +974,65 @@ Schema: \texttt{SetupDiseaseDto}\\[0.3em]
 \vspace{0.5em}
 
 \begin{tcolorbox}[
+    colback=orange!5,
+    colframe=orange,
+    arc=2mm,
+    boxrule=1pt,
+    left=5pt,
+    right=5pt,
+    top=5pt,
+    bottom=5pt
+]
+\noindent\colorbox{orange}{\textcolor{white}{\textbf{PUT}}} 
+\texttt{\large /api/Simulation/\textbackslash{}{id\textbackslash{}}/disease}\\[0.3em]
+\textit{Updates disease properties for a simulation.
+Note: Changing disease properties will require a simulation reset.}\\[0.3em]
+\vspace{0.3em}
+\textbf{\textcolor{blue}{Parameters:}}\\[0.2em]
+\begin{tabular}{|l|l|l|}
+\hline
+\rowcolor{gray!20}
+\textbf{Name} & \textbf{Location} & \textbf{Type} \\ \hline
+\texttt{id} & path & \texttt{integer} \\ \hline
+\end{tabular}\\[0.5em]
+\vspace{0.3em}
+\textbf{\textcolor{green}{Request Body:}}\\[0.2em]
+Schema: \texttt{UpdateDiseaseDto}\\[0.3em]
+\begin{tabular}{|l|l|l|}
+\hline
+\rowcolor{green!10}
+\textbf{Property} & \textbf{Type} & \textbf{Nullable} \\ \hline
+\texttt{infectionRate} & number (double) & Yes \\ \hline
+\rowcolor{gray!5}
+\texttt{recoveryRate} & number (double) & Yes \\ \hline
+\texttt{mortalityRate} & number (double) & Yes \\ \hline
+\rowcolor{gray!5}
+\texttt{incubationPeriod} & number (double) & Yes \\ \hline
+\texttt{infectiousPeriod} & number (double) & Yes \\ \hline
+\rowcolor{gray!5}
+\texttt{symptomaticRate} & number (double) & Yes \\ \hline
+\texttt{severeSymptomsRate} & number (double) & Yes \\ \hline
+\rowcolor{gray!5}
+\texttt{hospitalSeekingRate} & number (double) & Yes \\ \hline
+\texttt{immunityDuration} & number (double) & Yes \\ \hline
+\rowcolor{gray!5}
+\texttt{reinfectionResistance} & number (double) & Yes \\ \hline
+\texttt{maskEffectiveness} & number (double) & Yes \\ \hline
+\rowcolor{gray!5}
+\texttt{vaccineEffectiveness} & number (double) & Yes \\ \hline
+\end{tabular}\\[0.5em]
+\vspace{0.3em}
+\textbf{\textcolor{purple}{Responses:}}\\[0.2em]
+\begin{tabular}{|c|p{10cm}|}
+\hline
+\rowcolor{gray!20}
+\textbf{Status Code} & \textbf{Description} \\ \hline
+\colorbox{green!20}{\textbf{200}} & OK \\ \hline
+\end{tabular}
+\end{tcolorbox}
+\vspace{0.5em}
+
+\begin{tcolorbox}[
     colback=green!5,
     colframe=green,
     arc=2mm,
@@ -996,6 +1055,48 @@ Schema: \texttt{SetupDiseaseDto}\\[0.3em]
 \end{tabular}\\[0.5em]
 \vspace{0.3em}
 \textbf{\textcolor{green}{Request Body:}}\\[0.2em]
+\vspace{0.3em}
+\textbf{\textcolor{purple}{Responses:}}\\[0.2em]
+\begin{tabular}{|c|p{10cm}|}
+\hline
+\rowcolor{gray!20}
+\textbf{Status Code} & \textbf{Description} \\ \hline
+\colorbox{green!20}{\textbf{200}} & OK \\ \hline
+\end{tabular}
+\end{tcolorbox}
+\vspace{0.5em}
+
+\begin{tcolorbox}[
+    colback=orange!5,
+    colframe=orange,
+    arc=2mm,
+    boxrule=1pt,
+    left=5pt,
+    right=5pt,
+    top=5pt,
+    bottom=5pt
+]
+\noindent\colorbox{orange}{\textcolor{white}{\textbf{PUT}}} 
+\texttt{\large /api/Simulation/\textbackslash{}{id\textbackslash{}}/initial-infection}\\[0.3em]
+\textit{Updates the initial infection count for a simulation.
+This determines how many agents are infected when the simulation is reset.}\\[0.3em]
+\vspace{0.3em}
+\textbf{\textcolor{blue}{Parameters:}}\\[0.2em]
+\begin{tabular}{|l|l|l|}
+\hline
+\rowcolor{gray!20}
+\textbf{Name} & \textbf{Location} & \textbf{Type} \\ \hline
+\texttt{id} & path & \texttt{integer} \\ \hline
+\end{tabular}\\[0.5em]
+\vspace{0.3em}
+\textbf{\textcolor{green}{Request Body:}}\\[0.2em]
+Schema: \texttt{UpdateInitialInfectionDto}\\[0.3em]
+\begin{tabular}{|l|l|l|}
+\hline
+\rowcolor{green!10}
+\textbf{Property} & \textbf{Type} & \textbf{Nullable} \\ \hline
+\texttt{count} & integer (int32) & No \\ \hline
+\end{tabular}\\[0.5em]
 \vspace{0.3em}
 \textbf{\textcolor{purple}{Responses:}}\\[0.2em]
 \begin{tabular}{|c|p{10cm}|}
@@ -1079,6 +1180,154 @@ Schema: \texttt{SetupMapAreaDto}\\[0.3em]
 \texttt{radiusKm} & number (double) & Yes \\ \hline
 \rowcolor{gray!5}
 \texttt{savePreset} & boolean & Yes \\ \hline
+\end{tabular}\\[0.5em]
+\vspace{0.3em}
+\textbf{\textcolor{purple}{Responses:}}\\[0.2em]
+\begin{tabular}{|c|p{10cm}|}
+\hline
+\rowcolor{gray!20}
+\textbf{Status Code} & \textbf{Description} \\ \hline
+\colorbox{green!20}{\textbf{200}} & OK \\ \hline
+\end{tabular}
+\end{tcolorbox}
+\vspace{0.5em}
+
+\begin{tcolorbox}[
+    colback=orange!5,
+    colframe=orange,
+    arc=2mm,
+    boxrule=1pt,
+    left=5pt,
+    right=5pt,
+    top=5pt,
+    bottom=5pt
+]
+\noindent\colorbox{orange}{\textcolor{white}{\textbf{PUT}}} 
+\texttt{\large /api/Simulation/\textbackslash{}{id\textbackslash{}}/metric-frequency}\\[0.3em]
+\textit{Updates how frequently metrics are recorded (in ticks).}\\[0.3em]
+\vspace{0.3em}
+\textbf{\textcolor{blue}{Parameters:}}\\[0.2em]
+\begin{tabular}{|l|l|l|}
+\hline
+\rowcolor{gray!20}
+\textbf{Name} & \textbf{Location} & \textbf{Type} \\ \hline
+\texttt{id} & path & \texttt{integer} \\ \hline
+\end{tabular}\\[0.5em]
+\vspace{0.3em}
+\textbf{\textcolor{green}{Request Body:}}\\[0.2em]
+Schema: \texttt{UpdateMetricFrequencyDto}\\[0.3em]
+\begin{tabular}{|l|l|l|}
+\hline
+\rowcolor{green!10}
+\textbf{Property} & \textbf{Type} & \textbf{Nullable} \\ \hline
+\texttt{frequency} & integer (int32) & No \\ \hline
+\end{tabular}\\[0.5em]
+\vspace{0.3em}
+\textbf{\textcolor{purple}{Responses:}}\\[0.2em]
+\begin{tabular}{|c|p{10cm}|}
+\hline
+\rowcolor{gray!20}
+\textbf{Status Code} & \textbf{Description} \\ \hline
+\colorbox{green!20}{\textbf{200}} & OK \\ \hline
+\end{tabular}
+\end{tcolorbox}
+\vspace{0.5em}
+
+\begin{tcolorbox}[
+    colback=blue!5,
+    colframe=blue,
+    arc=2mm,
+    boxrule=1pt,
+    left=5pt,
+    right=5pt,
+    top=5pt,
+    bottom=5pt
+]
+\noindent\colorbox{blue}{\textcolor{white}{\textbf{GET}}} 
+\texttt{\large /api/Simulation/\textbackslash{}{id\textbackslash{}}/metrics}\\[0.3em]
+\vspace{0.3em}
+\textbf{\textcolor{blue}{Parameters:}}\\[0.2em]
+\begin{tabular}{|l|l|l|}
+\hline
+\rowcolor{gray!20}
+\textbf{Name} & \textbf{Location} & \textbf{Type} \\ \hline
+\texttt{id} & path & \texttt{integer} \\ \hline
+\rowcolor{gray!5}
+\texttt{startTick} & query & \texttt{integer} \\ \hline
+\texttt{endTick} & query & \texttt{integer} \\ \hline
+\end{tabular}\\[0.5em]
+\vspace{0.3em}
+\textbf{\textcolor{purple}{Responses:}}\\[0.2em]
+\begin{tabular}{|c|p{10cm}|}
+\hline
+\rowcolor{gray!20}
+\textbf{Status Code} & \textbf{Description} \\ \hline
+\colorbox{green!20}{\textbf{200}} & OK \\ \hline
+\end{tabular}
+\end{tcolorbox}
+\vspace{0.5em}
+
+\begin{tcolorbox}[
+    colback=blue!5,
+    colframe=blue,
+    arc=2mm,
+    boxrule=1pt,
+    left=5pt,
+    right=5pt,
+    top=5pt,
+    bottom=5pt
+]
+\noindent\colorbox{blue}{\textcolor{white}{\textbf{GET}}} 
+\texttt{\large /api/Simulation/\textbackslash{}{id\textbackslash{}}/mitigations}\\[0.3em]
+\vspace{0.3em}
+\textbf{\textcolor{blue}{Parameters:}}\\[0.2em]
+\begin{tabular}{|l|l|l|}
+\hline
+\rowcolor{gray!20}
+\textbf{Name} & \textbf{Location} & \textbf{Type} \\ \hline
+\texttt{id} & path & \texttt{integer} \\ \hline
+\end{tabular}\\[0.5em]
+\vspace{0.3em}
+\textbf{\textcolor{purple}{Responses:}}\\[0.2em]
+\begin{tabular}{|c|p{10cm}|}
+\hline
+\rowcolor{gray!20}
+\textbf{Status Code} & \textbf{Description} \\ \hline
+\colorbox{green!20}{\textbf{200}} & OK \\ \hline
+\end{tabular}
+\end{tcolorbox}
+\vspace{0.5em}
+
+\begin{tcolorbox}[
+    colback=orange!5,
+    colframe=orange,
+    arc=2mm,
+    boxrule=1pt,
+    left=5pt,
+    right=5pt,
+    top=5pt,
+    bottom=5pt
+]
+\noindent\colorbox{orange}{\textcolor{white}{\textbf{PUT}}} 
+\texttt{\large /api/Simulation/\textbackslash{}{id\textbackslash{}}/mitigations}\\[0.3em]
+\textit{Replaces all mitigations for a simulation with a new set.
+Deletes all future snapshots and metrics as mitigations affect outcomes.}\\[0.3em]
+\vspace{0.3em}
+\textbf{\textcolor{blue}{Parameters:}}\\[0.2em]
+\begin{tabular}{|l|l|l|}
+\hline
+\rowcolor{gray!20}
+\textbf{Name} & \textbf{Location} & \textbf{Type} \\ \hline
+\texttt{id} & path & \texttt{integer} \\ \hline
+\end{tabular}\\[0.5em]
+\vspace{0.3em}
+\textbf{\textcolor{green}{Request Body:}}\\[0.2em]
+Schema: \texttt{BatchUpdateMitigationsDto}\\[0.3em]
+\begin{tabular}{|l|l|l|}
+\hline
+\rowcolor{green!10}
+\textbf{Property} & \textbf{Type} & \textbf{Nullable} \\ \hline
+\texttt{mitigations} & array & No \\ \hline
 \end{tabular}\\[0.5em]
 \vspace{0.3em}
 \textbf{\textcolor{purple}{Responses:}}\\[0.2em]
@@ -1227,6 +1476,47 @@ Schema: \texttt{SetupPopulationDto}\\[0.3em]
 \end{tabular}\\[0.5em]
 \vspace{0.3em}
 \textbf{\textcolor{green}{Request Body:}}\\[0.2em]
+\vspace{0.3em}
+\textbf{\textcolor{purple}{Responses:}}\\[0.2em]
+\begin{tabular}{|c|p{10cm}|}
+\hline
+\rowcolor{gray!20}
+\textbf{Status Code} & \textbf{Description} \\ \hline
+\colorbox{green!20}{\textbf{200}} & OK \\ \hline
+\end{tabular}
+\end{tcolorbox}
+\vspace{0.5em}
+
+\begin{tcolorbox}[
+    colback=orange!5,
+    colframe=orange,
+    arc=2mm,
+    boxrule=1pt,
+    left=5pt,
+    right=5pt,
+    top=5pt,
+    bottom=5pt
+]
+\noindent\colorbox{orange}{\textcolor{white}{\textbf{PUT}}} 
+\texttt{\large /api/Simulation/\textbackslash{}{id\textbackslash{}}/snapshot-frequency}\\[0.3em]
+\textit{Updates how frequently snapshots are saved (in ticks).}\\[0.3em]
+\vspace{0.3em}
+\textbf{\textcolor{blue}{Parameters:}}\\[0.2em]
+\begin{tabular}{|l|l|l|}
+\hline
+\rowcolor{gray!20}
+\textbf{Name} & \textbf{Location} & \textbf{Type} \\ \hline
+\texttt{id} & path & \texttt{integer} \\ \hline
+\end{tabular}\\[0.5em]
+\vspace{0.3em}
+\textbf{\textcolor{green}{Request Body:}}\\[0.2em]
+Schema: \texttt{UpdateSnapshotFrequencyDto}\\[0.3em]
+\begin{tabular}{|l|l|l|}
+\hline
+\rowcolor{green!10}
+\textbf{Property} & \textbf{Type} & \textbf{Nullable} \\ \hline
+\texttt{frequency} & integer (int32) & No \\ \hline
+\end{tabular}\\[0.5em]
 \vspace{0.3em}
 \textbf{\textcolor{purple}{Responses:}}\\[0.2em]
 \begin{tabular}{|c|p{10cm}|}

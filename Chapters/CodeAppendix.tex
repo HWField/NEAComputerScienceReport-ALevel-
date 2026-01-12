@@ -4,151 +4,111 @@
 This appendix contains the complete source code for the project.
 
 \section{Index}
-\textbf{Frontend}
-\begin{itemize}
-  \item \texttt{frontend (32 files)}
-    \begin{itemize}
-      \item \texttt{src (30 files)}
-        \begin{itemize}
-          \item \texttt{api (2 files)}
-            \begin{itemize}
-              \item \nameref{code:frontend:src:api:axios.js}
-              \item \nameref{code:frontend:src:api:simulation.ts}
-            \end{itemize}
-          \item \texttt{components (14 files)}
-            \begin{itemize}
-              \item \texttt{charts (6 files)}
-                \begin{itemize}
-                  \item \nameref{code:frontend:src:components:charts:ActiveCasesChart.vue}
-                  \item \nameref{code:frontend:src:components:charts:DailyInfectionsChart.vue}
-                  \item \nameref{code:frontend:src:components:charts:InfectionTimelineChart.vue}
-                  \item \nameref{code:frontend:src:components:charts:MetricsSummary.vue}
-                  \item \nameref{code:frontend:src:components:charts:PopulationStackedChart.vue}
-                  \item \nameref{code:frontend:src:components:charts:RValueChart.vue}
-                \end{itemize}
-              \item \nameref{code:frontend:src:components:AppToast.vue}
-              \item \nameref{code:frontend:src:components:CreateSimulationModal.vue}
-              \item \nameref{code:frontend:src:components:Navbar.vue}
-              \item \nameref{code:frontend:src:components:SimulationAnalyse.vue}
-              \item \nameref{code:frontend:src:components:SimulationConfigure.vue}
-              \item \nameref{code:frontend:src:components:SimulationDetailsModal.vue}
-              \item \nameref{code:frontend:src:components:SimulationMap.vue}
-              \item \nameref{code:frontend:src:components:SimulationSimulate.vue}
-            \end{itemize}
-          \item \texttt{composables (1 file)}
-            \begin{itemize}
-              \item \nameref{code:frontend:src:composables:useSimulationHub.ts}
-            \end{itemize}
-          \item \texttt{layouts (1 file)}
-            \begin{itemize}
-              \item \nameref{code:frontend:src:layouts:MainLayout.vue}
-            \end{itemize}
-          \item \texttt{router (1 file)}
-            \begin{itemize}
-              \item \nameref{code:frontend:src:router:index.ts}
-            \end{itemize}
-          \item \texttt{stores (2 files)}
-            \begin{itemize}
-              \item \nameref{code:frontend:src:stores:useToastStore.ts}
-              \item \nameref{code:frontend:src:stores:useUserStore.js}
-            \end{itemize}
-          \item \texttt{views (6 files)}
-            \begin{itemize}
-              \item \nameref{code:frontend:src:views:admin.vue}
-              \item \nameref{code:frontend:src:views:authentication.vue}
-              \item \nameref{code:frontend:src:views:dashboard.vue}
-              \item \nameref{code:frontend:src:views:error.vue}
-              \item \nameref{code:frontend:src:views:settings.vue}
-              \item \nameref{code:frontend:src:views:simulation.vue}
-            \end{itemize}
-          \item \nameref{code:frontend:src:App.vue}
-          \item \nameref{code:frontend:src:main.ts}
-          \item \nameref{code:frontend:src:style.css}
-        \end{itemize}
-      \item \nameref{code:frontend:index.html}
-      \item \nameref{code:frontend:vite.config.ts}
-    \end{itemize}
-\end{itemize}
+\subsection*{Frontend}
+{\ttfamily\small\obeyspaces
+└── frontend (32 files)\par
+    ├── src (30 files)\par
+    │   ├── api (2 files)\par
+    │   │   ├── ▷ \nameref{code:frontend:src:api:axios.js}\par
+    │   │   └── ▷ \nameref{code:frontend:src:api:simulation.ts}\par
+    │   ├── components (14 files)\par
+    │   │   ├── charts (6 files)\par
+    │   │   │   ├── ▷ \nameref{code:frontend:src:components:charts:ActiveCasesChart.vue}\par
+    │   │   │   ├── ▷ \nameref{code:frontend:src:components:charts:DailyInfectionsChart.vue}\par
+    │   │   │   ├── ▷ \nameref{code:frontend:src:components:charts:InfectionTimelineChart.vue}\par
+    │   │   │   ├── ▷ \nameref{code:frontend:src:components:charts:MetricsSummary.vue}\par
+    │   │   │   ├── ▷ \nameref{code:frontend:src:components:charts:PopulationStackedChart.vue}\par
+    │   │   │   └── ▷ \nameref{code:frontend:src:components:charts:RValueChart.vue}\par
+    │   │   ├── ▷ \nameref{code:frontend:src:components:AppToast.vue}\par
+    │   │   ├── ▷ \nameref{code:frontend:src:components:CreateSimulationModal.vue}\par
+    │   │   ├── ▷ \nameref{code:frontend:src:components:Navbar.vue}\par
+    │   │   ├── ▷ \nameref{code:frontend:src:components:SimulationAnalyse.vue}\par
+    │   │   ├── ▷ \nameref{code:frontend:src:components:SimulationConfigure.vue}\par
+    │   │   ├── ▷ \nameref{code:frontend:src:components:SimulationDetailsModal.vue}\par
+    │   │   ├── ▷ \nameref{code:frontend:src:components:SimulationMap.vue}\par
+    │   │   └── ▷ \nameref{code:frontend:src:components:SimulationSimulate.vue}\par
+    │   ├── composables (1 file)\par
+    │   │   └── ▷ \nameref{code:frontend:src:composables:useSimulationHub.ts}\par
+    │   ├── layouts (1 file)\par
+    │   │   └── ▷ \nameref{code:frontend:src:layouts:MainLayout.vue}\par
+    │   ├── router (1 file)\par
+    │   │   └── ▷ \nameref{code:frontend:src:router:index.ts}\par
+    │   ├── stores (2 files)\par
+    │   │   ├── ▷ \nameref{code:frontend:src:stores:useToastStore.ts}\par
+    │   │   └── ▷ \nameref{code:frontend:src:stores:useUserStore.js}\par
+    │   ├── views (6 files)\par
+    │   │   ├── ▷ \nameref{code:frontend:src:views:admin.vue}\par
+    │   │   ├── ▷ \nameref{code:frontend:src:views:authentication.vue}\par
+    │   │   ├── ▷ \nameref{code:frontend:src:views:dashboard.vue}\par
+    │   │   ├── ▷ \nameref{code:frontend:src:views:error.vue}\par
+    │   │   ├── ▷ \nameref{code:frontend:src:views:settings.vue}\par
+    │   │   └── ▷ \nameref{code:frontend:src:views:simulation.vue}\par
+    │   ├── ▷ \nameref{code:frontend:src:App.vue}\par
+    │   ├── ▷ \nameref{code:frontend:src:main.ts}\par
+    │   └── ▷ \nameref{code:frontend:src:style.css}\par
+    ├── ▷ \nameref{code:frontend:index.html}\par
+    └── ▷ \nameref{code:frontend:vite.config.ts}\par
+}
 
-\textbf{Backend}
-\begin{itemize}
-  \item \texttt{SimulationAPI (46 files)}
-    \begin{itemize}
-      \item \texttt{Controllers (5 files)}
-        \begin{itemize}
-          \item \nameref{code:SimulationAPI:Controllers:AdminController.cs}
-          \item \nameref{code:SimulationAPI:Controllers:AuthController.cs}
-          \item \nameref{code:SimulationAPI:Controllers:PresetController.cs}
-          \item \nameref{code:SimulationAPI:Controllers:ProfileController.cs}
-          \item \nameref{code:SimulationAPI:Controllers:SimulationsController.cs}
-        \end{itemize}
-      \item \texttt{DTOs (7 files)}
-        \begin{itemize}
-          \item \nameref{code:SimulationAPI:DTOs:AuthDtos.cs}
-          \item \nameref{code:SimulationAPI:DTOs:CreateSimulationDto.cs}
-          \item \nameref{code:SimulationAPI:DTOs:MitigationDtos.cs}
-          \item \nameref{code:SimulationAPI:DTOs:RefreshDto.cs}
-          \item \nameref{code:SimulationAPI:DTOs:UpdatePresetDto.cs}
-          \item \nameref{code:SimulationAPI:DTOs:UpdateProfileDto.cs}
-          \item \nameref{code:SimulationAPI:DTOs:UpdateSimulationDto.cs}
-        \end{itemize}
-      \item \texttt{Data (1 file)}
-        \begin{itemize}
-          \item \nameref{code:SimulationAPI:Data:SimDbContext.cs}
-        \end{itemize}
-      \item \texttt{Hubs (1 file)}
-        \begin{itemize}
-          \item \nameref{code:SimulationAPI:Hubs:SimulationHub.cs}
-        \end{itemize}
-      \item \texttt{Models (14 files)}
-        \begin{itemize}
-          \item \nameref{code:SimulationAPI:Models:Agent.cs}
-          \item \nameref{code:SimulationAPI:Models:Building.cs}
-          \item \nameref{code:SimulationAPI:Models:Disease.cs}
-          \item \nameref{code:SimulationAPI:Models:MapArea.cs}
-          \item \nameref{code:SimulationAPI:Models:MedicalProfile.cs}
-          \item \nameref{code:SimulationAPI:Models:Mitigation.cs}
-          \item \nameref{code:SimulationAPI:Models:Path.cs}
-          \item \nameref{code:SimulationAPI:Models:Presets.cs}
-          \item \nameref{code:SimulationAPI:Models:RefreshToken.cs}
-          \item \nameref{code:SimulationAPI:Models:Routine.cs}
-          \item \nameref{code:SimulationAPI:Models:Simulation.cs}
-          \item \nameref{code:SimulationAPI:Models:SimulationMetric.cs}
-          \item \nameref{code:SimulationAPI:Models:SimulationSnapshot.cs}
-          \item \nameref{code:SimulationAPI:Models:User.cs}
-        \end{itemize}
-      \item \texttt{Services (9 files)}
-        \begin{itemize}
-          \item \nameref{code:SimulationAPI:Services:AgentService.cs}
-          \item \nameref{code:SimulationAPI:Services:BuildingCapacityCalculator.cs}
-          \item \nameref{code:SimulationAPI:Services:BuildingService.cs}
-          \item \nameref{code:SimulationAPI:Services:InfectionService.cs}
-          \item \nameref{code:SimulationAPI:Services:MovementSystem.cs}
-          \item \nameref{code:SimulationAPI:Services:OsmService.cs}
-          \item \nameref{code:SimulationAPI:Services:PresetService.cs}
-          \item \nameref{code:SimulationAPI:Services:RoutingService.cs}
-          \item \nameref{code:SimulationAPI:Services:SimulationBroadcastService.cs}
-        \end{itemize}
-      \item \texttt{Simulation (7 files)}
-        \begin{itemize}
-          \item \texttt{Structs (1 file)}
-            \begin{itemize}
-              \item \nameref{code:SimulationAPI:Simulation:Structs:RuntimeStates.cs}
-            \end{itemize}
-          \item \nameref{code:SimulationAPI:Simulation:MetricManager.cs}
-          \item \nameref{code:SimulationAPI:Simulation:SimulationContext.cs}
-          \item \nameref{code:SimulationAPI:Simulation:SimulationEngine.cs}
-          \item \nameref{code:SimulationAPI:Simulation:SimulationManager.cs}
-          \item \nameref{code:SimulationAPI:Simulation:SimulationSetup.cs}
-          \item \nameref{code:SimulationAPI:Simulation:SnapshotManager.cs}
-        \end{itemize}
-      \item \texttt{Utils (1 file)}
-        \begin{itemize}
-          \item \nameref{code:SimulationAPI:Utils:SimulationTimeHelper.cs}
-        \end{itemize}
-      \item \nameref{code:SimulationAPI:Program.cs}
-    \end{itemize}
-\end{itemize}
+\subsection*{Backend}
+{\ttfamily\small\obeyspaces
+└── SimulationAPI (46 files)\par
+    ├── Controllers (5 files)\par
+    │   ├── ▷ \nameref{code:SimulationAPI:Controllers:AdminController.cs}\par
+    │   ├── ▷ \nameref{code:SimulationAPI:Controllers:AuthController.cs}\par
+    │   ├── ▷ \nameref{code:SimulationAPI:Controllers:PresetController.cs}\par
+    │   ├── ▷ \nameref{code:SimulationAPI:Controllers:ProfileController.cs}\par
+    │   └── ▷ \nameref{code:SimulationAPI:Controllers:SimulationsController.cs}\par
+    ├── DTOs (7 files)\par
+    │   ├── ▷ \nameref{code:SimulationAPI:DTOs:AuthDtos.cs}\par
+    │   ├── ▷ \nameref{code:SimulationAPI:DTOs:CreateSimulationDto.cs}\par
+    │   ├── ▷ \nameref{code:SimulationAPI:DTOs:MitigationDtos.cs}\par
+    │   ├── ▷ \nameref{code:SimulationAPI:DTOs:RefreshDto.cs}\par
+    │   ├── ▷ \nameref{code:SimulationAPI:DTOs:UpdatePresetDto.cs}\par
+    │   ├── ▷ \nameref{code:SimulationAPI:DTOs:UpdateProfileDto.cs}\par
+    │   └── ▷ \nameref{code:SimulationAPI:DTOs:UpdateSimulationDto.cs}\par
+    ├── Data (1 file)\par
+    │   └── ▷ \nameref{code:SimulationAPI:Data:SimDbContext.cs}\par
+    ├── Hubs (1 file)\par
+    │   └── ▷ \nameref{code:SimulationAPI:Hubs:SimulationHub.cs}\par
+    ├── Models (14 files)\par
+    │   ├── ▷ \nameref{code:SimulationAPI:Models:Agent.cs}\par
+    │   ├── ▷ \nameref{code:SimulationAPI:Models:Building.cs}\par
+    │   ├── ▷ \nameref{code:SimulationAPI:Models:Disease.cs}\par
+    │   ├── ▷ \nameref{code:SimulationAPI:Models:MapArea.cs}\par
+    │   ├── ▷ \nameref{code:SimulationAPI:Models:MedicalProfile.cs}\par
+    │   ├── ▷ \nameref{code:SimulationAPI:Models:Mitigation.cs}\par
+    │   ├── ▷ \nameref{code:SimulationAPI:Models:Path.cs}\par
+    │   ├── ▷ \nameref{code:SimulationAPI:Models:Presets.cs}\par
+    │   ├── ▷ \nameref{code:SimulationAPI:Models:RefreshToken.cs}\par
+    │   ├── ▷ \nameref{code:SimulationAPI:Models:Routine.cs}\par
+    │   ├── ▷ \nameref{code:SimulationAPI:Models:Simulation.cs}\par
+    │   ├── ▷ \nameref{code:SimulationAPI:Models:SimulationMetric.cs}\par
+    │   ├── ▷ \nameref{code:SimulationAPI:Models:SimulationSnapshot.cs}\par
+    │   └── ▷ \nameref{code:SimulationAPI:Models:User.cs}\par
+    ├── Services (9 files)\par
+    │   ├── ▷ \nameref{code:SimulationAPI:Services:AgentService.cs}\par
+    │   ├── ▷ \nameref{code:SimulationAPI:Services:BuildingCapacityCalculator.cs}\par
+    │   ├── ▷ \nameref{code:SimulationAPI:Services:BuildingService.cs}\par
+    │   ├── ▷ \nameref{code:SimulationAPI:Services:InfectionService.cs}\par
+    │   ├── ▷ \nameref{code:SimulationAPI:Services:MovementSystem.cs}\par
+    │   ├── ▷ \nameref{code:SimulationAPI:Services:OsmService.cs}\par
+    │   ├── ▷ \nameref{code:SimulationAPI:Services:PresetService.cs}\par
+    │   ├── ▷ \nameref{code:SimulationAPI:Services:RoutingService.cs}\par
+    │   └── ▷ \nameref{code:SimulationAPI:Services:SimulationBroadcastService.cs}\par
+    ├── Simulation (7 files)\par
+    │   ├── Structs (1 file)\par
+    │   │   └── ▷ \nameref{code:SimulationAPI:Simulation:Structs:RuntimeStates.cs}\par
+    │   ├── ▷ \nameref{code:SimulationAPI:Simulation:MetricManager.cs}\par
+    │   ├── ▷ \nameref{code:SimulationAPI:Simulation:SimulationContext.cs}\par
+    │   ├── ▷ \nameref{code:SimulationAPI:Simulation:SimulationEngine.cs}\par
+    │   ├── ▷ \nameref{code:SimulationAPI:Simulation:SimulationManager.cs}\par
+    │   ├── ▷ \nameref{code:SimulationAPI:Simulation:SimulationSetup.cs}\par
+    │   └── ▷ \nameref{code:SimulationAPI:Simulation:SnapshotManager.cs}\par
+    ├── Utils (1 file)\par
+    │   └── ▷ \nameref{code:SimulationAPI:Utils:SimulationTimeHelper.cs}\par
+    └── ▷ \nameref{code:SimulationAPI:Program.cs}\par
+}
 \newpage
 \section{Frontend}
 \makeatletter

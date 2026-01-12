@@ -40,7 +40,6 @@ SUPPORTED_EXTENSIONS = {
     ".vue": "vue",
     ".md": "markdown",
 }
-#     ".json": "json", removed to avoid large lock files
 
 IGNORE_DIRS = {
     ".git",
@@ -120,32 +119,37 @@ def count_files(tree: dict) -> int:
 # =======================
 # LATEX EMISSION
 # =======================
-
-def emit_tree(tree: dict, indent: int = 0) -> list[str]:
+def emit_tree_lines(tree: dict, prefix: str = "") -> list[str]:
+    """
+    Emit tree lines for LaTeX appendix.
+    Each line ends with \par for proper line break.
+    Spaces in prefix are preserved.
+    """
     lines = []
-    pad = "  " * indent
-    lines.append(f"{pad}\\begin{{itemize}}")
 
-    # folders
-    for key in sorted(k for k in tree.keys() if k != "_files"):
-        subtree = tree[key]
-        file_count = count_files(subtree)
-        display = f"{latex_escape(key)} ({file_count} file{'s' if file_count != 1 else ''})"
+    # Separate folders and files
+    folders = sorted(k for k in tree.keys() if k != "_files")
+    files = sorted(tree.get("_files", []))
+    entries = [(True, k) for k in folders] + [(False, f) for f in files]
 
-        lines.append(f"{pad}  \\item \\texttt{{{display}}}")
-        lines.extend(emit_tree(subtree, indent + 2))
+    for i, (is_folder, name) in enumerate(entries):
+        is_last = i == len(entries) - 1
+        branch = "└── " if is_last else "├── "
+        next_prefix = prefix + ("    " if is_last else "│   ")
 
-    # files
-    for file in sorted(tree.get("_files", [])):
-        label = label_for_path(file)
-        name = latex_escape(file.split("/")[-1])
-        lines.append(
-            f"{pad}  \\item \\nameref{{" + label + "}"
-        )
+        if is_folder:
+            subtree = tree[name]
+            file_count = count_files(subtree)
+            display = f"{latex_escape(name)} ({file_count} file{'s' if file_count != 1 else ''})"
+            # prepend current prefix only
+            lines.append(prefix + branch + display + r"\par")
+            # recurse for children
+            lines.extend(emit_tree_lines(subtree, next_prefix))
+        else:
+            label = label_for_path(name)
+            lines.append(prefix + branch + "▷ " + r"\nameref{" + label + r"}" + r"\par")
 
-    lines.append(f"{pad}\\end{{itemize}}")
     return lines
-
 def emit_code_listing(rel_path: str) -> list[str]:
     abs_path = PROJECT_ROOT / rel_path
     label = label_for_path(rel_path)
@@ -206,11 +210,17 @@ def generate():
 
     # ===== Index =====
     out.append(r"\section{Index}")
-    out.append(r"\textbf{Frontend}")
-    out.extend(emit_tree(frontend_tree))
+
+    out.append(r"\subsection*{Frontend}")
+    out.append(r"{\ttfamily\small\obeyspaces")
+    out.extend(emit_tree_lines(frontend_tree))
+    out.append(r"}")
     out.append("")
-    out.append(r"\textbf{Backend}")
-    out.extend(emit_tree(backend_tree))
+
+    out.append(r"\subsection*{Backend}")
+    out.append(r"{\ttfamily\small\obeyspaces")
+    out.extend(emit_tree_lines(backend_tree))
+    out.append(r"}")
     out.append(r"\newpage")
 
     # ===== Listings =====
