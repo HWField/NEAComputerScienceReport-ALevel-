@@ -1,0 +1,387 @@
+\subsection{Services Design}
+
+As explained above my simulation engine makes use of numerous Services (classes which encapsulate specific functionality) which are each scoped to a specific simulation context. 
+Backend services fall into five categories:
+\begin{itemize}
+  \item \textbf{Management services} – coordinate simulation lifecycle and orchestration.
+  \item \textbf{Scoped simulation services} – operate on in-memory state during each simulation tick.
+  \item \textbf{External integration services} – interface with third-party data sources or presets.
+  \item \textbf{Communication services} – broadcast state and progress to connected clients.
+  \item \textbf{Utility services} – stateless helpers used across multiple components.
+\end{itemize}
+
+The following table documents the key methods and objects within each backend service class, providing a comprehensive reference for the system's internal architecture.
+% Define column widths for better control
+\newcolumntype{L}[1]{>{\raggedright\arraybackslash}p{#1}}
+\newcolumntype{C}[1]{>{\centering\arraybackslash}p{#1}}
+
+\begin{longtable}{|L{4cm}|L{4cm}|L{6cm}|}
+\caption{Class methods} \label{tab:service-methods} \\
+
+% Header for first page
+\hline
+\rowcolor{gray!30}
+\textbf{Service Class} & \textbf{Method/Object} & \textbf{Purpose/Description} \\
+\hline
+\endfirsthead
+
+% Header for subsequent pages
+\multicolumn{3}{c}%
+{\tablename\ \thetable\ -- \textit{Continued from previous page}} \\
+\hline
+\rowcolor{gray!30}
+\textbf{Service Class} & \textbf{Method/Object} & \textbf{Purpose/Description} \\
+\hline
+\endhead
+
+% Footer for all pages except last
+\hline
+\multicolumn{3}{r}{\textit{Continued on next page}} \\
+\endfoot
+
+% Footer for last page
+\hline
+\endlastfoot
+
+% SIMULATION MANAGEMENT SERVICES
+\hline
+\multicolumn{3}{|c|}{\cellcolor{blue!20}\textbf{SIMULATION MANAGEMENT SERVICES}} \\
+\hline
+
+\multirow{13}{4cm}{\nameref{code:SimulationAPI:Simulation:SimulationManager.cs}} & 
+\method{SimulationManager(dbFactory, hubContext)} & 
+Constructor initialising the manager with database factory and SignalR hub. Starts periodic broadcast timer for tick updates. \\
+\cline{2-3}
+& \method{GetOrCreateAsync(simulationId)} & 
+Retrieves existing simulation context from memory or creates new one by loading from database. Generates initial states and loads latest snapshot if available. \\
+\cline{2-3}
+& \method{StartAsync(simulationId, targetTick?)} & 
+Starts simulation engine execution. If targetTick provided, runs in computed mode to that tick; otherwise runs in real-time mode. \\
+\cline{2-3}
+& \method{PauseAsync(simulationId)} & 
+Stops simulation engine and updates status to "Paused". Broadcasts updated state to connected clients. \\
+\cline{2-3}
+& \method{SetSpeedAsync(simulationId, speedMultiplier)} & 
+Adjusts simulation playback speed multiplier. \\
+\cline{2-3}
+& \method{SetTickAsync(simulationId, targetTick)} & 
+Pauses simulation and loads nearest snapshot, then computes forward to specified target tick. \\
+\cline{2-3}
+& \method{TryGet(simulationId, out context)} & 
+Attempts to retrieve simulation context from memory. Returns true if found, false otherwise. \\
+\cline{2-3}
+& \method{ResetAsync(simulationId)} & 
+Clears all computed snapshots and metrics from database, unloads simulation from memory, and reloads with clean state. Re-seeds initial infections. \\
+\cline{2-3}
+& \method{RemoveAsync(simulationId)} & 
+Unloads simulation from memory, stops engine, saves final snapshot, and disposes context to release resources. \\
+\cline{2-3}
+& \method{GetAllLoaded()} & 
+Returns enumerable collection of all simulation contexts currently loaded in memory. \\
+\cline{2-3}
+& \method{RemoveAllAsync()} & 
+Iterates through all loaded simulations and removes each one, saving states before disposal. \\
+\cline{2-3}
+& \method{Dispose()} & 
+Disposes broadcast timer and releases managed resources. \\
+\cline{2-3}
+& \method{BroadcastAllStates(state)} (private) & 
+Timer callback that broadcasts current tick and max computed tick for all running simulations via the simulationHub. \\
+\hline
+
+\multirow{5}{4cm}{\nameref{code:SimulationAPI:Simulation:SimulationContext.cs}} & 
+\method{SimulationContext(simulation, dbFactory, hubContext)} & 
+Constructor that loads all relevant database entities (agents, buildings, paths, mitigations) into memory and initialises all scoped services (routing, building, snapshot, metrics, agent, infection). Sets deterministic RNG seed and determines current tick from latest snapshot. \\
+\cline{2-3}
+& \method{ReloadEntities()} & 
+Reloads all entities from database (buildings, agents, paths, mitigations) and reinstantiates routing, building, and agent services. Used when underlying data changes require fresh cache. \\
+\cline{2-3}
+& \method{SaveAsync()} & 
+Persists any pending changes to the database asynchronously using a new database context instance. \\
+\cline{2-3}
+& \method{GenerateStatesAsync()} & 
+Converts database entity objects into efficient runtime struct arrays (AgentState[], BuildingState[], RoutineEventState[]). Applies mitigations, precalculates routine timings, and prepares all state for simulation execution. Runs on background thread. \\
+\cline{2-3}
+& \method{Dispose()} & 
+Releases memory by clearing entity lists and struct arrays. Implements IDisposable pattern for proper resource cleanup when simulation context unloaded. \\
+\hline
+
+\multirow{6}{4cm}{\nameref{code:SimulationAPI:Simulation:SimulationSetup.cs}} & 
+\method{SimulationSetup(dbFactory, presetService, simulationManager, hubContext)} & 
+Constructor initialising setup service with required dependencies for database access, preset management, simulation coordination, and real-time progress broadcasting. \\
+\cline{2-3}
+& \method{InitialiseSimulation(simulationName, userId)} & 
+Creates new simulation entity in database with default parameters (5-minute ticks, metric/snapshot frequencies). Returns simulation ID for subsequent setup steps. \\
+\cline{2-3}
+& \method{SetupMapArea(...)} & 
+Loads or creates map area from OSM preset. Deep-copies buildings and paths into simulation-specific tables. Returns PopulationCapacityResult with housing/workplace capacity constraints for each agent type. Broadcasts progress via SignalR. \\
+\cline{2-3}
+& \method{SetupPopulation(agentCounts, ...)} & 
+Generates agent population based on specified counts per type. Assigns housing and workplaces using BuildingService. Parallelizes routine generation across all CPU cores. Bulk-inserts agents, routines, and medical profiles. Broadcasts real-time progress updates. \\
+\cline{2-3}
+& \method{SetupDisease(...)} & 
+Configures disease parameters from preset or custom values. Optionally saves as new preset. Creates Disease entity linked to simulation with transmission/progression rates. \\
+\cline{2-3}
+& \method{SeedInitialInfection(simulationId, count, userId)} & 
+Randomly infects specified number of agents (1-100) to start epidemic spread. Stores initial infection count in simulation record for reset functionality. \\
+\hline
+
+\multirow{8}{4cm}{\nameref{code:SimulationAPI:Simulation:SnapshotManager.cs}} & 
+\method{SnapshotManager(context)} & 
+Constructor initialising snapshot manager with reference to parent simulation context for accessing state arrays and database factory. \\
+\cline{2-3}
+& \method{SaveSnapshotAsync()} & 
+Serialises complete simulation state (all agent positions, infection states, building occupancies) to database as SimulationSnapshot entity. Deletes existing snapshot at same tick if present. Uses bulk insert with 5000-record batches. \\
+\cline{2-3}
+& \method{LoadTargetTick(targetTick)} & 
+Queries database for nearest snapshot at or before target tick. Restores that snapshot into runtime arrays, then runs simulation in computed mode to reach exact target tick if necessary. Returns false if no suitable snapshot found. \\
+\cline{2-3}
+& \method{LoadLatestSnapshotAsync()} & 
+Retrieves most recent snapshot from database (highest tick number) and restores it into simulation context. Used during simulation context initialisation. Returns false if no snapshots exist. \\
+\cline{2-3}
+& \method{LoadSnapshotDataAsync(snapshot)} (private) & 
+Loads agent and building snapshot records from database in 5000-record batches to avoid memory overflow. Populates snapshot entity's Agents and Buildings collections using AsNoTracking for performance. \\
+\cline{2-3}
+& \method{RestoreSnapshot(snapshot)} (private) & 
+Copies snapshot data into runtime struct arrays (AgentState[], BuildingState[]). Updates CurrentTick and infection metrics. Resets RNG to deterministic state based on simulation ID and tick for reproducibility. \\
+\cline{2-3}
+& \method{FindSnapshotAsync(targetTick)} (private) & 
+Queries database for snapshot with highest tick number not exceeding target. Uses OrderByDescending and FirstOrDefault for efficient retrieval. \\
+\cline{2-3}
+& \method{FindLatestSnapshotAsync()} (private) & 
+Queries database for snapshot with maximum tick number for this simulation. Similar to FindSnapshotAsync but without tick constraint. \\
+\hline
+
+% DOMAIN SERVICES
+\hline
+\multicolumn{3}{|c|}{\cellcolor{green!20}\textbf{Scoped Simulation Services}} \\
+\hline
+
+
+\multirow{4}{4cm}{\nameref{code:SimulationAPI:Simulation:SimulationEngine.cs}} & 
+\method{SimulationEngine(context, hubContext)} & 
+Constructor initialising engine with simulation context and SignalR hub. \\
+\cline{2-3}
+& \method{Start(targetTick?)} & 
+Starts simulation loop in separate thread using runAsync. If targetTick provided, runs in computed mode (full speed to target); otherwise runs in real-time mode with speed multiplier delays. Initialises snapshot timer for periodic saves. \\
+\cline{2-3}
+& \method{Stop()} & 
+Cancels running simulation loop via CancellationTokenSource. Disposes snapshot timer. Safe to call multiple times. \\
+\cline{2-3}
+& \method{RunAsync(cancellationToken, targetTick)} & Manages the tick running loop and associated snapshot / metric recording. Calls Tick method repeatedly for duration of engine run\\
+\cline{2-3}
+& \method{Tick()} (private) & 
+Executes single simulation step: updates all agent positions/routines via AgentService, processes infections via InfectionService, increments CurrentTick, tracks MaxComputedTick. \\
+\hline
+
+\multirow{4}{4cm}{\nameref{code:SimulationAPI:Services:BuildingService.cs}} & 
+\method{BuildingService(context)} & 
+Constructor building KD-trees for each building type to enable O(log n) spatial queries. Caches building lists grouped by type for efficient random selection. \\
+\cline{2-3}
+& \method{FindNearestBuildingByType<T>(lat, lon, k, maxRadius)} & 
+Performs K-nearest neighbour search using KD-tree spatial index. Returns closest building of specified type within radius. Generic constraint ensures type safety. \\
+\cline{2-3}
+& \method{AssignHousing()} & 
+Distributes all agents across residential buildings using weighted random selection. Validates total capacity, shuffles agents with Fisher-Yates algorithm, assigns sequentially to avoid clustering. Updates House navigation properties. \\
+\cline{2-3}
+& \method{AssignWorkplaces(beta, shortlistSize, maxCandidates)} & 
+Assigns agents to appropriate workplace buildings using gravity model with distance decay parameter beta. Shortlists nearby candidates, weights by distance and remaining capacity, selects probabilistically. Handles different agent types (students→schools, workers→offices, etc). \\
+\hline
+
+\multirow{5}{4cm}{\nameref{code:SimulationAPI:Services:RoutingService.cs}} & 
+\method{RoutingService(context)} & 
+Constructor building directed graph adjacency list from OSM paths (respecting one-way flags), creating 200m-cell NodeGridIndex for O(log n) spatial queries, initialising concurrent route cache dictionary. Analyzes graph connectivity to detect disconnected components. Pre-processes all node positions and edge weights with speed modifiers from highway types. \\
+\cline{2-3}
+& \method{ComputeRoute(startLat, startLon, endLat, endLon, avgSpeedMph)} & 
+Computes optimal route using A* pathfinding with haversine distance heuristic. Snaps coordinates to nearest graph nodes via grid index. If nodes disconnected or A* fails (max 10000 iterations), falls back to direct path as teleport at realistic speed. Otherwise searches route with distance/speed edge costs, reconstructs coordinate path via backtracking. Returns coordinate list and travel time in seconds. Caches result in concurrent dictionary for reuse. \\
+\cline{2-3}
+& \method{FindPathAStar(startId, endId)} (private) & 
+Core A* implementation using PriorityQueue with f-score ordering. Maintains gScore (cost from start) and fScore (estimated total cost) dictionaries. Uses haversine heuristic for admissibility. Reconstructs path via cameFrom backtracking. Caches both successful and failed routes to avoid recomputation. Returns null if no path exists after max iterations. \\
+\cline{2-3}
+& \method{CreateDirectPath(startLat, startLon, endLat, endLon, avgSpeedMph)} (private) & 
+Fallback mechanism for disconnected graph components. Creates two-point direct path when A* routing fails. Calculates haversine distance and realistic travel time based on avgSpeedMph. Prevents routing failures from blocking simulation while maintaining distance-proportional travel times. \\
+\cline{2-3}
+& \method{AnalyzeConnectivity(graph, nodes)} (private static) & 
+BFS-based connectivity analysis detecting disconnected graph components. Counts components and identifies largest component size. Warns if multiple components exist (common with real OSM data). Used during graph construction to validate routing coverage and explain potential fallback usage. \\
+\hline
+
+\multirow{4}{4cm}{\nameref{code:SimulationAPI:Services:AgentService.cs}} & 
+\method{AgentService(context)} & 
+Constructor initialising service with simulation context, accessing RoutingService and BuildingService for routine generation and movement. \\
+\cline{2-3}
+& \method{GenerateAgentRoutine(agent)} & 
+Creates daily routine events for agent based on type (student→school, worker→office, etc). Generates travel times using RoutingService, caches paths as coordinate arrays. Returns RoutineEvent list with start times, durations, buildings, and cached paths. \\
+\cline{2-3}
+& \method{GenerateMedicalProfile(agent)} & 
+Creates MedicalProfile with randomised susceptibility, vaccination status, chronic conditions based on agent type. Students: low susceptibility. Elderly: high susceptibility, chronic conditions. Returns configured profile. \\
+\cline{2-3}
+& \method{UpdateAgentsForTick()} & 
+Processes all agents for current tick: checks routine schedules, initiates movement via MovementSystem, updates positions, handles arrivals/departures from buildings. Updates AgentState array and BuildingState occupancy counters. \\
+\hline
+
+\multirow{3}{4cm}{\nameref{code:SimulationAPI:Services:MovementSystem.cs}} & 
+\method{StartMovement(agentId, path, speedMps)} & 
+Initialises agent movement along coordinate path. Creates AgentMovementState tracking current segment index and offset along segment. Sets movement speed in meters/second (default 1.4 m/s walking speed). \\
+\cline{2-3}
+& \method{UpdateAgentPosition(agentId, deltaTimeSeconds)} & 
+Advances agent along path by distance = speed × deltaTime. Updates segment index and offset. When segment complete, moves to next. Returns (lat, lon, hasArrived). Sets hasArrived=true when path end reached. \\
+\cline{2-3}
+& \method{StopMovement(agentId)} & 
+Removes agent from active movement tracking dictionary. Called when agent reaches destination or routine interrupted. \\
+\hline
+
+\multirow{8}{4cm}{\nameref{code:SimulationAPI:Services:InfectionService.cs}} & 
+\method{InfectionService(context)} & 
+Constructor initialising infection tracking with thread-safe volatile counters for TotalInfections, ActiveInfections, Deaths, Recoveries, SymptomaticCases, ReportedCases. Converts disease InfectionRate (hourly probability) to per-tick transmission probability using tick length. Sets airborne transmission parameters: 2m radius, 2.5× indoor multiplier, 0.15× outdoor decay. \\
+\cline{2-3}
+& \method{UpdateInfectionTick()} & 
+Main infection processing loop: (1) Builds 50×50 spatial grid indexing all living agents by lat/lon. (2) For each infected agent past incubation period, queries grid for agents within 2m radius sharing same indoor/outdoor context. (3) Calls TryInfect for each contact with environmental/intervention modifiers. (4) Calls ProgressDisease, DecayImmunity, ProgressVaccination for all agents. (5) Atomically writes infection metrics via Volatile.Write for thread-safe reads. \\
+\cline{2-3}
+& \method{TryInfect(ref infectious, ref susceptible, isIndoors)} (private) & 
+Core transmission logic with multi-factor probability calculation. Base: per-tick transmission rate. Environmental: 2.5× indoor or 0.15× outdoor. Interventions: mask effectiveness (probabilistic per adoption rate, double-layered protection), vaccine effectiveness (time-progressed, reduces susceptibility). Host factors: natural immunity from previous infections, 1.5× chronic condition risk. Viral load: peaks at 50\% infection progress (1.5× multiplier). Behavioral: 70\% reduction if symptomatic outdoors. Performs Bernoulli trial, sets HealthState=Infected with symptom severity draw on success. \\
+\cline{2-3}
+& \method{ProgressDisease(ref agent)} (private) & 
+Advances infection progress at disease RecoveryRate per day. Symptoms develop dynamically: ramp up to peak at 50\% progress, then decline. Mortality check occurs once at peak (50\%): base MortalityRate × Susceptibility × 3.5 if chronic condition × 2 if severe symptoms. On death: sets HealthState=Dead, increments counter. On recovery (100\% progress): sets HealthState=Recovered, grants immunity = ReinfectionResistance × 1.2 if vaccinated × 0.7 if chronic condition, increments recovery counter. \\
+\cline{2-3}
+& \method{BuildSpatialIndex(agents)} (private) & 
+Constructs 50×50 uniform grid covering agent lat/lon bounding box. Inserts all living agents into grid cells. Returns SpatialIndex enabling O(1) proximity queries for infection radius checks. Grid cell size auto-calculated from world bounds divided by 50. \\
+\cline{2-3}
+& \method{DecayImmunity(ref agent)} (private) & 
+Decays immunity linearly based on disease ImmunityDuration (days). Decay rate: 1 / (ImmunityDuration × ticksPerDay). When immunity drops below 0.05, resets Recovered agents to Healthy state, enabling reinfection. \\
+\cline{2-3}
+& \method{ProgressVaccination(ref agent)} (private) & 
+Progresses vaccination effectiveness from 0.0 to 1.0 over mitigation's DaysToFullEffectiveness. Uses deterministic RNG seeded with agent ID + simulation ID to check if agent is vaccinated (based on VaccinationRate). Progress rate: 1 / (days × ticksPerDay). Full effectiveness used in TryInfect susceptibility calculations. \\
+\cline{2-3}
+& \method{SeedInfection(count), RestoreMetricsFromSnapshot(...), RecalculateActiveMetrics()} & 
+SeedInfection: Randomly infects count healthy agents (max 10× attempts), sets HealthState=Infected, InfectionProgress=0, draws symptom severity from SymptomaticRate/SevereSymptomsRate, increments TotalInfections atomically. RestoreMetricsFromSnapshot: Writes cumulative metrics via Volatile.Write, calls RecalculateActiveMetrics for current state. RecalculateActiveMetrics: Scans all agents counting active infections, symptomatic cases (severity > 0.1), reported cases (severity > 0.3), writes atomically. \\
+\hline
+
+\multirow{2}{4cm}{\nameref{code:SimulationAPI:Simulation:MetricManager.cs}} & 
+\method{MetricManager(context, hubContext?)} & 
+Constructor initialising manager with simulation context for accessing current tick and AgentStates array, plus optional SignalR hub for broadcasting real-time metrics to connected clients. \\
+\cline{2-3}
+& \method{RecordAsync()} & 
+Scans AgentStates array counting agents by HealthState (Infected, Recovered, Dead) and isolation status (Quarantined). Creates new SimulationMetric entity or updates existing metric at current tick to prevent duplicates. Persists via new DbContext from factory. If hubContext provided, broadcasts metrics to simulation group including derived Healthy count (total - infected - recovered - dead). Called at intervals defined by MetricRecordingFrequency (e.g., every 12 ticks = hourly for 5min ticks). \\
+\hline
+
+% EXTERNAL INTEGRATION SERVICES
+\hline
+\multicolumn{3}{|c|}{\cellcolor{yellow!20}\textbf{Data Services}} \\
+\hline
+
+\multirow{5}{4cm}{\nameref{code:SimulationAPI:Services:OsmService.cs}} & 
+\method{FetchMapDataAsync(lat, lon, radiusKm)} & 
+Orchestrates parallel fetching of both buildings and paths. Calls FetchLocationsAsync and FetchPathsAsync concurrently using Task.WhenAll for performance. Returns tuple of (Buildings, Paths) lists. Typical fetch time: 2-5 seconds for 2km radius depending on urban density. \\
+\cline{2-3}
+& \method{FetchLocationsAsync(lat, lon, radiusKm)} & 
+Constructs Overpass QL query for nodes/ways/relations with building or amenity tags within radius (around filter). Deserializes JSON response stream with System.Text.Json. Processes elements in parallel via Parallel.ForEach with ConcurrentBag for thread-safe collection. For each element: calls ClassifyBuildingType to categorize (Home, School, Medical, Leisure, Retail, Work), extracts lat/lon (element.Lat or element.Center), calls BuildingCapacityCalculator for heuristic capacity, creates OSMBuildingPreset with name/type/coordinates/capacity. Returns list of classified buildings. \\
+\cline{2-3}
+& \method{ClassifyBuildingType(tags)} (private static) & 
+Multi-stage classification algorithm using predefined amenity/building type sets. Priority order: (1) Amenity tag: EducationAmenities→School, MedicalAmenities→Medical, FoodService/LeisureAmenities→Leisure. (2) Healthcare tag→Medical. (3) Shop tag→Retail if in RetailShops set. (4) Office tag→Work. (5) Tourism tag: hotel/hostel→Leisure, museum/attraction→Leisure. (6) Building tag: ResidentialBuildings→Home, WorkBuildings→Work, commercial→Retail if has shop else Work, hospital→Medical, school/university→School. (7) Landuse tag: residential→Home, commercial/retail→Retail, industrial→Work. (8) Address fallback: if has street+housenumber, 70\% Home, 30\% Work. (9) Random fallback: 75\% Home, 25\% Work. Handles real-world OSM tag inconsistencies. \\
+\cline{2-3}
+& \method{FetchPathsAsync(lat, lon, radiusKm)} & 
+Queries Overpass for ways with highway/footway/path/cycleway tags. Deserializes response into node dictionary (nodeId→(lat,lon)) and way list. Processes ways in parallel. For each way: classifies PathType (Walkway, Cycleway, Road, Residential, Motorway) from highway tag, determines IsOneWay from oneway tag, calculates SpeedModifier (0.6-2.0×) based on highway type (motorway=2.0×, primary=1.5×, residential=1.0×, footway=0.6×). Builds ordered OSMPathNodePreset list preserving OSM node IDs (critical for graph connectivity in RoutingService). Returns path segments with node sequences, one-way flags, speed modifiers. Typical result: 500-2000 ways for 2km urban radius. \\
+\cline{2-3}
+& \method{Helper classes: OverpassResponse, Element, Tags} & 
+JSON deserialization DTOs using System.Text.Json attributes. OverpassResponse contains Elements list. Element represents OSM node/way/relation with type, id, lat/lon, center (for ways), tags dictionary, nodes array (way members). Tags contains 30+ OSM tag properties: building, amenity, highway, capacity, levels, name, shop, office, tourism, healthcare, leisure, landuse, address components. Enables strongly-typed parsing of Overpass API responses without dynamic JSON. \\
+\hline
+
+\multirow{4}{4cm}{\nameref{code:SimulationAPI:Services:PresetService.cs}} & 
+\method{PresetService(db, osmService)} & 
+Constructor with database context and OsmService dependency for fetching and persisting map data from Overpass API. \\
+\cline{2-3}
+& \method{FetchAndCreateMapPresetAsync(name, latitude, longitude, radiusKm, userId?)} & 
+Orchestrates preset creation from live OSM data. Calls OsmService.FetchMapDataAsync to retrieve buildings and paths, then passes to CreateMapPresetAsync for persistence. Associates preset with user if userId provided (null for global presets accessible to all users). Returns created MapAreaPreset with generated ID and populated Buildings/Paths collections. \\
+\cline{2-3}
+& \method{CreateMapPresetAsync(name, lat, lon, radiusKm, buildings, paths, userId?)} & 
+High-performance bulk insertion of map data using EFCore.BulkExtensions. Disables change tracking for performance. (1) Bulk inserts MapAreaPreset parent with SetOutputIdentity to capture generated ID. (2) Transforms and bulk inserts OSMBuildingPresets (5000 batch size) linking to parent via MapAreaPresetId. (3) Bulk inserts OSMPathPresets (5000 batch) with SetOutputIdentity for path IDs. (4) Bulk inserts OSMPathNodePresets (10000 batch) linking nodes to paths via OSMPathPresetId, preserving OSMNodeId for graph connectivity. Re-enables change tracking. Returns detached preset with populated collections. Typical performance: 2000 buildings + 1000 paths in 1-2 seconds. \\
+\cline{2-3}
+& \method{SeedDefaultsAsync()} & 
+Seeds database with default data during application startup. (1) Creates admin user with BCrypt-hashed password from environment variable. (2) Seeds disease presets: COVID-19 (InfectionRate=0.02, RecoveryRate=0.07/14days, MortalityRate=0.015/1.5\%, IncubationPeriod=3days, ImmunityDuration=180days, VaccineEffectiveness=0.8) and Influenza (faster incubation=1.5days, shorter recovery=7days, lower CFR=0.5\%, seasonal immunity=90days). (3) Seeds SaffronWalden map area preset (52.0174°N, 0.2438°E, 1km radius) via FetchAndCreateMapPresetAsync. Checks existence before inserting to prevent duplicates. \\
+\hline
+
+% COMMUNICATION SERVICES
+\hline
+\multicolumn{3}{|c|}{\cellcolor{orange!20}\textbf{Communication Services}} \\
+\hline
+
+\multirow{7}{4cm}{\nameref{code:SimulationAPI:Services:SimulationBroadcastService.cs}} & 
+\method{SimulationBroadcastService(hubContext)} & 
+Constructor initialising broadcast service with SignalR hub context. Creates System.Threading.Timer firing every 333ms (3 updates/second) calling BroadcastAllAgentPositions. Initializes two ConcurrentDictionaries: \_clientAgents (connectionId→(simulationId, agentIds)) for per-client agent tracking, \_activeSimulations (simulationId→context) for context lookup. \\
+\cline{2-3}
+& \method{AllocateAgentsToClient(connectionId, simulationId, context, requestedCount)} & 
+Deterministic agent allocation for client tracking. Removes existing allocation for connectionId, registers simulation context in \_activeSimulations. Uses even-distribution algorithm: step = agents.Length / requestedCount, selects agents at indices [0×step, 1×step, 2×step, ...] for representative sampling across entire population. Caps requestedCount to available agents. Stores allocation in \_clientAgents dictionary. Returns array of selected agent IDs. Ensures consistent allocation for same parameters. \\
+\cline{2-3}
+& \method{RemoveClientTracking(connectionId)} & 
+Removes agent tracking for disconnected client. Deletes entry from \_clientAgents concurrent dictionary. Calls CleanupSimulationIfUnused to remove simulation from \_activeSimulations if no remaining clients tracking it. Prevents memory leaks from abandoned connections. \\
+\cline{2-3}
+& \method{BroadcastAllAgentPositions(state)} (private) & 
+Timer callback executing every 333ms. Early-exits if no clients tracking. Iterates through all \_clientAgents entries: retrieves simulation context, calls GatherAgentPositions for tracked agents, calls CalculateHealthMetrics for infection statistics, sends two SignalR messages to specific client: "AgentPositions" (simulationId, tick, agents array, timestamp) and "MetricsUpdate" (tick, health counts, cumulative totals from InfectionService). Enables real-time visualization with 3 updates/second. Catches exceptions per client to prevent cascade failures. \\
+\cline{2-3}
+& \method{GatherAgentPositions(context, agentIds)} (private) & 
+Efficient agent position gathering using O(1) lookup. Creates HashSet from agentIds for constant-time Contains checks. Single-pass through AgentStates array, collecting positions for matched IDs. Creates AgentPositionDto with Id, Lat, Lon, HealthState string, IsIsolating flag, CurrentBuildingId (nullable). Resizes result array to actual found count. Typical performance: 100 agents from 10000 population in <1ms. \\
+\cline{2-3}
+& \method{CalculateHealthMetrics(context)} (private) & 
+Single-pass health metric calculation for efficiency. Iterates through AgentStates array once, counting by HealthState enum (Healthy, Infected, Recovered, Dead) and IsIsolating flag for quarantine count. Derives Healthy count: total - infected - recovered - dead. Returns HealthMetrics struct with 6 integer fields. Called every 333ms per tracked simulation. Optimized for minimal overhead during real-time broadcasts. \\
+\cline{2-3}
+& \method{CleanupSimulationIfUnused(simulationId), Dispose(), Helper classes} & 
+CleanupSimulationIfUnused: Checks if any \_clientAgents values reference simulationId. If none found, removes from \_activeSimulations to free context reference. Prevents memory retention of untracked simulations. Dispose: Stops broadcast timer, clears both concurrent dictionaries. IDisposable pattern for proper cleanup. Helper classes: AgentPositionDto (Id, Lat, Lon, HealthState string, IsIsolating, CurrentBuildingId nullable), HealthMetrics (Total, Healthy, Infected, Recovered, Dead, Quarantined integers). \\
+\hline
+
+\multirow{10}{4cm}{\nameref{code:SimulationAPI:Hubs:SimulationHub.cs}} & 
+\method{SimulationHub(simulationManager, dbFactory, simulationBroadcastService)} & 
+Constructor initializing SignalR Hub with SimulationManager for context lookup, IDbContextFactory for authorization queries, and SimulationBroadcastService for agent tracking management. Hub decorated with [Authorize] attribute requiring authenticated JWT token. \\
+\cline{2-3}
+& \method{OnDisconnectedAsync(exception)} & 
+Cleanup on client disconnect. Retrieves simulationId from static \_connectionSimulations concurrent dictionary, removes connection from SignalR group "Simulation\_\{simId\}", removes dictionary entry. Calls SimulationBroadcastService.RemoveClientTracking to deallocate agents and prevent memory leaks. Critical for handling ungraceful disconnects (browser close, network failure). \\
+\cline{2-3}
+& \method{JoinSimulation(simulationId)} & 
+Authenticates user via GetUserId (ClaimTypes.NameIdentifier from JWT). Queries database for simulation ownership: authorizes if simulation.UserId matches or user IsAdmin. Throws HubException if unauthorized. Stores connectionId→simulationId mapping in \_connectionSimulations. Adds to SignalR group "Simulation\_\{simulationId\}" for targeted broadcasts. If simulation loaded in memory, sends initial "SimulationState" message with CurrentTick, Status, Speed, TickLength. \\
+\cline{2-3}
+& \method{LeaveSimulation(simulationId)} & 
+Removes connection from \_connectionSimulations dictionary and "Simulation\_\{simulationId\}" group. Calls SimulationBroadcastService.RemoveClientTracking to stop agent position broadcasts. Called when user navigates away or explicitly leaves. \\
+\cline{2-3}
+& \method{StartAgentTracking(simulationId, agentCount = 1000)} & 
+Authorizes user (ownership or admin), verifies simulation loaded in memory via TryGet. Calls SimulationBroadcastService.AllocateAgentsToClient with connectionId, simulationId, context, requestedCount. Sends "AgentTrackingStarted" confirmation to caller with allocatedAgentIds array, actual count, updateFrequency=3Hz. Throws HubException if simulation not found/loaded or unauthorized. Default 1000 agents provides balance between visualization detail and network bandwidth. \\
+\cline{2-3}
+& \method{StopAgentTracking()} & 
+Deallocates agents for this connection via SimulationBroadcastService.RemoveClientTracking. Sends "AgentTrackingStopped" confirmation to caller. Reduces network utilization when visualization paused. \\
+\cline{2-3}
+& \method{BroadcastTickUpdate(hubContext, simulationId, currentTick, maximumTick)} (static) & 
+Broadcasts to all clients in "Simulation\_\{simulationId\}" group. Message: "TickUpdate" with currentTick, maximumTick, Unix timestamp. Called by SimulationManager timer every 100ms. Enables real-time timeline slider synchronization across all connected clients. Static method allows invocation from services without Hub instance. \\
+\cline{2-3}
+& \method{BroadcastMetrics(hubContext, simulationId, metrics)} (static) & 
+Broadcasts infection statistics to simulation group. Message: "MetricsUpdate" with metrics object (health counts, cumulative totals). Called by MetricManager after recording (e.g., hourly). Provides data for chart updates. Generic metrics parameter allows flexible payload. \\
+\cline{2-3}
+& \method{BroadcastState(hubContext, simulationId, context)} (static) & 
+Broadcasts simulation state changes (Start/Pause/Speed changes) to group. Message: "SimulationState" with CurrentTick, Status, Speed, TickLength. Called by SimulationManager when state modified via API. Ensures all clients stay synchronized with control actions. \\
+\cline{2-3}
+& \method{BroadcastSetupProgress(hubContext, simulationId, step, message, percentage, current, total)} (static) & 
+Real-time setup progress reporting during population generation and routine creation. Message: "SetupProgress" with step name, descriptive message, percentage (0-100), current/total counts, Unix timestamp. Called by SimulationSetup during long-running operations (map area loading, agent creation, routine generation). Enables progress bars and status messages in frontend. Critical for UX during potentially multi-minute setup processes. \\
+\hline
+
+% UTILITY SERVICES
+\hline
+\multicolumn{3}{|c|}{\cellcolor{purple!20}\textbf{Utility Services}} \\
+\hline
+
+\multirow{2}{4cm}{\nameref{code:SimulationAPI:Services:BuildingCapacityCalculator.cs}} & 
+\method{CalculateCapacity(buildingType, tags)} (static) & 
+Multi-stage heuristic calculator estimating building capacity from OSM tags. Priority: (1) Explicit capacity/beds/flats tags from OSM if present. (2) Type-specific calculations: Home: flats × 2.5 people OR levels-based (apartments=levels×5units×2.5people, houses=4-6, dormitory=levels×25). School: capacity tag OR kindergarten=levels×30, university=levels×200, default=levels×7classrooms×25students. Medical: beds tag OR hospital=levels×75, clinic=levels×15, pharmacy=10. Work: office=levels×40, industrial=levels×20, farm=5. Retail: mall=levels×75, supermarket=levels×40, shop=levels×20. Leisure: cinema/theatre=levels×150, restaurant=levels×40, hotel=levels×20rooms×2people, park=200. (3) GetBuildingLevels parses building:levels tag (capped at 100). (4) Fallback defaults: Home=4, School=200, Medical=50, Work=50, Retail=30, Leisure=50. Returns integer capacity for agent assignment validation. Static/stateless utility enabling reuse across OsmService and BuildingService. \\
+\hline
+\multirow{4}{4cm}{\nameref{code:SimulationAPI:Utils:SimulationTimeHelper.cs}} & 
+\method{ConvertTimeToTick(time, tickLengthSeconds)} (static) & 
+Converts TimeOnly to tick number within day. Calculates totalSeconds = time.Hour × 3600 + time.Minute × 60 + time.Second (seconds since midnight), then divides by tickLengthSeconds using integer division. Returns 0-based tick index within 24-hour period. Used for scheduling routine events at specific times (e.g., "08:00" → tick 96 for 5-minute ticks). \\
+\cline{2-3}
+& \method{ConvertTicksToTime(ticks, tickLength)} (static) & 
+Converts tick number back to TimeOnly representation. Calculates totalMinutes = ticks × (tickLength × 60), then extracts hours = (totalMinutes / 60) \% 24 and minutes = totalMinutes \% 60. Creates TimeOnly(hours, minutes) for display purposes. Note: discards seconds component, rounding to nearest minute. Used for timeline visualization and routine display. \\
+\cline{2-3}
+& \method{GetSimulationTime(currentTick, tickLength)} (static) & 
+Decomposes absolute tick counter into (DayIndex, TickOfDay) tuple for temporal context. Calculates ticksPerDay = (24 × 60 × 60) / tickLength. DayIndex = (currentTick / ticksPerDay) \% 7 creates weekly cycle (0=Monday, 6=Sunday). TickOfDay = currentTick \% ticksPerDay gives position within 24-hour period. Enables day-of-week routine scheduling (e.g., weekend behavior variations) and daily event timing. Critical for agent routine evaluation. \\
+\cline{2-3}
+& \method{ConvertTimeSpanToTicks(span, tickLengthSeconds)} (static) & 
+Converts arbitrary TimeSpan duration to discrete tick count. Formula: Math.Round(span.TotalSeconds / tickLengthSeconds) with integer rounding. Used for routine event durations (e.g., "2 hours at work" → 24 ticks for 5-minute ticks). Handles fractional results by rounding to nearest whole tick. Static utility enabling consistent time conversions across simulation setup and execution. \\
+\hline
+
+\end{longtable}
+

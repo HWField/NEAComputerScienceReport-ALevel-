@@ -1,0 +1,78 @@
+
+\section{Design Traceability to Requirements}
+
+Ensuring I meet my previously determined requirements and design objectives is critical to the success of this project. The documented design directly addresses each requirement as follows:
+% Define column widths for better control
+\newcolumntype{L}[1]{>{\raggedright\arraybackslash}p{#1}}
+\newcolumntype{C}[1]{>{\centering\arraybackslash}p{#1}}
+
+\begin{longtable}{|L{3.5cm}|L{4.5cm}|L{5.5cm}|}
+\caption{Requirement verfication} \\
+
+% Header for first page
+\hline
+\rowcolor{gray!30}
+\textbf{Requirement} & \textbf{Location} & \textbf{Notes} \\
+\hline
+\endfirsthead
+
+% Header for subsequent pages
+\multicolumn{3}{c}%
+{\tablename\ \thetable\ -- \textit{Continued from previous page}} \\
+\hline
+\rowcolor{gray!30}
+\textbf{Requirement} & \textbf{Location} & \textbf{Notes} \\
+\hline
+\endhead
+
+% Footer for all pages except last
+\hline
+\multicolumn{3}{r}{\textit{Continued on next page}} \\
+\endfoot
+
+% Footer for last page
+\hline
+\endlastfoot
+
+% SECTION 1
+\hline
+\multicolumn{3}{|c|}{\cellcolor{blue!20}\textbf{1.7.1 Platform Access}} \\
+\hline
+
+1 & Content row 1 & Content row 1 \\
+\hline
+
+2 & Content row 2 & Content row 2 \\
+\hline
+
+\multirow{2}{3.5cm}{Multi-row content spanning 2 rows} & 
+First associated content & 
+First notes \\
+\cline{2-3}
+& Second associated content & 
+Second notes \\
+\hline
+
+% SECTION 2
+\hline
+\multicolumn{3}{|c|}{\cellcolor{green!20}\textbf{SECTION 2 TITLE}} \\
+\hline
+
+Content row 1 & Content row 1 & Content row 1 \\
+\hline
+
+Content row 2 & Content row 2 & Content row 2 \\
+\hline
+
+% SECTION 3
+\hline
+\multicolumn{3}{|c|}{\cellcolor{yellow!20}\textbf{SECTION 3 TITLE}} \\
+\hline
+
+Content row 1 & Content row 1 & Content row 1 \\
+\hline
+
+Content row 2 & Content row 2 & Content row 2 \\
+\hline
+
+\end{longtable}

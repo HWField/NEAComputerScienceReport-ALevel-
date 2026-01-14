@@ -487,15 +487,15 @@ To reflect on my progress I have formed some firm success criteria that I must m
 \subsection{Platform Access}
 \begin{enumerate}
     \item Users can access the website on any internet connected device
-    \item Users log in to the portal and establish a connection with backend compute servers
-    \item Users can view previous simulations, browse a library of examples / other users published simulations or create a new one
+    \item Users log in via an authentication portal and access a 'home dashboard'
+    \item Users can view aggregated statistics from previous simulations, explore their prior simulations or create a new one
 \end{enumerate}
 \subsection{Simulation Setup}
 \begin{enumerate}
-    \item Users can either select a geographic area for the simulation to run on from a map of the world. Alternatively they can select from a cached preset. Area size can range from neighbourhood to large city
-    \item Users can generate a synthesised populated of up to 1,000,000 people
+    \item Upon creating a new simulation the user is guided through a step by step process to configure simulation properties, select map area, population size and demographic, disease profile and seed an initial infection
+    \item The above process is aided by presets and suggestions to help non-expert users
+    \item Users can generate a synthesised populated of up to 1,000,000 agents
     \item Users can automatically utilise statistical data to allocate population with roles and behaviours
-    \item Users can generate disease(s) to be used in simulations
 \end{enumerate}
 
 \subsection{Disease Spread Simulation}
@@ -503,13 +503,14 @@ To reflect on my progress I have formed some firm success criteria that I must m
     \item Simulation runs in ticks (lasting e.g. 30 minutes each but configurable by user)
     \item Simulation accurately models disease progression through SEIR compartments for each agent
     \item Each tick agents are moved around the map based on their routine, job, and behaviours
-    \item Disease spread is then calculated based on agents’ health stats and disease transmissibility (R rate) data if applicable. Spread interpolates between tick position of agents to maximise accuracy
+    \item Disease spread is then calculated based on agents’ health stats and disease transmissibility parameters. Spread interpolates between tick position of agents to maximise accuracy
+    \item Metrics are frequently recorded to aid the user in understanding disease spread (R rate, total infected, susceptible etc)
 \end{enumerate}
 
 \subsection{User Interaction}
 \begin{enumerate}
     \item Users can pause, resume and scrub forward/background through the simulation timeline
-    \item Users can apply a variety of mitigations such as closing buildings, routes and enforcing policies such as self-isolation and mask wearing
+    \item Users can apply a variety of mitigations such as vaccinating the population and applying policies such as self-isolation and mask wearing. Each mitigation has adjustable parameters
     \item If users make alterations during simulation, simulation will 'recompile' (recompute future date) to account for new mitigations
     \item Users can adjust disease \& non 'core' simulation parameters mid-simulation if required
 \end{enumerate}
@@ -517,8 +518,8 @@ To reflect on my progress I have formed some firm success criteria that I must m
 \subsection{Output and Visualisation}
 \begin{enumerate}
     \item The simulation streams real time analytical data to the client's browser and stores full data in a database for post simulation analysis
-    \item A live 3d map of all locations and agents fills the background of the user's dashboard
-    \item Supporting statistics (infection spread curves, recovered, susceptible etc) are displayed around
+    \item A live map of all agent positions is displayed during the simulation with colour coding to indicate health status
+    \item Supporting statistics (infection spread curves, recovered, susceptible etc) are displayed around the interface
     \item Users receive non-technical, intuitive explanations of outcomes via tooltips and guided UI messages.
 \end{enumerate}
 
@@ -535,11 +536,12 @@ To reflect on my progress I have formed some firm success criteria that I must m
     \item Results can be easily interpreted without expert knowledge in industry
     \item Controls are well placed and responsive
     \item Colour, icon, size and placement are used to provide visual hierarchy
+    \item Interface follows accessibility best practices such as keyboard navigation and screen reader support
 \end{enumerate}
 
 \subsection{Platform Scalability}
 \begin{enumerate}
-    \item  Platform should support multiple simulations running concurrently via instanced engines
+    \item  Simulation server should support multiple simulations running concurrently via instanced simulation contexts
     \item System should be able to scale up to 10 concurrent simulations on a single server
 \end{enumerate}
 
@@ -615,7 +617,7 @@ The fundemantal time span of my simulation is a 'tick' which represents a period
     \item \textbf{User Interaction:} Users can interact with the simulation by pausing, resuming, or scrubbing through the timeline. They can also apply interventions, such as closing buildings or enforcing policies, which will affect the next tick's agent movement and disease spread.
 \end{enumerate}
 
-Choosing the duration of a tick is a difficult balancing act as i want to maximise simulation precision whilst also maintaining acceptible simulation speed. For example a tick time of 1minute would allow for a huge number of agent interactions and an excellent 'slow motion' effect for the viewer however would take much longer to compute, inversely a tick duration of an entire day woudl result in missing the nuance of E.g. going to collect a meal and interacting with other agents in the same venue. I have therefore settled on a tick duration of 30 minutes which allows for a good balance of agent interaction and simulation speed. This duration allows for enough time for agents to move around, interact with others, and for the disease to spread realistically, while still being fast enough to keep the simulation engaging and responsive to user input. Should a user wish to view the simulation at a high speed each day will only involve 48 ticks (a week would be 336 ticks) which my testing found to be a quick computation time enabling multi month and year long simulation to be run in minutes rather than hours.
+Choosing the duration of a tick is a difficult balancing act as i want to maximise simulation precision whilst also maintaining acceptable simulation speed. For example a tick time of 1minute would allow for a huge number of agent interactions and an excellent 'slow motion' effect for the viewer however would take much longer to compute, inversely a tick duration of an entire day would result in missing the nuance of E.g. going to collect a meal and interacting with other agents in the same venue. I have therefore settled on a tick duration of 30 minutes which allows for a good balance of agent interaction and simulation speed. This duration allows for enough time for agents to move around, interact with others, and for the disease to spread realistically, while still being fast enough to keep the simulation engaging and responsive to user input. Should a user wish to view the simulation at a high speed each day will only involve 48 ticks (a week would be 336 ticks) which my testing found to be a quick computation time enabling multi month and year long simulation to be run in minutes rather than hours.
 
 
 \subsection{Code deployment}

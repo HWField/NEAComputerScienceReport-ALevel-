@@ -1,7 +1,9 @@
 % !TeX root = Main.tex
 \documentclass{report}
 \usepackage{hyperref}
-
+\usepackage{seqsplit}
+% so the methods descriptors look nice
+\newcommand{\method}[1]{\footnotesize\texttt{\seqsplit{#1}}}
 \usepackage{fontspec}
 \usepackage{tikz}
 \usepackage{colortbl}
@@ -109,14 +111,14 @@
 \newpage
 \include{Chapters/Analysis}
 \include{Chapters/DocumentedDesign}
-\include{Chapters/TechnicalSolution}
-\chapter{Testing}
-\chapter{Evaluation}
+% \include{Chapters/TechnicalSolution}
+% \chapter{Testing}
+% \chapter{Evaluation}
 
 \printbibliography[heading=bibintoc, title={Bibliography}]
 
 % Appendices
 \appendix
 \include{Chapters/CodeAppendix}
-\include{Chapters/ConversationTranscripts}
+% \include{Chapters/ConversationTranscripts}
 \end{document}

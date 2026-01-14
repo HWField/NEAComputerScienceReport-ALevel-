@@ -314,6 +314,12 @@ where $v_\mathrm{agent}$ is the agent’s effective walking speed in m/s.
 
 All $(s,t)$ routes are stored in a concurrent route cache to reduce computation for repeated trips, significantly improving performance at high agent counts.
 
+\input{Chapters/DocumentedDesignMedia/Services.tex}
+
+\input{Chapters/TechnicalSolutionMedia/APIDocs}
+
+
+
 \section{Communication and Security Design}
 All client–server interactions are authenticated using \textbf{JWT tokens}. Upon login, the server issues both an access token and a refresh token, which the frontend stores securely and uses to maintain session validity. All REST API and SignalR requests require valid tokens to ensure authorised access.
 
@@ -892,4 +898,8 @@ This section outlines the typical user journeys through the system, from initial
 \end{enumerate}
 
 \end{multicols}
+
+\input{Chapters/DocumentedDesignMedia/DesignRequirements.tex}
+
+
 The design emphasises modularity, high performance, and scalability. Each subsystem-data model, simulation engine, and communication layer-was engineered to support real-time multi-user simulations with minimal latency. The documented design thus forms a robust blueprint guiding the technical implementation detailed in the following chapter.
