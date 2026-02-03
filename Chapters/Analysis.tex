@@ -123,7 +123,7 @@ COVID-19 Scenarios is an interactive web-based tool created by the Neher Lab for
 
 
 \subsubsection*{FRED (Fast Epidemiological Dynamic Simulator)}
-FRED is an agent-based epidemic modelling system developed by the University of Pittsburgh, designed to simulate infectious disease transmission at the individual level using real census data and synthetic populations. It allows detailed modelling of social contact patterns within households, schools, workplaces, and communities, making it ideal for city-level or regional policy planning in the United States. FRED supports a wide range of disease models and interventions, though its geographic coverage is primarily US focused, and it requires some programming effort to customize.
+FRED is an agent-based epidemic modelling system developed by the University of Pittsburgh, designed to simulate infectious disease transmission at the individual level using real census data and synthetic populations. It allows detailed modelling of social contact patterns within households, schools, workplaces, and communities, making it ideal for city-level or regional policy planning in the United States. FRED supports a wide range of disease models and interventions, though its geographic coverage is primarily US focused, and it requires some programming effort to customise.
 
 \begin{figure}[H]
     \centering
@@ -315,14 +315,14 @@ However it can also come with a number of challenges such as::
 \subsection{Parameters to model}
 To produce a realistic simulation I will need to ensure I have a good understanding of the parameters that will drive the simulation. From some of the research I have done I have identified the following key categories which will need to be modelled and made configurable to the user:
 \subsubsection*{Agent Parameters}
-For each agent in the simulation I will need to genereate a unique medical profile, daily routine and intention state system. These will each be fairly simplistic in nature to reduce compute time per simulation tick however the large quantity of agents at once will ensure the overall result is realistic. The parameteters I will need to model for each agent are:
+For each agent in the simulation I will need to generate a unique medical profile, daily routine and intention state system. These will each be fairly simplistic in nature to reduce compute time per simulation tick however the large quantity of agents at once will ensure the overall result is realistic. The parameteters I will need to model for each agent are:
 \begin{itemize}
     \item Age
     \item Immunity Level
     \item ChronicConditions
     \item InfectionSucceptibility
 \end{itemize}
-Additionally each agent will have a daily routine which will determine their movement around the map. This will be based on their age and role in society. To help seperate agents into these categories i will assign each a role from the list below:
+Additionally each agent will have a daily routine which will determine their movement around the map. This will be based on their age and role in society. To help seperate agents into these categories I will assign each a role from the list below:
 \begin{itemize}
     \item Student
     \item Office worker
@@ -356,7 +356,7 @@ my research indicates that these building types cover the vast majority of inter
 \subsubsection*{Map Areas}
 Each simulation will rely on a physical map area selected by the user. I intedent to implement a preset + "flexi" system which enables users to base a simulation on a prestored location (E.g. Cambridge) or select any map area by dropping a pin on a map. All data is sourced from OpenStreetMap's API which provides a wealth of data on buildings, roads, and other points of interest. 
 
-using this data I can generate buildings and agent populations that are representative of the real world. 
+Using this data I can generate buildings and agent populations that are representative of the real world. 
 
 \subsubsection*{Disease Parameters}
 Finally, the disease itself will need to be modelled to determine how it spreads and how it affects agents. The parameters I will need to model for the disease are:
@@ -469,10 +469,10 @@ With such a large number of agents being simulated I was aware that this would h
 In my first python iteration, which used large lists for all data, the data calculated at 1.5 Ticks per second which was far too slow to be useful, bearing in mind this benchmark was very simplistic and purely focused on randomising movement for each agent this was glacial.
 To try and remain within the python ecosystem I looked to implement python numba to handle such large variables. I found that this tool hugely improved the performance (to 211 ticks / s) but hugely increased system memory usage (4x non numba) which would make my backend system non-scalable, the codebase also became less readable / maintainable
 
-Concerned with low performance (even with the addition of numba) I decided to recreate my program in C\# - a compiled language. I found an immediate, huge improvement to 1599 Ticks per second with code that was functionally the same differing only in language. Whilst it might therefore seem sensible to fully work within C\# I am far more familiar with python tooling for data analysis and Api functionality especailly whilst developing for Web platfoms. I therefore want to integrate the two technologies with C\# handling the simulation loop and python handling the API and analysis layer.
+Concerned with low performance (even with the addition of numba) I decided to recreate my program in C\# - a compiled language. I found an immediate, huge improvement to 1599 Ticks per second with code that was functionally the same differing only in language. These huge performance improvements therefore justified switching my backend stack to focus around the .NET ecosystem rather than python. I will use ASP.NET core to create my API and a WebSocket server to stream real time updates to the client. The backend simulation engine will be written in C\# to maximise performance as mentioned prior and the use of EFCore will help me create a performant and stable database.
 
 \subsection{Data Storage and streaming}
-With my dual system of python API / analysis layer and C\# simulation layer planned I needed to test a method to stream data between the two for real time previewing and also longer term storage.
+With C\# simulation layer and API endpoints planned I needed to test a method to stream data between the two for real time previewing and longer term storage.
 
 Initially I thought to store every simulation movement and path trace etc inside a Postgres DB however this resulted in my device resource utilisation spiking and C\# ticks per second falling to 12 due to the heavy read/write penalty of interacting with so many queries whilst also mutating so much data, even with batch processing I only gained a couple more Ticks per second. 
 
@@ -482,92 +482,220 @@ Should a user want more detailed data they can always download the entire simula
 
 
 \subsection{Summary of Prototyping}
-\section{Success Criteria for Project}
-To reflect on my progress I have formed some firm success criteria that I must meet at various stages of my software development
-\subsection{Platform Access}
-\begin{enumerate}
-    \item Users can access the website on any internet connected device
-    \item Users log in via an authentication portal and access a 'home dashboard'
-    \item Users can view aggregated statistics from previous simulations, explore their prior simulations or create a new one
-\end{enumerate}
-\subsection{Simulation Setup}
-\begin{enumerate}
-    \item Upon creating a new simulation the user is guided through a step by step process to configure simulation properties, select map area, population size and demographic, disease profile and seed an initial infection
-    \item The above process is aided by presets and suggestions to help non-expert users
-    \item Users can generate a synthesised populated of up to 1,000,000 agents
-    \item Users can automatically utilise statistical data to allocate population with roles and behaviours
-\end{enumerate}
+From my prototyping I have found that my project is feasible in terms of data acquisition, simulation performance and visualisation. I have made some changes to my initial plans such as switching from python to C\# for the simulation engine to maximise performance and changing my data streaming strategy to only stream key statistics rather than every agent movement. These changes will help ensure that my project is successful and meets the needs of my users.
+\section{Project Objectives:}
+Taken my research, conversations with potential users and prototyping into account I have compiled a list of key functional requirements for my project. These requirements will guide the development of my project and ensure that it meets the needs of my users. At the end of the project I will test and review these requirements to ensure that they have been met.
+\subsection*{Platform Access \& Security:}
+\begin{itemize}
+    \item\label{req:PA1} PA1: Users can access the system via modern desktop and mobile web browsers that support ES6 JavaScript and HTTPS.
+    \item\label{req:PA2} PA2: Users are brought to an authentication page on first access if not already logged in.
+    \begin{itemize}
+        \item\label{req:PA2.1} PA2.1: New users can register an account providing username and password then proceed to login.
+        \item\label{req:PA2.2} PA2.2: Returning users can login using their username and password.
+    \end{itemize}
+    \item\label{req:PA3} PA3: User passwords are securely hashed and salted using an industry-standard algorithm
+    \item\label{req:PA4} PA4: After registration a new user record is created in the database with default settings.
+    \item\label{req:PA5} PA5: After login, client's receive both a short-lived access token for API requests and a longer-lived refresh token to obtain new access tokens when required.
+    \item\label{req:PA6} PA6: User sessions are securely managed via automatic access token expiry giving protection against unauthorised access.
+\end{itemize}
 
-\subsection{Disease Spread Simulation}
-\begin{enumerate}
-    \item Simulation runs in ticks (lasting e.g. 30 minutes each but configurable by user)
-    \item Simulation accurately models disease progression through SEIR compartments for each agent
-    \item Each tick agents are moved around the map based on their routine, job, and behaviours
-    \item Disease spread is then calculated based on agents’ health stats and disease transmissibility parameters. Spread interpolates between tick position of agents to maximise accuracy
-    \item Metrics are frequently recorded to aid the user in understanding disease spread (R rate, total infected, susceptible etc)
-\end{enumerate}
+\subsection*{Dashboard:}
+\begin{itemize}
+    \item \label{req:DA1} DA1: The dashboard interface includes a navigation bar with links to the dashboard (clickable logo), admin page, settings menu and logout button.
+    \item \label{req:DA2} DA2: Authenticated users are first brought to a dashboard.
+    \begin{itemize}
+        \item \label{req:DA2.1} DA2.1: The dashboard displays a list of previous simulations with key summary statistics (name, date, agents).
+        \item \label{req:DA2.2} DA2.2: Users can delete previous simulations with a confirmation prompt to prevent accidental deletion.
+        \item \label{req:DA2.3} DA2.3: Users can create a new simulation from the dashboard via a prominent button to trigger the simulation setup outlined below.
+    \end{itemize}
+    \item \label{req:DA3} DA3: Users are able to inspect details of previous simulations.
+    \begin{itemize}
+        \item \label{req:DA3.1} DA3.1: User can see core information including name, date created, number of agents and status.
+        \item \label{req:DA3.2} DA3.2: User can see map area details including map name, location, area size and building count.
+        \item \label{req:DA3.3} DA3.3: User can see population size and density.
+        \item \label{req:DA3.4} DA3.4: User can see disease details including infection rate, recovery rate and mortality rate.
+    \end{itemize}
+    \item \label{req:DA4} DA4: Users can launch an existing simulation from the dashboard to re-run it in the simulation engine.
+\end{itemize}
 
-\subsection{User Interaction}
-\begin{enumerate}
-    \item Users can pause, resume and scrub forward/background through the simulation timeline
-    \item Users can apply a variety of mitigations such as vaccinating the population and applying policies such as self-isolation and mask wearing. Each mitigation has adjustable parameters
-    \item If users make alterations during simulation, simulation will 'recompile' (recompute future date) to account for new mitigations
-    \item Users can adjust disease \& non 'core' simulation parameters mid-simulation if required
-\end{enumerate}
+\subsection*{Settings Menu:}
+\begin{itemize}
+    \item\label{req:SA1} SA1: Authenticated users can view a settings menu to update personal details such as email and password.
+    \item\label{req:SA2} SA2: Settings menu has an account page to modify username.
+    \item\label{req:SA3} SA3: Settings menu has an Appearance page.
+    \begin{itemize}
+        \item\label{req:SA3.1} SA3.1: Settings page has a theme selection with 10+ options.
+        \item\label{req:SA3.2} SA3.2: User can see a preview of the selected theme before applying.
+        \item\label{req:SA3.3} SA3.3: User can view a large preview of all themes in a gallery view.
+        \item\label{req:SA3.4} SA3.4: User can hide personally identifiable information via a streamer mode.
+    \end{itemize}
+    \item\label{req:SA4} SA4: Settings menu has a Security page.
+    \begin{itemize}
+        \item\label{req:SA4.1} SA4.1: User can modify password with current password verification.
+        \item\label{req:SA4.2} SA4.2: User can view all active auth sessions and revoke any that are suspicious.
+    \end{itemize}
+\end{itemize}
 
-\subsection{Output and Visualisation}
-\begin{enumerate}
-    \item The simulation streams real time analytical data to the client's browser and stores full data in a database for post simulation analysis
-    \item A live map of all agent positions is displayed during the simulation with colour coding to indicate health status
-    \item Supporting statistics (infection spread curves, recovered, susceptible etc) are displayed around the interface
-    \item Users receive non-technical, intuitive explanations of outcomes via tooltips and guided UI messages.
-\end{enumerate}
 
-\subsection{Simulation Speed}
-\begin{enumerate}
-    \item Simulation must compute at a minimum speed of 1 simulated day per real time second (when running one dedicated simulation)
-    \item System can handle 1,000,000 agents and 20,000 nodes as an expected data set
-    \item Data storage and retrieval latency remains under 2 seconds from client request to visualisation
-\end{enumerate}
+    \subsection*{Admin Controls:}
+\begin{itemize}
+    \item\label{req:AC1} AC1: Users with admin privileges can access an admin dashboard.
+    \item\label{req:AC2} AC2: Admin page has a user management tab.
+    \begin{itemize}
+        \item\label{req:AC2.1} AC2.1: Admin can view a list of all registered users with key details (username, email, date joined, last login).
+        \item\label{req:AC2.2} AC2.2: Admin can delete user accounts with confirmation prompt.
+        \item\label{req:AC2.3} AC2.3: Admin can promote/demote users to/from admin status.
+    \end{itemize}
+    \item\label{req:AC3} AC3: Admin page has a Database tab.
+    \begin{itemize}
+        \item\label{req:AC3.1} AC3.1: Tab contains database statistics (number of users, simulations, total data size).
+        \item\label{req:AC3.2} AC3.2: Admin can bulk delete all simulations.
+        \item\label{req:AC3.3} AC3.3: Admin can bulk delete all presets.
+    \end{itemize}
+    \item\label{req:AC4} AC4: Admin page has a Memory tab.
+    \begin{itemize}
+        \item\label{req:AC4.1} AC4.1: Admin can view all simulations loaded in memory.
+        \item\label{req:AC4.2} AC4.2: Admin can pause/resume running simulations.
+        \item\label{req:AC4.3} AC4.3: Admin can force unload simulations from memory to free up resources.
+    \end{itemize}
+    \item\label{req:AC5} AC5: Tabs have refresh buttons to update data in real time.
+\end{itemize}
 
-\subsection{User Interface}
-\begin{enumerate}
-    \item  Interface should be intuitive and can be used by a non-expert with minimal training (< 5minutes)
-    \item Results can be easily interpreted without expert knowledge in industry
-    \item Controls are well placed and responsive
-    \item Colour, icon, size and placement are used to provide visual hierarchy
-    \item Interface follows accessibility best practices such as keyboard navigation and screen reader support
-\end{enumerate}
 
-\subsection{Platform Scalability}
-\begin{enumerate}
-    \item  Simulation server should support multiple simulations running concurrently via instanced simulation contexts
-    \item System should be able to scale up to 10 concurrent simulations on a single server
-\end{enumerate}
+\subsection*{Simulation Setup:}
+\begin{itemize}
+    \item\label{req:SS1} SS1: When creating a new simulation users are brought to a multi-step setup wizard.
+    \item\label{req:SS2} SS2: The user first configures the simulation details.
+    \begin{itemize}
+        \item\label{req:SS2.1} SS2.1: User selects simulation name.
+        \item\label{req:SS2.2} SS2.2: User selects simulation icon from a predefined list.
+    \end{itemize}
+    \item\label{req:SS3} SS3: User then configures the map area.
+    \begin{itemize}
+        \item\label{req:SS3.1} SS3.1: User selects either a preset map area or a custom area.
+        \item\label{req:SS3.2} SS3.2: If preset, user selects from a list of predefined areas.
+        \item\label{req:SS3.3} SS3.3: If custom, user drops a pin on an interactive map to define the area.
+        \item\label{req:SS3.3} SS3.4: User can search for locations by name.
+        \item\label{req:SS3.5} SS3.5: User can select a radius for the map area (e.g. 1km, 5km, 10km) bound by sensible limits.
+        \item\label{req:SS3.6} SS3.6: User enters a custom name for the map area.
+        \item\label{req:SS3.7} SS3.7: User can choose to save the map area as a preset for later use.
+        \item\label{req:SS3.8} SS3.8: Once submitted, the server fetches and processes map area to extract building and road data, with progress feedback shown to the user.
+    \end{itemize}
+    \item\label{req:SS4} SS4: User then configures the population.
+    \begin{itemize}
+        \item\label{req:SS4.1} SS4.1: Population is split into multiple roles (e.g. student, office worker, medical worker etc).
+        \item\label{req:SS4.2} SS4.2: Population of each role is constrained to supported limits based on map data.
+        \item\label{req:SS4.3} SS4.3: Population split is prefilled to aid user based on map area demographics.
+        \item\label{req:SS4.4} SS4.4: User can adjust population of each role.
+        \item\label{req:SS4.5} SS4.5: Once submitted the server generates a synthetic population (including health data and routines) based on the selected parameters, with progress feedback shown to the user.
+    \end{itemize}
+    \item\label{req:SS5} SS5: User then configures the simulation disease.
+    \begin{itemize}
+        \item\label{req:SS5.1} SS5.1: User selects either a preset or custom disease.
+        \item\label{req:SS5.2} SS5.2: If preset, user selects from a list of predefined diseases.
+        \item\label{req:SS5.3} SS5.3: If custom, user can adjust all disease parameters.
+        \item\label{req:SS5.4} SS5.4: All parameters are given sensible default values and limits to aid user.
+        \item\label{req:SS5.5} SS5.5: User enters a custom name for the disease.
+        \item\label{req:SS5.6} SS5.6: User can choose to save the disease as a preset for later use.
+    \end{itemize}
+    \item\label{req:SS6} SS6: User then configures initial infection.
+    \begin{itemize}
+        \item\label{req:SS6.1} SS6.1: User is prompted with an explanation of initial infection concepts.
+        \item\label{req:SS6.2} SS6.2: User selects number of agents to infect.
+        \item\label{req:SS6.3} SS6.3: User is shown the percentage of the population this represents.
+        \item\label{req:SS6.4} SS6.4: Once submitted, server infects the selected number of agents randomly within the population.
+    \end{itemize}
+    \item\label{req:SS7} SS7: All steps are validated before proceeding to the next step.
+    \item\label{req:SS8} SS8: Whilst server processes data the user is shown a progress indicator and information about the process.
+    \item\label{req:SS9} SS9: Presets and parameter suggestions are provided to support non-expert users while still allowing expert users full manual control.
+\end{itemize}
 
-\subsection{Accessibility}
-\begin{enumerate}
-    \item Software has full audio descriptions of any visual functions to provide ease of use for those with visual impairments
-    \item Bold Contrast on all interface options
-    \item Software functionals on all major browser engines (Chromium, Webkit [safari], Gecko [Firefox])
-\end{enumerate}
+\subsection*{Simulation Runtime:}
+\begin{itemize}
+    \item\label{req:SR1} SR1: Launching the simulation brings the user to a page containing Configuration, Simulation and Analysis tabs.
+    \item\label{req:SR2} SR2: Real time server status and system connectivity is displayed prominently.
+    \item\label{req:SR3} SR3: Configuration tab gives users full control over simulation parameters.
+    \begin{itemize}
+        \item\label{req:SR3.1} SR3.1: Disease statistics can be shown.
+        \item\label{req:SR3.2} SR3.2: Disease statistics can be modified.
+        \item\label{req:SR3.3} SR3.3: Map area overview is displayed.
+        \item\label{req:SR3.4} SR3.4: Population overview is displayed.
+        \item\label{req:SR3.5} SR3.5: User can configure initial infection count.
+        \item\label{req:SR3.6} SR3.6: User can configure metric and snapshot recording frequencies.
+        \item\label{req:SR3.7} SR3.7: Users can apply mitigation strategies (e.g. vaccination, mask usage, self-isolation) with adjustable parameters.
+        \item\label{req:SR3.8} SR3.8: Non-core simulation parameters may be adjusted mid-simulation where logically valid.
+        \item\label{req:SR3.9} SR3.9: Other parameters are modifiable when the simulation is paused or require engine reset.
+    \end{itemize}
+    \item\label{req:SR4} SR4: Simulate tab gives user full overview of running simulation.
+    \begin{itemize}
+        \item\label{req:SR4.1} SR4.1: User can pause and resume simulation.
+        \item\label{req:SR4.2} SR4.2: User can scrub forward/background through a responsive simulation timeline.
+        \item\label{req:SR4.3} SR4.3: Users can modify simulation run rate.
+        \item\label{req:SR4.4} SR4.4: A live map of agent positions is displayed during the simulation with colour coding to indicate health status.
+        \item\label{req:SR4.5} SR4.5: User can pan and zoom around map area to explore agent interactions.
+        \item\label{req:SR4.6} SR4.6: Population status summary is displayed with key metrics (e.g. susceptible, exposed, infected, recovered counts).
+        \item\label{req:SR4.7} SR4.7: Infection metrics are displayed (e.g. total infections, active cases).
+    \end{itemize}
+    \item\label{req:SR5} SR5: Detailed Analysis tab gives users detailed insight into simulation results.
+    \begin{itemize}
+        \item\label{req:SR5.1} SR5.1: Users can view quick summary statistics.
+        \item\label{req:SR5.2} SR5.2: User can browse agent status changes over time.
+        \item\label{req:SR5.3} SR5.3: An equivalent R rate is calculated and displayed over time.
+        \item\label{req:SR5.4} SR5.4: Users can view daily infections over time.
+        \item\label{req:SR5.5} SR5.5: Users can clearly see the timespan source of data being displayed.
+        \item\label{req:SR5.6} SR5.6: User can refresh data screen to view latest data after simulation changes.
+    \end{itemize}
+\end{itemize}
 
-\subsection{Robustness}
-\begin{enumerate}
-    \item  System validates all user input without crashing
-    \item Calculation / system overloads are gracefully handled with a server refresh and simulation reload
-\end{enumerate}
 
-\subsection{Maintainability}
-\begin{enumerate}
-    \item Whilst an academic project, all code should be well maintained on GIT, issues tracked, formatting standards upheld and documentation robust
-    \item Software hosting process is documented, and code is designed with ‘zero vendor lock in’ and can be easily self-hosted
-\end{enumerate}
-\subsection{Validation}
-\begin{enumerate}
-    \item Model outputs are tested against real world result data from epidemics / pandemics to ensure accuracy (within the range expected for a semi-random disease spread)
-    \item Should aim for Positive feedback to be received from multiple industry experts
-\end{enumerate}
+\subsection*{Simulation Engine:}
+\begin{itemize}
+    \item\label{req:DS1} DS1: Each simulation agent has a unique identity.
+    \begin{itemize}
+        \item \label{req:DS1.1} DS1.1: Agents have defined Role attributes such as student, office worker, medical worker etc.
+        \item \label{req:DS1.2} DS1.2: Agents have defined Health attributes which inform disease progression and susceptibility.
+        \item \label{req:DS1.3} DS1.3: Agents have defined Routine attributes which inform daily movement patterns.
+        \item \label{req:DS1.4} DS1.4: Agents travel routines are computed during simulation setup to maximise runtime performance.
+        \item \label{req:DS1.5} DS1.5: Agents are assigned a Home location within the map area.
+        \item \label{req:DS1.6} DS1.6: Agents are realistically assigned Workplace locations based on their Role.
+    \end{itemize}
+    \item\label{req:DS2} DS2: Simulation buildings are processed during setup to extract key attributes.
+    \begin{itemize}
+        \item \label{req:DS2.1} DS2.1: Buildings are classified into types (e.g. residential, commercial, educational, medical etc).
+        \item \label{req:DS2.2} DS2.2: Building capacities are estimated based on type and size to inform agent assignment.
+    \end{itemize}
+    \item\label{req:DS3} DS3: Runtime simulation follows a discrete time step model.
+    \begin{itemize}
+        \item \label{req:DS3.1} DS3.1: Each tick represents a configurable time interval (e.g. 5 minutes).
+        \item \label{req:DS3.2} DS3.2: During each tick, agents move across the map according to predefined routines, roles, and behavioural rules.
+        \item \label{req:DS3.3} DS3.3: During each tick, each agent progresses through disease states using a SEIR model.
+        \item \label{req:DS3.4} DS3.4: Applied mitigations influence infection system.
+        \item \label{req:DS3.5} DS3.5: Disease transmission is calculated based on proximity between agents within each tick.
+    \end{itemize}
+    \item\label{req:DS4} DS4: When simulation parameters are altered, the system recomputes all future simulation ticks from the point of change while preserving historical data.
+    \item\label{req:DS5} DS5: Key epidemiological metrics (e.g. R value, susceptible, exposed, infected, recovered counts) are recorded at regular intervals.
+    \item\label{req:DS6} DS6: System snapshots are taken at user-defined intervals to capture agent states and positions for later recall.
+    \item\label{req:DS7} DS7: Simulation randomness is controlled through seed values to allow reproducibility of results.
+\end{itemize}
+
+\subsection*{Simulation Performance:}
+\begin{itemize}
+    \item\label{req:SP1} SP1: Under typical workloads (≤100,000 agents x 1 simulation), the engine computes one simulated day per real-time second.
+    \item\label{req:SP2} SP2: The system can compute simulations with up to 1,000,000 agents.
+    \item\label{req:SP3} SP3: Data retrieval latency remains under two seconds for standard client requests across a performant network.
+    \item\label{req:SP4} SP4: The system efficiently manages memory and CPU usage to prevent resource exhaustion during large/multiple simulations.
+    \item\label{req:SP5} SP5: The server supports multiple (3+) concurrent simulations using isolated simulation contexts.
+    \item\label{req:SP6} SP6: User inputs are validated both client and server side to prevent crashes or undefined behaviour (defensive programming).
+    \item\label{req:SP7} SP7: System errors and overloads are handled using structured exception handling and controlled recovery.
+    \item\label{req:SP8} SP8: The system maintains data integrity and state in the event of unexpected termination.
+\end{itemize}
+
+\subsection*{Maintainability:}
+\begin{itemize}
+    \item\label{req:MA1} MA1: codebase is version-controlled using Git, with clear commit history demonstrating iterative development.
+    \item\label{req:MA2} MA2: Coding standards, documentation, and modular design are used to support long-term maintainability.
+    \item \label{req:MA3} MA3: Deployment and self-hosting procedures are documented with minimal vendor lock-in.
+\end{itemize}
 
 
 \section{Initial Design Considerations}

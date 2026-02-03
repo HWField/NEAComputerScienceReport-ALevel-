@@ -1,0 +1,65 @@
+Date : 2026-01-16 16:37:13
+Directory : /Users/Henry/Desktop/CompSciNEA/ComputerScienceNEAReport
+Total : 26 files,  12320 codes, 1008 comments, 867 blanks, all 14195 lines
+
+Languages
++---------------+------------+------------+------------+------------+------------+
+| language      | files      | code       | comment    | blank      | total      |
++---------------+------------+------------+------------+------------+------------+
+| LaTeX package |          1 |      4,502 |        868 |          6 |      5,376 |
+| LaTeX         |         10 |      4,431 |         58 |        701 |      5,190 |
+| Draw.io       |          9 |      2,675 |          0 |          0 |      2,675 |
+| Python        |          2 |        347 |         70 |         75 |        492 |
+| BibTeX        |          1 |        127 |          0 |         10 |        137 |
+| Markdown      |          1 |        124 |          0 |         50 |        174 |
+| JavaScript    |          1 |        104 |          8 |         20 |        132 |
+| Shell Script  |          1 |         10 |          4 |          5 |         19 |
++---------------+------------+------------+------------+------------+------------+
+
+Directories
++------------------------------------------------------------------------------------------------------------------------------+------------+------------+------------+------------+------------+
+| path                                                                                                                         | files      | code       | comment    | blank      | total      |
++------------------------------------------------------------------------------------------------------------------------------+------------+------------+------------+------------+------------+
+| .                                                                                                                            |         26 |     12,320 |      1,008 |        867 |     14,195 |
+| . (Files)                                                                                                                    |          2 |        213 |         14 |         25 |        252 |
+| Chapters                                                                                                                     |         19 |      7,124 |         52 |        706 |      7,882 |
+| Chapters (Files)                                                                                                             |          5 |      1,985 |         17 |        506 |      2,508 |
+| Chapters/AnalysisMedia                                                                                                       |          3 |        339 |          8 |         20 |        367 |
+| Chapters/DocumentedDesignMedia                                                                                               |          9 |      2,871 |         16 |         65 |      2,952 |
+| Chapters/TechnicalSolutionMedia                                                                                              |          2 |      1,929 |         11 |        115 |      2,055 |
+| Extensions                                                                                                                   |          1 |      4,502 |        868 |          6 |      5,376 |
+| utilities                                                                                                                    |          4 |        481 |         74 |        130 |        685 |
++------------------------------------------------------------------------------------------------------------------------------+------------+------------+------------+------------+------------+
+
+Files
++------------------------------------------------------------------------------------------------------------------------------+---------------+------------+------------+------------+------------+
+| filename                                                                                                                     | language      | code       | comment    | blank      | total      |
++------------------------------------------------------------------------------------------------------------------------------+---------------+------------+------------+------------+------------+
+| /Users/Henry/Desktop/CompSciNEA/ComputerScienceNEAReport/Chapters/Analysis.tex                                               | LaTeX         |        499 |         17 |        145 |        661 |
+| /Users/Henry/Desktop/CompSciNEA/ComputerScienceNEAReport/Chapters/AnalysisMedia/OpenStreetMapTest.js                         | JavaScript    |        104 |          8 |         20 |        132 |
+| /Users/Henry/Desktop/CompSciNEA/ComputerScienceNEAReport/Chapters/AnalysisMedia/umlDiagram.drawio                            | Draw.io       |        133 |          0 |          0 |        133 |
+| /Users/Henry/Desktop/CompSciNEA/ComputerScienceNEAReport/Chapters/AnalysisMedia/userFlowDiagram.drawio                       | Draw.io       |        102 |          0 |          0 |        102 |
+| /Users/Henry/Desktop/CompSciNEA/ComputerScienceNEAReport/Chapters/CodeAppendix.tex                                           | LaTeX         |        735 |          0 |        159 |        894 |
+| /Users/Henry/Desktop/CompSciNEA/ComputerScienceNEAReport/Chapters/ConversationTranscripts.tex                                | LaTeX         |         17 |          0 |          3 |         20 |
+| /Users/Henry/Desktop/CompSciNEA/ComputerScienceNEAReport/Chapters/DocumentedDesign.tex                                       | LaTeX         |        712 |          0 |        194 |        906 |
+| /Users/Henry/Desktop/CompSciNEA/ComputerScienceNEAReport/Chapters/DocumentedDesignMedia/DesignRequirements.tex               | LaTeX         |         85 |          6 |         33 |        124 |
+| /Users/Henry/Desktop/CompSciNEA/ComputerScienceNEAReport/Chapters/DocumentedDesignMedia/Services.tex                         | LaTeX         |        346 |         10 |         32 |        388 |
+| /Users/Henry/Desktop/CompSciNEA/ComputerScienceNEAReport/Chapters/DocumentedDesignMedia/architecture_diagram.drawio          | Draw.io       |        133 |          0 |          0 |        133 |
+| /Users/Henry/Desktop/CompSciNEA/ComputerScienceNEAReport/Chapters/DocumentedDesignMedia/auth_diagram.drawio                  | Draw.io       |        216 |          0 |          0 |        216 |
+| /Users/Henry/Desktop/CompSciNEA/ComputerScienceNEAReport/Chapters/DocumentedDesignMedia/backend_architecture_diagram.drawio  | Draw.io       |        106 |          0 |          0 |        106 |
+| /Users/Henry/Desktop/CompSciNEA/ComputerScienceNEAReport/Chapters/DocumentedDesignMedia/er_diagram.drawio                    | Draw.io       |      1,758 |          0 |          0 |      1,758 |
+| /Users/Henry/Desktop/CompSciNEA/ComputerScienceNEAReport/Chapters/DocumentedDesignMedia/frontend_architecture_diagram.drawio | Draw.io       |         43 |          0 |          0 |         43 |
+| /Users/Henry/Desktop/CompSciNEA/ComputerScienceNEAReport/Chapters/DocumentedDesignMedia/runtime_diagram.drawio               | Draw.io       |        111 |          0 |          0 |        111 |
+| /Users/Henry/Desktop/CompSciNEA/ComputerScienceNEAReport/Chapters/DocumentedDesignMedia/ui_hierarchy.drawio                  | Draw.io       |         73 |          0 |          0 |         73 |
+| /Users/Henry/Desktop/CompSciNEA/ComputerScienceNEAReport/Chapters/TechnicalSolution.tex                                      | LaTeX         |         22 |          0 |          5 |         27 |
+| /Users/Henry/Desktop/CompSciNEA/ComputerScienceNEAReport/Chapters/TechnicalSolutionMedia/APIDocs.tex                         | LaTeX         |      1,572 |          0 |         57 |      1,629 |
+| /Users/Henry/Desktop/CompSciNEA/ComputerScienceNEAReport/Chapters/TechnicalSolutionMedia/SkillsEvidence.tex                  | LaTeX         |        357 |         11 |         58 |        426 |
+| /Users/Henry/Desktop/CompSciNEA/ComputerScienceNEAReport/Extensions/tikz-uml.sty                                             | LaTeX package |      4,502 |        868 |          6 |      5,376 |
+| /Users/Henry/Desktop/CompSciNEA/ComputerScienceNEAReport/Main.tex                                                            | LaTeX         |         86 |         14 |         15 |        115 |
+| /Users/Henry/Desktop/CompSciNEA/ComputerScienceNEAReport/References.bib                                                      | BibTeX        |        127 |          0 |         10 |        137 |
+| /Users/Henry/Desktop/CompSciNEA/ComputerScienceNEAReport/utilities/APIPopulate.py                                            | Python        |        183 |         28 |         38 |        249 |
+| /Users/Henry/Desktop/CompSciNEA/ComputerScienceNEAReport/utilities/README.md                                                 | Markdown      |        124 |          0 |         50 |        174 |
+| /Users/Henry/Desktop/CompSciNEA/ComputerScienceNEAReport/utilities/codePopulate.py                                           | Python        |        164 |         42 |         37 |        243 |
+| /Users/Henry/Desktop/CompSciNEA/ComputerScienceNEAReport/utilities/generate_appendix.sh                                      | Shell Script  |         10 |          4 |          5 |         19 |
+| Total                                                                                                                        |               |     12,320 |      1,008 |        867 |     14,195 |
++------------------------------------------------------------------------------------------------------------------------------+---------------+------------+------------+------------+------------+

@@ -1,0 +1,28 @@
+"filename", "language", "Python", "Shell Script", "Markdown", "LaTeX", "LaTeX package", "BibTeX", "Draw.io", "JavaScript", "comment", "blank", "total"
+"/Users/Henry/Desktop/CompSciNEA/ComputerScienceNEAReport/Chapters/Analysis.tex", "LaTeX", 0, 0, 0, 499, 0, 0, 0, 0, 17, 145, 661
+"/Users/Henry/Desktop/CompSciNEA/ComputerScienceNEAReport/Chapters/AnalysisMedia/OpenStreetMapTest.js", "JavaScript", 0, 0, 0, 0, 0, 0, 0, 104, 8, 20, 132
+"/Users/Henry/Desktop/CompSciNEA/ComputerScienceNEAReport/Chapters/AnalysisMedia/umlDiagram.drawio", "Draw.io", 0, 0, 0, 0, 0, 0, 133, 0, 0, 0, 133
+"/Users/Henry/Desktop/CompSciNEA/ComputerScienceNEAReport/Chapters/AnalysisMedia/userFlowDiagram.drawio", "Draw.io", 0, 0, 0, 0, 0, 0, 102, 0, 0, 0, 102
+"/Users/Henry/Desktop/CompSciNEA/ComputerScienceNEAReport/Chapters/CodeAppendix.tex", "LaTeX", 0, 0, 0, 735, 0, 0, 0, 0, 0, 159, 894
+"/Users/Henry/Desktop/CompSciNEA/ComputerScienceNEAReport/Chapters/ConversationTranscripts.tex", "LaTeX", 0, 0, 0, 17, 0, 0, 0, 0, 0, 3, 20
+"/Users/Henry/Desktop/CompSciNEA/ComputerScienceNEAReport/Chapters/DocumentedDesign.tex", "LaTeX", 0, 0, 0, 712, 0, 0, 0, 0, 0, 194, 906
+"/Users/Henry/Desktop/CompSciNEA/ComputerScienceNEAReport/Chapters/DocumentedDesignMedia/DesignRequirements.tex", "LaTeX", 0, 0, 0, 85, 0, 0, 0, 0, 6, 33, 124
+"/Users/Henry/Desktop/CompSciNEA/ComputerScienceNEAReport/Chapters/DocumentedDesignMedia/Services.tex", "LaTeX", 0, 0, 0, 346, 0, 0, 0, 0, 10, 32, 388
+"/Users/Henry/Desktop/CompSciNEA/ComputerScienceNEAReport/Chapters/DocumentedDesignMedia/architecture_diagram.drawio", "Draw.io", 0, 0, 0, 0, 0, 0, 133, 0, 0, 0, 133
+"/Users/Henry/Desktop/CompSciNEA/ComputerScienceNEAReport/Chapters/DocumentedDesignMedia/auth_diagram.drawio", "Draw.io", 0, 0, 0, 0, 0, 0, 216, 0, 0, 0, 216
+"/Users/Henry/Desktop/CompSciNEA/ComputerScienceNEAReport/Chapters/DocumentedDesignMedia/backend_architecture_diagram.drawio", "Draw.io", 0, 0, 0, 0, 0, 0, 106, 0, 0, 0, 106
+"/Users/Henry/Desktop/CompSciNEA/ComputerScienceNEAReport/Chapters/DocumentedDesignMedia/er_diagram.drawio", "Draw.io", 0, 0, 0, 0, 0, 0, 1758, 0, 0, 0, 1758
+"/Users/Henry/Desktop/CompSciNEA/ComputerScienceNEAReport/Chapters/DocumentedDesignMedia/frontend_architecture_diagram.drawio", "Draw.io", 0, 0, 0, 0, 0, 0, 43, 0, 0, 0, 43
+"/Users/Henry/Desktop/CompSciNEA/ComputerScienceNEAReport/Chapters/DocumentedDesignMedia/runtime_diagram.drawio", "Draw.io", 0, 0, 0, 0, 0, 0, 111, 0, 0, 0, 111
+"/Users/Henry/Desktop/CompSciNEA/ComputerScienceNEAReport/Chapters/DocumentedDesignMedia/ui_hierarchy.drawio", "Draw.io", 0, 0, 0, 0, 0, 0, 73, 0, 0, 0, 73
+"/Users/Henry/Desktop/CompSciNEA/ComputerScienceNEAReport/Chapters/TechnicalSolution.tex", "LaTeX", 0, 0, 0, 22, 0, 0, 0, 0, 0, 5, 27
+"/Users/Henry/Desktop/CompSciNEA/ComputerScienceNEAReport/Chapters/TechnicalSolutionMedia/APIDocs.tex", "LaTeX", 0, 0, 0, 1572, 0, 0, 0, 0, 0, 57, 1629
+"/Users/Henry/Desktop/CompSciNEA/ComputerScienceNEAReport/Chapters/TechnicalSolutionMedia/SkillsEvidence.tex", "LaTeX", 0, 0, 0, 357, 0, 0, 0, 0, 11, 58, 426
+"/Users/Henry/Desktop/CompSciNEA/ComputerScienceNEAReport/Extensions/tikz-uml.sty", "LaTeX package", 0, 0, 0, 0, 4502, 0, 0, 0, 868, 6, 5376
+"/Users/Henry/Desktop/CompSciNEA/ComputerScienceNEAReport/Main.tex", "LaTeX", 0, 0, 0, 86, 0, 0, 0, 0, 14, 15, 115
+"/Users/Henry/Desktop/CompSciNEA/ComputerScienceNEAReport/References.bib", "BibTeX", 0, 0, 0, 0, 0, 127, 0, 0, 0, 10, 137
+"/Users/Henry/Desktop/CompSciNEA/ComputerScienceNEAReport/utilities/APIPopulate.py", "Python", 183, 0, 0, 0, 0, 0, 0, 0, 28, 38, 249
+"/Users/Henry/Desktop/CompSciNEA/ComputerScienceNEAReport/utilities/README.md", "Markdown", 0, 0, 124, 0, 0, 0, 0, 0, 0, 50, 174
+"/Users/Henry/Desktop/CompSciNEA/ComputerScienceNEAReport/utilities/codePopulate.py", "Python", 164, 0, 0, 0, 0, 0, 0, 0, 42, 37, 243
+"/Users/Henry/Desktop/CompSciNEA/ComputerScienceNEAReport/utilities/generate_appendix.sh", "Shell Script", 0, 10, 0, 0, 0, 0, 0, 0, 4, 5, 19
+"Total", "-", 347, 10, 124, 4431, 4502, 127, 2675, 104, 1008, 867, 14195

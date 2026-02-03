@@ -1,0 +1,4 @@
+{"rule":"MORFOLOGIK_RULE_EN_GB","sentence":"^\\QEpiSimdemics.\\E$"}
+{"rule":"MORFOLOGIK_RULE_EN_GB","sentence":"^\\QEMOD is a flexible, open-source epidemiological modelling platform developed by the Institute for Disease Modelling.\\E$"}
+{"rule":"MORFOLOGIK_RULE_EN_GB","sentence":"^\\QThe parameteters I will need to model for each agent are: Age Immunity Level ChronicConditions InfectionSucceptibility Additionally each agent will have a daily routine which will determine their movement around the map.\\E$"}
+{"rule":"MORFOLOGIK_RULE_EN_GB","sentence":"^\\QPA2 code:frontend:src:views:authentication.vue & code:SimulationAPI:Controllers:AuthController.cs Robust client server authentication model\\E$"}

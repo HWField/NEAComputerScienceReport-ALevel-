@@ -1,6 +1,8 @@
 % !TeX root = Main.tex
 \documentclass{report}
 \usepackage{hyperref}
+% command to auto reference
+\newcommand{\req}[1]{\hyperref[req:#1]{#1}}
 \usepackage{seqsplit}
 % so the methods descriptors look nice
 \newcommand{\method}[1]{\footnotesize\texttt{\seqsplit{#1}}}
@@ -35,17 +37,8 @@
 
 % Header/Footer setup
 \usepackage{fancyhdr}
-% \usepackage{enumitem}
-% \setlistdepth{9}
-% \setlist[itemize,1]{label=$\bullet$}
-% \setlist[itemize,2]{label=$\bullet$}
-% \setlist[itemize,3]{label=$\bullet$}
-% \setlist[itemize,4]{label=$\bullet$}
-% \setlist[itemize,5]{label=$\bullet$}
-% \setlist[itemize,6]{label=$\bullet$}
-% \setlist[itemize,7]{label=$\bullet$}
-% \setlist[itemize,8]{label=$\bullet$}
-% \setlist[itemize,9]{label=$\bullet$}
+
+
 
 % \renewlist{itemize}{itemize}{10}
 \pagestyle{fancy}
@@ -102,8 +95,6 @@
 \title{NEA: Disease Spread Simulation}
 \author{Henry Field}
 \date{\today}
-
-% \begin{document}
 \maketitle
 \thispagestyle{empty} % removes page number
 \setcounter{tocdepth}{5}
@@ -119,6 +110,6 @@
 
 % Appendices
 \appendix
-\include{Chapters/CodeAppendix}
+% \include{Chapters/CodeAppendix}
 % \include{Chapters/ConversationTranscripts}
 \end{document}

@@ -1,7 +1,7 @@
 
 \section{Design Traceability to Requirements}
 
-Ensuring I meet my previously determined requirements and design objectives is critical to the success of this project. The documented design directly addresses each requirement as follows:
+Ensuring I meet my project requirements and design objectives is critical to the success of this project. The documented design directly addresses each requirement as follows:
 % Define column widths for better control
 \newcolumntype{L}[1]{>{\raggedright\arraybackslash}p{#1}}
 \newcolumntype{C}[1]{>{\centering\arraybackslash}p{#1}}
@@ -36,43 +36,89 @@ Ensuring I meet my previously determined requirements and design objectives is c
 
 % SECTION 1
 \hline
-\multicolumn{3}{|c|}{\cellcolor{blue!20}\textbf{1.7.1 Platform Access}} \\
+\multicolumn{3}{|c|}{\cellcolor{red!20}\textbf{Platform Access}} \\
 \hline
 
-1 & Content row 1 & Content row 1 \\
+\req{PA1} & \nameref{code:SimulationAPI:Program.cs} & platform is web based and supports all mainstream browsers making it accessible to most devices \\
 \hline
 
-2 & Content row 2 & Content row 2 \\
+\req{PA2} & \nameref{code:frontend:src:views:authentication.vue} \& \nameref{code:SimulationAPI:Controllers:AuthController.cs}& Robust client server authentication model \\
 \hline
 
-\multirow{2}{3.5cm}{Multi-row content spanning 2 rows} & 
-First associated content & 
-First notes \\
-\cline{2-3}
-& Second associated content & 
-Second notes \\
+\req{PA3} & \nameref{code:SimulationAPI:Controllers:AuthController.cs}& all passwords are encrypted using: BCrypt.Net.BCrypt. HashPassword( dto.Password )\\
 \hline
 
-% SECTION 2
-\hline
-\multicolumn{3}{|c|}{\cellcolor{green!20}\textbf{SECTION 2 TITLE}} \\
+\req{PA4} & \nameref{code:frontend:src:views:dashboard.vue}& User home dashboard includes summary stats are the top and the users simulation list at the bottom\\
 \hline
 
-Content row 1 & Content row 1 & Content row 1 \\
+\hline
+\multicolumn{3}{|c|}{\cellcolor{orange!20}\textbf{Simulation Setup}} \\
 \hline
 
-Content row 2 & Content row 2 & Content row 2 \\
+\req{SS1} & \nameref{code:frontend:src:components:CreateSimulationModal.vue}& Multistep simulation modal guides the user to create a new simulation \\
 \hline
 
-% SECTION 3
-\hline
-\multicolumn{3}{|c|}{\cellcolor{yellow!20}\textbf{SECTION 3 TITLE}} \\
+\req{SS2} & "" & Global presets and those the user has saved are presented at various opportunities to reduce setup time \\
 \hline
 
-Content row 1 & Content row 1 & Content row 1 \\
+\req{SS3} & "" & Simulation engine supports an "inifinte" number of agents (only constraint is simulation engines RAM) \\
 \hline
 
-Content row 2 & Content row 2 & Content row 2 \\
+\req{SS4} & "" & Setup process infers population demographic from the buildings and data found during the OSM data import. \\
+\hline
+
+\hline
+\multicolumn{3}{|c|}{\cellcolor{yellow!20}\textbf{Disease Spread Simulations}} \\
+\hline
+
+\req{DS1} & \nameref{code:SimulationAPI:Simulation:SimulationEngine.cs}, \nameref{code:SimulationAPI:Utils:SimulationTimeHelper.cs}, \nameref{code:SimulationAPI:Simulation:SimulationContext.cs} \& \autoref{sec:SimulationRuntimeDesign} & Simulation revolves around a robust tick system which is configurable by the user. The tick duration acts a balance between engine preciscion and performance (with short tick durations generating more accurate data but slowing down the simulation as more ticks are computed in a set period of time)  \\
+\hline
+
+\req{DS2} & \nameref{code:SimulationAPI:Services:InfectionService.cs} & Content row 2 \\
+\hline
+
+\req{DS3} & \nameref{code:SimulationAPI:Services:AgentService.cs}, \nameref{code:SimulationAPI:Services:MovementSystem.cs} & Content row 2 \\
+
+\req{DS4} & \nameref{code:SimulationAPI:Services:InfectionService.cs} & Content row 2 \\
+\hline
+
+\req{DS5} & \nameref{code:SimulationAPI:Simulation:MetricManager.cs}, \nameref{code:SimulationAPI:Simulation:SimulationEngine.cs} & Content row 2 \\
+\hline
+
+
+\hline
+\multicolumn{3}{|c|}{\cellcolor{lime!20}\textbf{User Experience}} \\
+\hline
+
+\hline
+\multicolumn{3}{|c|}{\cellcolor{green!20}\textbf{Output and Visualisation}} \\
+\hline
+
+\hline
+\multicolumn{3}{|c|}{\cellcolor{teal!20}\textbf{Simulation Performance}} \\
+\hline
+
+\hline
+\multicolumn{3}{|c|}{\cellcolor{cyan!20}\textbf{User Interface}} \\
+\hline
+
+\hline
+\multicolumn{3}{|c|}{\cellcolor{blue!20}\textbf{Platform Scalability}} \\
+\hline
+
+\hline
+\multicolumn{3}{|c|}{\cellcolor{violet!20}\textbf{Accessibility}} \\
+\hline
+
+\hline
+\multicolumn{3}{|c|}{\cellcolor{magenta!20}\textbf{Robustness}} \\
+\hline
+\hline
+\multicolumn{3}{|c|}{\cellcolor{pink!20}\textbf{Maintainability}} \\
+\hline
+
+\hline
+\multicolumn{3}{|c|}{\cellcolor{purple!20}\textbf{Validation}} \\
 \hline
 
 \end{longtable}
