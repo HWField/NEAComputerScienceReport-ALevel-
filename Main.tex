@@ -4,6 +4,10 @@
 % command to auto reference
 \newcommand{\req}[1]{\hyperref[req:#1]{#1}}
 \usepackage{seqsplit}
+\usepackage{pifont}
+\newcommand{\pass}{\ding{51}}
+\newcommand{\fail}{\ding{55}}
+\newcommand{\subreq}[1]{$\hookrightarrow$~\req{#1}}
 % so the methods descriptors look nice
 \newcommand{\method}[1]{\footnotesize\texttt{\seqsplit{#1}}}
 \usepackage{fontspec}
@@ -101,9 +105,9 @@
 \tableofcontents
 \newpage
 \include{Chapters/Analysis}
-\include{Chapters/DocumentedDesign}
+% \include{Chapters/DocumentedDesign}
 % \include{Chapters/TechnicalSolution}
-% \chapter{Testing}
+\include{Chapters/Testing}
 % \chapter{Evaluation}
 
 \printbibliography[heading=bibintoc, title={Bibliography}]

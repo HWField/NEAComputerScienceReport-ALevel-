@@ -1,7 +1,9 @@
 \section{Skills Summary Table}
-This chapter provides a comprehensive breakdown of the technical skills demonstrated throughout this project, organized according to AQA assessment criteria Groups A, B, and C.
+This chapter provides a comprehensive breakdown of the technical skills demonstrated throughout this project, organized according to AQA assessment criteria Groups: A, B, and C.
 
-All Code References are clickable references to specific files and line numbers within the source code Appendix, allowing for easy verification of the implemented skills. Alternatively all code can be found listed in Appendix~\ref{appendix:code}.
+The majority of requirements are met by the backend SimulationAPI project, which contains the core logic, data models, algorithms, and client-server communication. The frontend project implements a subset of skills related to client-side state management (largely replicating the main database models) and API interaction which have been identified where appropriate.
+
+All Location evidenced are clickable references to specific files within the source code Appendix allowing for easy verification of the implemented skills. Alternatively all code can be found listed in Appendix~\ref{appendix:code} which additionally contains a full directory listing .
 
 % Define column widths for better control
 \newcolumntype{L}[1]{>{\raggedright\arraybackslash}p{#1}}
@@ -13,7 +15,7 @@ All Code References are clickable references to specific files and line numbers 
 % Header for first page
 \hline
 \rowcolor{gray!30}
-\textbf{Skill} & \textbf{Location} & \textbf{Notes on Implementation} \\
+\textbf{AQA Skill Listing} & \textbf{Location Evidenced} & \textbf{Notes on Implementation} \\
 \hline
 \endfirsthead
 
@@ -22,7 +24,7 @@ All Code References are clickable references to specific files and line numbers 
 {\tablename\ \thetable\ -- \textit{Continued from previous page}} \\
 \hline
 \rowcolor{gray!30}
-\textbf{Skill} & \textbf{Location} & \textbf{Notes on Implementation} \\
+\textbf{AQA Skill Listing} & \textbf{Location Evidenced} & \textbf{Notes on Implementation} \\
 \hline
 \endhead
 
@@ -40,12 +42,14 @@ All Code References are clickable references to specific files and line numbers 
 \multicolumn{3}{|c|}{\cellcolor{blue!20}\textbf{GROUP A SKILLS - MODEL}} \\
 \hline
 
-\multirow{3}{3.5cm}{Complex data model in database (several interlinked tables)} & 
+\multirow{4}{3.5cm}{Complex data model in database (several interlinked tables)} & 
 \nameref{code:SimulationAPI:Data:SimDbContext.cs} & 
 Implements Entity Framework DbContext with complex related entities including Users, Simulations, Agents, Buildings, MapAreas, Diseases, Mitigations, RefreshTokens, SimulationMetrics, and SimulationSnapshots with foreign key relationships and cascade deletes \\
 \cline{2-3}
 & \nameref{code:SimulationAPI:Models:Simulation.cs} & 
 Core Simulation model with one-to-one relationships (MapArea, Disease), one-to-many relationships (Agents, Mitigations, Metrics, Snapshots), and navigation properties \\
+\cline{2-3}
+& \nameref{code:SimulationAPI:Models:SimulationSnapshot.cs} & Discrete models storing state for simulation snapshots. All stored entities are linked as many -> one entities\\
 \cline{2-3}
 & \nameref{code:SimulationAPI:Models:MapArea.cs} & 
 MapArea with bidirectional relationships to Simulation, Buildings, and Paths demonstrating complex relational design \\
@@ -71,17 +75,15 @@ Spatial grid hash structure for efficient proximity queries during infection spr
 ConcurrentDictionary for thread-safe connection management in SignalR real-time communication hub \\
 \hline
 
-File(s) organised for direct access & 
-\nameref{code:SimulationAPI:Simulation:Structs:RuntimeStates.cs}, Lines 1--74 & 
-High-performance struct-based storage using StructLayout(LayoutKind.Sequential) enabling direct memory access patterns for simulation state (AgentState, BuildingState arrays allow contiguous memory iteration at 100k+ agents/second) \\
-\hline
-
-\multirow{2}{3.5cm}{Complex scientific / mathematical / robotics / control / business model} & 
+\multirow{3}{3.5cm}{Complex scientific / mathematical / robotics / control / business model} & 
 \nameref{code:SimulationAPI:Services:InfectionService.cs}, Lines 1--571 & 
 Epidemiological SEIR model with spatial transmission dynamics, viral load curves, immunity decay, intervention effectiveness calculations, and environmental modifiers (indoor/outdoor transmission rates) \\
 \cline{2-3}
 & \nameref{code:SimulationAPI:Models:Disease.cs}, Lines 1--39 & 
 Comprehensive disease parameters including incubation periods, infectiousness curves, symptom severity distributions, reinfection resistance, and intervention effectiveness factors \\
+\cline{2-3}
+\nameref{code:SimulationAPI:Services:AgentService.cs} & 
+Realistic agent routine and medical profile generation customising agent roles within their abstract class definitions \\
 \hline
 
 \multirow{4}{3.5cm}{Complex user-defined use of object-orientated programming (OOP) model (classes, inheritance, composition, polymorphism, interfaces)} & 
@@ -278,7 +280,7 @@ File(s) organised for sequential access &
 SimulationSnapshot entities stored with sequential tick numbers, loaded chronologically via OrderByDescending(s => s.Tick) for time-series analysis \\
 \hline
 
-\multirow{2}{3.5cm}{Simple scientific/mathematical/robotics/control/business model} & 
+\multirow{2}{3.5cm}{Simple scientific / mathematical / robotics / control /business model} & 
 \nameref{code:SimulationAPI:Services:RoutingService.cs}, Lines 92--99, 416--424 & 
 Haversine formula for great-circle distance: implements spherical trigonometry to calculate distances between geographic coordinates in meters \\
 \cline{2-3}
@@ -290,7 +292,7 @@ Linear interpolation for agent movement: calculates position along path segments
 \nameref{code:SimulationAPI:Models:MedicalProfile.cs} & 
 Simple composition: MedicalProfile class with properties (Age, HasChronicCondition, etc.) associated one-to-one with Agent \\
 \cline{2-3}
-& \nameref{code:SimulationAPI:DTOs:} (multiple files) & 
+& \nameref{code:SimulationAPI:DTOs:AuthDtos.cs} - (multiple files) & 
 Data Transfer Objects (LoginDto, CreateSimulationDto, UpdateProfileDto) encapsulating request/response data \\
 \hline
 
@@ -361,66 +363,4 @@ Calling Web service APIs and parsing JSON/XML to service a simple client-server 
 \nameref{code:frontend:src:api:axios.js}, Lines 8--60 & 
 Frontend API calls: axios.post("/Auth/login"), axios.get("/Simulation"), with JSON request/response handling \\
 \hline
-
-% GROUP C SKILLS - MODEL
-\hline
-\multicolumn{3}{|c|}{\cellcolor{yellow!20}\textbf{GROUP C SKILLS - MODEL}} \\
-\hline
-
-\multirow{3}{3.5cm}{Single-dimensional arrays} & 
-\nameref{code:SimulationAPI:Simulation:SimulationContext.cs}, Lines 33--35 & 
-AgentState[], BuildingState[], RoutineEventState[] arrays storing simulation runtime state \\
-\cline{2-3}
-& \nameref{code:SimulationAPI:Services:SimulationBroadcastService.cs}, Lines 66, 235 & 
-int[] selectedAgentIds, AgentPositionDto[] positions for client-server agent tracking \\
-\cline{2-3}
-& \nameref{code:SimulationAPI:Services:AgentService.cs}, Line 730 & 
-short[] occupantCounts parallel array tracking building occupancy \\
-\hline
-
-\multirow{2}{3.5cm}{Appropriate choice of simple data types} & 
-\nameref{code:SimulationAPI:Simulation:Structs:RuntimeStates.cs}, Lines 14--32 & 
-Optimized primitive types: float for positions (32-bit vs 64-bit double), byte for enum states, short for capacity (memory optimization) \\
-\cline{2-3}
-& \nameref{code:SimulationAPI:Models:} (various) & 
-Type choices: int for IDs, double for rates/coordinates (precision), string for names, DateTime for timestamps, bool for flags \\
-\hline
-
-Single table database & 
-\nameref{code:SimulationAPI:Models:RefreshToken.cs} & 
-RefreshToken standalone table (though typically joined with User) with primary key, timestamps, and device info \\
-\hline
-
-% GROUP C SKILLS - ALGORITHMS
-\hline
-\multicolumn{3}{|c|}{\cellcolor{yellow!20}\textbf{GROUP C SKILLS - ALGORITHMS}} \\
-\hline
-
-\multirow{2}{3.5cm}{Linear search} & 
-\nameref{code:SimulationAPI:Services:InfectionService.cs}, Lines 158--212 & 
-Sequential scan through agents array: for (int i = 0; i < agents.Length; i++) checking each agent's health state \\
-\cline{2-3}
-& \nameref{code:SimulationAPI:Services:AgentService.cs}, Lines 730--780 & 
-Linear iteration through routine events: checking each event against current tick for agent activity updates \\
-\hline
-
-\multirow{3}{3.5cm}{Simple mathematical calculations (average)} & 
-\nameref{code:SimulationAPI:Services:BuildingCapacityCalculator.cs}, Line 42 & 
-Average occupancy: 2.5 people per flat calculation for residential buildings \\
-\cline{2-3}
-& \nameref{code:SimulationAPI:Services:AgentService.cs}, Line 650 & 
-Average immunity baseline: baseImmunity = 0.7 for general population \\
-\cline{2-3}
-& \nameref{code:SimulationAPI:Simulation:MetricManager.cs}, Lines 28--32 & 
-Count operations: infected.Count(), recovered.Count() producing aggregate statistics \\
-\hline
-
-\multirow{2}{3.5cm}{Non-SQL table access} & 
-\nameref{code:SimulationAPI:Simulation:SimulationContext.cs}, Lines 33--35 & 
-In-memory array access: direct indexing into AgentState[] and BuildingState[] arrays bypassing database \\
-\cline{2-3}
-& \nameref{code:SimulationAPI:Services:InfectionService.cs}, Lines 71--145 & 
-Span\textless AgentState\textgreater{} for zero-allocation array access: ref var agent = ref agents[i] for high-performance iteration \\
-\hline
-
 \end{longtable}

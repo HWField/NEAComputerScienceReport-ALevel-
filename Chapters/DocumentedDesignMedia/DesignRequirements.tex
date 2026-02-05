@@ -1,10 +1,10 @@
 
 \section{Design Traceability to Requirements}
 
-Ensuring I meet my project requirements and design objectives is critical to the success of this project. The documented design directly addresses each requirement as follows:
+Ensuring I meet my project requirements and design objectives is critical to the success of this project. The table below outlines how every aspect of my requirements have been considered and code file links have been added during final project writeup to further improve readability. The documented design directly addresses each requirement as follows.
 % Define column widths for better control
-\newcolumntype{L}[1]{>{\raggedright\arraybackslash}p{#1}}
-\newcolumntype{C}[1]{>{\centering\arraybackslash}p{#1}}
+\newcolumntype{L}[1]{>{\raggedright\arraybackslash}m{#1}}
+\newcolumntype{C}[1]{>{\centering\arraybackslash}m{#1}}
 
 \begin{longtable}{|L{3.5cm}|L{4.5cm}|L{5.5cm}|}
 \caption{Requirement verfication} \\
@@ -36,89 +36,108 @@ Ensuring I meet my project requirements and design objectives is critical to the
 
 % SECTION 1
 \hline
-\multicolumn{3}{|c|}{\cellcolor{red!20}\textbf{Platform Access}} \\
+\multicolumn{3}{|c|}{\cellcolor{red!20}\textbf{Platform Access \& Security}} \\
 \hline
 
 \req{PA1} & \nameref{code:SimulationAPI:Program.cs} & platform is web based and supports all mainstream browsers making it accessible to most devices \\
 \hline
 
-\req{PA2} & \nameref{code:frontend:src:views:authentication.vue} \& \nameref{code:SimulationAPI:Controllers:AuthController.cs}& Robust client server authentication model \\
+\req{PA2} & \nameref{code:frontend:src:views:authentication.vue} \& \nameref{code:SimulationAPI:Controllers:AuthController.cs} & Robust client server authentication model handling login and registration \\
 \hline
 
-\req{PA3} & \nameref{code:SimulationAPI:Controllers:AuthController.cs}& all passwords are encrypted using: BCrypt.Net.BCrypt. HashPassword( dto.Password )\\
+\req{PA3} & \nameref{code:SimulationAPI:Controllers:AuthController.cs} & all passwords are encrypted using: BCrypt.Net.BCrypt. HashPassword( dto.Password )\\
 \hline
 
-\req{PA4} & \nameref{code:frontend:src:views:dashboard.vue}& User home dashboard includes summary stats are the top and the users simulation list at the bottom\\
+\req{PA4} & \nameref{code:SimulationAPI:Controllers:AuthController.cs} & User record is created after registration\\
 \hline
 
-\hline
-\multicolumn{3}{|c|}{\cellcolor{orange!20}\textbf{Simulation Setup}} \\
-\hline
-
-\req{SS1} & \nameref{code:frontend:src:components:CreateSimulationModal.vue}& Multistep simulation modal guides the user to create a new simulation \\
+\req{PA5} &  \nameref{code:frontend:src:stores:useUserStore.js} \& \nameref{code:SimulationAPI:Controllers:AuthController.cs} & After login client recieves an access/refresh token pair and stores in the user object store\\
 \hline
 
-\req{SS2} & "" & Global presets and those the user has saved are presented at various opportunities to reduce setup time \\
+\req{PA6} & \nameref{code:frontend:src:stores:useUserStore.js} \& \nameref{code:frontend:src:api:axios.js} & Client manages rotation of tokens and stores them within a pinia Store \\
 \hline
 
-\req{SS3} & "" & Simulation engine supports an "inifinte" number of agents (only constraint is simulation engines RAM) \\
+\multicolumn{3}{|c|}{\cellcolor{orange!20}\textbf{Dashboard}} \\
 \hline
 
-\req{SS4} & "" & Setup process infers population demographic from the buildings and data found during the OSM data import. \\
+\req{DA1} & \nameref{code:frontend:src:components:Navbar.vue} & Global navbar across all pages\\
 \hline
 
-\hline
-\multicolumn{3}{|c|}{\cellcolor{yellow!20}\textbf{Disease Spread Simulations}} \\
-\hline
-
-\req{DS1} & \nameref{code:SimulationAPI:Simulation:SimulationEngine.cs}, \nameref{code:SimulationAPI:Utils:SimulationTimeHelper.cs}, \nameref{code:SimulationAPI:Simulation:SimulationContext.cs} \& \autoref{sec:SimulationRuntimeDesign} & Simulation revolves around a robust tick system which is configurable by the user. The tick duration acts a balance between engine preciscion and performance (with short tick durations generating more accurate data but slowing down the simulation as more ticks are computed in a set period of time)  \\
+\req{DA2} & \nameref{code:frontend:src:views:dashboard.vue} & Dashboard component displays all required functionality \\
 \hline
 
-\req{DS2} & \nameref{code:SimulationAPI:Services:InfectionService.cs} & Content row 2 \\
+\req{DA3} & \nameref{code:frontend:src:components:SimulationDetailsModal.vue} & modal showing simulation details overlayed on the dashboard  \\
 \hline
 
-\req{DS3} & \nameref{code:SimulationAPI:Services:AgentService.cs}, \nameref{code:SimulationAPI:Services:MovementSystem.cs} & Content row 2 \\
-
-\req{DS4} & \nameref{code:SimulationAPI:Services:InfectionService.cs} & Content row 2 \\
-\hline
-
-\req{DS5} & \nameref{code:SimulationAPI:Simulation:MetricManager.cs}, \nameref{code:SimulationAPI:Simulation:SimulationEngine.cs} & Content row 2 \\
-\hline
-
-
-\hline
-\multicolumn{3}{|c|}{\cellcolor{lime!20}\textbf{User Experience}} \\
+\req{DA4} & \nameref{code:frontend:src:views:dashboard.vue} & Each simulation card within the dashboard has a dedicated open button \\
 \hline
 
 \hline
-\multicolumn{3}{|c|}{\cellcolor{green!20}\textbf{Output and Visualisation}} \\
+\multicolumn{3}{|c|}{\cellcolor{yellow!20}\textbf{Settings Menu}} \\
 \hline
 
-\hline
-\multicolumn{3}{|c|}{\cellcolor{teal!20}\textbf{Simulation Performance}} \\
-\hline
+\req{SM1}, \req{SM2}, \req{SM3}, \req{SM4} & \nameref{code:frontend:src:views:settings.vue} & Settings view component including all required functionality\\
 
 \hline
-\multicolumn{3}{|c|}{\cellcolor{cyan!20}\textbf{User Interface}} \\
+\multicolumn{3}{|c|}{\cellcolor{lime!20}\textbf{Admin Controls}} \\
 \hline
 
-\hline
-\multicolumn{3}{|c|}{\cellcolor{blue!20}\textbf{Platform Scalability}} \\
-\hline
+
+\req{AC1}, \req{AC2}, \req{AC3}, \req{AC4}, \req{AC5} & \nameref{code:frontend:src:views:admin.vue} & Admin view component including all required functionality\\
 
 \hline
-\multicolumn{3}{|c|}{\cellcolor{violet!20}\textbf{Accessibility}} \\
+\multicolumn{3}{|c|}{\cellcolor{green!20}\textbf{Simulation Setup}} \\
 \hline
 
-\hline
-\multicolumn{3}{|c|}{\cellcolor{magenta!20}\textbf{Robustness}} \\
-\hline
-\hline
-\multicolumn{3}{|c|}{\cellcolor{pink!20}\textbf{Maintainability}} \\
-\hline
+
+\req{SS1}, \req{SS2}, \req{SS3}, \req{SS4}, \req{SS5}, \req{SS6}, \req{SS7}, \req{SS8}, \req{SS9} &  \nameref{code:frontend:src:components:CreateSimulationModal.vue} \& \nameref{code:SimulationAPI:Simulation:SimulationSetup.cs} & Frontend modal and backend logic to create simulations according to spec\\
 
 \hline
-\multicolumn{3}{|c|}{\cellcolor{purple!20}\textbf{Validation}} \\
+\multicolumn{3}{|c|}{\cellcolor{teal!20}\textbf{Simulation Runtime}} \\
 \hline
 
+\req{SS1} &  \nameref{code:frontend:src:views:simulation.vue} & Main simulation view which nests child tabs \\
+\hline
+\req{SS2} &  \nameref{code:frontend:src:composables:useSimulationHub.ts} & Composable which returns a computed status based on server connectivity and status \\
+\hline
+\req{SS3} &  \nameref{code:frontend:src:components:SimulationConfigure.vue} & Configuration tab giving full functionality \\
+\hline
+\req{SS4} &  \nameref{code:frontend:src:components:SimulationSimulate.vue} & Simulation tab giving full functionality \\
+\hline
+\req{SS5} &  \nameref{code:frontend:src:components:SimulationAnalyse.vue} & Analysis tab giving full functionality \\
+
+\hline
+\multicolumn{3}{|c|}{\cellcolor{cyan!20}\textbf{Simulation Engine}} \\
+\hline
+
+\req{SE1} &  \nameref{code:SimulationAPI:Models:Agent.cs}, \nameref{code:SimulationAPI:Models:MedicalProfile.cs}, \nameref{code:SimulationAPI:Models:Routine.cs} \& \nameref{code:SimulationAPI:Services:RoutingService.cs} & Agent classes and supporting models which enable custom beahviour per agent. Routing service which enables agent movement routines to be computed \\
+\hline
+\req{SE2} &  \nameref{code:SimulationAPI:Models:Building.cs}, \nameref{code:SimulationAPI:Services:BuildingCapacityCalculator.cs} \& \nameref{code:SimulationAPI:Services:BuildingService.cs}  & Building classes and their supporting services which enables the engine to compute estimated capacities and features \\
+\hline
+\req{SE3} &  \nameref{code:SimulationAPI:Simulation:SimulationEngine.cs}, \nameref{code:SimulationAPI:Services:AgentService.cs} \& \nameref{code:SimulationAPI:Services:InfectionService.cs}  & Simulation engine handle tick by tick computation whilst offloading agent routine following and infection spread to supporting services \\
+\hline
+\req{SE4} &  \nameref{code:SimulationAPI:Controllers:SimulationsController.cs} \& \nameref{code:SimulationAPI:Models:Mitigation.cs} & Simulation controller contains routes for applying mitigation changes defined in the mitigation class \\
+
+\hline
+\req{SE5} &  \nameref{code:SimulationAPI:Simulation:MetricManager.cs} \& \nameref{code:SimulationAPI:Models:SimulationMetric.cs} & Metric Manager handles the frequent recording of simulation statistics as defined by the metric class \\
+\hline
+\req{SE6} &  \nameref{code:SimulationAPI:Simulation:SnapshotManager.cs} \& \nameref{code:SimulationAPI:Models:SimulationSnapshot.cs} & Snapshot manager takes regular 'snapshots' of agents, buildings and the simulation to enable later rewind. The snapshot classes store lightweight key parameters to optomise storage usage and performance \\
+\hline
+\req{SE7} &  \nameref{code:SimulationAPI:Simulation:SimulationContext.cs} & Simulation context stores a random seed throughout which is used for agent movement, disease spread and all 'random' deciscions ensuring repetability and consistency \\
+
+\hline
+\multicolumn{3}{|c|}{\cellcolor{blue!20}\textbf{Simulation Performance}} \\
+\hline
+
+\req{SP1}, \req{SP2}, \req{SP3}, \req{SP4} &  \nameref{code:SimulationAPI:Simulation:SimulationEngine.cs}, \nameref{code:SimulationAPI:Simulation:SimulationContext.cs} \& \nameref{code:SimulationAPI:Simulation:Structs:RuntimeStates.cs} & Simulation engine is optimised to handle large agent counts through efficient data structures and algorithms. simulation context uses runtime optimised states to store agents, buildings and routines in sequential memory addresses reducing seek times and increasing performance\\
+\hline
+\req{SP5} &  \nameref{code:SimulationAPI:Simulation:SimulationManager.cs} \& \nameref{code:SimulationAPI:Simulation:SimulationContext.cs}  & global simulation manager is responsible for organizing simulation contexts which each isolate a loaded simulation. This enables efficent task scheduling on the processor and reduced memory pressure as paused / inactive simulations can be unloaded whilst new simulation requests are queued\\
+\hline
+\req{SP6}, \req{SP7}, \req{SP8} &  \nameref{code:SimulationAPI:Data:SimDbContext.cs} & Simulation connection to database through the SimDbContext ensures pending changes are continually stored to database preventing data loss on program crash. All user inputs are sanatised both prior to api send and on recipt.\\
+
+\hline
+\multicolumn{3}{|c|}{\cellcolor{violet!20}\textbf{Maintainability}} \\
+\hline
+
+\req{MA1}, \req{MA2}, \req{MA3} & \nameref{code:SimulationAPI:Data:SimDbContext.cs} & Version control will be used throughout for commit tracking and redundancy. This docuement then servers as documentation for documented design and the final technical solution\\
 \end{longtable}

@@ -485,7 +485,7 @@ Should a user want more detailed data they can always download the entire simula
 From my prototyping I have found that my project is feasible in terms of data acquisition, simulation performance and visualisation. I have made some changes to my initial plans such as switching from python to C\# for the simulation engine to maximise performance and changing my data streaming strategy to only stream key statistics rather than every agent movement. These changes will help ensure that my project is successful and meets the needs of my users.
 \section{Project Objectives:}
 Taken my research, conversations with potential users and prototyping into account I have compiled a list of key functional requirements for my project. These requirements will guide the development of my project and ensure that it meets the needs of my users. At the end of the project I will test and review these requirements to ensure that they have been met.
-\subsection*{Platform Access \& Security:}
+\subsection{Platform Access \& Security:}
 \begin{itemize}
     \item\label{req:PA1} PA1: Users can access the system via modern desktop and mobile web browsers that support ES6 JavaScript and HTTPS.
     \item\label{req:PA2} PA2: Users are brought to an authentication page on first access if not already logged in.
@@ -499,7 +499,7 @@ Taken my research, conversations with potential users and prototyping into accou
     \item\label{req:PA6} PA6: User sessions are securely managed via automatic access token expiry giving protection against unauthorised access.
 \end{itemize}
 
-\subsection*{Dashboard:}
+\subsection{Dashboard:}
 \begin{itemize}
     \item \label{req:DA1} DA1: The dashboard interface includes a navigation bar with links to the dashboard (clickable logo), admin page, settings menu and logout button.
     \item \label{req:DA2} DA2: Authenticated users are first brought to a dashboard.
@@ -518,26 +518,26 @@ Taken my research, conversations with potential users and prototyping into accou
     \item \label{req:DA4} DA4: Users can launch an existing simulation from the dashboard to re-run it in the simulation engine.
 \end{itemize}
 
-\subsection*{Settings Menu:}
+\subsection{Settings Menu:}
 \begin{itemize}
-    \item\label{req:SA1} SA1: Authenticated users can view a settings menu to update personal details such as email and password.
-    \item\label{req:SA2} SA2: Settings menu has an account page to modify username.
-    \item\label{req:SA3} SA3: Settings menu has an Appearance page.
+    \item\label{req:SM1} SM1: Authenticated users can view a settings menu to update personal details such as email and password.
+    \item\label{req:SM2} SM2: Settings menu has an account page to modify username.
+    \item\label{req:SM3} SM3: Settings menu has an Appearance page.
     \begin{itemize}
-        \item\label{req:SA3.1} SA3.1: Settings page has a theme selection with 10+ options.
-        \item\label{req:SA3.2} SA3.2: User can see a preview of the selected theme before applying.
-        \item\label{req:SA3.3} SA3.3: User can view a large preview of all themes in a gallery view.
-        \item\label{req:SA3.4} SA3.4: User can hide personally identifiable information via a streamer mode.
+        \item\label{req:SM3.1} SM3.1: Settings page has a theme selection with 10+ options.
+        \item\label{req:SM3.2} SM3.2: User can see a preview of the selected theme before applying.
+        \item\label{req:SM3.3} SM3.3: User can view a large preview of all themes in a gallery view.
+        \item\label{req:SM3.4} SM3.4: User can hide personally identifiable information via a streamer mode.
     \end{itemize}
-    \item\label{req:SA4} SA4: Settings menu has a Security page.
+    \item\label{req:SM4} SM4: Settings menu has a Security page.
     \begin{itemize}
-        \item\label{req:SA4.1} SA4.1: User can modify password with current password verification.
-        \item\label{req:SA4.2} SA4.2: User can view all active auth sessions and revoke any that are suspicious.
+        \item\label{req:SM4.1} SM4.1: User can modify password with current password verification.
+        \item\label{req:SM4.2} SM4.2: User can view all active auth sessions and revoke any that are suspicious.
     \end{itemize}
 \end{itemize}
 
 
-    \subsection*{Admin Controls:}
+    \subsection{Admin Controls:}
 \begin{itemize}
     \item\label{req:AC1} AC1: Users with admin privileges can access an admin dashboard.
     \item\label{req:AC2} AC2: Admin page has a user management tab.
@@ -562,7 +562,7 @@ Taken my research, conversations with potential users and prototyping into accou
 \end{itemize}
 
 
-\subsection*{Simulation Setup:}
+\subsection{Simulation Setup:}
 \begin{itemize}
     \item\label{req:SS1} SS1: When creating a new simulation users are brought to a multi-step setup wizard.
     \item\label{req:SS2} SS2: The user first configures the simulation details.
@@ -575,7 +575,7 @@ Taken my research, conversations with potential users and prototyping into accou
         \item\label{req:SS3.1} SS3.1: User selects either a preset map area or a custom area.
         \item\label{req:SS3.2} SS3.2: If preset, user selects from a list of predefined areas.
         \item\label{req:SS3.3} SS3.3: If custom, user drops a pin on an interactive map to define the area.
-        \item\label{req:SS3.3} SS3.4: User can search for locations by name.
+        \item\label{req:SS3.4} SS3.4: User can search for locations by name.
         \item\label{req:SS3.5} SS3.5: User can select a radius for the map area (e.g. 1km, 5km, 10km) bound by sensible limits.
         \item\label{req:SS3.6} SS3.6: User enters a custom name for the map area.
         \item\label{req:SS3.7} SS3.7: User can choose to save the map area as a preset for later use.
@@ -610,7 +610,7 @@ Taken my research, conversations with potential users and prototyping into accou
     \item\label{req:SS9} SS9: Presets and parameter suggestions are provided to support non-expert users while still allowing expert users full manual control.
 \end{itemize}
 
-\subsection*{Simulation Runtime:}
+\subsection{Simulation Runtime:}
 \begin{itemize}
     \item\label{req:SR1} SR1: Launching the simulation brings the user to a page containing Configuration, Simulation and Analysis tabs.
     \item\label{req:SR2} SR2: Real time server status and system connectivity is displayed prominently.
@@ -648,37 +648,37 @@ Taken my research, conversations with potential users and prototyping into accou
 \end{itemize}
 
 
-\subsection*{Simulation Engine:}
+\subsection{Simulation Engine:}
 \begin{itemize}
-    \item\label{req:DS1} DS1: Each simulation agent has a unique identity.
+    \item\label{req:SE1} SE1: Each simulation agent has a unique identity.
     \begin{itemize}
-        \item \label{req:DS1.1} DS1.1: Agents have defined Role attributes such as student, office worker, medical worker etc.
-        \item \label{req:DS1.2} DS1.2: Agents have defined Health attributes which inform disease progression and susceptibility.
-        \item \label{req:DS1.3} DS1.3: Agents have defined Routine attributes which inform daily movement patterns.
-        \item \label{req:DS1.4} DS1.4: Agents travel routines are computed during simulation setup to maximise runtime performance.
-        \item \label{req:DS1.5} DS1.5: Agents are assigned a Home location within the map area.
-        \item \label{req:DS1.6} DS1.6: Agents are realistically assigned Workplace locations based on their Role.
+        \item \label{req:SE1.1} SE1.1: Agents have defined Role attributes such as student, office worker, medical worker etc.
+        \item \label{req:SE1.2} SE1.2: Agents have defined Health attributes which inform disease progression and susceptibility.
+        \item \label{req:SE1.3} SE1.3: Agents have defined Routine attributes which inform daily movement patterns.
+        \item \label{req:SE1.4} SE1.4: Agents travel routines are computed during simulation setup to maximise runtime performance.
+        \item \label{req:SE1.5} SE1.5: Agents are assigned a Home location within the map area.
+        \item \label{req:SE1.6} SE1.6: Agents are realistically assigned Workplace locations based on their Role.
     \end{itemize}
-    \item\label{req:DS2} DS2: Simulation buildings are processed during setup to extract key attributes.
+    \item\label{req:SE2} SE2: Simulation buildings are processed during setup to extract key attributes.
     \begin{itemize}
-        \item \label{req:DS2.1} DS2.1: Buildings are classified into types (e.g. residential, commercial, educational, medical etc).
-        \item \label{req:DS2.2} DS2.2: Building capacities are estimated based on type and size to inform agent assignment.
+        \item \label{req:SE2.1} SE2.1: Buildings are classified into types (e.g. residential, commercial, educational, medical etc).
+        \item \label{req:SE2.2} SE2.2: Building capacities are estimated based on type and size to inform agent assignment.
     \end{itemize}
-    \item\label{req:DS3} DS3: Runtime simulation follows a discrete time step model.
+    \item\label{req:SE3} SE3: Runtime simulation follows a discrete time step model.
     \begin{itemize}
-        \item \label{req:DS3.1} DS3.1: Each tick represents a configurable time interval (e.g. 5 minutes).
-        \item \label{req:DS3.2} DS3.2: During each tick, agents move across the map according to predefined routines, roles, and behavioural rules.
-        \item \label{req:DS3.3} DS3.3: During each tick, each agent progresses through disease states using a SEIR model.
-        \item \label{req:DS3.4} DS3.4: Applied mitigations influence infection system.
-        \item \label{req:DS3.5} DS3.5: Disease transmission is calculated based on proximity between agents within each tick.
+        \item \label{req:SE3.1} SE3.1: Each tick represents a configurable time interval (e.g. 5 minutes).
+        \item \label{req:SE3.2} SE3.2: During each tick, agents move across the map according to predefined routines, roles, and behavioural rules.
+        \item \label{req:SE3.3} SE3.3: During each tick, each agent progresses through disease states using a SEIR model.
+        \item \label{req:SE3.4} SE3.4: Applied mitigations influence infection system.
+        \item \label{req:SE3.5} SE3.5: Disease transmission is calculated based on proximity between agents within each tick.
     \end{itemize}
-    \item\label{req:DS4} DS4: When simulation parameters are altered, the system recomputes all future simulation ticks from the point of change while preserving historical data.
-    \item\label{req:DS5} DS5: Key epidemiological metrics (e.g. R value, susceptible, exposed, infected, recovered counts) are recorded at regular intervals.
-    \item\label{req:DS6} DS6: System snapshots are taken at user-defined intervals to capture agent states and positions for later recall.
-    \item\label{req:DS7} DS7: Simulation randomness is controlled through seed values to allow reproducibility of results.
+    \item\label{req:SE4} SE4: When simulation parameters are altered, the system recomputes all future simulation ticks from the point of change while preserving historical data.
+    \item\label{req:SE5} SE5: Key epidemiological metrics (e.g. R value, susceptible, exposed, infected, recovered counts) are recorded at regular intervals.
+    \item\label{req:SE6} SE6: System snapshots are taken at user-defined intervals to capture agent states and positions for later recall.
+    \item\label{req:SE7} SE7: Simulation randomness is controlled through seed values to allow reproducibility of results.
 \end{itemize}
 
-\subsection*{Simulation Performance:}
+\subsection{Simulation Performance:}
 \begin{itemize}
     \item\label{req:SP1} SP1: Under typical workloads (≤100,000 agents x 1 simulation), the engine computes one simulated day per real-time second.
     \item\label{req:SP2} SP2: The system can compute simulations with up to 1,000,000 agents.
@@ -690,7 +690,7 @@ Taken my research, conversations with potential users and prototyping into accou
     \item\label{req:SP8} SP8: The system maintains data integrity and state in the event of unexpected termination.
 \end{itemize}
 
-\subsection*{Maintainability:}
+\subsection{Maintainability:}
 \begin{itemize}
     \item\label{req:MA1} MA1: codebase is version-controlled using Git, with clear commit history demonstrating iterative development.
     \item\label{req:MA2} MA2: Coding standards, documentation, and modular design are used to support long-term maintainability.
