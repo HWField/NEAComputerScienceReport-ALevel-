@@ -22,7 +22,7 @@ We use confidence intervals. Never present a single ‘answer’. We show an ens
 Simulations tools should yield results that are as close as possible to reality but it often comes with computational cost. The usefulness comes from the scientific approach behind the experiment: Was the question pertinent? Was the tool used the most appropriate? Were the parameters chosen relevant to fully answer the question? Was there limitations or approximations that should be considered along with the results? Running complex or computationally expensive simulations if the approach was not right will not be useful, regardless of the tool used. However, a tool can be both technically impressive and genuinely useful if it is used for the right task and in the right context.
 
 \subsection*{6. How important is data visualisation when interpreting complex or large-scale simulation outputs?}
-Analysis of simulations results often require different types of visualisation. How the data is represented can lead to different observations and depend on what the researcher wants to focus on. Therefore, choosing the right type(s) of visualisation for a given analysis is important. Also, when representing data, one should be cautious not to introduce bias. For example, choosing uniform colour palettes when depicting a gradient or paying attention to the scales in graphs.
+Analysis of simulation results often require different types of visualisation. How the data is represented can lead to different observations and depend on what the researcher wants to focus on. Therefore, choosing the right type(s) of visualisation for a given analysis is important. Also, when representing data, one should be cautious not to introduce bias. For example, choosing uniform colour palettes when depicting a gradient or paying attention to the scales in graphs.
 
 \subsection*{7. Are there common pitfalls you’ve seen when non-specialists interpret results from simulations?}
 Non-specialists often forget that simulations are stochastic (random), one run does not represent the average reality. They also often mistake correlation for causation. In your case, a simulation that shows that the virus stopped spreading when everyone stayed home does not necessarily mean that only staying home worked, it might have been a combination of factors.
@@ -30,8 +30,8 @@ Non-specialists often forget that simulations are stochastic (random), one run d
 \subsection*{8. Do you think simplified simulations still have value as educational or communication tools, even if they are not perfectly realistic?}
 Absolutely. Simple models are better for education than complex ones because they reveal the underlying logic without the noise of a million variables.
 
-\subsection*{9. If a member of the general public were using a simulation like this, what explanations or safeguards would you consider important?}
-A simplified, ‘calibrated’ system on which benchmarks were successfully run and offering conservative default parameters could be accessible to the general public, mostly for educational purposes. Safeguards would include points discussed above, such as reproducibility, statistical relevance, or general caution about data analysis and representation. However, running complex simulations require a sufficient level of understanding of the underlying theory as well as the limitations discussed above. Choosing the right model and fine tuning the parameters used to run the simulation also demand expertise from the user.
+\subsection*{9. If a member of the public were using a simulation like this, what explanations or safeguards would you consider important?}
+A simplified, ‘calibrated’ system on which benchmarks were successfully run and offering conservative default parameters could be accessible to the general public, mostly for educational purposes. Safeguards would include points discussed above, such as reproducibility, statistical relevance, or general caution about data analysis and representation. However, running complex simulations require a sufficient level of understanding of the underlying theory as well as the limitations discussed above. Choosing the right model and fine-tuning the parameters used to run the simulation also demand expertise from the user.
 
 \subsection*{10. Do you ever struggle to run simulations on your devices or find they are too slow to process?}
 MD simulations are notorious for being slow, we often use massive CPU and/or GPU clusters. If a simulation takes many days to run, you cannot iterate quickly.
@@ -43,10 +43,10 @@ This is exactly how our computing system is setup. Machines that run the simulat
 \label{sec:responseDrJin}
 \subsection*{1. How do I currently use simulations or computational models within my research workflow?}
 
-Followed is my normal research workflow:
+Here is my normal research workflow:
 
 \begin{enumerate}
-    \item Find target protein (based on lots of publishing)
+    \item Find target protein (based on existing published research)
     \item Crispr-Cas9 design to build knock down or tagged system (use some designing websites)
     \item If I have it tagged or have an antibody
     \item Protein IP (pulling down)
@@ -58,24 +58,24 @@ Followed is my normal research workflow:
     \item Publication
 \end{enumerate}
 
-At first, we have a target gene that we would like to understand its protein function and its RNA function. Followed systems are the one that I normally used related with simulations or computational models (the first part is the reason I use the model and second part is the website I normally use):
+At first, we select a target gene that we would like to understand its protein function and its RNA function. Followed systems are the one that I normally used related with simulations or computational models (the first part is the reason I use the model and second part is the tool I normally use):
 
 \begin{itemize}
     \item \textbf{Crispr guide RNA designing} -- Chopchop, SnapGene, Synthego
     \item \textbf{Protein IP (protein pulling down through cells) and then did mass spectrometry, I will get some data, for example: a list of related protein name} -- I can upload the list to online website ``String'' (protein-protein interaction network), by analysing the filter, I could find the most important list related with my target protein and possible function that related with my target.
-    \item \textbf{Once I confirmed several name of proteins that pulling down with my target protein, I can upload sequences of those proteins to the AlphaFold to predict the possible binding site among them and base on those binding sites, I could design some mutations to test direct to cells or in vivo test if it is possible.}
+    \item \textbf{Once I confirmed several names of proteins that pulling down with my target protein, I can upload sequences of those proteins to the AlphaFold to predict the possible binding site among them and base on those binding sites, I could design some mutations to test direct to cells or in vivo test if it is possible.}
 \end{itemize}
 
 \subsection*{2. What advantages do simulations offer compared to purely experimental or observational approaches?}
-Time save (some projects will save years time to find the right results), funding cost saving.
+Time saved (some projects will save years trying to find the right results), funding cost saving.
 \subsection*{3. In your experience, how do researchers balance the accuracy of simulation against the resources they have (time, funding, compute power etc?)}
-Planning the time and funding cost is always the first thing to do. Also cooperation with other research who has experience and compute power.
+Planning the time resources and funding costs is always the first thing to do. Cooperation with other researchers who have experience and greater compute power also enhances the produced results.
 \subsection*{4. How important is reproducibility in simulation-based research, and how is it usually achieved?}
 Reproducibility is very important as without it, it is not possible to test other simulations. Normally achieved by other similar research publications.
-\subsection*{5. When working with simulations, how do you typically validate or ‘sanity-check’ the outputs?}
-We always find a system from several publications or use a very well-known system to do ‘sanity-check’ or real experiment check or different data test.
+\subsection*{5. When working with simulations, how do you typically validate or 'sanity-check' the outputs?}
+We always find a system from several publications or use a very well-known system to do 'sanity-check' or real experiment check or different data test.
 \subsection*{6. How important is visualising data (graphs, diagrams etc) when interpreting complex simulation results?}
-Visualising data is very important for us. All our research are based on the mathematic analysing with graphs, diagrams. Based on those visualising data, we can understand the unknow behind the research and share the information to others.
+Visualising data is very important to us. All our research is based on mathematic analysis with graphs and diagrams. Based on this visualised data, we can understand the unknown variables behind the research and share the information to others.
 \subsection*{7. Do you think very simplified simulations(ignoring a range of factors) can still be useful for education or communication, even if they are not perfectly realistic?}
 Yes, very simplified simulations can still be useful for education or communication as that is easy for the entrance level learner to understand how the system work and they can learn things and understand systems step by steps. Also, the same for communication, research is always the big collaboration of lots of different background scientists, none of them understand everything in the field, simplified simulations will give the other scientists/or funding body/or managements, who without certain backgrounds, a chance to understand it and then give a better support to the research. 
 \subsection*{8. Do you ever struggle to run simulations on your devices or find they are too slow to process?}
@@ -85,9 +85,66 @@ Yes, but depends on how safe that central server is and do we still have right f
 
 \section{Response from Mr Field}
 \label{sec:responseMrField}
+\subsection*{1. In your experience, what aspects of a simulation need to be realistic for the results to be meaningful, and which aspects can reasonably be simplified?}
+Both the input assumptions and the output measures need to be comparable with real world inputs and outputs. It is sometimes useful to group data items into categories that have similarities e.g. products that have similar characteristics. This makes it easier to review and make sense of the outputs. 
+\subsection*{2. How do researchers typically choose or justify parameter values when modelling systems that cannot be directly or precisely measured?}
+They use approximations and can then explain how any variances in the approximations will impact the results. This then explains how sensitive the outputs are to changes in the parameter values – and therefore how the model may be affected.
+\subsection*{3. What strategies do you use to validate or sanity-check simulation outputs before drawing conclusions from them?}
+I would validate the outputs to real world experience. For example, if a sales forecast model produced an output that was very different to any output previously seen then I would be sceptical and would seek to investigate how the model had created that output. 
+\subsection*{4. How do you usually communicate the assumptions and limitations of a simulation to avoid over-interpreting the results?}
+Document why the assumptions have been chosen – where the data source is.
+Explain sensitivities to key assumptions.
+\subsection*{5. What features make a simulation tool genuinely useful to researchers rather than just technically impressive?}
+Being able to view the assumptions against real life data, including regression testing a model to see how accurate it is vs real life. 
+Being able to quickly model changes in the assumptions to explain impact. 
 
-\section{Interview With Sally}
-\label{sec:interview_sally}
-\begin{center}
-    \textit{Transcription pending}
-\end{center}
+\subsection*{6. How important is data visualisation when interpreting complex or large-scale simulation outputs?}
+Very important – because it is difficult to interpret complicated data sets.  Grouping data together and presenting it in a manner that can be understood is very important.
+\subsection*{7. Are there common pitfalls you’ve seen when non-specialists interpret results from simulations?}
+Yes, they can focus on the output without due understanding or scepticism for the inputs. They can confuse complexity or the impressive nature of the model for usefulness – the model parameters may be the wrong ones or the assumptions inaccurate.
+
+\subsection*{8. Do you think simplified simulations still have value as educational or communication tools, even if they are not perfectly realistic?}
+Yes because as long as the key assumptions are valid, they can demonstrate directionally what the key factors are to drive the result. 
+\subsection*{9. If a member of the general public were using a simulation like this, what explanations or safeguards would you consider important?}
+Explain key assumptions and the normal ranges in which they operate – such that the member of the general public does not applyunrealistic assumptions. 
+Document the limitations of the model.
+Secure the model to ensure that the member can only change clearly defined parameters. 
+
+\subsection*{10. Do you ever struggle to run simulations on your devices or find they are too slow to process?}
+Yes – complicated models on edge computing can run very slowly. To improve this, either simplify the model or use more powerful compute – e.g. server compute.
+\subsection*{11. Would a system that processes the simulation on a central server and sends the results down to your devices be useful?}
+Yes because it allows the use of more powerful compute capability and also allows many people to access the same simulation.
+\section{Conversation With Sally}
+\label{sec:interviewSally}
+
+\begin{description}
+  \item[Me:] Hi Sally, thanks for taking the time to speak with me. I wanted to understand how someone like you would use an epidemic simulation tool. What would you want it to do?
+  \item[Sally:] Sure! For me, I’d like to see what happens if we make small changes, like more people wearing masks or isolating at home. I want to see how that changes the spread of the virus in a way I can easily understand.
+  
+  \item[Me:] Great, so my project's focus is on experimenting with different mitigations. How important is it for you to be able to adjust those parameters easily?
+  \item[Sally:] Very important. I don’t want to have to dig into complicated settings or have to constantly research technical terminology. If I can just tick a box or slide a scale to increase mask-wearing or reduce contacts, that would be perfect.
+  
+  \item[Me:] That makes sense, when you change these parameters, how would you like to see the results presented?
+  \item[Sally:] graphs are probably easiest, I like to see curves of infections over time, maybe stacked charts for events. Something visual rather than tables of numbers, so I can quickly understand the trends.
+  
+  \item[Me:] Would you want to compare multiple scenarios side by side?
+  \item[Sally:] Absolutely. If I could run scenario A with masks and scenario B without, and then see them overlaid on the same graph, that would help a lot.
+  
+  \item[Me:] How frequently would you like to be able to rerun simulations after adjusting parameters?
+  \item[Sally:] Very quickly. I might try different combinations, like increasing isolation, reducing gatherings, and seeing what effect each has. Waiting a long time for each run or having to set everything up again would be frustrating.
+  
+  \item[Me:] So speed and interactivity are important. Do you think this tool should give recommendations, or just show the outcomes?
+  \item[Sally:] I think showing the outcomes is fine. I just want to explore “what if” questions. If it gave recommendations, I might feel pressured to follow them, which I don’t want. Having said that however i would need some guidance on sensible settings that would make the simulation realistic so it's a balance
+  
+  \item[Me:] Got it. How much background knowledge about epidemics do you think a user like you would have?
+  \item[Sally:] Very little. I know the basics, like infections grow fast if people meet, and masks help, but I don’t know any formulas. The tool needs to be clear and not assume any technical knowledge.
+  
+  \item[Me:] And if there are assumptions in the model, like average contacts or infection rates, how would you want those communicated?
+  \item[Sally:] Simply. Maybe a small note or tooltip next to the parameter. I don’t need full scientific papers, but I want to know roughly how it works so I can trust the results.
+  
+  \item[Me:] Finally, how important is it for the interface to be visually appealing and easy to navigate?
+  \item[Sally:] Very important. If it looks complicated or cluttered, I might give up. Buttons, sliders, clear charts, that’s all I need to explore different scenarios easily. Ideally I would be able to use my phone or iPad to access it as well as my laptop.
+  
+  \item[Me:] Thank you, that’s really helpful. Is there anything else you’d like from a tool like this?
+  \item[Sally:] Maybe a way to save my scenarios, so I can come back and compare them later. But overall, easy adjustments, clear graphs, and fast feedback are the most important.
+\end{description}

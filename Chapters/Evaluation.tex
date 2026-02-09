@@ -1,6 +1,6 @@
 \chapter{Evaluation}
 \section{Reflection of objectives}
-Having completed my software developemnt and implementation, I will now revisit my Project Objectives to analyse the effectiveness of my solution in meeting the requirements I set out to achieve. I will also reflect on the development process, challenges faced, and lessons learned throughout the project.
+Having completed my software development, implementation and testing, I will now revisit my Project Objectives to more subjectively analyse the effectiveness of my solution in meeting the requirements my users wanted. I will also reflect on the development process, challenges faced, and lessons learned throughout the project.
 
 % Define column widths for better control
 \newcolumntype{L}[1]{>{\raggedright\arraybackslash}m{#1}}
@@ -34,30 +34,67 @@ Having completed my software developemnt and implementation, I will now revisit 
 \hline
 \endlastfoot
 
- \hyperref[req:PA1]{Platform Access \& Security}& \pass & Website loads on multiple tested devices across a range of platforms successfully achieving the objective\\
+ \hyperref[req:PA1]{Platform Access \& Security}& \pass & Website accessible on all tested devices across a range of platforms, Users are able to log in using secure, encrypted passwords and can manage their account's login session for added peace of mind \\
 \hline
-\hyperref[req:DA1]{Dashboard}& \pass & User without authentication is brought to login page when trying to access system pages\\
+\hyperref[req:DA1]{Dashboard}& \pass & Fully featured dashboard enables user to explore the tools provided and quickly access their simulations with an elegant interface\\
 \hline
-\hyperref[req:SM1]{Settings Menu} & \pass & Passwords are stored in database hashed and unreadable\\
+\hyperref[req:SM1]{Settings Menu} & \pass & User has full control of the application's appearance and their account settings enabling huge customisation\\
 \hline
-\hyperref[req:AC1]{Admin Controls} & \pass & User record is created and contains default options\\
+\hyperref[req:AC1]{Admin Controls} & \pass & Admins can manage server workload, pause/unload large simulations, manage users and clear storage\\
 \hline
-\hyperref[req:SS1]{Simulation Setup} & \pass & Client receives both access and refresh tokens and commits them to pinia store\\
+\hyperref[req:SS1]{Simulation Setup} & \pass & User is walked through a step-by-step setup process guiding them to model realistic epidemic situations\\
 \hline
-\hyperref[req:SR1]{Simulation Runtime} & \pass & access tokens expire with short delay and require refetching via a revokable refresh token\\
+\hyperref[req:SR1]{Simulation Runtime} & \pass & Simulation runs reliably and performantly computes disease spread in accordance with all outlined criteria\\
 \hline
-\hyperref[req:SE1]{Simulation Engine} & \pass & access tokens expire with short delay and require refetching via a revokable refresh token\\
+\hyperref[req:SE1]{Simulation Engine} & \pass & Simulation Engine manages each tick of the disease runtime: moving agents, spreading disease and updating metrics\\
 \hline
-\hyperref[req:SP1]{Simulation Performance} & \pass & access tokens expire with short delay and require refetching via a revokable refresh token\\
+\hyperref[req:SP1]{Simulation Performance} & \pass & Simulation runs on centralised compute server and streams results to user, even testing on my laptop performance is strong and can be used for meaningful data generation and insights\\
 \hline
-\hyperref[req:MA1]{Maintainability} & \pass & access tokens expire with short delay and require refetching via a revokable refresh token\\
+\hyperref[req:MA1]{Maintainability} & \pass & Documentation fully outlines all design steps and git commit tracking used throughout project\\
 \hline
-
-
 \end{longtable}
 
 
 \section{Client feedback}
+To evaluate the success of my project from my clients points of view I have again reached out to gather their opinions, having sent them a link to the live application (running on a home server) and asking them to test it out and provide feedback on their experience. Please find their feedback outlined below:
+\subsection*{Feedback from Dr Faille}
+
+I have reviewed your finished product and found it to be a thoughtful and well-executed application of simulation principles to a complex real-world problem. You demonstrate a strong understanding that simulations are not about perfectly recreating reality, but about asking the right scientific questions and choosing appropriate simplifications. In particular, your use of adjustable parameters and repeated runs shows an awareness of stochastic behaviour and avoids the common pitfall of over-interpreting a single outcome.
+
+The structure of your model is sensible and clearly grounded in ideas that are also central to molecular dynamics, such as interaction rules, emergent behaviour, and sensitivity to parameter changes. The way results are presented makes patterns easier to interpret and supports meaningful comparison between scenarios.
+
+In my opinion you could add more explicit mechanisms for exporting or recording raw simulation data so that results can be analysed independently. This would improve reproducibility and allow for more rigorous statistical analysis, such as confidence intervals across multiple runs. The ability to collaborate with multiple users actively working on the same simulation could also be a powerful addition, as this is a common feature in scientific research environments.
+
+\subsection*{Feedback from Dr Jin}
+
+I have had a look at your website, and I am very impressed with the work you have done. The simulation tool demonstrates a clear understanding of how computational models can be used to explore biological systems. In particular, I think the way you allow parameters such as vaccination to be adjusted and then run again efficiently reflects how simulations are used in real research to test ideas before committing to more costly and time intensive approaches.
+
+I also think the visualisation of the results are very effective. The use of detailed graphs makes the behaviour of the system much easier to interpret, especially for users without a strong technical background. This is very similar to how we rely on graphs and diagrams in biological research to identify trends, compare conditions, and communicate findings to others. The fact that the simulation can be run multiple times to observe consistent trends also supports reproducibility, which is an essential aspect of simulation-based research.
+
+One feature you could consider developing further is the ability to export simulation data and results. For example, allowing users to download numerical outputs or graphs would make it easier to compare different runs in more detail or analyse results using external tools. Additionally, providing brief explanations or tooltips for key parameters and assumptions could further improve accessibility and help users better understand the limitations of the model.
+
+Overall, this is a strong and well-designed piece of work that successfully balances realism, usability, and performance. The project clearly demonstrates how simulations can be used as both an analytical and educational tool, and it reflects many of the same principles used in real scientific research workflows.
+
+
+\subsection*{Feedback from Mr Field}
+This project is a very impressive tool that I can see being used in a variety of educational settings and possibly even leadership positions. The visualisation of disease spread is particularly effective in helping understand the dynamics of epidemics and the impact of different interventions. I also appreciate the setup process which simplifies producing a simulation without needing extensive technical knowledge. Especially useful was the interactive map enabling me select my local area to run the test on. One suggestion I have for improvement would be to include more detailed explanations of the underlying mathematical models used in the simulations, as this could help me gain a deeper understanding of the concepts being illustrated. Overall, I think this project has great potential as an educational tool and I look forward to seeing how it develops in the future. I was particularly impressed by the simulation performance. From the demo you gave me the simulation was running on a fairly typical MacBook laptop and yet it was still able to produce meaningful results in a short timeframe. I can only imagine how much more powerful the simulation could be if it were running on a more robust server or cluster.
+
+\subsection*{Feedback from Sally}
+Having explored the system for a while now I found it really intuitive and easy to use. I was able to quickly set up a simulation and understand the results without needing to read any documentation, which is a testament to the user-friendly design. The dashboard is well-organised and provides all the necessary information U would want. I particularly liked the ability to customize the simulation parameters, which allowed me to explore different scenarios and see how they affected the outcomes. Overall, I am very impressed with the system and believe it will be a valuable tool for understanding disease spread in a visual way. The only suggestion I have would be to add a comparison mode where you can run two simulations side by side to compare different parameter settings on otherwise identical scenarios, I think this would be a really useful feature for users who want to explore the impact of specific parameters in more detail
+
 \section{Response to client feedback}
+The feedback I have received from my clients has been overwhelmingly positive, with all of them expressing their appreciation for the design, functionality and performance of the application. They have highlighted the intuitive user interface, the effective visualisation of results, and the ability to customize simulation parameters as key strengths of the project. The feedback also provided some valuable suggestions for improvement, such as adding more detailed explanations of the underlying mathematical models (via UI tooltips and in-app documentation), providing mechanisms for exporting raw simulation data, and introducing a comparison mode for side-by-side simulation runs. I will definitely take these suggestions into consideration for future development and enhancements of the application to further improve its usability and educational value. The side by side comparison feature in particular seems interesting as it would allow me to further develop my simulation context systems to be loaded in parallel and directly compared between. Overall, I am pleased with the positive reception from my clients and I feel I have achieved all of my key goals whilst also working within the constraints of the project timeline and resources. 
+
 \section{Retrospective insight}
+Having now completed my development process I can look back to its origins and be pleased with the technical architecture I decided on. The .Net ecosystem has enabled me to produce a very efficient and clean codebase, computing complex simulations whilst maintaining a responsive and robust user API that seamlessly integrates with my Postgres database. Layering my separate Vue frontend as a complex webapp has then enabled me to visualise and control the simulation on any internet connected device (from an iPhone to desktop and even Apple Watch!). Whilst the isolation of my frontend and server systems has enabled great flexibility it did also cause some challenges: 
+\begin{itemize}
+    \item The separation of frontend and backend systems meant I had to spend more time on designing and implementing a robust API for communication between the two, which added complexity to the development process.
+    \item Managing state and synchronisation between the frontend and backend systems required careful planning and implementation to ensure a smooth user experience, especially when dealing with real-time updates from the simulation.
+    \item The use of a centralised compute server for running simulations introduced some challenges in terms of performance and scalability, as I had to ensure that the server could handle multiple concurrent simulations without significant degradation in performance. This required careful optimisation of the simulation engine and efficient resource management on the server side.
+    \item The decision to use a web-based frontend meant that I had to consider cross-browser compatibility and ensure that the application worked well on a variety of devices and screen sizes, which added additional testing and development overhead. For example, I found that Safari (which runs on WebKit) struggled to render my initial implementation of agents moving around the map and I had to redesign the visualisation to be more compatible with WebKit's rendering capabilities.
+    \item Managing the movement of objects and data types between the two separately type-safe languages (Typescript and C\#) required careful design of the data structures and communication protocols to ensure that data was correctly serialized and deserialized between systems.
+\end{itemize}
+Additionally, I have been using GitHub for version control and project management, which has allowed me to track my progress, manage tasks, and collaborate effectively. The use of branches and pull requests has helped me maintain a clean codebase and compare code versions to maximise my productivity. 
+
 \section{Final reflection}
+This project has been a rewarding and challenging experience that has allowed me to apply my technical and research skills to a real-world problem. I have learned a great deal about software development, simulation design, user experience, and I am incredibly proud of the final product I have created. The positive feedback from my clients has been particularly gratifying, and I am excited about the potential impact of this application in educational settings and beyond. Moving forward, I plan to continue refining and expanding the application based on user feedback and emerging needs in the field of epidemic modelling.

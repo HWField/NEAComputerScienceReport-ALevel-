@@ -54,63 +54,57 @@ Ensuring I meet my project requirements and design objectives is critical to the
 \req{PA5} &  \nameref{code:frontend:src:stores:useUserStore.js} \& \nameref{code:SimulationAPI:Controllers:AuthController.cs} & After login client recieves an access/refresh token pair and stores in the user object store\\
 \hline
 
-\req{PA6} & \nameref{code:frontend:src:stores:useUserStore.js} \& \nameref{code:frontend:src:api:axios.js} & Client manages rotation of tokens and stores them within a pinia Store \\
-\hline
-
 \multicolumn{3}{|c|}{\cellcolor{orange!20}\textbf{Dashboard}} \\
 \hline
 
-\req{DA1} & \nameref{code:frontend:src:components:Navbar.vue} & Global navbar across all pages\\
+\req{DA1} & \nameref{code:frontend:src:views:dashboard.vue} \& \nameref{code:frontend:src:components:Navbar.vue} & Dashboard component displays all required functionality. Child navbar component enables easy software navigation \\
 \hline
 
-\req{DA2} & \nameref{code:frontend:src:views:dashboard.vue} & Dashboard component displays all required functionality \\
+\req{DA2} & \nameref{code:frontend:src:components:SimulationDetailsModal.vue} & modal showing simulation details overlayed on the dashboard  \\
 \hline
 
-\req{DA3} & \nameref{code:frontend:src:components:SimulationDetailsModal.vue} & modal showing simulation details overlayed on the dashboard  \\
-\hline
-
-\req{DA4} & \nameref{code:frontend:src:views:dashboard.vue} & Each simulation card within the dashboard has a dedicated open button \\
+\req{DA3} & \nameref{code:frontend:src:views:dashboard.vue} & Each simulation card within the dashboard has a dedicated open button which loads the simulation into the server and brings the user to the simulation screen\\
 \hline
 
 \hline
 \multicolumn{3}{|c|}{\cellcolor{yellow!20}\textbf{Settings Menu}} \\
 \hline
 
-\req{SM1}, \req{SM2}, \req{SM3}, \req{SM4} & \nameref{code:frontend:src:views:settings.vue} & Settings view component including all required functionality\\
+\req{SM1}, \req{SM2}, \req{SM3} \& \req{SM4} & \nameref{code:frontend:src:views:settings.vue} & Settings view component including all required functionality\\
 
 \hline
 \multicolumn{3}{|c|}{\cellcolor{lime!20}\textbf{Admin Controls}} \\
 \hline
 
 
-\req{AC1}, \req{AC2}, \req{AC3}, \req{AC4}, \req{AC5} & \nameref{code:frontend:src:views:admin.vue} & Admin view component including all required functionality\\
+\req{AC1}, \req{AC2}, \req{AC3}, \req{AC4} \& \req{AC5} & \nameref{code:frontend:src:views:admin.vue} & Admin view component including all required functionality\\
 
 \hline
 \multicolumn{3}{|c|}{\cellcolor{green!20}\textbf{Simulation Setup}} \\
 \hline
 
 
-\req{SS1}, \req{SS2}, \req{SS3}, \req{SS4}, \req{SS5}, \req{SS6}, \req{SS7}, \req{SS8}, \req{SS9} &  \nameref{code:frontend:src:components:CreateSimulationModal.vue} \& \nameref{code:SimulationAPI:Simulation:SimulationSetup.cs} & Frontend modal and backend logic to create simulations according to spec\\
+\req{SS1}, \req{SS2}, \req{SS3}, \req{SS4}, \req{SS5}, \req{SS6}, \req{SS7}, \req{SS8} \& \req{SS9} &  \nameref{code:frontend:src:components:CreateSimulationModal.vue} \& \nameref{code:SimulationAPI:Simulation:SimulationSetup.cs} & Frontend modal and backend logic to create simulations according to spec\\
 
 \hline
 \multicolumn{3}{|c|}{\cellcolor{teal!20}\textbf{Simulation Runtime}} \\
 \hline
 
-\req{SS1} &  \nameref{code:frontend:src:views:simulation.vue} & Main simulation view which nests child tabs \\
+\req{SR1} &  \nameref{code:frontend:src:views:simulation.vue} & Main simulation view which nests child tabs \\
 \hline
-\req{SS2} &  \nameref{code:frontend:src:composables:useSimulationHub.ts} & Composable which returns a computed status based on server connectivity and status \\
+\req{SR2} &  \nameref{code:frontend:src:composables:useSimulationHub.ts} & Composable which returns a computed status based on server connectivity and status. status is displayed on the main simulation navigation bar\\
 \hline
-\req{SS3} &  \nameref{code:frontend:src:components:SimulationConfigure.vue} & Configuration tab giving full functionality \\
+\req{SR3} &  \nameref{code:frontend:src:components:SimulationConfigure.vue} & Configuration tab giving full functionality \\
 \hline
-\req{SS4} &  \nameref{code:frontend:src:components:SimulationSimulate.vue} & Simulation tab giving full functionality \\
+\req{SR4} &  \nameref{code:frontend:src:components:SimulationSimulate.vue} & Simulation tab giving full functionality \\
 \hline
-\req{SS5} &  \nameref{code:frontend:src:components:SimulationAnalyse.vue} & Analysis tab giving full functionality \\
+\req{SR5} &  \nameref{code:frontend:src:components:SimulationAnalyse.vue} & Analysis tab giving full functionality \\
 
 \hline
 \multicolumn{3}{|c|}{\cellcolor{cyan!20}\textbf{Simulation Engine}} \\
 \hline
 
-\req{SE1} &  \nameref{code:SimulationAPI:Models:Agent.cs}, \nameref{code:SimulationAPI:Models:MedicalProfile.cs}, \nameref{code:SimulationAPI:Models:Routine.cs} \& \nameref{code:SimulationAPI:Services:RoutingService.cs} & Agent classes and supporting models which enable custom beahviour per agent. Routing service which enables agent movement routines to be computed \\
+\req{SE1} &  \nameref{code:SimulationAPI:Models:Agent.cs}, \nameref{code:SimulationAPI:Models:MedicalProfile.cs}, \nameref{code:SimulationAPI:Models:Routine.cs} \& \nameref{code:SimulationAPI:Services:RoutingService.cs} & Agent classes and supporting models which enable custom behaviour per agent. Routing service which enables agent movement routines to be computed \\
 \hline
 \req{SE2} &  \nameref{code:SimulationAPI:Models:Building.cs}, \nameref{code:SimulationAPI:Services:BuildingCapacityCalculator.cs} \& \nameref{code:SimulationAPI:Services:BuildingService.cs}  & Building classes and their supporting services which enables the engine to compute estimated capacities and features \\
 \hline
@@ -121,23 +115,31 @@ Ensuring I meet my project requirements and design objectives is critical to the
 \hline
 \req{SE5} &  \nameref{code:SimulationAPI:Simulation:MetricManager.cs} \& \nameref{code:SimulationAPI:Models:SimulationMetric.cs} & Metric Manager handles the frequent recording of simulation statistics as defined by the metric class \\
 \hline
-\req{SE6} &  \nameref{code:SimulationAPI:Simulation:SnapshotManager.cs} \& \nameref{code:SimulationAPI:Models:SimulationSnapshot.cs} & Snapshot manager takes regular 'snapshots' of agents, buildings and the simulation to enable later rewind. The snapshot classes store lightweight key parameters to optomise storage usage and performance \\
+\req{SE6} &  \nameref{code:SimulationAPI:Simulation:SnapshotManager.cs} \& \nameref{code:SimulationAPI:Models:SimulationSnapshot.cs} & Snapshot manager takes regular 'snapshots' of agents, buildings and the simulation to enable later rewind. The snapshot classes store lightweight key parameters to optimise storage usage and performance \\
 \hline
-\req{SE7} &  \nameref{code:SimulationAPI:Simulation:SimulationContext.cs} & Simulation context stores a random seed throughout which is used for agent movement, disease spread and all 'random' deciscions ensuring repetability and consistency \\
+\req{SE7} &  \nameref{code:SimulationAPI:Simulation:SimulationContext.cs} & Simulation context stores a random seed throughout which is used for agent movement, disease spread and all 'random' decisions ensuring repeatability and consistency \\
 
 \hline
 \multicolumn{3}{|c|}{\cellcolor{blue!20}\textbf{Simulation Performance}} \\
 \hline
 
-\req{SP1}, \req{SP2}, \req{SP3}, \req{SP4} &  \nameref{code:SimulationAPI:Simulation:SimulationEngine.cs}, \nameref{code:SimulationAPI:Simulation:SimulationContext.cs} \& \nameref{code:SimulationAPI:Simulation:Structs:RuntimeStates.cs} & Simulation engine is optimised to handle large agent counts through efficient data structures and algorithms. simulation context uses runtime optimised states to store agents, buildings and routines in sequential memory addresses reducing seek times and increasing performance\\
+\req{SP1} \& \req{SP3} &  \nameref{code:SimulationAPI:Simulation:SimulationEngine.cs}, \nameref{code:SimulationAPI:Simulation:SimulationContext.cs}  & Simulation engine is optimised to handle large agent counts through efficient data structures and algorithms.\\
 \hline
-\req{SP5} &  \nameref{code:SimulationAPI:Simulation:SimulationManager.cs} \& \nameref{code:SimulationAPI:Simulation:SimulationContext.cs}  & global simulation manager is responsible for organizing simulation contexts which each isolate a loaded simulation. This enables efficent task scheduling on the processor and reduced memory pressure as paused / inactive simulations can be unloaded whilst new simulation requests are queued\\
+
+\req{SP2} & \nameref{code:SimulationAPI:Simulation:Structs:RuntimeStates.cs} &  Simulation context uses runtime optimised states to store agents, buildings and routines in sequential memory addresses reducing seek times and increasing performance \\
 \hline
-\req{SP6}, \req{SP7}, \req{SP8} &  \nameref{code:SimulationAPI:Data:SimDbContext.cs} & Simulation connection to database through the SimDbContext ensures pending changes are continually stored to database preventing data loss on program crash. All user inputs are sanatised both prior to api send and on recipt.\\
+
+\req{SP4} &  \nameref{code:SimulationAPI:Simulation:SimulationManager.cs} \& \nameref{code:SimulationAPI:Simulation:SimulationContext.cs}  & global simulation manager is responsible for organizing simulation contexts which each isolate a loaded simulation. This enables efficient task scheduling on the processor and reduced memory pressure as paused / inactive simulations can be unloaded whilst new simulation requests are queued\\
+\hline
+
+\req{SP5}, \req{SP6} \& \req{SP7} &  \nameref{code:SimulationAPI:Data:SimDbContext.cs} & Simulation connection to database through the SimDbContext ensures pending changes are continually stored to database preventing data loss on program crash. All user inputs are sanatised both prior to api send and on recipt.\\
 
 \hline
 \multicolumn{3}{|c|}{\cellcolor{violet!20}\textbf{Maintainability}} \\
 \hline
 
-\req{MA1}, \req{MA2}, \req{MA3} & \nameref{code:SimulationAPI:Data:SimDbContext.cs} & Version control will be used throughout for commit tracking and redundancy. This docuement then servers as documentation for documented design and the final technical solution\\
+\req{MA1} & \nameref{code:SimulationAPI:Data:SimDbContext.cs} & Version control mirrored to Github will be used for commit tracking and redundancy.\\
+\hline
+\req{MA2} \& \req{MA3} & & This document serves as documentation for documented design and the final technical solution\\
+
 \end{longtable}

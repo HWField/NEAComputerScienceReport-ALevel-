@@ -1,18 +1,18 @@
 \chapter{Analysis}
 \section{Introduction to the Problem}
-Understanding how infectious diseases spread through urban environments is a complex and urgent problem, especially in light of recent global health crises. During pandemics, decision-makers rely on accurate models to evaluate the effectiveness of public health interventions such as social distancing, lockdowns, and vaccination. However, many existing simulations operate at national or global scales, often lacking the granularity needed to inform decisions at the community level.
+Understanding how infectious diseases spread through urban environments is a complex and urgent problem, especially in light of recent global health crises. During pandemics, decision-makers rely on accurate models to evaluate the effectiveness of public health interventions such as social distancing, lockdowns, and vaccination however, many existing simulations operate at national or global scales, often lacking the granularity needed to inform decisions at the community level.
 
-This project seeks to address this gap by simulating disease spread within a city-sized environment, consisting of approximately 100,000 agents (representing individuals) and 20,000 nodes (representing buildings or gathering points). The problem being tackled is how to model and visualize disease transmission within a realistic, localized setting, so that the impact of specific strategies (e.g., closing schools or limiting public transport) can be analyzed.
+This project seeks to address this gap by simulating disease spread within a city-sized environment, consisting of approximately 100,000 agents (representing individuals) and 20,000 nodes (representing buildings or gathering points). The problem being tackled is how to model and visualize disease transmission within a realistic, localized setting, so that the impact of specific strategies (e.g. closing schools or limiting public transport) can be analysed.
 
-The aim is to design and implement a simulation that accurately reflects how a disease could spread through a densely populated urban area, based on various parameters such as agent mobility, infection rate, and building density. The solution will not only allow for analysis of intervention strategies, but also provide a clear, visual representation of disease progression over time—making the data accessible and informative for both experts and the general public.
+The aim is to design and implement a simulation that accurately reflects how a disease could spread through a densely populated urban area, based on various parameters such as agent mobility, infection rate, and building density. The solution will not only allow for analysis of intervention strategies, but also provide a clear, visual representation of disease progression over time, making the data accessible and informative for both experts and the public.
 
-This gives the project a secondary goal of being an educational tool, helping users understand the dynamics of disease spread and the potential impact of public health measures, however small and simple they may be. By combining agent-based modeling with real-world data, the project aims to create a flexible, user-friendly platform that can be used by researchers, policymakers, and the public to explore epidemic scenarios in a city context.
+This gives the project a secondary goal of being an educational tool: helping users understand the dynamics of disease spread and the potential impact of public health measures, however small and simple they may be. By combining agent-based modelling with real-world data, the project aims to create a flexible, user-friendly platform that can be used by researchers, policymakers, and the public to explore epidemic scenarios in a city context.
 
-This project combines elements of agent-based moddelling, data visualization, and algorithmic design to address a real-world problem through computational means.
+This project combines elements of agent-based modelling, data visualization, and algorithmic design to address a real-world problem through computational means.
 
 \section{Client}
 \subsection{Introduction to client(s)}
-The primary client to my software would be a clinical researcher / policymaker who is looking to implement changes that would protect their population from harm through the spread of disease. I was fortunate to visit the Imperial University Department of Infectious diseases and to speak with both a researcher and a software developer there to discuss my projects objectives and collect their initial thoughts. They were highly supportive of my ideas and provided great insight into some methods I could try and architectural considerations I should make. Unfortunately I will be unable to remain in continuous contact with them over the project's development, so I have summarised thoughts below and will speak to more local contacts throughout my project.
+The primary client to my software would be a clinical researcher / policymaker who is looking to implement changes that would protect their population from harm through the spread of disease. I was fortunate to visit Imperial College London's Department of Infectious Diseases to speak with both a researcher and a software developer there to discuss my projects objectives and collect their initial thoughts. They were highly supportive of my ideas and provided great insight into some methods I could try and architectural considerations I should make. Unfortunately I will be unable to remain in continuous contact with them over the project's development, so I have summarised their thoughts below and will speak to local contacts throughout my project for continuous feedback.
 
 The faculty at Imperial gave me some excellent ideas from which I can expand, the software should:
 \begin{itemize}
@@ -34,9 +34,9 @@ A secondary Client to my software would be members of the general-public who wan
 To gain initial insight from each of my clients I sent around personalised questionnaires to each of them to gain an understanding of their needs and wants from my software, I have summarised the key points from these questionnaires below and have included the full transcripts in the appendices for reference. 
 \subsection{Questionnaire Response with Dr Faille}
 
-\textit{Please see \autoref{responseDrFaille} for full response }
+\textit{Please see \autoref{sec:responseDrFaille} for full response }
 
-Dr Faille is a biological researcher studying protein acid complex who often runs coledular dynamics (MD) simulations. Here are my key takeaways:
+Dr Faille is a biological researcher studying protein acid complex who often runs Moledcular dynamics (MD) simulations. Here are my key takeaways:
 
 \begin{itemize}
   \item The core interaction rules of a simulation must be realistic and accurate, as incorrect fundamental mechanics invalidate results.
@@ -69,11 +69,22 @@ Dr Faille is a biological researcher studying protein acid complex who often run
 \end{itemize}
 
 \subsection{Interview with Mr Field}
-\textit{Below is a summary of the key points discussed. For the full transcript please see: \nameref{sec:interview_drtan}}
+\textit{Below is a summary of the key points discussed. For the full transcript please see: \nameref{sec:responseMrField}}
+\begin{itemize}
+  \item Realism should be focused on input assumptions and output measures to ensure results are meaningful; grouping similar data items can simplify analysis without losing validity.
+  \item Parameter values can be approximated when exact measurements are unavailable, with sensitivity analysis used to understand the impact of variances on the model.
+  \item Validate outputs against real-world experience; results that deviate strongly from expectations should prompt investigation.
+  \item Clearly document assumptions, data sources, and sensitivities to avoid over-interpreting the results.
+  \item A simulation tool is genuinely useful when it allows comparison of assumptions against real data, supports regression testing, and enables quick exploration of scenario changes.
+  \item Data visualisation is critical for interpreting complex or large datasets; grouping and presenting data clearly enhances understanding.
+  \item Common pitfalls for non-specialists include focusing on outputs without understanding the inputs, mistaking model complexity for validity, and using incorrect parameters.
+  \item Simplified simulations remain valuable for education and communication, provided key assumptions reflect the main drivers of the system.
+  \item Public-facing simulations should include clear explanations of assumptions, normal operational ranges, model limitations, and restricted parameter changes to prevent misuse.
+  \item Complex models can be slow on local devices; using server-based computation can improve performance and provide shared access for multiple users.
+\end{itemize}
+\subsection{Conversation with Sally}
 
-\subsection{Interview with Sally}
-
-\textit{Below is a summary of the key points discussed. For the full transcript please see: \nameref{sec:interview_sally}}
+\textit{Below is a summary of the key points discussed. For the full transcript please see: \nameref{sec:interviewSally}}
 
 Sally is very keen to learn more about the steps she and her family can take to help prepare themselves for a repeat of a large scale pandemic. 
 
@@ -83,12 +94,41 @@ When asked what she would like to gain from my project she spoke about an abilit
 
 Whilst she has access to a laptop it became clear over the course of the interview that it would be unfeasible and unwanted to run a large simulation on local hardware, and so I will explore runnings compute on a centralised server and streaming results to the user. This additionally open opportunities to support users on mobile devices such as smartphones and tablets making my software more mass market.
 
+\begin{itemize}
+  \item Users want to experiment with small changes in mitigations, such as mask-wearing or isolation, and observe their impact on infection spread.
+  \item Parameter adjustments should be intuitive and easy to use, ideally with sliders, checkboxes, or simple input fields.
+  \item Visual representation of results is critical, including line graphs and stacked charts.
+  \item Ability to rerun simulations quickly after parameter changes is important to allow exploration of multiple scenarios.
+  \item Users prefer outcome visualisation over prescriptive recommendations, maintaining freedom to explore “what if” questions.
+  \item Minimal technical knowledge is assumed; the interface should be accessible and not require understanding of formulas or complex models.
+  \item Assumptions and limitations should be clearly communicated, ideally through tooltips or concise notes.
+  \item The interface should be visually clean, easy to navigate, and user-friendly to encourage exploration.
+  \item Saving and comparing multiple scenarios enhances usability and long-term engagement.
+  \item Overall, simplicity, interactivity, and clear graphical output are the highest priorities for non-specialist users.
+\end{itemize}
+
+\subsection*{Summary of Conversations}
+
+Based on interviews with domain experts (Dr Faille and Dr Jin), general simulation user (Mr Field), and a general public user (Sally), the following key insights were identified to guide the design of the epidemic simulation tool:
+\begin{itemize}
+  \item \textbf{Realism vs simplification:} Core interactions and transmission rules must be realistic to produce meaningful results, while environmental details (e.g., exact city layouts) can be simplified. Grouping similar data items or compartments helps reduce complexity without losing interpretability.
+  \item \textbf{Parameter selection and sensitivity:} Parameters should be justified using prior knowledge, literature, or reasonable approximations. Sensitivity analysis is critical to understand how variations in parameters impact outcomes.
+  \item \textbf{Validation and reproducibility:} Simulation outputs must be validated against known behaviours or real-world data. Repeated runs should produce consistent results, and emergent properties (e.g., bell curves of infections) serve as sanity checks.
+  \item \textbf{Assumptions and limitations:} Clearly documenting assumptions, data sources, and simplifications is essential to avoid over-interpreting results. Public-facing tools should explain key parameters and normal operational ranges.
+  \item \textbf{Usefulness of the tool:} A genuinely useful simulation allows scenario exploration, comparison with real-world data, regression testing, and the ability to quickly model changes. Technical sophistication alone does not ensure value.
+  \item \textbf{Data visualisation:} Visual representation of results is critical. Graphs, charts, and clear visual cues support understanding of complex or large-scale outputs. Overlaying scenarios or showing trends over time enhances interpretability.
+  \item \textbf{Educational and communication value:} Simplified models remain useful for learning and public communication, provided key assumptions are valid and clearly presented.
+  \item \textbf{Usability for non-specialists:} Interfaces should be intuitive, interactive, and visually clear, enabling users with minimal technical background to adjust parameters, rerun simulations quickly, and explore “what if” scenarios.
+  \item \textbf{Performance considerations:} Complex simulations may run slowly on local devices. Centralised or server-based computation can improve speed, allow multiple users to access the simulation, and support more computationally intensive models.
+  \item \textbf{Public engagement and safeguards:} Tools for general use should include restricted parameter changes, explanations of model limitations, and guidance to prevent unrealistic assumptions, ensuring responsible and informative exploration.
+\end{itemize}
+I will use this research to inform my project requirements and will now explore some of the existing software in this field to identify gaps and opportunities for my project to fill.
 
 \section{Problem Research}
 With the focus of my project being academic in nature and having a smaller userbase than e.g. a social media app I knew I would have to focus my search for user issues before beginning any software development. To start I researched the current offerings available to professionals in this industry, these mostly exist in two forms: complete graphical software packages and computational models / algorithms, here are the packages I researched:
 \subsection{Existing Software}
 \subsubsection*{Gleamviz}
-GLEaMviz (Global Epidemic and Mobility Model) is a computational tool designed to simulate the spread of infectious diseases on a global scale by integrating real-world data on population, human mobility, and disease dynamics. It combines a metapopulation approach—dividing the world into subpopulations connected by transportation networks—with stochastic compartmental models (e.g., SEIR) to simulate disease progression and transmission. By incorporating airline travel, commuting patterns, and demographic information, GLEaMviz enables researchers and public health officials to model outbreak scenarios, assess intervention strategies, and predict potential epidemic outcomes with spatial and temporal precision.
+GLEaMviz (Global Epidemic and Mobility Model) is a computational tool designed to simulate the spread of infectious diseases on a global scale by integrating real-world data on population, human mobility, and disease dynamics. It combines a metapopulation approach, dividing the world into subpopulations connected by transportation networks, with stochastic compartmental models (e.g., SEIR) to simulate disease progression and transmission. By incorporating airline travel, commuting patterns, and demographic information, GLEaMviz enables researchers and public health officials to model outbreak scenarios, assess intervention strategies, and predict potential epidemic outcomes with spatial and temporal precision.
 
 \begin{figure}[H]
     \centering
@@ -97,14 +137,25 @@ GLEaMviz (Global Epidemic and Mobility Model) is a computational tool designed t
     \label{fig:gleamviz}
 \end{figure}
 
-Pros
--	Integrates global mobility
--	Built in SEIR (susceptible-exposed-infected-recovered) modelling
--	Intuitive GUI
--	Robust global simulation	-	Limited spatial resolution for city/village level modelling
-Cons
--	Closed source and inflexible
--	Can't simulate detailed intervention modelling
+\noindent
+\begin{minipage}[t]{0.48\textwidth}
+\textbf{Pros}
+\begin{itemize}
+    \item Integrates global mobility
+    \item Built in SEIR (susceptible-exposed-infected-recovered) modelling
+    \item Intuitive GUI
+    \item Robust global simulation
+\end{itemize}
+\end{minipage}
+\hfill
+\begin{minipage}[t]{0.48\textwidth}
+\textbf{Cons}
+\begin{itemize}
+    \item Limited spatial resolution for city/village level modelling
+    \item Closed source and inflexible
+    \item Can't simulate detailed intervention modelling
+\end{itemize}
+\end{minipage}
 
 
 \subsubsection*{AnyLogic}
@@ -117,14 +168,24 @@ AnyLogic is a commercial simulation platform that supports multiple modelling pa
     \label{fig:anylogic}
 \end{figure}
 
-Pros
--	Powerful agent-based modelling platform
--	Simple and customisable GUI
--	Accurately models small areas such as within a store or even a room
-Cons
--		-	Steep learning curve for project setup
--	Commercial licence required
--	Can’t simulate areas larger than a small village
+\noindent
+\begin{minipage}[t]{0.48\textwidth}
+\textbf{Pros}
+\begin{itemize}
+    \item Powerful agent-based modelling platform
+    \item Simple and customisable GUI
+    \item Accurately models small areas such as within a store or even a room
+\end{itemize}
+\end{minipage}
+\hfill
+\begin{minipage}[t]{0.48\textwidth}
+\textbf{Cons}
+\begin{itemize}
+    \item Steep learning curve for project setup
+    \item Commercial licence required
+    \item Can't simulate areas larger than a small village
+\end{itemize}
+\end{minipage}
 
 \subsubsection*{Covid-19 scenarios (Neher Labs)}
 COVID-19 Scenarios is an interactive web-based tool created by the Neher Lab for simulating the spread of COVID-19 using a configurable SEIR model. Users can adjust key parameters like R0, hospitalization rates, and intervention timing to explore different pandemic scenarios and healthcare outcomes. While not a full simulation engine, it provides a quick and intuitive way for policymakers and the public to visualize the impact of control measures. Its simplicity and focus on COVID-19 make it accessible but limited in scope and adaptability.
@@ -146,14 +207,26 @@ FRED is an agent-based epidemic modelling system developed by the University of 
     \caption[]{Screenshot of the FRED interface \autocite{grefenstetteFREDFrameworkReconstructing2013} }
     \label{fig:fred}
 \end{figure}
-Pros
--	Agent based, fine scale model similar to what I’m trying to produce
--	Uses real census / demographic data from online government sources
--	Open source and extensible	-	U.S. centric and difficult to customise for other nations
-Cons
--	Steep learning curve requiring programming
--	Very simplistic,  outdated interface
--	simulation appears random due to ‘popping in to view’
+
+\noindent
+\begin{minipage}[t]{0.48\textwidth}
+\textbf{Pros}
+\begin{itemize}
+    \item Agent based, fine scale model similar to what I'm trying to produce
+    \item Uses real census / demographic data from online government sources
+    \item Open source and extensible
+\end{itemize}
+\end{minipage}
+\hfill
+\begin{minipage}[t]{0.48\textwidth}
+\textbf{Cons}
+\begin{itemize}
+    \item U.S. centric and difficult to customise for other nations
+    \item Steep learning curve requiring programming
+    \item Very simplistic, outdated interface
+    \item Simulation appears random due to 'popping in to view'
+\end{itemize}
+\end{minipage}
 
 
 \subsubsection*{EpiModel}
@@ -165,13 +238,25 @@ EpiModel is an open-source R package for simulating and analysing the spread of 
     \caption[]{An application of EpiModel \autocite{declassifiedmalaysiaUsingEpiModelIgraph2024}}
     \label{fig:EpiModel}
 \end{figure}
-Pros
--	Supports deterministic, stochastic, and network-based models
--	Highly Flexible and extensible
--	Great for research and education	-	Requires strong  programming skills to customise
-Cons
--	Cant support GIS data or global mobility
--	No GUI available
+
+\noindent
+\begin{minipage}[t]{0.48\textwidth}
+\textbf{Pros}
+\begin{itemize}
+    \item Supports deterministic, stochastic, and network-based models
+    \item Highly Flexible and extensible
+    \item Great for research and education
+\end{itemize}
+\end{minipage}
+\hfill
+\begin{minipage}[t]{0.48\textwidth}
+\textbf{Cons}
+\begin{itemize}
+    \item Requires strong programming skills to customise
+    \item Cant support GIS data or global mobility
+    \item No GUI available
+\end{itemize}
+\end{minipage}
 
 
 \subsubsection*{EpiSimdemics}
@@ -184,56 +269,114 @@ EpiSimdemics is a scalable, high-resolution agent-based modelling framework deve
     \label{fig:EpiSimdemics}
 \end{figure}
 
-Pros
--	Large scale agent-based simulation (cities / counties)
--	Handles individual behaviours
--	Highly detailed results
-Cons
--	No Gui for use / requires expert guidance / training	-	Complex setup
--	Not open source / limited to government use
--	High computational workload for resource
+\noindent
+\begin{minipage}[t]{0.48\textwidth}
+\textbf{Pros}
+\begin{itemize}
+    \item Large scale agent-based simulation (cities / counties)
+    \item Handles individual behaviours
+    \item Highly detailed results
+\end{itemize}
+\end{minipage}
+\hfill
+\begin{minipage}[t]{0.48\textwidth}
+\textbf{Cons}
+\begin{itemize}
+    \item No Gui for use / requires expert guidance / training
+    \item Complex setup
+    \item Not open source / limited to government use
+    \item High computational workload for resource
+\end{itemize}
+\end{minipage}
 
 
 \subsubsection*{OpenABM}
 OpenABM-Covid19 is a lightweight, open-source agent-based simulation model tailored to study the effects of non-pharmaceutical interventions on COVID-19 transmission. Written in Python and grounded in demographic and mobility data, it simulates detailed contact patterns across households, workplaces, and public spaces. The model is designed to be transparent, easy to adapt, and useful for both researchers and policymakers. While currently COVID-specific, its modular structure allows adaptation to other diseases with some effort.
-Pros
--	Open source
--	Well documented
--	Provides detailed intervention testing
--	Supports age structured population
-Cons
--	Focused on covid-19
--	Requires coding skills (python)
+
+\noindent
+\begin{minipage}[t]{0.48\textwidth}
+\textbf{Pros}
+\begin{itemize}
+    \item Open source
+    \item Well documented
+    \item Provides detailed intervention testing
+    \item Supports age structured population
+\end{itemize}
+\end{minipage}
+\hfill
+\begin{minipage}[t]{0.48\textwidth}
+\textbf{Cons}
+\begin{itemize}
+    \item Focused on covid-19
+    \item Requires coding skills (python)
+\end{itemize}
+\end{minipage}
+
 
 \subsubsection*{SimInf}
 SimInf is an R-based modelling framework for simulating stochastic compartmental models (such as SEIR) in spatially structured populations. It is designed for speed and scalability, using C/C++ for backend computation while integrating with R for analysis and visualization. SimInf is particularly suited for scenarios involving many small subpopulations connected by movement or trade, such as livestock disease spread or localized outbreaks. It’s powerful for structured models but lacks agent-based or behaviour-driven simulation capabilities.
-Pros
--	Fast simulations
-Cons
--	Complex data analysis built in	-	Requires familiarity in C and R
--	Uses compartment model, not models so less accurate
+
+\noindent
+\begin{minipage}[t]{0.48\textwidth}
+\textbf{Pros}
+\begin{itemize}
+    \item Fast simulations
+    \item Complex data analysis built in
+\end{itemize}
+\end{minipage}
+\hfill
+\begin{minipage}[t]{0.48\textwidth}
+\textbf{Cons}
+\begin{itemize}
+    \item Requires familiarity in C and R
+    \item Uses compartment model, not models so less accurate
+\end{itemize}
+\end{minipage}
 
 \subsubsection*{Flute}
 FluTE is an agent-based epidemic model designed specifically to simulate the spread of influenza within structured populations, using realistic household, workplace, and school networks. It incorporates age-stratified interactions and intervention strategies like vaccination and antiviral distribution. Though originally built for U.S. populations, it can be adapted to other contexts with sufficient demographic data. FluTE is open-source and efficient but relatively rigid in scope, requiring C++ programming knowledge to modify or extend.
-Pros
--	Agent based
--	Grounded on realistic demographic and household structures
--	Open source	-	Written in c++ and is hard to modify
-Cons
--	Primarily US focused
+
+\noindent
+\begin{minipage}[t]{0.48\textwidth}
+\textbf{Pros}
+\begin{itemize}
+    \item Agent based
+    \item Grounded on realistic demographic and household structures
+    \item Open source
+\end{itemize}
+\end{minipage}
+\hfill
+\begin{minipage}[t]{0.48\textwidth}
+\textbf{Cons}
+\begin{itemize}
+    \item Written in c++ and is hard to modify
+    \item Primarily US focused
+\end{itemize}
+\end{minipage}
+
 \subsubsection*{EMOD (Epidemiological Modelling software)}
 EMOD is a flexible, open-source epidemiological modelling platform developed by the Institute for Disease Modelling. It supports highly detailed, agent-based simulations of diseases such as malaria, HIV, tuberculosis, and COVID-19, incorporating biological, environmental, and behavioural factors. EMOD is particularly strong in modelling vector-borne and sexually transmitted infections with age-structured and geographically targeted interventions. Though powerful, it has a steep learning curve and requires configuration via JSON files and scripting in Python or C++.
-Pros
--	Very detailed agent-based disease modelling
--	Highly customisable transmission dynamics
--	Official tool from institute for disease modelling 	-	High barrier to entry needing configuration and code knowledge
 
-Cons
--	Steeper learning curve
--	No GUI
+\noindent
+\begin{minipage}[t]{0.48\textwidth}
+\textbf{Pros}
+\begin{itemize}
+    \item Very detailed agent-based disease modelling
+    \item Highly customisable transmission dynamics
+    \item Official tool from institute for disease modelling
+\end{itemize}
+\end{minipage}
+\hfill
+\begin{minipage}[t]{0.48\textwidth}
+\textbf{Cons}
+\begin{itemize}
+    \item High barrier to entry needing configuration and code knowledge
+    \item Steeper learning curve
+    \item No GUI
+\end{itemize}
+\end{minipage}
 
 Next I investigated some more context to understand the industry of epidemics and computational modelling:
-
 
 \subsubsection*{Summary of Existing Software Research}
 From this software I have discovered that all of the existing packages are either highly targeted at small scale simulations such as within a single office building environment or rely on huge datasets on the scale of countries to produce a realistic simulation. I have also found that most of the existing software packages are either closed source or require a high level of technical knowledge to use effectively. This means that there is a gap in the market for a user-friendly, open-source simulation tool that can be used by both researchers and the general public to simulate disease spread at a city / regional level.
