@@ -14,6 +14,11 @@
 \usepackage{tikz}
 \usepackage{colortbl}
 \usetikzlibrary{positioning}
+\newcommand{\timestamp}[2]{%
+  \texttt{%
+    \ifnum#1<10 0#1\else #1\fi:\ifnum#2<10 0#2\else #2\fi
+  }%
+}
 \usepackage{extensions/tikz-uml}
 \usepackage{xcolor}
 \usepackage{tcolorbox} 
@@ -96,24 +101,31 @@
     \postdate{\end{center}}
 
 % Title content
-\title{NEA: Disease Spread Simulation}
+\title{NEA: Epidemic Simulation Platform}
 \author{Henry Field}
-\date{Final Submission}
+\date{%
+  \centering
+  \begin{tabular}{@{}c@{}}
+    \textbf{Candidate Number:} 1431 \\
+    \textbf{Centre Number:} 22147 \\
+    \textbf{Centre Name:} Hills Road Sixth Form College
+  \end{tabular}%
+}
 \maketitle
 \thispagestyle{empty} % removes page number
 \setcounter{tocdepth}{5}
 \tableofcontents
 \newpage
 \include{Chapters/Analysis}
-\include{Chapters/DocumentedDesign}
-\include{Chapters/TechnicalSolution}
+% \include{Chapters/DocumentedDesign}
+% \include{Chapters/TechnicalSolution}
 \include{Chapters/Testing}
-\include{Chapters/Evaluation}
+% \include{Chapters/Evaluation}
 
 \printbibliography[heading=bibintoc, title={Bibliography}]
 
-% % Appendices
+% Appendices
 \appendix
-\include{Chapters/CodeAppendix}
-\include{Chapters/ConversationTranscripts}
+% \include{Chapters/CodeAppendix}
+% \include{Chapters/ConversationTranscripts}
 \end{document}

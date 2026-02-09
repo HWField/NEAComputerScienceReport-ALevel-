@@ -1,5 +1,5 @@
 \chapter{Testing}
-Having completed my software developemnt and implementation, I will now revisit my Project Objectives to analyse the effectiveness of my solution in meeting the requirements I set out to achieve. I will also reflect on the development process, challenges faced, and lessons learned throughout the project.
+Having completed my software development and implementation, I will now revisit my Project Objectives to analyse the effectiveness of my solution in meeting the requirements I set out to achieve. I will also reflect on the development process, challenges faced, and lessons learned throughout the project.
 
 Please find all the testing outcomes in the table below complete with timestamps to where the objective has been demonstrated in my Testing video.
 % Define column widths for better control
@@ -39,231 +39,233 @@ Please find all the testing outcomes in the table below complete with timestamps
 \multicolumn{4}{|c|}{\cellcolor{red!20}\textbf{Platform Access \& Security}} \\
 \hline
 
-\req{PA1} & \pass & & Website loads on multiple tested devices across a range of platforms sucesfully achieving the objective\\
+\req{PA1} & \pass & \timestamp{0}{18}& Website loads on multiple tested devices across a range of platforms successfully achieving the objective\\
 \hline
-\req{PA2} & \pass & & User without authentication is brought to login page when trying to access system pages\\
+\req{PA2} & \pass & \timestamp{0}{25} & User without authentication is brought to login page when trying to access system pages\\
 \hline
-\subreq{PA2.1} & \pass & & new user can use the registration field to create an account\\
+\subreq{PA2.1} & \pass & \timestamp{0}{29}& new user can use the registration field to create an account\\
 \hline
-\subreq{PA2.2} & \pass & & existing user is able to login using their authentication details\\
+\subreq{PA2.2} & \pass &\timestamp{0}{29} & existing user is able to log in using their authentication details\\
 \hline
-\req{PA3} & \pass & & Passwords are stored in database hashed and unreadable\\
+\req{PA3} & \pass & \timestamp{0}{36}& Passwords are stored in database hashed and unreadable\\
 \hline
-\req{PA4} & \pass & & User record is created and contains default options\\
+\req{PA4} & \pass &\timestamp{0}{36} & User record is created and contains default options\\
 \hline
-\req{PA5} & \pass & & Client recieves both access and refresh tokens and commits them to pinia store\\
+\req{PA5} & \pass & \timestamp{0}{41}& Client receives both access and refresh tokens and commits them to Pinia store\\
 \hline
 
 
 \multicolumn{4}{|c|}{\cellcolor{orange!20}\textbf{Dashboard}} \\
 \hline
-\req{DA1} & \pass & & Dashboard contains required interface elements\\
+\req{DA1} & \pass & \timestamp{0}{50}& \\
 \hline
-\req{DA2} & \pass & & After authentication user is first directed to dashboard\\
+\subreq{DA1.1} & \pass & \timestamp{0}{52}& \\
+\hline 
+\subreq{DA1.2} & \pass & \timestamp{0}{53}& \\
 \hline
-\subreq{DA2.1} & \pass & & Previous simulation summary list is displayed\\
+\subreq{DA1.3} & \pass & \timestamp{0}{53}& \\
 \hline
-\subreq{DA2.2} & \pass & & User can view more simulation details and delete them from the system\\
+\req{DA2} & \pass & \timestamp{0}{58}& \\
 \hline
-\subreq{DA2.3} & \pass & & New Simulation button triggers simulation setup \\
+\subreq{DA2.1} & \pass & \timestamp{0}{59}& \\
 \hline
-\req{DA3} & \pass & & Users can view more details about a simulation\\
+\subreq{DA2.2} & \pass & \timestamp{1}{0}& \\
 \hline
-\subreq{DA3.1} & \pass & & Core information is displayed\\
+\subreq{DA2.3} & \pass & \timestamp{1}{1}& \\
 \hline
-\subreq{DA3.2} & \pass & & map area data is displayed\\
+\subreq{DA2.4} & \pass & \timestamp{1}{2}& \\
 \hline
-\subreq{DA3.3} & \pass & & population size and density is displayed\\
+\subreq{DA2.5} & \pass & \timestamp{1}{6}& \\
 \hline
-\subreq{DA3.4} & \pass & & disease details are displayed \\
+\req{DA3} & \pass & \timestamp{1}{11}& \\
 \hline
-\req{DA4} & \pass & & User can run a simulation loading it in to the simulation server\\
-\hline
+
+
 
 \multicolumn{4}{|c|}{\cellcolor{yellow!20}\textbf{Settings Menu}} \\
 \hline
-\req{SM1} & \pass & & Settings menu can be accessed from navbar\\
+\req{SM1} & \pass & \timestamp{1}{22}& Settings menu can be accessed from navbar\\
 \hline
-\req{SM2} & \pass & & Account page can be used to modify username \\
+\req{SM2} & \pass & \timestamp{1}{24}& Account page can be used to modify username \\
 \hline
-\req{SM3} & \pass & & Appearance tab can be displayed\\
+\req{SM3} & \pass &\timestamp{1}{31} & Appearance tab can be displayed\\
 \hline
-\subreq{SM3.1} & \pass & & 20+ themes can be selected\\
+\subreq{SM3.1} & \pass & \timestamp{1}{33}& 20+ themes can be selected\\
 \hline
-\subreq{SM3.2} & \pass & & Preview area is displayed to user\\
+\subreq{SM3.2} & \pass &\timestamp{1}{36} & Preview area is displayed to user\\
 \hline
-\subreq{SM3.3} & \pass & & preview area can be expanded and all themes can be seen at once\\
+\subreq{SM3.3} & \pass &\timestamp{1}{40} & preview area can be expanded and all themes can be seen at once\\
 \hline
-\subreq{SM3.4} & \pass & & streamer mode toggle hides identifying information\\
+\subreq{SM3.4} & \pass & \timestamp{1}{44}& streamer mode toggle hides identifying information\\
 \hline
-\req{SM4} & \pass & & Security page can be accessed from navbar\\
+\req{SM4} & \pass &\timestamp{1}{50}& Security page can be accessed from navbar\\
 \hline
-\subreq{SM4.1} & \pass & & After inputting current password user password can be altered \\
+\subreq{SM4.1} & \pass & \timestamp{1}{52}& After inputting current password user password can be altered \\
 \hline
-\subreq{SM4.2} & \pass & & active auth sessions are displayed and revoked if required\\
+\subreq{SM4.2} & \pass & \timestamp{2}{3}& active auth sessions are displayed and revoked if required\\
 \hline
 
 \hline
 \multicolumn{4}{|c|}{\cellcolor{green!20}\textbf{Admin Controls}} \\
 \hline
 
-\req{AC1} & \pass & & Only users with administrator permissions can access admin dashboard\\
+\req{AC1} & \pass & \timestamp{2}{13}& Only users with administrator permissions can access admin dashboard\\
 \hline
-\req{AC2} & \pass & & users can be displayed \\
+\req{AC2} & \pass &\timestamp{2}{17} & users can be displayed \\
 \hline
-\subreq{AC2.1} & \pass & & key user details are dispalyed \\
+\subreq{AC2.1} & \pass & \timestamp{2}{17}& key user details are dispalyed \\
 \hline
-\subreq{AC2.2} & \pass & & user accounts can be deleted after verification \\
+\subreq{AC2.2} & \pass &\timestamp{2}{21} & user accounts can be deleted after verification \\
 \hline
 \subreq{AC2.3} & \pass & & admin can alter user permission from user page\\
 \hline
-\req{AC3} & \pass & & database tab can be displayed\\
+\req{AC3} & \pass & \timestamp{2}{29}& database tab can be displayed\\
 \hline
-\subreq{AC3.1} & \pass & & database statistics can be viewed\\
+\subreq{AC3.1} & \pass & \timestamp{2}{30}& database statistics can be viewed\\
 \hline
-\subreq{AC3.2} & \pass & & simulations can be bulk deleted \\
+\subreq{AC3.2} & \pass & \timestamp{2}{30}& simulations can be bulk deleted \\
 \hline
-\subreq{AC3.3} & \pass & & presets can be bulk deleted\\
+\subreq{AC3.3} & \pass &\timestamp{2}{31} & presets can be bulk deleted\\
 \hline
-\req{AC4} & \pass & & memory tab can be accessed\\
+\req{AC4} & \pass &\timestamp{2}{36} & memory tab can be accessed\\
 \hline
-\subreq{AC4.1} & \pass & & loaded simulations are shown\\
+\subreq{AC4.1} & \pass &\timestamp{2}{36} & loaded simulations are shown\\
 \hline
-\subreq{AC4.2} & \pass & &running simulations can be paused and resumed\\
+\subreq{AC4.2} & \pass &\timestamp{2}{38} &running simulations can be paused and resumed\\
 \hline
-\subreq{AC4.3} & \pass & &running simulations can be unloaded\\
+\subreq{AC4.3} & \pass & \timestamp{2}{41}&running simulations can be unloaded\\
 \hline
-\req{AC5} & \pass & & admin tabs can be refreshed natively without refreshing browser\\
+\req{AC5} & \pass &\timestamp{2}{27} & admin tabs can be refreshed natively without refreshing browser\\
 \hline
 
 \hline
 \multicolumn{4}{|c|}{\cellcolor{lime!20}\textbf{Simulation Setup}} \\
 \hline
 
-\req{SS1} & \pass & & Multi step wizard is revealed when user creates new simulation\\
+\req{SS1} & \pass & \timestamp{2}{48}&\\
 \hline
-\req{SS2} & \pass & & Configuration details step opens first\\
+\req{SS2} & \pass & \timestamp{2}{52}& t\\
 \hline
-\subreq{SS2.1} & \pass & & simulation name text input\\
+\subreq{SS2.1} & \pass & \timestamp{2}{53}& \\
 \hline
-\subreq{SS2.2} & \pass & & user can select simulation icon \\
+\subreq{SS2.2} & \pass & \timestamp{2}{54}&  \\
 \hline
-\req{SS3} & \pass & & Map area editor opens next\\
+\req{SS3} & \pass & \timestamp{2}{59}& \\
 \hline
-\subreq{SS3.1} & \pass & & \\
+\subreq{SS3.1} & \pass &\timestamp{2}{59} & \\
 \hline
-\subreq{SS3.2} & \pass & & \\
+\subreq{SS3.2} & \pass & \timestamp{2}{59}& \\
 \hline
-\subreq{SS3.3} & \pass & & \\
+\subreq{SS3.3} & \pass & \timestamp{3}{8} & \\
 \hline
-\subreq{SS3.4} & \pass & & \\
+\subreq{SS3.4} & \pass &  \timestamp{3}{8}&\\
 \hline
-\subreq{SS3.5} & \pass & & \\
+\subreq{SS3.5} & \pass &\timestamp{3}{13} & \\
 \hline
-\subreq{SS3.6} & \pass & & \\
+\subreq{SS3.6} & \pass & \timestamp{3}{4}& \\
 \hline
-\subreq{SS3.7} & \pass & & \\
+\subreq{SS3.7} & \pass & \timestamp{3}{4} &\\
 \hline
-\subreq{SS3.8} & \pass & & \\
+\subreq{SS3.8} & \pass &\timestamp{3}{17} & \\
 \hline
-\req{SS4} & \pass & & \\
+\req{SS4} & \pass &\timestamp{3}{20} & \\
 \hline
-\subreq{SS4.1} & \pass & & \\
+\subreq{SS4.1} & \pass & \timestamp{3}{20}& \\
 \hline
-\subreq{SS4.2} & \pass & & \\
+\subreq{SS4.2} & \pass &\timestamp{3}{21} & \\
 \hline
-\subreq{SS4.3} & \pass & & \\
+\subreq{SS4.3} & \pass & \timestamp{3}{22}& \\
 \hline
-\subreq{SS4.4} & \pass & & \\
+\subreq{SS4.4} & \pass &\timestamp{3}{23} & \\
 \hline
-\subreq{SS4.5} & \pass & & \\
+\subreq{SS4.5} & \pass &\timestamp{3}{36} & \\
 \hline
-\req{SS5} & \pass & & \\
+\req{SS5} & \pass &\timestamp{3}{50} & \\
 \hline
-\subreq{SS5.1} & \pass & & \\
+\subreq{SS5.1} & \pass & \timestamp{3}{50}& \\
 \hline
-\subreq{SS5.2} & \pass & & \\
+\subreq{SS5.2} & \pass & \timestamp{3}{50}& \\
 \hline
-\subreq{SS5.3} & \pass & & \\
+\subreq{SS5.3} & \pass & \timestamp{4}{2}& \\
 \hline
-\subreq{SS5.4} & \pass & & \\
+\subreq{SS5.4} & \pass &\timestamp{4}{4} & \\
 \hline
-\subreq{SS5.4} & \pass & & \\
+\subreq{SS5.5} & \pass & \timestamp{3}{56}& \\
 \hline
-\subreq{SS5.6} & \pass & & \\
+\subreq{SS5.6} & \pass &\timestamp{4}{0} & \\
 \hline
-\req{SS6} & \pass & & \\
+\req{SS6} & \pass & \timestamp{4}{9}& \\
 \hline
-\subreq{SS6.1} & \pass & & \\
+\subreq{SS6.1} & \pass &\timestamp{4}{10} & \\
 \hline
-\subreq{SS6.2} & \pass & & \\
+\subreq{SS6.2} & \pass & \timestamp{4}{11}& \\
 \hline
-\subreq{SS6.3} & \pass & & \\
+\subreq{SS6.3} & \pass & \timestamp{4}{12}& \\
 \hline
-\subreq{SS6.4} & \pass & & \\
+\subreq{SS6.4} & \pass &\timestamp{4}{17} & \\
 \hline
-\req{SS7} & \pass & & \\
+\req{SS7} & \pass &\timestamp{2}{55} & \\
 \hline
-\req{SS8} & \pass & & \\
+\req{SS8} & \pass & \timestamp{3}{17}& \\
 \hline
-\req{SS9} & \pass & & \\
+\req{SS9} & \pass &\timestamp{3}{56} & \\
 \hline
 \multicolumn{4}{|c|}{\cellcolor{teal!20}\textbf{Simulation Runtime}} \\
 \hline
 
-\req{SR1} & \pass & & \\
+\req{SR1} & \pass &\timestamp{4}{31} & \\
 \hline
-\req{SR2} & \pass & & \\
+\req{SR2} & \pass &\timestamp{4}{36} & \\
 \hline
-\req{SR3} & \pass & & \\
+\req{SR3} & \pass &\timestamp{4}{38}& \\
 \hline
-\subreq{SR3.1} & \pass & & \\
+\subreq{SR3.1} & \pass &\timestamp{4}{38} & \\
 \hline
-\subreq{SR3.2} & \pass & & \\
+\subreq{SR3.2} & \pass & \timestamp{4}{38}& \\
 \hline
-\subreq{SR3.3} & \pass & & \\
+\subreq{SR3.3} & \pass & \timestamp{4}{38}& \\
 \hline
-\subreq{SR3.4} & \pass & & \\
+\subreq{SR3.4} & \pass & \timestamp{4}{38}& \\
 \hline
-\subreq{SR3.5} & \pass & & \\
+\subreq{SR3.5} & \pass &\timestamp{4}{43} & \\
 \hline
-\subreq{SR3.6} & \pass & & \\
+\subreq{SR3.6} & \pass &\timestamp{4}{43} & \\
 \hline
-\subreq{SR3.7} & \pass & & \\
+\subreq{SR3.7} & \pass &\timestamp{4}{47} & \\
 \hline
-\subreq{SR3.8} & \pass & & \\
+\subreq{SR3.8} & \pass & \timestamp{4}{47}& \\
 \hline
-\subreq{SR3.9} & \pass & & \\
+\subreq{SR3.9} & \pass & \timestamp{4}{47}& \\
 \hline
-\req{SR4} & \pass & & \\
+\req{SR4} & \pass &\timestamp{5}{0} & \\
 \hline
-\subreq{SR4.1} & \pass & & \\
+\subreq{SR4.1} & \pass & \timestamp{5}{0}& \\
 \hline
-\subreq{SR4.2} & \pass & & \\
+\subreq{SR4.2} & \pass &\timestamp{5}{0} & \\
 \hline
-\subreq{SR4.3} & \pass & & \\
+\subreq{SR4.3} & \pass &\timestamp{5}{0} & \\
 \hline
-\subreq{SR4.4} & \pass & & \\
+\subreq{SR4.4} & \pass & \timestamp{5}{10}& \\
 \hline
-\subreq{SR4.5} & \pass & & \\
+\subreq{SR4.5} & \pass &\timestamp{5}{10} & \\
 \hline
-\subreq{SR4.6} & \pass & & \\
+\subreq{SR4.6} & \pass &\timestamp{5}{10} & \\
 \hline
-\subreq{SR4.7} & \pass & & \\
+\subreq{SR4.7} & \pass &\timestamp{5}{10} & \\
 \hline
-\req{SR5} & \pass & & \\
+\req{SR5} & \pass &\timestamp{5}{23} & \\
 \hline
-\subreq{SR5.1} & \pass & & \\
+\subreq{SR5.1} & \pass &\timestamp{5}{23} & \\
 \hline
-\subreq{SR5.2} & \pass & & \\
+\subreq{SR5.2} & \pass &\timestamp{5}{23} & \\
 \hline
-\subreq{SR5.3} & \pass & & \\
+\subreq{SR5.3} & \pass &\timestamp{5}{23} & \\
 \hline
-\subreq{SR5.4} & \pass & & \\
+\subreq{SR5.4} & \pass &\timestamp{5}{23} & \\
 \hline
-\subreq{SR5.5} & \pass & & \\
+\subreq{SR5.5} & \pass &\timestamp{5}{36} & \\
 \hline
-\subreq{SR5.6} & \pass & & \\
+\subreq{SR5.6} & \pass &\timestamp{5}{38} & \\
 \hline
 
 
