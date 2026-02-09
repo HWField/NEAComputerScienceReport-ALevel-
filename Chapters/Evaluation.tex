@@ -1,0 +1,63 @@
+\chapter{Evaluation}
+\section{Reflection of objectives}
+Having completed my software developemnt and implementation, I will now revisit my Project Objectives to analyse the effectiveness of my solution in meeting the requirements I set out to achieve. I will also reflect on the development process, challenges faced, and lessons learned throughout the project.
+
+% Define column widths for better control
+\newcolumntype{L}[1]{>{\raggedright\arraybackslash}m{#1}}
+\newcolumntype{C}[1]{>{\centering\arraybackslash}m{#1}}
+
+\begin{longtable}{|L{2.2cm}|C{2.2cm}|C{10.0cm}|}
+\caption{Reflection of objectives} \\
+
+% Header for first page
+\hline
+\rowcolor{gray!30}
+\textbf{Requirement} & \textbf{Achieved} & \textbf{Comment} \\
+\hline
+\endfirsthead
+
+% Header for subsequent pages
+\multicolumn{3}{c}%
+{\tablename\ \thetable\ -- \textit{Continued from previous page}} \\
+\hline
+\rowcolor{gray!30}
+\textbf{Requirement} & \textbf{Achieved} & \textbf{Comment} \\
+\hline
+\endhead
+
+% Footer for all pages except last
+\hline
+\multicolumn{3}{r}{\textit{Continued on next page}} \\
+\endfoot
+
+% Footer for last page
+\hline
+\endlastfoot
+
+ \hyperref[req:PA1]{Platform Access \& Security}& \pass & Website loads on multiple tested devices across a range of platforms successfully achieving the objective\\
+\hline
+\hyperref[req:DA1]{Dashboard}& \pass & User without authentication is brought to login page when trying to access system pages\\
+\hline
+\hyperref[req:SM1]{Settings Menu} & \pass & Passwords are stored in database hashed and unreadable\\
+\hline
+\hyperref[req:AC1]{Admin Controls} & \pass & User record is created and contains default options\\
+\hline
+\hyperref[req:SS1]{Simulation Setup} & \pass & Client receives both access and refresh tokens and commits them to pinia store\\
+\hline
+\hyperref[req:SR1]{Simulation Runtime} & \pass & access tokens expire with short delay and require refetching via a revokable refresh token\\
+\hline
+\hyperref[req:SE1]{Simulation Engine} & \pass & access tokens expire with short delay and require refetching via a revokable refresh token\\
+\hline
+\hyperref[req:SP1]{Simulation Performance} & \pass & access tokens expire with short delay and require refetching via a revokable refresh token\\
+\hline
+\hyperref[req:MA1]{Maintainability} & \pass & access tokens expire with short delay and require refetching via a revokable refresh token\\
+\hline
+
+
+\end{longtable}
+
+
+\section{Client feedback}
+\section{Response to client feedback}
+\section{Retrospective insight}
+\section{Final reflection}

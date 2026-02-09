@@ -205,19 +205,25 @@ def generate():
     out.append(r"\chapter{Code Listings}")
     out.append(r"\label{appendix:code}")
     out.append("")
-    out.append("This appendix contains the complete source code for the project.")
+    out.append("This appendix contains the complete source code for the project. Please find all folder structures and files listed in the directory below. All file names are hyperlinked to their respective code listings for your convienience.")
     out.append("")
 
     # ===== Index =====
     out.append(r"\section{Index}")
 
     out.append(r"\subsection*{Frontend}")
+    out.append("")
+    out.append("The frontend of the application entails the user interface and client-side logic. It includes all components, styles, and scripts that run in the user's browser to provide an interactive experience connecting the user with the simulation server.")
+    out.append("")
     out.append(r"{\ttfamily\small\obeyspaces")
     out.extend(emit_tree_lines(frontend_tree))
     out.append(r"}")
     out.append("")
 
     out.append(r"\subsection*{Backend}")
+    out.append("")
+    out.append("The backend of the application consists of the server-side logic and simulation engine. It handles all computations, data management, and API endpoints that power the simulation, allowing users to interact with the system and receive realtime updates on their simulations.")
+    out.append("")
     out.append(r"{\ttfamily\small\obeyspaces")
     out.extend(emit_tree_lines(backend_tree))
     out.append(r"}")

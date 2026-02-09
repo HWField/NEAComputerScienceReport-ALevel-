@@ -12,23 +12,63 @@ This project combines elements of agent-based moddelling, data visualization, an
 
 \section{Client}
 \subsection{Introduction to client(s)}
-The primary client to my software would be a clinical researcher / policymaker who is looking to implement changes that would protect their population from harm through the spread of disease. I was fortunate to visit the Imperial university Department of Infectious diseases and to speak with both a researcher and a software developer there to discuss my projects objectives and collect their initial thoughts. They were highly supportive of my ideas and provided great insight into some methods I could try and some architectural considerations I should make. Unfortunately I will likely be unable to remain in continuous contact with them over the project's development so I collected their summarised thoughts below.
+The primary client to my software would be a clinical researcher / policymaker who is looking to implement changes that would protect their population from harm through the spread of disease. I was fortunate to visit the Imperial University Department of Infectious diseases and to speak with both a researcher and a software developer there to discuss my projects objectives and collect their initial thoughts. They were highly supportive of my ideas and provided great insight into some methods I could try and architectural considerations I should make. Unfortunately I will be unable to remain in continuous contact with them over the project's development, so I have summarised thoughts below and will speak to more local contacts throughout my project.
 
-The faculty at Imperial gave me a loose brief from which I can expand, the software should:
+The faculty at Imperial gave me some excellent ideas from which I can expand, the software should:
 \begin{itemize}
-    \item Give users a space to simulate disease spread in a city
-    \item work on an agent by agent basis for a realistic disease spread
-    \item Utilise real map data for location based modelling
-    \item Utilise population data for accurate agent generation
+    \item Give users a space to simulate disease spread in a city area (anything larger would be incredibly challenging even for enterprise machines to compute).
+    \item Operate on an 'agent by agent' basis for a realistic disease spread.
+    \item Utilise real map data for location based modelling enabling researchers to select a place of interest (POI).
+    \item Utilise population data for accurate agent generation.
+    \item Enable researchers to navigate to both past and future times within the simulation.
+    \item Simulation must be deterministic enabling sets of results from different 'timelines' to be directly comparable.
+    \item Performance will be a key factor to ensure the software is usable, I will need to ensure that either the software can run on a centralised server or that the simulation is optimised enough to run on local hardware.
 \end{itemize}
 
-I was incredibly fortunate to connect with 2 Researchers at the Cambridge Biomedical Campus called Dr Tan and Dr Jin. Whilst not directly working in the field of epidemiology, they both utilise simulation software heavily to help guide their research in adjacent fields. They have kindly offered to remain in continuous contact with me throughout my project to provide feedback on my software and to help guide my design decisions. They have also agreed to test my software once it is complete and provide feedback on its usability and intuitiveness.
+I was incredibly fortunate to connect with 2 Researchers at the Cambridge Biomedical Campus called Dr Faille and Dr Jin. Whilst not directly working in the field of epidemiology, they both utilise simulation software heavily to help guide their research in adjacent biological fields. They have kindly offered to remain in continuous contact with me throughout my project to provide feedback on my software and to help guide my design decisions. They have also agreed to test my software once it is complete and provide feedback on its usability and intuitiveness.
 
-A secondary Client to my software would be members of the general-public who want to easily visualise the impact very small measures (such as face coverings or self-isolation) can make to the larger picture. By making my software very intuitive even to those without scientific it can used to quickly visualise and prove a point to others. A variety of my family members and family friends (from a variety of academic backgrounds including biologists) have agreed to test my software and provide feedback on its usability and intuitiveness. I will also be able to use their feedback to improve the software's accessibility for those without a scientific background.
+Additionally, I am communicating with Mr Field, a financial analyst and accountant at a financial institution, to gain an insight into his experience using complex financial models. Whilst the context he is operating under is unrelated to epidemiology, the process and methods he works under are identical to those used in the field making his opinions and expertise incredibly valuable.
+
+A secondary Client to my software would be members of the general-public who want to easily visualise the impact very small measures (such as face coverings or self-isolation) can make to the larger picture. By making my software very intuitive to those without scientific background it can be used to quickly explore real actions they can make in a visual manner. A variety of my family members and friends have agreed to test my software and provide feedback on its usability and intuitiveness.
+
+To gain initial insight from each of my clients I sent around personalised questionnaires to each of them to gain an understanding of their needs and wants from my software, I have summarised the key points from these questionnaires below and have included the full transcripts in the appendices for reference. 
+\subsection{Questionnaire Response with Dr Faille}
+
+\textit{Please see \autoref{responseDrFaille} for full response }
+
+Dr Faille is a biological researcher studying protein acid complex who often runs coledular dynamics (MD) simulations. Here are my key takeaways:
+
+\begin{itemize}
+  \item The core interaction rules of a simulation must be realistic and accurate, as incorrect fundamental mechanics invalidate results.
+  \item Environmental detail can be simplified to improve performance, for example by modelling population density rather than exact area geography.
+  \item Parameter values should be justified using prior knowledge, literature, or theoretical expectations rather than chosen arbitrarily.
+  \item Sensitivity analysis should be used to test how changes in parameters affect outcomes, this information should be made available to users in a clear manner.
+  \item Reproducibility is essential; repeated runs under the same conditions should produce statistically similar results.
+  \item Known real-world behaviours can be used as sanity checks to validate simulation correctness.
+  \item Results should communicate uncertainty using ranges or distributions rather than single outcomes.
+  \item All assumptions and limitations must be stated clearly to avoid over-interpretation.
+  \item Data visualisation must be carefully designed, as presentation choices can bias interpretation.
+  \item Simplified simulations still have strong educational value by clearly exposing underlying logic.
+  \item Heavy simulations must run on centralised compute resources to enable fast iteration with results streamed to users 'thin clients'.
+\end{itemize}
 
 \subsection{Interview with Dr Jin}
-\textit{Below is a summary of the key points discussed. For the full transcript please see: \nameref{sec:interview_drjin}}
-\subsection{Interview with Dr Tan}
+\textit{Below is a summary of the key points discussed. For the full transcript please see: \nameref{sec:responseDrJin} for full response}
+
+\begin{itemize}
+  \item Simulations are used as part of a wider research workflow to guide and inform real-world experimentation. They must 
+  \item Computational models save significant time compared to purely experimental approaches.
+  \item Simulations reduce research costs by minimising unnecessary laboratory work. They therefore must have a clear purpose and be designed to answer specific questions.
+  \item Accuracy is balanced against available resources such as time, funding, and computing power. Ideally models should be as simple as possible while still capturing key dynamics.
+  \item Collaboration allows researchers to access greater expertise and computational capacity thus resources must be shareable between software users
+  \item Reproducibility is vital for scientific credibility and comparison with other research.
+  \item Validation is achieved by comparing outputs with well-known or previously published systems.
+  \item Data visualisation is essential for analysing results and communicating findings clearly.
+  \item Simplified models are effective for education and interdisciplinary communication.
+  \item Centralised or server-based simulation systems are useful for handling computationally intensive tasks securely.
+\end{itemize}
+
+\subsection{Interview with Mr Field}
 \textit{Below is a summary of the key points discussed. For the full transcript please see: \nameref{sec:interview_drtan}}
 
 \subsection{Interview with Sally}
@@ -42,31 +82,6 @@ When covid impacted her area she was scared at the lack of tools she had at her 
 When asked what she would like to gain from my project she spoke about an ability to make information much more easily digestible and useable by the public. She did have some concerns about how this simplicity could impact the overall usefulness of the results (potentially making them harmful if too oversimplified) and would want to see some data to verify my projects outcomes can align with peer-reviewed research.
 
 Whilst she has access to a laptop it became clear over the course of the interview that it would be unfeasible and unwanted to run a large simulation on local hardware, and so I will explore runnings compute on a centralised server and streaming results to the user. This additionally open opportunities to support users on mobile devices such as smartphones and tablets making my software more mass market.
-
-% \begin{center}
-%     \textbf{Interview With x: Q \& A}
-% \end{center}
-
-
-% \begin{description}
-%     \item[Q:] What is the main goal you would like this simulation software to achieve?
-%     \item[A:] The main goal is to provide a tool that can simulate disease spread at a city level, allowing us to test the impact of different interventions and policies in a realistic, data-driven environment.
-
-%     \item[Q:] What features are most important for your research or decision-making?
-%     \item[A:] The ability to use real map and population data, simulate individual agent behaviours, and visualize the effects of interventions like school closures or mask mandates are essential. Clear, accessible output is also important for communicating results.
-
-%     \item[Q:] What challenges do you face with current modelling tools?
-%     \item[A:] Most existing tools are either too broad in scope (national/global) or too technical for non-experts. They often lack flexibility, detailed local modelling, or require significant programming expertise.
-
-%     \item[Q:] How important is accessibility for non-expert users?
-%     \item[A:] Very important. Policymakers and the public need to understand the results without needing a technical background. Intuitive interfaces and clear visualizations are key.
-
-%     \item[Q:] What data sources do you recommend for agent and location generation?
-%     \item[A:] OpenStreetMap for geographic data and ONS for population demographics are good choices. Disease parameters should be customizable, with presets for common scenarios.
-
-%     \item[Q:] How would you measure the success of this software?
-%     \item[A:] Success would be measured by its ability to accurately simulate scenarios, provide actionable insights, and be usable by both researchers and the public. Validation against real-world data and positive feedback from experts would be ideal.
-% \end{description}
 
 
 \section{Problem Research}
@@ -293,7 +308,7 @@ This research paper focuses on the logistical challenges of modelling such as a 
 
 The researcher on parameter selection says, 
 \begin{quote}
-\textit{“ one goal is to estimate parameters that have not been measured by fitting to those that have been measured; the second goal is to fit a model to observations up to the present in order to predict what will happen in the future.”}
+\textit{“one goal is to estimate parameters that have not been measured by fitting to those that have been measured; the second goal is to fit a model to observations up to the present in order to predict what will happen in the future.”}
 \end{quote}
 This quote nicely sums the complexity of modelling disease spread and the need for accurate data to inform the model (otherwise the produced simulation output will be of no use). It also highlights the importance of being able to predict future outcomes based on current data, which is a key goal of my project.
 
@@ -383,10 +398,9 @@ With an ambitious goal to achieve, I need to ensure that my project is feasible 
 
 \subsection{Time Feasibility}
 \begin{itemize}
-    \item The Nea Project gives me plenty of time to spend planning my software thoroughly and then in development
+    \item The NEA Project gives me plenty of time to spend planning my software thoroughly and then in development
     \item I will plan my time carefully and create clear milestones for the goals of my project
-    \item
-          -	I will start by producing a MVP (minimum viable product) which enables me to spot sections that will require attention then others, my Python API for example will likely be almost complete after this first iteration
+    \item I will start by producing a MVP (minimum viable product) which enables me to spot sections that will require attention then others, my Python API for example will likely be almost complete after this first iteration
 \end{itemize}
 \subsection{Skills Feasibility}
 \begin{itemize}
@@ -496,26 +510,25 @@ Taken my research, conversations with potential users and prototyping into accou
     \item\label{req:PA3} PA3: User passwords are securely hashed and salted using an industry-standard algorithm
     \item\label{req:PA4} PA4: After registration a new user record is created in the database with default settings.
     \item\label{req:PA5} PA5: After login, client's receive both a short-lived access token for API requests and a longer-lived refresh token to obtain new access tokens when required.
-    \item\label{req:PA6} PA6: User sessions are securely managed via automatic access token expiry giving protection against unauthorised access.
 \end{itemize}
 
 \subsection{Dashboard:}
 \begin{itemize}
-    \item \label{req:DA1} DA1: The dashboard interface includes a navigation bar with links to the dashboard (clickable logo), admin page, settings menu and logout button.
-    \item \label{req:DA2} DA2: Authenticated users are first brought to a dashboard.
+    \item \label{req:DA1} DA1: Authenticated users are first brought to a dashboard.
     \begin{itemize}
-        \item \label{req:DA2.1} DA2.1: The dashboard displays a list of previous simulations with key summary statistics (name, date, agents).
-        \item \label{req:DA2.2} DA2.2: Users can delete previous simulations with a confirmation prompt to prevent accidental deletion.
-        \item \label{req:DA2.3} DA2.3: Users can create a new simulation from the dashboard via a prominent button to trigger the simulation setup outlined below.
+        \item \label{req:DA1.1} DA2.1: The dashboard interface includes a navigation bar with links to the dashboard (clickable logo), admin page, settings menu and logout button.
+        \item \label{req:DA1.2} DA2.2: The dashboard displays a list of previous simulations with key summary statistics (name, date, agents).
+        \item \label{req:DA1.3} DA2.3: Users can create a new simulation from the dashboard via a prominent button to trigger the simulation setup outlined below.
     \end{itemize}
-    \item \label{req:DA3} DA3: Users are able to inspect details of previous simulations.
+    \item \label{req:DA2} DA2: Users are able to inspect details of previous simulations.
     \begin{itemize}
-        \item \label{req:DA3.1} DA3.1: User can see core information including name, date created, number of agents and status.
-        \item \label{req:DA3.2} DA3.2: User can see map area details including map name, location, area size and building count.
-        \item \label{req:DA3.3} DA3.3: User can see population size and density.
-        \item \label{req:DA3.4} DA3.4: User can see disease details including infection rate, recovery rate and mortality rate.
+        \item \label{req:DA2.1} DA2.1: User can see core information including name, date created, number of agents and status.
+        \item \label{req:DA2.2} DA2.2: User can see map area details including map name, location, area size and building count.
+        \item \label{req:DA2.3} DA2.3: User can see population size and density.
+        \item \label{req:DA2.4} DA2.4: User can see disease details including infection rate, recovery rate and mortality rate.
+        \item \label{req:DA2.5} DA2.5: Users can delete previous simulations with a confirmation prompt to prevent accidental deletion.
     \end{itemize}
-    \item \label{req:DA4} DA4: Users can launch an existing simulation from the dashboard to re-run it in the simulation engine.
+    \item \label{req:DA3} DA3: Users can launch an existing simulation from the dashboard to re-run it in the simulation engine.
 \end{itemize}
 
 \subsection{Settings Menu:}
@@ -542,9 +555,8 @@ Taken my research, conversations with potential users and prototyping into accou
     \item\label{req:AC1} AC1: Users with admin privileges can access an admin dashboard.
     \item\label{req:AC2} AC2: Admin page has a user management tab.
     \begin{itemize}
-        \item\label{req:AC2.1} AC2.1: Admin can view a list of all registered users with key details (username, email, date joined, last login).
-        \item\label{req:AC2.2} AC2.2: Admin can delete user accounts with confirmation prompt.
-        \item\label{req:AC2.3} AC2.3: Admin can promote/demote users to/from admin status.
+        \item\label{req:AC2.1} AC2.1: Admin can view a list of all registered users with key details.
+        \item\label{req:AC2.2} AC2.2: Admin can promote/demote users to/from admin status.
     \end{itemize}
     \item\label{req:AC3} AC3: Admin page has a Database tab.
     \begin{itemize}
@@ -681,13 +693,12 @@ Taken my research, conversations with potential users and prototyping into accou
 \subsection{Simulation Performance:}
 \begin{itemize}
     \item\label{req:SP1} SP1: Under typical workloads (≤100,000 agents x 1 simulation), the engine computes one simulated day per real-time second.
-    \item\label{req:SP2} SP2: The system can compute simulations with up to 1,000,000 agents.
-    \item\label{req:SP3} SP3: Data retrieval latency remains under two seconds for standard client requests across a performant network.
-    \item\label{req:SP4} SP4: The system efficiently manages memory and CPU usage to prevent resource exhaustion during large/multiple simulations.
-    \item\label{req:SP5} SP5: The server supports multiple (3+) concurrent simulations using isolated simulation contexts.
-    \item\label{req:SP6} SP6: User inputs are validated both client and server side to prevent crashes or undefined behaviour (defensive programming).
-    \item\label{req:SP7} SP7: System errors and overloads are handled using structured exception handling and controlled recovery.
-    \item\label{req:SP8} SP8: The system maintains data integrity and state in the event of unexpected termination.
+    \item\label{req:SP2} SP2: Data retrieval latency remains under one second for standard client requests across a performant network.
+    \item\label{req:SP3} SP3: The system efficiently manages memory and CPU usage to prevent resource exhaustion during large/multiple simulations.
+    \item\label{req:SP4} SP4: The server supports multiple (3+) concurrent simulations using isolated simulation contexts.
+    \item\label{req:SP5} SP5: User inputs are validated both client and server side to prevent crashes or undefined behaviour (defensive programming).
+    \item\label{req:SP6} SP6: System errors and overloads are handled using structured exception handling and controlled recovery.
+    \item\label{req:SP7} SP7: The system maintains data integrity and state in the event of unexpected termination.
 \end{itemize}
 
 \subsection{Maintainability:}
@@ -756,5 +767,7 @@ Once a dev build is known stable i can merge changes into my production branch a
 
 My GitHub action runners will run on virtual Ubuntu nodes, building to Cloudflare Pages to host my frontend and a DigitalOcean droplet to host my backend API. I have chosen these platforms as they are both cost-effective and Industry standard, with good documentation and support. I will also be using Docker to containerise my backend API, allowing for easy deployment and scaling in the future should the need arise.
 
+\section{Summary of analysis}
+From my research and prototyping I have found that my project is feasible in terms of data acquisition, simulation performance and visualisation. I have made some changes to my initial plans such as switching from python to C\# for the simulation engine to maximise performance and changing my data streaming strategy to only stream key statistics rather than every agent movement. These changes will help ensure that my project is successful and meets the needs of my users. I have also compiled a list of key functional requirements for my project which will guide the development process and ensure that it meets the needs of my users. Finally, I have outlined some initial design considerations for the technical stack and architecture of my project, which will help me to create a modular, maintainable codebase that can be easily extended in the future.
 
-
+In the following chapter I will lay out the full design and architecture of my project, including the database schema, API endpoints, and frontend components. I will also explain how I plan to implement the simulation engine and the algorithms that will drive the disease spread and agent interactions. Finally, I will outline my testing strategy to ensure that my project is robust and meets all the functional requirements outlined in this chapter.

@@ -1,4 +1,5 @@
-\section{API Design}
+\section{API Documentation}
+
 This section documents the RESTful API endpoints for the epidemic simulation system. 
 The API follows standard HTTP methods and returns JSON responses. 
 All endpoints require authentication unless otherwise specified.
@@ -761,6 +762,7 @@ Schema: \texttt{UpdateProfileDto}\\[0.3em]
 ]
 \noindent\colorbox{green}{\textcolor{white}{\textbf{POST}}} 
 \texttt{\large /api/Profile/change-password}\\[0.3em]
+\textit{Update the logged-in user's password}\\[0.3em]
 \vspace{0.3em}
 \textbf{\textcolor{green}{Request Body:}}\\[0.2em]
 Schema: \texttt{ChangePasswordDto}\\[0.3em]
@@ -1278,6 +1280,7 @@ Schema: \texttt{UpdateMetricFrequencyDto}\\[0.3em]
 ]
 \noindent\colorbox{blue}{\textcolor{white}{\textbf{GET}}} 
 \texttt{\large /api/Simulation/\textbackslash{}{id\textbackslash{}}/mitigations}\\[0.3em]
+\textit{Gets all mitigations for a simulation}\\[0.3em]
 \vspace{0.3em}
 \textbf{\textcolor{blue}{Parameters:}}\\[0.2em]
 \begin{tabular}{|l|l|l|}
