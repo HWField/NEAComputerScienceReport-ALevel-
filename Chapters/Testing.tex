@@ -6,7 +6,7 @@ Please find all the testing outcomes in the table below complete with timestamps
 \newcolumntype{L}[1]{>{\raggedright\arraybackslash}m{#1}}
 \newcolumntype{C}[1]{>{\centering\arraybackslash}m{#1}}
 
-\begin{longtable}{|L{2.2cm}|C{2.2cm}|C{3.1cm}|C{6.0cm}|}
+\begin{longtable}{|L{2.2cm}|C{2.2cm}|C{3.1cm}|L{6.0cm}|}
 \caption{Requirement Testing} \\
 
 % Header for first page
@@ -57,215 +57,214 @@ Please find all the testing outcomes in the table below complete with timestamps
 
 \multicolumn{4}{|c|}{\cellcolor{orange!20}\textbf{Dashboard}} \\
 \hline
-\req{DA1} & \pass & \timestamp{0}{50}& \\
+\req{DA1} & \pass & \timestamp{0}{50}& Post login, users are brought to central dashboard \\
 \hline
-\subreq{DA1.1} & \pass & \timestamp{0}{52}& \\
+\subreq{DA1.1} & \pass & \timestamp{0}{52}& Navbar contains clickable logo linking to dashboard, link to Settings menu and Logout button \\
 \hline 
-\subreq{DA1.2} & \pass & \timestamp{0}{53}& \\
+\subreq{DA1.2} & \pass & \timestamp{0}{53}& List of previous simulation cards with key statistics \\
 \hline
-\subreq{DA1.3} & \pass & \timestamp{0}{53}& \\
+\subreq{DA1.3} & \pass & \timestamp{0}{53}& "New simulation" button prominently placed\\
 \hline
-\req{DA2} & \pass & \timestamp{0}{58}& \\
+\req{DA2} & \pass & \timestamp{0}{58}& "view details" button opens a popup modal \\
 \hline
-\subreq{DA2.1} & \pass & \timestamp{0}{59}& \\
+\subreq{DA2.1} & \pass & \timestamp{0}{59}& Shown as required \\
 \hline
-\subreq{DA2.2} & \pass & \timestamp{1}{0}& \\
+\subreq{DA2.2} & \pass & \timestamp{1}{0}& Shown as required\\
 \hline
-\subreq{DA2.3} & \pass & \timestamp{1}{1}& \\
+\subreq{DA2.3} & \pass & \timestamp{1}{1}& Shown as required\\
 \hline
-\subreq{DA2.4} & \pass & \timestamp{1}{2}& \\
+\subreq{DA2.4} & \pass & \timestamp{1}{2}& Shown as required\\
 \hline
-\subreq{DA2.5} & \pass & \timestamp{1}{6}& \\
+\subreq{DA2.5} & \pass & \timestamp{1}{6}& Delete button triggers browser confirmation modal, on acceptance the simulation is deleted and user is returned to home page\\
 \hline
-\req{DA3} & \pass & \timestamp{1}{11}& \\
+\req{DA3} & \pass & \timestamp{1}{11}& Clicking "Open" loads the simulation and replaces the dashboard\\
 \hline
 
 
 
 \multicolumn{4}{|c|}{\cellcolor{yellow!20}\textbf{Settings Menu}} \\
 \hline
-\req{SM1} & \pass & \timestamp{1}{22}& Settings menu can be accessed from navbar\\
+\req{SM1} & \pass & \timestamp{1}{22}& Settings menus can be accessed from navbar\\
 \hline
 \req{SM2} & \pass & \timestamp{1}{24}& Account page can be used to modify username \\
 \hline
-\req{SM3} & \pass &\timestamp{1}{31} & Appearance tab can be displayed\\
+\req{SM3} & \pass &\timestamp{1}{31} & Appearance tabs can be displayed\\
 \hline
 \subreq{SM3.1} & \pass & \timestamp{1}{33}& 20+ themes can be selected\\
 \hline
-\subreq{SM3.2} & \pass &\timestamp{1}{36} & Preview area is displayed to user\\
+\subreq{SM3.2} & \pass &\timestamp{1}{36} & Preview area is displayed to user displaying selected themes colours\\
 \hline
-\subreq{SM3.3} & \pass &\timestamp{1}{40} & preview area can be expanded and all themes can be seen at once\\
+\subreq{SM3.3} & \pass &\timestamp{1}{40} & Preview area can be expanded and all themes can be seen in a list as larger previews\\
 \hline
-\subreq{SM3.4} & \pass & \timestamp{1}{44}& streamer mode toggle hides identifying information\\
+\subreq{SM3.4} & \pass & \timestamp{1}{44}& Streamer mode toggle hides identifying information\\
 \hline
-\req{SM4} & \pass &\timestamp{1}{50}& Security page can be accessed from navbar\\
+\req{SM4} & \pass &\timestamp{1}{50}& Security pages can be accessed from navbar\\
 \hline
 \subreq{SM4.1} & \pass & \timestamp{1}{52}& After inputting current password user password can be altered \\
 \hline
-\subreq{SM4.2} & \pass & \timestamp{2}{3}& active auth sessions are displayed and revoked if required\\
+\subreq{SM4.2} & \pass & \timestamp{2}{3}& List of active auth sessions are displayed and revoked if required\\
 \hline
 
 \hline
 \multicolumn{4}{|c|}{\cellcolor{green!20}\textbf{Admin Controls}} \\
 \hline
 
-\req{AC1} & \pass & \timestamp{2}{13}& Only users with administrator permissions can access admin dashboard\\
+\req{AC1} & \pass & \timestamp{2}{13}& Only users with administrator permissions can access admin dashboard (previous req: DA1.1 shows non admin view not allowing access for non Admin)\\
 \hline
-\req{AC2} & \pass &\timestamp{2}{17} & users can be displayed \\
+\req{AC2} & \pass &\timestamp{2}{17} & Users can be displayed \\
 \hline
-\subreq{AC2.1} & \pass & \timestamp{2}{17}& key user details are dispalyed \\
+\subreq{AC2.1} & \pass & \timestamp{2}{17}& Key user details are displayed on selection \\
 \hline
-\subreq{AC2.2} & \pass &\timestamp{2}{21} & user accounts can be deleted after verification \\
+\subreq{AC2.2} & \pass &\timestamp{2}{21} & User accounts can be deleted after browser verification \\
 \hline
-\subreq{AC2.3} & \pass & & admin can alter user permission from user page\\
+
+\req{AC3} & \pass & \timestamp{2}{29}& Database tab can be displayed\\
 \hline
-\req{AC3} & \pass & \timestamp{2}{29}& database tab can be displayed\\
+\subreq{AC3.1} & \pass & \timestamp{2}{30}& Database statistics can be viewed\\
 \hline
-\subreq{AC3.1} & \pass & \timestamp{2}{30}& database statistics can be viewed\\
+\subreq{AC3.2} & \pass & \timestamp{2}{30}& Simulations can be bulk deleted \\
 \hline
-\subreq{AC3.2} & \pass & \timestamp{2}{30}& simulations can be bulk deleted \\
+\subreq{AC3.3} & \pass &\timestamp{2}{31} & Presets can be bulk deleted\\
 \hline
-\subreq{AC3.3} & \pass &\timestamp{2}{31} & presets can be bulk deleted\\
+\req{AC4} & \pass &\timestamp{2}{36} & Memory tab can be accessed\\
 \hline
-\req{AC4} & \pass &\timestamp{2}{36} & memory tab can be accessed\\
+\subreq{AC4.1} & \pass &\timestamp{2}{36} & Loaded simulations are shown\\
 \hline
-\subreq{AC4.1} & \pass &\timestamp{2}{36} & loaded simulations are shown\\
+\subreq{AC4.2} & \pass &\timestamp{2}{38} & Running simulations can be paused and resumed\\
 \hline
-\subreq{AC4.2} & \pass &\timestamp{2}{38} &running simulations can be paused and resumed\\
+\subreq{AC4.3} & \pass & \timestamp{2}{41}& Running simulations can be unloaded\\
 \hline
-\subreq{AC4.3} & \pass & \timestamp{2}{41}&running simulations can be unloaded\\
-\hline
-\req{AC5} & \pass &\timestamp{2}{27} & admin tabs can be refreshed natively without refreshing browser\\
+\req{AC5} & \pass &\timestamp{2}{27} & Admin tabs can be refreshed natively without refreshing browser\\
 \hline
 
 \hline
 \multicolumn{4}{|c|}{\cellcolor{lime!20}\textbf{Simulation Setup}} \\
 \hline
 
-\req{SS1} & \pass & \timestamp{2}{48}&\\
+\req{SS1} & \pass & \timestamp{2}{48}& Setup wizard is opened when new simulation is created\\
 \hline
-\req{SS2} & \pass & \timestamp{2}{52}& t\\
+\req{SS2} & \pass & \timestamp{2}{52}& First step is simulation detail configuration\\
 \hline
-\subreq{SS2.1} & \pass & \timestamp{2}{53}& \\
+\subreq{SS2.1} & \pass & \timestamp{2}{53}& User can input simulation name \\
 \hline
-\subreq{SS2.2} & \pass & \timestamp{2}{54}&  \\
+\subreq{SS2.2} & \pass & \timestamp{2}{54}& Row of selectable icons for organising simulations \\
 \hline
-\req{SS3} & \pass & \timestamp{2}{59}& \\
+\req{SS3} & \pass & \timestamp{2}{59}& Next step is map area configuration \\
 \hline
-\subreq{SS3.1} & \pass &\timestamp{2}{59} & \\
+\subreq{SS3.1} & \pass &\timestamp{2}{59} & User can select preset or custom map area\\
 \hline
-\subreq{SS3.2} & \pass & \timestamp{2}{59}& \\
+\subreq{SS3.2} & \pass & \timestamp{2}{59}& User can select from existing map area presets\\
 \hline
-\subreq{SS3.3} & \pass & \timestamp{3}{8} & \\
+\subreq{SS3.3} & \pass & \timestamp{3}{8} & User can select a custom area by moving selection circle around a map \\
 \hline
-\subreq{SS3.4} & \pass &  \timestamp{3}{8}&\\
+\subreq{SS3.4} & \pass &  \timestamp{3}{8}& User can search for locations like other mapping software \\
 \hline
-\subreq{SS3.5} & \pass &\timestamp{3}{13} & \\
+\subreq{SS3.5} & \pass &\timestamp{3}{13} & Area radius can be configured\\
 \hline
-\subreq{SS3.6} & \pass & \timestamp{3}{4}& \\
+\subreq{SS3.6} & \pass & \timestamp{3}{4}& Name input area\\
 \hline
-\subreq{SS3.7} & \pass & \timestamp{3}{4} &\\
+\subreq{SS3.7} & \pass & \timestamp{3}{4} & Checkbox to save preset for use in other simulations, enabled by default to decrease number of map downloads by user (thus reducing bandwidth used)\\
 \hline
-\subreq{SS3.8} & \pass &\timestamp{3}{17} & \\
+\subreq{SS3.8} & \pass &\timestamp{3}{17} & User sees visual loading spinners and progress updates as server fetches requested map area\\
 \hline
-\req{SS4} & \pass &\timestamp{3}{20} & \\
+\req{SS4} & \pass &\timestamp{3}{20} & Population configuration step next\\
 \hline
-\subreq{SS4.1} & \pass & \timestamp{3}{20}& \\
+\subreq{SS4.1} & \pass & \timestamp{3}{20}& Population split into 6 discrete roles\\
 \hline
-\subreq{SS4.2} & \pass &\timestamp{3}{21} & \\
+\subreq{SS4.2} & \pass &\timestamp{3}{21} & Each role group states maximum number of supported agents derived from number of agents supported by chosen map area, e.g. number of medical agents limited by number of medical buildings x staff per building. Maximum agent count restricted by housing supply within area\\
 \hline
-\subreq{SS4.3} & \pass & \timestamp{3}{22}& \\
+\subreq{SS4.3} & \pass & \timestamp{3}{22}& Population is intelligently split, and this preset is shown to user\\
 \hline
-\subreq{SS4.4} & \pass &\timestamp{3}{23} & \\
+\subreq{SS4.4} & \pass &\timestamp{3}{23} & User can adjust number of agents within each category\\
 \hline
-\subreq{SS4.5} & \pass &\timestamp{3}{36} & \\
+\subreq{SS4.5} & \pass &\timestamp{3}{36} & User gets visual loading bars and informative messages as server generates population\\
 \hline
-\req{SS5} & \pass &\timestamp{3}{50} & \\
+\req{SS5} & \pass &\timestamp{3}{50} & Next step is disease configuration\\
 \hline
-\subreq{SS5.1} & \pass & \timestamp{3}{50}& \\
+\subreq{SS5.1} & \pass & \timestamp{3}{50}& User can select a preset or custom disease during setup\\
 \hline
-\subreq{SS5.2} & \pass & \timestamp{3}{50}& \\
+\subreq{SS5.2} & \pass & \timestamp{3}{50}& User has a list of preset diseases that are system generated or saved by themselves\\
 \hline
-\subreq{SS5.3} & \pass & \timestamp{4}{2}& \\
+\subreq{SS5.3} & \pass & \timestamp{4}{2}& User can control all disease parameters in a custom disease\\
 \hline
-\subreq{SS5.4} & \pass &\timestamp{4}{4} & \\
+\subreq{SS5.4} & \pass &\timestamp{4}{4} & Parameters have defaults listed to help user understand common scale \\
 \hline
-\subreq{SS5.5} & \pass & \timestamp{3}{56}& \\
+\subreq{SS5.5} & \pass & \timestamp{3}{56}& User can enter custom disease name\\
 \hline
-\subreq{SS5.6} & \pass &\timestamp{4}{0} & \\
+\subreq{SS5.6} & \pass &\timestamp{4}{0} & User can select checkbox to save disease preset for later use\\
 \hline
-\req{SS6} & \pass & \timestamp{4}{9}& \\
+\req{SS6} & \pass & \timestamp{4}{9}& User next configures initial infection \\
 \hline
-\subreq{SS6.1} & \pass &\timestamp{4}{10} & \\
+\subreq{SS6.1} & \pass &\timestamp{4}{10} & User is given overview of the disease seeding step\\
 \hline
-\subreq{SS6.2} & \pass & \timestamp{4}{11}& \\
+\subreq{SS6.2} & \pass & \timestamp{4}{11}& User has input area for infection count\\
 \hline
-\subreq{SS6.3} & \pass & \timestamp{4}{12}& \\
+\subreq{SS6.3} & \pass & \timestamp{4}{12}& Percentage infection represents of population is calculated \\
 \hline
-\subreq{SS6.4} & \pass &\timestamp{4}{17} & \\
+\subreq{SS6.4} & \pass &\timestamp{4}{17} & Agents are seeded whilst user is given feedback\\
 \hline
-\req{SS7} & \pass &\timestamp{2}{55} & \\
+\req{SS7} & \pass &\timestamp{2}{55} & User must complete all mandatory fields before continuing \\
 \hline
-\req{SS8} & \pass & \timestamp{3}{17}& \\
+\req{SS8} & \pass & \timestamp{3}{17}& User sees continual progress indicators as the server processes inputs\\
 \hline
-\req{SS9} & \pass &\timestamp{3}{56} & \\
+\req{SS9} & \pass &\timestamp{3}{56} & System and user generated presets are provided during complex setup steps\\
 \hline
 \multicolumn{4}{|c|}{\cellcolor{teal!20}\textbf{Simulation Runtime}} \\
 \hline
 
-\req{SR1} & \pass &\timestamp{4}{31} & \\
+\req{SR1} & \pass &\timestamp{4}{31} & User sees a new view components with multiple tabs when a simulation is loaded\\
 \hline
-\req{SR2} & \pass &\timestamp{4}{36} & \\
+\req{SR2} & \pass &\timestamp{4}{36} & User sees a server status (paused, running etc) and a connection status (connected, disconnected, offline etc)\\
 \hline
-\req{SR3} & \pass &\timestamp{4}{38}& \\
+\req{SR3} & \pass &\timestamp{4}{38}& User can control all disease parameters post creation within the configuration tab\\
 \hline
-\subreq{SR3.1} & \pass &\timestamp{4}{38} & \\
+\subreq{SR3.1} & \pass &\timestamp{4}{38} & Shown as required \\
 \hline
-\subreq{SR3.2} & \pass & \timestamp{4}{38}& \\
+\subreq{SR3.2} & \pass & \timestamp{4}{38}& Can be modified\\
 \hline
-\subreq{SR3.3} & \pass & \timestamp{4}{38}& \\
+\subreq{SR3.3} & \pass & \timestamp{4}{38}& Shown as required\\
 \hline
-\subreq{SR3.4} & \pass & \timestamp{4}{38}& \\
+\subreq{SR3.4} & \pass & \timestamp{4}{38}& Shown as required\\
 \hline
-\subreq{SR3.5} & \pass &\timestamp{4}{43} & \\
+\subreq{SR3.5} & \pass &\timestamp{4}{43} & Can be modified \\
 \hline
-\subreq{SR3.6} & \pass &\timestamp{4}{43} & \\
+\subreq{SR3.6} & \pass &\timestamp{4}{43} & Can be modified \\
 \hline
-\subreq{SR3.7} & \pass &\timestamp{4}{47} & \\
+\subreq{SR3.7} & \pass &\timestamp{4}{47} & User can choose to apply, Vaccinations, Mask wearing \& Self isolation with custom parameters available for each. Mitigations can be added, deactivated and removed as required \\
 \hline
-\subreq{SR3.8} & \pass & \timestamp{4}{47}& \\
+\subreq{SR3.8} & \pass & \timestamp{4}{47}& User can modify simulation parameters \\
 \hline
-\subreq{SR3.9} & \pass & \timestamp{4}{47}& \\
+\subreq{SR3.9} & \pass & \timestamp{4}{47}& User can modify all parameters when simulation is paused \\
 \hline
-\req{SR4} & \pass &\timestamp{5}{0} & \\
+\req{SR4} & \pass &\timestamp{5}{0} & User can see a full overview of current simulation state from the main tab\\
 \hline
-\subreq{SR4.1} & \pass & \timestamp{5}{0}& \\
+\subreq{SR4.1} & \pass & \timestamp{5}{0}& User can pause and resume simulation\\
 \hline
-\subreq{SR4.2} & \pass &\timestamp{5}{0} & \\
+\subreq{SR4.2} & \pass &\timestamp{5}{0} & User can navigate timeline by dragging timeline playhead\\
 \hline
-\subreq{SR4.3} & \pass &\timestamp{5}{0} & \\
+\subreq{SR4.3} & \pass &\timestamp{5}{0} & user can select speed to view simulation at, from 1x $\rightarrow$ 100x \\
 \hline
-\subreq{SR4.4} & \pass & \timestamp{5}{10}& \\
+\subreq{SR4.4} & \pass & \timestamp{5}{10}& User can view agent movements on a live interactive map \\
 \hline
-\subreq{SR4.5} & \pass &\timestamp{5}{10} & \\
+\subreq{SR4.5} & \pass &\timestamp{5}{10} & User can navigate around map \\
 \hline
-\subreq{SR4.6} & \pass &\timestamp{5}{10} & \\
+\subreq{SR4.6} & \pass &\timestamp{5}{10} & User can see population statistics\\
 \hline
-\subreq{SR4.7} & \pass &\timestamp{5}{10} & \\
+\subreq{SR4.7} & \pass &\timestamp{5}{10} & Total infection metrics are shown\\
 \hline
-\req{SR5} & \pass &\timestamp{5}{23} & \\
+\req{SR5} & \pass &\timestamp{5}{23} & User can enter Analysis tab to view detailed breakdown of simulation results\\
 \hline
-\subreq{SR5.1} & \pass &\timestamp{5}{23} & \\
+\subreq{SR5.1} & \pass &\timestamp{5}{23} & Summary statistics are shown in cards at top of tab \\
 \hline
-\subreq{SR5.2} & \pass &\timestamp{5}{23} & \\
+\subreq{SR5.2} & \pass &\timestamp{5}{23} & User can interact with charts to view data breakdown at different times\\
 \hline
-\subreq{SR5.3} & \pass &\timestamp{5}{23} & \\
+\subreq{SR5.3} & \pass &\timestamp{5}{23} & R rate is calculated once min time interval (10 days) has passed \\
 \hline
-\subreq{SR5.4} & \pass &\timestamp{5}{23} & \\
+\subreq{SR5.4} & \pass &\timestamp{5}{23} & Daily infections are displayed on designated graph\\
 \hline
-\subreq{SR5.5} & \pass &\timestamp{5}{36} & \\
+\subreq{SR5.5} & \pass &\timestamp{5}{36} & Time span of source data is shown at bottom of tab\\
 \hline
-\subreq{SR5.6} & \pass &\timestamp{5}{38} & \\
+\subreq{SR5.6} & \pass &\timestamp{5}{38} & User can press refresh button to fetch latest data (such as data that has just been calculated from running simulation) and display it on graph\\
 \hline
 
 
@@ -273,72 +272,75 @@ Please find all the testing outcomes in the table below complete with timestamps
 \multicolumn{4}{|c|}{\cellcolor{cyan!20}\textbf{Simulation Engine}} \\
 \hline
 
-\req{SE1} & \pass & & \\
+\req{SE1} & \pass & \timestamp{5}{46}& Agents are given unique identities within the simulation\\
 \hline
-\subreq{SE1.1} & \pass & & \\
+\subreq{SE1.1} & \pass &\timestamp{5}{46}& Agent records each designate a specified role\\
 \hline
-\subreq{SE1.2} & \pass & & \\
+\subreq{SE1.2} & \pass &\timestamp{5}{50}& Each agent has a linked health profile\\
 \hline
-\subreq{SE1.3} & \pass & & \\
+\subreq{SE1.3} & \pass &\timestamp{5}{53}& Agents each contain a routine list of their weekly schedules\\
 \hline
-\subreq{SE1.4} & \pass & & \\
+\subreq{SE1.4} & \pass &\timestamp{5}{55}& Each routine stores a  precomputed list of $(x, y)$ coorrdinates that the agent navigates between to complete routine movements\\
 \hline
-\req{SE2} & \pass & & \\
+\subreq{SE1.5} & \pass &\timestamp{5}{47}& Agents each have a home location assigned \\
 \hline
-\subreq{SE2.1} & \pass & & \\
+\subreq{SE1.6} & \pass &\timestamp{5}{48}& Agents each have a suitable work location assigned, e.g. medical workers may be assigned a hospital whilst students would be assigned a school \\
 \hline
-\subreq{SE2.2} & \pass & & \\
+\req{SE2} & \pass &\timestamp{5}{59}& Simulations have their Open Street Maps (OSM) listing data extracted to inform size and capacity\\
 \hline
-\req{SE3} & \pass & & \\
+\subreq{SE2.1} & \pass &\timestamp{6}{0}& Buildings are each assigned type computed from OSM tags\\
 \hline
-\subreq{SE3.1} & \pass & & \\
+\subreq{SE2.2} & \pass &\timestamp{6}{1}& buldings capacites are computed from building size and OSM tags if present \\
 \hline
-\subreq{SE3.2} & \pass & & \\
+\req{SE3} & \pass &\timestamp{6}{4}& Runtime follows a discrete time step model\\
 \hline
-\subreq{SE3.3} & \pass & & \\
+\subreq{SE3.1} & \pass &\timestamp{6}{4}& Ticks represent a constant configurable time\\
 \hline
-\subreq{SE3.4} & \pass & & \\
+\subreq{SE3.2} & \pass &\timestamp{6}{5}& Agents navigate their routines per tick \\
 \hline
-\subreq{SE3.5} & \pass & & \\
+\subreq{SE3.3} & \pass &\timestamp{6}{6}& Agents move through a SEIR model per tick \\
 \hline
-\req{SE4} & \pass & & \\
+\subreq{SE3.4} & \pass &\timestamp{6}{7}& Mitigations are analysed during agent routine movement (in case of self-isolation in effect), and during infection step (mask wearing, vaccines etc)\\
 \hline
-\req{SE5} & \pass & & \\
+\subreq{SE3.5} & \pass &\timestamp{6}{8}& Disease transmission is realistically computed based on agent separation \\
 \hline
-\req{SE6} & \pass & & \\
+\req{SE4} & \pass &\timestamp{6}{11}& In case of changes impacting future data, future computed ticks are removed and recalculated as user runs simulation\\
 \hline
-\req{SE7} & \pass & & \\
+\req{SE5} & \pass &\timestamp{6}{34}& Simulation metrics are stored at regular (user defined) intervals and recalled when user opens Analysis tab\\
 \hline
+\req{SE6} & \pass &\timestamp{6}{34}& Snapshots are recorded at user defined intervals to store location of all agents and all building states enabling users to 'rewind' without requiring recomputation from the start \\
+\hline
+\req{SE7} & \pass &\timestamp{6}{47}& Randomness is controlled throughout simulation resulting in multiple runs producing the same data (to one tick accuracy) \\
+\hline
+
+
 
 \hline
 \multicolumn{4}{|c|}{\cellcolor{blue!20}\textbf{Simulation Performance}} \\
 \hline
 
-\req{SP1} & \pass & & \\
+\req{SP1} & \pass &\timestamp{7}{18}& Simulation meets computation speed requirement\\
 \hline
-\req{SP2} & \pass & & \\
+\req{SP2} & \pass &\timestamp{7}{29} & Interface feels fluid and loads quickly with minimal delay \\
 \hline
-\req{SP3} & \pass & & \\
+\req{SP3} & \pass &\timestamp{7}{47} & System resources are managed in a 'round robin' approach maximising system performance\\
 \hline
-\req{SP4} & \pass & & \\
+\req{SP4} & \pass & \timestamp{7}{47}& Multiple simulations can be run simultaneously \\
 \hline
-\req{SP5} & \pass & & \\
+\req{SP5} & \pass &\timestamp{7}{55} & User inputs are validated on both client and server side\\
 \hline
-\req{SP6} & \pass & & \\
+\req{SP6} & \pass & \timestamp{8}{7}& System handles runtime exceptions cleanly ensuring all data is saved to database and error is logged\\
 \hline
-\req{SP7} & \pass & & \\
-\hline
-\req{SP8} & \pass & & \\
+\req{SP7} & \pass & \timestamp{8}{7}& Program termination attempts to save all 'in transit' data before closing \\
 \hline
 
-\hline
 \multicolumn{4}{|c|}{\cellcolor{violet!20}\textbf{Maintainability}} \\
 \hline
-\req{MA1} & \pass & & \\
+\req{MA1} & \pass & \timestamp{8}{45} & Code changes are frequently committed to GIT for change tracking\\
 \hline
-\req{MA2} & \pass & & \\
+\req{MA2} & \pass & \timestamp{8}{57} & This document records all design decisions made during development \\
 \hline
-\req{MA3} & \pass & & \\
+\req{MA3} & \pass & \timestamp{8}{57} & "\\
 \hline
 
 \end{longtable}
