@@ -53,7 +53,7 @@ The following table documents the key methods within each backend service class,
 Constructor initialising the manager with database factory and SignalR hub. Starts periodic broadcast timer for tick updates. \\
 \cline{2-3}
 & \method{GetOrCreateAsync(simulationId)} & 
-Retrieves existing simulation context from memory or creates new one by loading from database. Generates initial states and loads latest snapshot if available. \\
+Retrieves existing simulation context from memory or creates new one by loading from database. Generates initial states and loads latest snapshot if available. Enables clients to attach to running simulations withoud duplicating contexts / trying to use a non-existent context \\
 \cline{2-3}
 & \method{StartAsync(simulationId, targetTick?)} & 
 Starts simulation engine execution. If targetTick provided, runs in computed mode to that tick; otherwise runs in real-time mode. \\
@@ -74,7 +74,7 @@ Attempts to retrieve simulation context from memory. Returns true if found, fals
 Clears all computed snapshots and metrics from database, unloads simulation from memory, and reloads with clean state. Re-seeds initial infections. \\
 \cline{2-3}
 & \method{RemoveAsync(simulationId)} & 
-Unloads simulation from memory, stops engine, saves final snapshot, and disposes context to release resources. \\
+Stops engine, saves final snapshot, unloads simulation from memory, and disposes context to release resources. \\
 \cline{2-3}
 & \method{GetAllLoaded()} & 
 Returns enumerable collection of all simulation contexts currently loaded in memory. \\
@@ -188,7 +188,7 @@ Distributes all agents across residential buildings using weighted random select
 Assigns agents to appropriate workplace buildings using gravity model with distance decay parameter beta. Shortlists nearby candidates, weights by distance and remaining capacity, selects probabilistically. Handles different agent types (students→schools, workers→offices, etc). \\
 \hline
 
-\multirow{5}{4cm}{\nameref{code:SimulationAPI:Services:RoutingService.cs}} & 
+\multirow{4}{4cm}{\nameref{code:SimulationAPI:Services:RoutingService.cs}} & 
 \method{RoutingService(context)} & 
 Constructor building directed graph adjacency list from OSM paths (respecting one-way flags), creating 200m-cell NodeGridIndex for O(log n) spatial queries, initialising concurrent route cache dictionary. Analyzes graph connectivity to detect disconnected components. Pre-processes all node positions and edge weights with speed modifiers from highway types. \\
 \cline{2-3}
@@ -200,9 +200,6 @@ Core A* implementation using PriorityQueue with f-score ordering. Maintains gSco
 \cline{2-3}
 & \method{CreateDirectPath(startLat, startLon, endLat, endLon, avgSpeedMph)} (private) & 
 Fallback mechanism for disconnected graph components. Creates two-point direct path when A* routing fails. Calculates haversine distance and realistic travel time based on avgSpeedMph. Prevents routing failures from blocking simulation while maintaining distance-proportional travel times. \\
-\cline{2-3}
-& \method{AnalyzeConnectivity(graph, nodes)} (private static) & 
-BFS-based connectivity analysis detecting disconnected graph components. Counts components and identifies largest component size. Warns if multiple components exist (common with real OSM data). Used during graph construction to validate routing coverage and explain potential fallback usage. \\
 \hline
 
 \multirow{4}{4cm}{\nameref{code:SimulationAPI:Services:AgentService.cs}} & 
@@ -232,16 +229,16 @@ Removes agent from active movement tracking dictionary. Called when agent reache
 
 \multirow{8}{4cm}{\nameref{code:SimulationAPI:Services:InfectionService.cs}} & 
 \method{InfectionService(context)} & 
-Constructor initialising infection tracking with thread-safe volatile counters for TotalInfections, ActiveInfections, Deaths, Recoveries, SymptomaticCases, ReportedCases. Converts disease InfectionRate (hourly probability) to per-tick transmission probability using tick length. Sets airborne transmission parameters: 2m radius, 2.5× indoor multiplier, 0.15× outdoor decay. \\
+Constructor initialising infection tracking with thread-safe volatile counters for TotalInfections, ActiveInfections, Deaths, Recoveries, SymptomaticCases, ReportedCases. Converts disease InfectionRate (hourly probability) to per-tick transmission probability using tick length.\\
 \cline{2-3}
 & \method{UpdateInfectionTick()} & 
-Main infection processing loop: (1) Builds 50×50 spatial grid indexing all living agents by lat/lon. (2) For each infected agent past incubation period, queries grid for agents within 2m radius sharing same indoor/outdoor context. (3) Calls TryInfect for each contact with environmental/intervention modifiers. (4) Calls ProgressDisease, DecayImmunity, ProgressVaccination for all agents. (5) Atomically writes infection metrics via Volatile.Write for thread-safe reads. \\
+Main infection processing loop: (1) Builds spatial grid indexing all living agents by lat/lon. (2) For each infected agent past incubation period, queries grid for agents within x metre radius sharing same indoor/outdoor context. (3) Calls TryInfect for each contact with environmental/intervention modifiers. (4) Calls ProgressDisease, DecayImmunity, ProgressVaccination for all agents. (5) Atomically writes infection metrics via Volatile.Write for thread-safe reads. \\
 \cline{2-3}
 & \method{TryInfect(ref infectious, ref susceptible, isIndoors)} (private) & 
 Core transmission logic with multi-factor probability calculation. Base: per-tick transmission rate. Environmental: 2.5× indoor or 0.15× outdoor. Interventions: mask effectiveness (probabilistic per adoption rate, double-layered protection), vaccine effectiveness (time-progressed, reduces susceptibility). Host factors: natural immunity from previous infections, 1.5× chronic condition risk. Viral load: peaks at 50\% infection progress (1.5× multiplier). Behavioral: 70\% reduction if symptomatic outdoors. Performs Bernoulli trial, sets HealthState=Infected with symptom severity draw on success. \\
 \cline{2-3}
 & \method{ProgressDisease(ref agent)} (private) & 
-Advances infection progress at disease RecoveryRate per day. Symptoms develop dynamically: ramp up to peak at 50\% progress, then decline. Mortality check occurs once at peak (50\%): base MortalityRate × Susceptibility × 3.5 if chronic condition × 2 if severe symptoms. On death: sets HealthState=Dead, increments counter. On recovery (100\% progress): sets HealthState=Recovered, grants immunity = ReinfectionResistance × 1.2 if vaccinated × 0.7 if chronic condition, increments recovery counter. \\
+Advances infection progress at disease RecoveryRate per day. Symptoms develop dynamically: ramp up to peak at 50\% progress, then decline. Mortality check occurs once at peak infection progression (~50\%): base MortalityRate × Susceptibility × 3.5 if chronic condition × 2 if severe symptoms. On death: sets HealthState=Dead, increments counter. On recovery (100\% progress): sets HealthState=Recovered, grants immunity = ReinfectionResistance × 1.2 if vaccinated × 0.7 if chronic condition, increments recovery counter. \\
 \cline{2-3}
 & \method{BuildSpatialIndex(agents)} (private) & 
 Constructs 50×50 uniform grid covering agent lat/lon bounding box. Inserts all living agents into grid cells. Returns SpatialIndex enabling O(1) proximity queries for infection radius checks. Grid cell size auto-calculated from world bounds divided by 50. \\
@@ -367,7 +364,7 @@ Real-time setup progress reporting during population generation and routine crea
 
 \multirow{2}{4cm}{\nameref{code:SimulationAPI:Services:BuildingCapacityCalculator.cs}} & 
 \method{CalculateCapacity(buildingType, tags)} (static) & 
-Multi-stage heuristic calculator estimating building capacity from OSM tags. Priority: (1) Explicit capacity/beds/flats tags from OSM if present. (2) Type-specific calculations: Home: flats × 2.5 people OR levels-based (apartments=levels×5units×2.5people, houses=4-6, dormitory=levels×25). School: capacity tag OR kindergarten=levels×30, university=levels×200, default=levels×7classrooms×25students. Medical: beds tag OR hospital=levels×75, clinic=levels×15, pharmacy=10. Work: office=levels×40, industrial=levels×20, farm=5. Retail: mall=levels×75, supermarket=levels×40, shop=levels×20. Leisure: cinema/theatre=levels×150, restaurant=levels×40, hotel=levels×20rooms×2people, park=200. (3) GetBuildingLevels parses building:levels tag (capped at 100). (4) Fallback defaults: Home=4, School=200, Medical=50, Work=50, Retail=30, Leisure=50. Returns integer capacity for agent assignment validation. Static/stateless utility enabling reuse across OsmService and BuildingService. \\
+Multi-stage heuristic calculator estimating building capacity from OSM tags. Priority: (1) Explicit capacity/beds/flats tags from OSM if present. (2) Type-specific calculations. (3) GetBuildingLevels parses building:levels tag (capped at 100). (4) Fallback defaults: Home=4, School=200, Medical=50, Work=50, Retail=30, Leisure=50. Returns integer capacity for agent assignment validation. Static/stateless utility enabling reuse across OsmService and BuildingService. \\
 \hline
 \multirow{4}{4cm}{\nameref{code:SimulationAPI:Utils:SimulationTimeHelper.cs}} & 
 \method{ConvertTimeToTick(time, tickLengthSeconds)} (static) & 

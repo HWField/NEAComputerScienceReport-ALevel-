@@ -47,65 +47,75 @@ All locations evidenced are clickable references to specific files within the so
 Implements Entity Framework DbContext with complex related entities including Users, Simulations, Agents, Buildings, MapAreas, Diseases, Mitigations, RefreshTokens, SimulationMetrics, and SimulationSnapshots with foreign key relationships and cascade deletes \\
 \cline{2-3}
 & \nameref{code:SimulationAPI:Models:Simulation.cs} & 
-Core Simulation model with one-to-one relationships (MapArea, Disease), one-to-many relationships (Agents, Mitigations, Metrics, Snapshots), and navigation properties \\
+Core Simulation model demonstrating one-to-one relationships (MapArea, Disease), one-to-many relationships (Agents, Mitigations, Metrics, Snapshots), and navigation properties \\
 \cline{2-3}
-& \nameref{code:SimulationAPI:Models:SimulationSnapshot.cs} & Discrete models storing state for simulation snapshots. All stored entities are linked as many -> one entities\\
+& \nameref{code:SimulationAPI:Models:SimulationSnapshot.cs} & Discrete models storing state for simulation snapshots. All 'child' entities are linked as many $\rightarrow$ one connections to the 'parent' SimulationSnapshot entity\\
 \cline{2-3}
 & \nameref{code:SimulationAPI:Models:MapArea.cs} & 
 MapArea with bidirectional relationships to Simulation, Buildings, and Paths demonstrating complex relational design \\
 \hline
 
 \multirow{6}{3.5cm}{Hash tables, lists, stacks, queues, graphs, trees or structures of equivalent standard} & 
-\nameref{code:SimulationAPI:Services:RoutingService.cs}, Lines 124--452 & 
+\nameref{code:SimulationAPI:Services:RoutingService.cs} & 
 Graph-based routing using Dictionary\textless long, List\textless Edge\textgreater{}\textgreater for adjacency list representation, ConcurrentDictionary for route caching, and PriorityQueue for A* pathfinding algorithm \\
 \cline{2-3}
-& \nameref{code:SimulationAPI:Services:RoutingService.cs}, Lines 251--272 & 
-Queue\textless long\textgreater{} implementation for BFS graph traversal to analyze connectivity and find disconnected components \\
+& \nameref{code:SimulationAPI:Services:RoutingService.cs}, Lines 310--340 & 
+Queue\textless long\textgreater{} implementation for A* traversal to analyze connectivity and find disconnected components \\
 \cline{2-3}
-& \nameref{code:SimulationAPI:Services:RoutingService.cs}, Lines 35--97 & 
-2D spatial grid hash table (List\textless long\textgreater{}[][]) for efficient nearest neighbor queries in geographic space \\
+& \nameref{code:SimulationAPI:Services:RoutingService.cs}, Lines 31--90 & 
+2D spatial list (List\textless long\textgreater{}[][]) for efficient nearest neighbor queries in geographic space \\
 \cline{2-3}
-& \nameref{code:SimulationAPI:Services:BuildingService.cs}, Lines 104--199 & 
+& \nameref{code:SimulationAPI:Services:BuildingService.cs}, Lines 39--192 & 
 KD-Tree implementation for 2D spatial indexing enabling $O(\log n)$ nearest building searches across 6 building type categories \\
 \cline{2-3}
-& \nameref{code:SimulationAPI:Services:InfectionService.cs}, Lines 497--570 & 
-Spatial grid hash structure for efficient proximity queries during infection spread calculations (subdivides space into cells for $O(1)$ neighbor lookups) \\
+& \nameref{code:SimulationAPI:Services:InfectionService.cs}, Lines 491--564 & 
+Spatial grid index for efficient proximity queries during infection spread calculations (subdivides space into cells for $O(1)$ neighbor lookups) \\
 \cline{2-3}
 & \nameref{code:SimulationAPI:Hubs:SimulationHub.cs}, Line 18 & 
 ConcurrentDictionary for thread-safe connection management in SignalR real-time communication hub \\
 \hline
 
-\multirow{3}{3.5cm}{Complex scientific / mathematical / robotics / control / business model} & 
-\nameref{code:SimulationAPI:Services:InfectionService.cs}, Lines 1--571 & 
+\multirow{4}{3.5cm}{Complex scientific / mathematical / robotics / control / business model} & 
+
+\nameref{code:SimulationAPI:Services:InfectionService.cs} & 
 Epidemiological SEIR model with spatial transmission dynamics, viral load curves, immunity decay, intervention effectiveness calculations, and environmental modifiers (indoor/outdoor transmission rates) \\
 \cline{2-3}
-& \nameref{code:SimulationAPI:Models:Disease.cs}, Lines 1--39 & 
+& \nameref{code:SimulationAPI:Models:Disease.cs} & 
 Comprehensive disease parameters including incubation periods, infectiousness curves, symptom severity distributions, reinfection resistance, and intervention effectiveness factors \\
 \cline{2-3}
-\nameref{code:SimulationAPI:Services:AgentService.cs} & 
+
+& \nameref{code:SimulationAPI:Services:AgentService.cs} & 
 Realistic agent routine and medical profile generation customising agent roles within their abstract class definitions \\
+\cline{2-3}
+
+& \nameref{code:SimulationAPI:Simulation:SimulationManager.cs} & 
+Server singleton which orchestrates all running simulations: creating and destroying isolated Simulation Contexts to service user requests \\
+\cline{2-3}
 \hline
 
-\multirow{4}{3.5cm}{Complex user-defined use of object-orientated programming (OOP) model (classes, inheritance, composition, polymorphism, interfaces)} & 
-\nameref{code:SimulationAPI:Models:Agent.cs}, Lines 1--60 & 
-Abstract base Agent class with 6 derived types (StudentAgent, OfficeWorkerAgent, MedicalWorkerAgent, RetailWorkerAgent, ElderlyRetiredAgent, ServiceWorkerAgent) using TPH inheritance with discriminator column \\
+\multirow{3}{3.5cm}{Complex user-defined use of object-orientated programming (OOP) model (classes, inheritance, composition, polymorphism, interfaces)} & 
+\nameref{code:SimulationAPI:Models:Agent.cs}, \nameref{code:SimulationAPI:Models:Building.cs} \& \nameref{code:SimulationAPI:Models:Mitigation.cs} & 
+Abstract base classes eacj with derived types (e.g. Agent contains StudentAgent, OfficeWorkerAgent, MedicalWorkerAgent, RetailWorkerAgent, ElderlyRetiredAgent, ServiceWorkerAgent) each recorded in a single database using TPH inheritance with adiscriminator column \\
 \cline{2-3}
-& \nameref{code:SimulationAPI:Models:Building.cs}, Lines 1--61 & 
-Abstract Building hierarchy with 6 specialized types (Residential, Office, Education, Medical, Retail, Leisure) each with type-specific properties demonstrating polymorphism \\
+& \nameref{code:SimulationAPI:Models:Agent.cs} & 
+Agent records contain a MedicalProfile, RoutineEvents collection, relationships to House and Workplace building demonstrating complex object relationships and compositions \\
 \cline{2-3}
-& \nameref{code:SimulationAPI:Models:Mitigation.cs}, Lines 1--68 & 
-Abstract Mitigation class with 3 policy implementations (SelfIsolation, MaskWearing, Vaccination) showing inheritance and polymorphic behavior patterns \\
-\cline{2-3}
-& \nameref{code:SimulationAPI:Data:SimDbContext.cs}, Lines 43--96 & 
-Composition demonstrated through Agent containing MedicalProfile, RoutineEvents collection, relationships to House and Workplace buildings, showing complex object relationships \\
+& \nameref{code:SimulationAPI:Simulation:SimulationContext.cs} & 
+Simulation context composes all required services (Agent service, Infection service etc) for a single simulation into one object, enabling simulation manager to easily control all entites\\
 \hline
 
-\multirow{2}{3.5cm}{Complex client-server model} & 
-\nameref{code:SimulationAPI:Hubs:SimulationHub.cs}, Lines 1--187 & 
-SignalR WebSocket hub implementing bidirectional real-time communication for simulation state updates, agent position streaming (3Hz), and metrics broadcasting to multiple concurrent clients \\
+\multirow{4}{3.5cm}{Complex client-server model} & 
+\nameref{code:SimulationAPI:Hubs:SimulationHub.cs}& 
+SignalR WebSocket hub implementing bidirectional real-time communication for simulation state updates, agent position streaming (3Hz), and metrics broadcasting to all concurrent clients \\
 \cline{2-3}
-& \nameref{code:frontend:src:composables:useSimulationHub.ts}, Lines 1--581 & 
-Client-side TypeScript composable managing WebSocket connection lifecycle, automatic reconnection, client-side interpolation, and real-time state synchronization with validation \\
+& \nameref{code:frontend:src:composables:useSimulationHub.ts} & 
+Client-side TypeScript composable managing WebSocket connection lifecycle, automatic reconnection, client-side interpolation, and real-time state synchronization with validation. Additionally, manages data buffering to pre-emptively estimate server state before sending to provide a smooth User experience (e.g. extrapolating simulation time between server broadcasts) \\
+\cline{2-3}
+& \nameref{code:SimulationAPI:Controllers:SimulationsController.cs} & 
+One of many backend API Controllers enabling the frontend to interact with backend routes\\
+\cline{2-3}
+& \nameref{code:SimulationAPI:DTOs:AuthDtos.cs} & 
+Example of Domain Transfer Objects (DTOs) which define the data payloads backend routes expect \\
 \hline
 
 % GROUP A SKILLS - ALGORITHMS
@@ -114,21 +124,18 @@ Client-side TypeScript composable managing WebSocket connection lifecycle, autom
 \hline
 
 \multirow{3}{3.5cm}{Cross-table parameterised SQL} & 
-\nameref{code:SimulationAPI:Controllers:SimulationsController.cs}, Lines 45--110 & 
-Complex LINQ queries joining Simulations, Users, Agents, MapAreas, and Diseases tables with parameterized filtering, including OfType\textless T\textgreater{} for polymorphic queries and GroupBy aggregations \\
+\nameref{code:SimulationAPI:Controllers:SimulationsController.cs}, Lines 48--164 & 
+Complex LINQ \& EFCore queries joining Simulations, Users, Agents, MapAreas, and Diseases tables with parameterized filtering, including OfType\textless T\textgreater{} for polymorphic queries and GroupBy aggregations. These operations are found throughout my controllers and system services \\
 \cline{2-3}
-& \nameref{code:SimulationAPI:Controllers:SimulationsController.cs}, Lines 99--108 & 
-Agent type breakdown query using OfType\textless StudentAgent\textgreater{}, OfType\textless OfficeWorkerAgent\textgreater{}, etc. demonstrating TPH inheritance queries across multiple derived types \\
-\cline{2-3}
-& \nameref{code:SimulationAPI:Simulation:SimulationContext.cs}, Lines 66--128 & 
+& \nameref{code:SimulationAPI:Simulation:SimulationContext.cs}, Lines 67--89 & 
 Multi-table queries with Include() for eager loading: Agents with RoutineEvents and MedicalProfile, Paths with Nodes, demonstrating complex navigation property loading \\
 \hline
 
 \multirow{2}{3.5cm}{Aggregate SQL functions} & 
-\nameref{code:SimulationAPI:Controllers:SimulationsController.cs}, Lines 67--70 & 
+\nameref{code:SimulationAPI:Controllers:SimulationsController.cs}, Lines 65--70 & 
 GroupBy with Count aggregation: calculating agent counts per simulation efficiently using .GroupBy(a => a.SimulationId).Select(g => new \{ Count = g.Count() \}) \\
 \cline{2-3}
-& \nameref{code:SimulationAPI:Simulation:MetricManager.cs}, Lines 28--32 & 
+& \nameref{code:SimulationAPI:Simulation:MetricManager.cs} & 
 Multiple aggregate functions: Count() operations on filtered AgentStates arrays to calculate infection statistics, recovery counts, and quarantine metrics \\
 \hline
 
@@ -138,103 +145,102 @@ Entity Framework Core migrations generating PostgreSQL DDL including table creat
 \hline
 
 \multirow{2}{3.5cm}{Graph/Tree Traversal} & 
-\nameref{code:SimulationAPI:Services:RoutingService.cs}, Lines 236--276 & 
-BFS traversal to analyze graph connectivity: Queue-based breadth-first search identifying disconnected components in road network graph (handles 10,000+ node graphs) \\
+\nameref{code:SimulationAPI:Services:RoutingService.cs}& 
+BFS and A* traversal to analyse graph connectivity: Queue-based breadth-first search identifying disconnected components in road network graph (handles 10,000+ node graphs) \\
 \cline{2-3}
-& \nameref{code:SimulationAPI:Services:BuildingService.cs}, Lines 161--206 & 
-KD-Tree recursive traversal for k-nearest neighbor queries with pruning optimization, includes depth-based axis selection and distance-based subtree elimination \\
+& \nameref{code:SimulationAPI:Services:BuildingService.cs} & 
+KD-Tree recursive traversal for k-nearest neighbour queries with pruning optimization, includes depth-based axis selection and distance-based subtree elimination \\
 \hline
 
 \multirow{2}{3.5cm}{List operations} & 
-\nameref{code:SimulationAPI:Services:AgentService.cs}, Lines 25--640 & 
+\nameref{code:SimulationAPI:Services:AgentService.cs}& 
 Complex list operations for routine generation: filtering with Where(), ordering with OrderBy(r => r.StartTick), transforming with Select(), and LINQ method chaining \\
 \cline{2-3}
-& \nameref{code:SimulationAPI:Controllers:SimulationsController.cs}, Lines 67--76 & 
+& \nameref{code:SimulationAPI:Controllers:SimulationsController.cs}& 
 List comprehensions using LINQ: Select() for projection, ToDictionaryAsync() for transformation, and GetValueOrDefault() for safe dictionary access \\
 \hline
 
 Linked list maintenance & 
-\nameref{code:SimulationAPI:Services:RoutingService.cs}, Lines 395--406 & 
+\nameref{code:SimulationAPI:Services:RoutingService.cs} & 
 Path reconstruction via linked structure: Dictionary\textless long, long\textgreater{} cameFrom acts as implicit linked list, traversed via TryGetValue() with Reverse() for forward path \\
 \hline
 
 \multirow{2}{3.5cm}{Stack/Queue Operations} & 
-\nameref{code:SimulationAPI:Services:RoutingService.cs}, Lines 251--267 & 
-Queue operations for BFS: Enqueue(nodeId) to add nodes, Dequeue() to process in FIFO order, Count check for termination during graph component analysis \\
+\nameref{code:SimulationAPI:Services:RoutingService.cs}, Lines 310--348 & 
+Queue operations for BFS: Enqueue(nodeId) to add nodes, Dequeue() to process in FIFO order, Count check for termination during graph component analysi. PriorityQueue\textless long, double\textgreater{} for A* open set: priority-based enqueue with f-score, dequeue retrieves lowest cost node for optimal pathfindings \\
 \cline{2-3}
-& \nameref{code:SimulationAPI:Services:RoutingService.cs}, Lines 381--395 & 
-PriorityQueue\textless long, double\textgreater{} for A* open set: priority-based enqueue with f-score, dequeue retrieves lowest cost node for optimal pathfinding \\
+& \nameref{code:SimulationAPI:Services:BuildingService.cs}, Lines 97--192 &  Umin-heap (priority queue) for efficient k-nearest tracking \\
 \hline
 
 \multirow{2}{3.5cm}{Hashing} & 
-\nameref{code:SimulationAPI:Controllers:AuthController.cs}, Lines 41--47, 82--84 & 
+\nameref{code:SimulationAPI:Controllers:AuthController.cs}, Lines 42, 84 & 
 BCrypt password hashing: BCrypt.Net.BCrypt.HashPassword() for secure password storage and Verify() for authentication with automatic salt generation \\
 \cline{2-3}
-& \nameref{code:SimulationAPI:Services:RoutingService.cs}, Lines 127, 366--368 & 
+& \nameref{code:SimulationAPI:Services:RoutingService.cs} & 
 Route caching using ConcurrentDictionary with tuple keys: (startId, endId) as hash key for $O(1)$ lookup of previously computed paths \\
 \hline
 
 Advanced matrix operations & 
-\nameref{code:SimulationAPI:Services:InfectionService.cs}, Lines 502--570 & 
-2D spatial grid indexing with cell-based queries: converts (lat, lon) coordinates to grid indices, performs range queries across cell neighborhoods for infection radius calculations \\
+\nameref{code:SimulationAPI:Services:InfectionService.cs}, Lines 491--564 & 
+2D spatial grid indexing with cell-based queries: converts (lat, lon) coordinates to grid indices, performs range queries across cell neighbourhoods for infection radius calculations \\
 \hline
 
 \multirow{2}{3.5cm}{Recursive algorithms} & 
-\nameref{code:SimulationAPI:Services:BuildingService.cs}, Lines 115--142 & 
+\nameref{code:SimulationAPI:Services:BuildingService.cs}, Lines 115--134 & 
 Recursive KD-tree construction: Build() method recursively partitions points by median at alternating axes, creating balanced binary search tree structure \\
 \cline{2-3}
-& \nameref{code:SimulationAPI:Services:BuildingService.cs}, Lines 161--197 & 
-Recursive KD-tree search: SearchOptimized() recursively explores subtrees with pruning based on distance bounds, optimizing k-nearest neighbor queries \\
+& \nameref{code:SimulationAPI:Services:BuildingService.cs}, Lines 156--191 & 
+Recursive KD-tree search: SearchOptimized() recursively explores subtrees with pruning based on distance bounds, optimizing k-nearest neighbour queries \\
 \hline
 
 \multirow{3}{3.5cm}{Complex user-defined algorithms (optimisation, minimisation, scheduling, pattern matching) or equivalent difficulty} & 
-\nameref{code:SimulationAPI:Services:RoutingService.cs}, Lines 364--406 & 
+\nameref{code:SimulationAPI:Services:RoutingService.cs}, Lines 294--379 & 
 A* pathfinding algorithm: heuristic-based optimal path search using $f = g + h$ scoring, Manhattan distance heuristic, early termination, and path reconstruction \\
 \cline{2-3}
-& \nameref{code:SimulationAPI:Services:BuildingService.cs}, Lines 286--534 & 
-Gravity-based workplace assignment: implements distance-weighted probability distribution (inverse power law), shortlist optimization, capacity-aware allocation for 100k+ agents \\
+& \nameref{code:SimulationAPI:Services:BuildingService.cs}, Lines 266--507 & 
+Gravity-based workplace assignment: implements distance-weighted probability distribution (inverse power law), shortlist optimization, capacity-aware allocation for all simulation agents \\
 \cline{2-3}
-& \nameref{code:SimulationAPI:Services:AgentService.cs}, Lines 25--640 & 
+& \nameref{code:SimulationAPI:Services:AgentService.cs}, Lines 25--600 & 
 Intelligent agent routine generation: type-specific schedules with time variance, activity probability, location clustering, and route pre-computation for realistic daily patterns \\
 \hline
 
-Mergesort or similarly efficient sort & 
-\nameref{code:SimulationAPI:Services:BuildingService.cs}, Line 127 & 
-Built-in List.Sort() using Timsort ($O(n \log n)$): sorting KD-tree points by alternating axes during tree construction for balanced partitioning \\
-\hline
-
 \multirow{2}{3.5cm}{Dynamic generation of objects based on complex user-defined use of OOP model} & 
-\nameref{code:SimulationAPI:Simulation:SimulationSetup.cs}, Lines 113--180 & 
-Runtime instantiation of derived Building types based on OSM classification: switch expression creates ResidentialBuilding, OfficeBuilding, etc. with type-specific property initialization \\
+\nameref{code:SimulationAPI:Simulation:SimulationManager.cs} & 
+User requests to load a simulation dynamically instantiates a Simulation Context object which in turn generates AgentService, BuildingService InfectionService etc. \\
 \cline{2-3}
-& \nameref{code:SimulationAPI:Controllers:SimulationsController.cs}, Lines 560--630 & 
-Dynamic Mitigation policy creation: instantiates SelfIsolationMitigation, MaskWearingMitigation, or VaccinationMitigation based on request DTOs with parameter configuration \\
+& \nameref{code:SimulationAPI:Simulation:SimulationSetup.cs} & 
+Throughout setup process, user provides simulation parameters which the system uses to generate custom agent, building, disease etc objects which are dynamically generated and communicated to the user \\
 \hline
 
-\multirow{2}{3.5cm}{Server-side scripting using request and response objects and server-side extensions for a complex client-server model} & 
-\nameref{code:SimulationAPI:Controllers:SimulationsController.cs}, Lines 1--844 & 
-ASP.NET Core REST API with JWT authorization, role-based access control, request DTOs, response transformation, and exception handling across 15+ endpoints \\
+\multirow{3}{3.5cm}{Server-side scripting using request and response objects and server-side extensions for a complex client-server model} & 
+\nameref{code:SimulationAPI:Controllers:SimulationsController.cs}& 
+an example of many ASP.NET Core REST API Controllers with JWT authorization, role-based access control, request DTOs, response transformation, and exception handling across multiple endpoints \\
 \cline{2-3}
-& \nameref{code:SimulationAPI:Hubs:SimulationHub.cs}, Lines 1--187 & 
+& \nameref{code:SimulationAPI:Hubs:SimulationHub.cs}& 
 SignalR server-side hub methods: JoinSimulation(), StartAgentTracking(), with authorization, group management, and bidirectional async communication patterns \\
+\cline{2-3}
+& \nameref{code:frontend:src:api:axios.js}& 
+Global frontend request proxy which wraps outoing API calls with destination server address, authentication tokens and handles access token refresh alongisde retrying and communicating any connection errors to the user\\
 \hline
 
 \multirow{2}{3.5cm}{Calling parameterised Web service APIs and parsing JSON/XML to service a complex client-server model} & 
-\nameref{code:SimulationAPI:Services:OsmService.cs}, Lines 54--78 & 
-OpenStreetMap Overpass API integration: constructs parameterized Overpass QL queries with radius/coordinates, sends HTTP GET requests, and deserializes JSON responses \\
+\nameref{code:SimulationAPI:Services:OsmService.cs}& 
+OsmService enables system to dynamically fetch real, geographic map data from the Open Street Maps TurboAPI. This service handles all communication the the external (3rd Party) platform and extracts recieved JSON data into database MapArea entites using detailed type checking of recieved tags to infer entity properties (e.g. building capacity and road speeds) \\
 \cline{2-3}
-& \nameref{code:SimulationAPI:Services:OsmService.cs}, Lines 78--115 & 
-Parallel JSON parsing with Parallel.ForEach: deserializes OSM building/amenity data into OSMBuildingPreset objects with tag classification and capacity calculation \\
+& \nameref{code:frontend:src:components:CreateSimulationModal.vue}. \nameref{code:frontend:src:views:authentication.vue} \& \nameref{code:frontend:src:views:settings.vue}& 
+Examples of frontend calling my backend API, providing all required parameters and authentication tokens if required\\
 \hline
 
 % GROUP B SKILLS - MODEL
 \hline
 \multicolumn{3}{|c|}{\cellcolor{green!20}\textbf{GROUP B SKILLS - MODEL}} \\
 \hline
+\multicolumn{3}{|c|}{\cellcolor{gray!20}\textit{Note: Whilst I believe my above references achieve Group A band of skills, I am including these further examples to demonstrate a breadth of application and skill}} \\
+\hline
 
 Simple data model in database (two or three interlinked tables) & 
 \nameref{code:SimulationAPI:Models:User.cs}, \nameref{code:SimulationAPI:Models:RefreshToken.cs} & 
-User-RefreshToken one-to-many relationship for multi-device authentication session management \\
+User$\rightarrow$RefreshToken one-to-many relationship for multi-device authentication session management \\
 \hline
 
 \multirow{3}{3.5cm}{Multi-dimensional arrays} & 
@@ -304,6 +310,8 @@ Axios HTTP client with interceptors for JWT token refresh, automatic retry logic
 % GROUP B SKILLS - ALGORITHMS
 \hline
 \multicolumn{3}{|c|}{\cellcolor{green!20}\textbf{GROUP B SKILLS - ALGORITHMS}} \\
+\hline
+\multicolumn{3}{|c|}{\cellcolor{gray!20}\textit{Note: Whilst I believe my software hits Group A skills, I am including this here as backup}} \\
 \hline
 
 \multirow{2}{3.5cm}{Single table or non-parameterised SQL} & 

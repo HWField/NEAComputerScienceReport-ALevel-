@@ -1,10 +1,7 @@
 \chapter{Testing}
-Having completed my software development and implementation, I will now revisit my Project Objectives to analyse the effectiveness of my solution in meeting the requirements I set out to achieve. I will also reflect on the development process, challenges faced, and lessons learned throughout the project.
-
-Please find all the testing outcomes in the table below complete with timestamps to where the objective has been demonstrated in my Testing video.
-% Define column widths for better control
-\newcolumntype{L}[1]{>{\raggedright\arraybackslash}m{#1}}
-\newcolumntype{C}[1]{>{\centering\arraybackslash}m{#1}}
+Having completed my software development and implementation, I will now revisit my Project Objectives to analyse the effectiveness of my solution in meeting the requirements I set out to achieve.
+\section{Project Requirement testing}
+Please find all my testing outcomes in the table below complete with timestamps (\texttt{mm:ss}) to where the objective has been demonstrated in my Testing video.
 
 \begin{longtable}{|L{2.2cm}|C{2.2cm}|C{3.1cm}|L{6.0cm}|}
 \caption{Requirement Testing} \\
@@ -343,4 +340,46 @@ Please find all the testing outcomes in the table below complete with timestamps
 \req{MA3} & \pass & \timestamp{8}{57} & "\\
 \hline
 
+\end{longtable}
+
+\section{End to End Testing}
+
+In addition to the above requirement testing, I have also recorded some "End to End" tests of my system which can be found appended to my requirement testing video. In this video, I demonstrate the full user journey from account creation, through simulation setup and runtime, to analysis of results. This video serves as a comprehensive demonstration of the functionality and performance of my system in a real-world usage scenario. Throughout these runs I have demonstrated the system's ability to defensively handle user inputs, process simulations, and provide insightful analysis, all while maintaining a responsive and intuitive user interface. I have also showcased the robustness of the system in handling various edge cases and ensuring data integrity throughout the simulation lifecycle.
+
+
+\begin{longtable}{|L{2.2cm}|C{3.1cm}|L{6.0cm}|}
+\caption{Requirement Testing} \\
+
+% Header for first page
+\hline
+\rowcolor{gray!30}
+\textbf{ETE} &  \textbf{Timestamp} & \textbf{Comment} \\
+\hline
+\endfirsthead
+
+% Header for subsequent pages
+\multicolumn{3}{c}%
+{\tablename\ \thetable\ -- \textit{Continued from previous page}} \\
+\hline
+\rowcolor{gray!30}
+\textbf{ETE} &  \textbf{Timestamp} & \textbf{Comment} \\
+\hline
+\endhead
+
+% Footer for all pages except last
+\hline
+\multicolumn{3}{r}{\textit{Continued on next page}} \\
+\endfoot
+
+% Footer for last page
+\hline
+\endlastfoot
+
+% SECTION 1
+\hline
+\multicolumn{3}{|c|}{\cellcolor{red!20}\textbf{User Accesss}} \\
+\hline
+
+\req{ETE:1} & \timestamp{0}{18} & \\
+\hline
 \end{longtable}

@@ -1,6 +1,6 @@
 <mxfile host="65bd71144e">
     <diagram id="01m1945ob40ZM790PFRo" name="Page-1">
-        <mxGraphModel dx="569" dy="764" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
+        <mxGraphModel dx="745" dy="720" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
             <root>
                 <mxCell id="0"/>
                 <mxCell id="1" parent="0"/>
@@ -34,7 +34,7 @@
                 <mxCell id="7" value="Axios" style="whiteSpace=wrap;html=1;rounded=1;" parent="1" vertex="1">
                     <mxGeometry x="200" y="660" width="120" height="60" as="geometry"/>
                 </mxCell>
-                <mxCell id="8" value="Live Hubs" style="whiteSpace=wrap;html=1;rounded=1;" parent="1" vertex="1">
+                <mxCell id="8" value="Simulation Hub" style="whiteSpace=wrap;html=1;rounded=1;" parent="1" vertex="1">
                     <mxGeometry x="480" y="660" width="120" height="60" as="geometry"/>
                 </mxCell>
             </root>
