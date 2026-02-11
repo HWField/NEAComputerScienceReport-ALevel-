@@ -3,8 +3,13 @@
 
 This appendix contains the complete source code for the project. Please find all folder structures and files listed in the directory below. All file names are hyperlinked to their respective code listings for your convienience.
 
+This directory listing has been produced automatically by a custom python parsing engine I built to scan my project repository and output the following \LaTeX content you see below:
+
 \section{Index}
 \subsection*{Frontend}
+
+The frontend of the application entails the user interface and client-side logic. It includes all components, styles, and scripts that run in the user's browser to provide an interactive experience connecting the user with the simulation server.
+
 {\ttfamily\small\obeyspaces
 └── frontend (32 files)\par
     ├── src (30 files)\par
@@ -51,22 +56,26 @@ This appendix contains the complete source code for the project. Please find all
 }
 
 \subsection*{Backend}
+
+The backend of the application consists of the server-side logic and simulation engine. It handles all computations, data management, and API endpoints that power the simulation, allowing users to interact with the system and receive realtime updates on their simulations.
+
 {\ttfamily\small\obeyspaces
-└── SimulationAPI (46 files)\par
+└── SimulationAPI (47 files)\par
     ├── Controllers (5 files)\par
     │   ├── ▷ \nameref{code:SimulationAPI:Controllers:AdminController.cs}\par
     │   ├── ▷ \nameref{code:SimulationAPI:Controllers:AuthController.cs}\par
     │   ├── ▷ \nameref{code:SimulationAPI:Controllers:PresetController.cs}\par
     │   ├── ▷ \nameref{code:SimulationAPI:Controllers:ProfileController.cs}\par
     │   └── ▷ \nameref{code:SimulationAPI:Controllers:SimulationsController.cs}\par
-    ├── DTOs (7 files)\par
+    ├── DTOs (8 files)\par
     │   ├── ▷ \nameref{code:SimulationAPI:DTOs:AuthDtos.cs}\par
     │   ├── ▷ \nameref{code:SimulationAPI:DTOs:CreateSimulationDto.cs}\par
     │   ├── ▷ \nameref{code:SimulationAPI:DTOs:MitigationDtos.cs}\par
     │   ├── ▷ \nameref{code:SimulationAPI:DTOs:RefreshDto.cs}\par
     │   ├── ▷ \nameref{code:SimulationAPI:DTOs:UpdatePresetDto.cs}\par
     │   ├── ▷ \nameref{code:SimulationAPI:DTOs:UpdateProfileDto.cs}\par
-    │   └── ▷ \nameref{code:SimulationAPI:DTOs:UpdateSimulationDto.cs}\par
+    │   ├── ▷ \nameref{code:SimulationAPI:DTOs:UpdateSimulationDto.cs}\par
+    │   └── ▷ \nameref{code:SimulationAPI:DTOs:UpdateUserRoleDto.cs}\par
     ├── Data (1 file)\par
     │   └── ▷ \nameref{code:SimulationAPI:Data:SimDbContext.cs}\par
     ├── Hubs (1 file)\par
@@ -551,6 +560,16 @@ SimulationAPI/DTOs/UpdateSimulationDto.cs
 \makeatother
 
 \inputminted[linenos,breaklines,tabsize=2]{csharp}{/Users/Henry/Desktop/NEAComputerScience/SimulationAPI/DTOs/UpdateSimulationDto.cs}
+
+\makeatletter
+\subsection*{UpdateUserRoleDto.cs}
+SimulationAPI/DTOs/UpdateUserRoleDto.cs
+\phantomsection
+\def\@currentlabelname{UpdateUserRoleDto.cs}
+\label{code:SimulationAPI:DTOs:UpdateUserRoleDto.cs}
+\makeatother
+
+\inputminted[linenos,breaklines,tabsize=2]{csharp}{/Users/Henry/Desktop/NEAComputerScience/SimulationAPI/DTOs/UpdateUserRoleDto.cs}
 
 \makeatletter
 \subsection*{SimDbContext.cs}

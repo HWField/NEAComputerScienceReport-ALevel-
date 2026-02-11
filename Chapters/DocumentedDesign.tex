@@ -343,9 +343,14 @@ Cross-Origin Resource Sharing (CORS) is enabled for the specific frontend domain
 
 
 \section{Defensive programming and Error Handling}
-The system employs comprehensive defensive programming techniques to ensure robustness and reliability. Key strategies include:
+The system employs comprehensive defensive programming techniques to ensure robustness and reliability. This is underpinned by a three layer strong verification system for user inputted data:
+\begin{enumerate}
+    \item \textbf{Frontend Validation}: All user inputs are validated using Vue.js form validation techniques, including required fields, data type checks, and custom validators for complex rules.
+    \item \textbf{DTO Validation}: Data Transfer Objects (DTOs) used in API endpoints are decorated with data annotations to enforce validation rules at the model level. The ASP.NET Core framework automatically checks these annotations and returns appropriate error responses for invalid data before the request even reaches my Controllers and Services.
+    \item \textbf{Service-Level Validation}: Critical business logic within services includes additional validation checks to ensure data integrity and consistency. For example, the \textit{SimulationSetup} class verifies that simulation parameters are valid and that referenced entities (e.g. map areas, diseases) exist before proceeding with simulation setup.
+\end{enumerate}
+Additionally:
 \begin{itemize}
-    \item \textbf{Input Validation}: All user inputs are validated both client-side and server-side to prevent injection attacks and ensure data integrity. This includes checking data types, ranges, and formats.
     \item \textbf{Exception Handling}: Try-catch blocks are used extensively around critical operations (database access, network calls) to gracefully handle errors and provide meaningful feedback to users.
     \item \textbf{Logging}: The backend utilises structured logging  to capture detailed error information, including stack traces and contextual data, facilitating debugging and monitoring.
     \item \textbf{Unit and Integration Testing}: A comprehensive test suite covers core functionalities, ensuring that changes do not introduce regressions.

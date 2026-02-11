@@ -207,6 +207,8 @@ def generate():
     out.append("")
     out.append("This appendix contains the complete source code for the project. Please find all folder structures and files listed in the directory below. All file names are hyperlinked to their respective code listings for your convienience.")
     out.append("")
+    out.append("This directory listing has been produced automatically by a custom python parsing engine I built to scan my project repository and output the following \LaTeX content you see below:")
+    out.append("")
 
     # ===== Index =====
     out.append(r"\section{Index}")

@@ -1,21 +1,21 @@
-\section{Skills Summary Table}
+\section{Techniques Summary Table}
 This chapter provides a comprehensive breakdown of the technical skills demonstrated throughout this project, organized according to AQA assessment criteria Groups: A, B, and C.
 
 The majority of requirements are met by the backend SimulationAPI project, which contains the core logic, data models, algorithms, and client-server communication. The frontend project implements a subset of skills related to client-side state management (largely replicating the main database models) and API interaction which have been identified where appropriate.
 
-All locations evidenced are clickable references to specific files within the source code Appendix allowing for easy verification of the implemented skills. Alternatively all code can be found listed in Appendix~\ref{appendix:code} which additionally contains a full directory listing .
+All locations evidenced are clickable references to specific files within the source code Appendix allowing for easy verification of the implemented techniques. Alternatively all code can be found listed in Appendix~\ref{appendix:code} which additionally contains a full directory listing.
 
 % Define column widths for better control
 \newcolumntype{L}[1]{>{\raggedright\arraybackslash}p{#1}}
 \newcolumntype{C}[1]{>{\centering\arraybackslash}p{#1}}
 
 \begin{longtable}{|L{3.5cm}|L{4.5cm}|L{5.5cm}|}
-\caption{Evidence of Technical Skills} \label{tab:skills-evidence} \\
+\caption{Evidence of Technique} \label{tab:skills-evidence} \\
 
 % Header for first page
 \hline
 \rowcolor{gray!30}
-\textbf{AQA Skill Listing} & \textbf{Location Evidenced} & \textbf{Notes on Implementation} \\
+\textbf{AQA Technique:} & \textbf{Location Evidenced} & \textbf{Notes on Implementation} \\
 \hline
 \endfirsthead
 
@@ -24,7 +24,7 @@ All locations evidenced are clickable references to specific files within the so
 {\tablename\ \thetable\ -- \textit{Continued from previous page}} \\
 \hline
 \rowcolor{gray!30}
-\textbf{AQA Skill Listing} & \textbf{Location Evidenced} & \textbf{Notes on Implementation} \\
+\textbf{AQA Technique:} & \textbf{Location Evidenced} & \textbf{Notes on Implementation} \\
 \hline
 \endhead
 
@@ -39,7 +39,7 @@ All locations evidenced are clickable references to specific files within the so
 
 % GROUP A SKILLS - MODEL
 \hline
-\multicolumn{3}{|c|}{\cellcolor{blue!20}\textbf{GROUP A SKILLS - MODEL}} \\
+\multicolumn{3}{|c|}{\cellcolor{blue!20}\textbf{GROUP A TECHNIQUES - MODEL}} \\
 \hline
 
 \multirow{4}{3.5cm}{Complex data model in database (several interlinked tables)} & 
@@ -120,7 +120,7 @@ Example of Domain Transfer Objects (DTOs) which define the data payloads backend
 
 % GROUP A SKILLS - ALGORITHMS
 \hline
-\multicolumn{3}{|c|}{\cellcolor{blue!20}\textbf{GROUP A SKILLS - ALGORITHMS}} \\
+\multicolumn{3}{|c|}{\cellcolor{blue!20}\textbf{GROUP A TECHNIQUES - ALGORITHMS}} \\
 \hline
 
 \multirow{3}{3.5cm}{Cross-table parameterised SQL} & 
@@ -233,9 +233,9 @@ Examples of frontend calling my backend API, providing all required parameters a
 
 % GROUP B SKILLS - MODEL
 \hline
-\multicolumn{3}{|c|}{\cellcolor{green!20}\textbf{GROUP B SKILLS - MODEL}} \\
+\multicolumn{3}{|c|}{\cellcolor{green!20}\textbf{GROUP B TECHNIQUES - MODEL}} \\
 \hline
-\multicolumn{3}{|c|}{\cellcolor{gray!20}\textit{Note: Whilst I believe my above references achieve Group A band of skills, I am including these further examples to demonstrate a breadth of application and skill}} \\
+\multicolumn{3}{|p{15cm}|}{\cellcolor{gray!20}\textit{Note: Whilst I believe my above references achieve Group A level Techniques, I am including these further examples to demonstrate a breadth of application and skill}} \\
 \hline
 
 Simple data model in database (two or three interlinked tables) & 
@@ -243,33 +243,27 @@ Simple data model in database (two or three interlinked tables) &
 User$\rightarrow$RefreshToken one-to-many relationship for multi-device authentication session management \\
 \hline
 
-\multirow{3}{3.5cm}{Multi-dimensional arrays} & 
-\nameref{code:SimulationAPI:Services:RoutingService.cs}, Lines 35, 48--54 & 
+\multirow{2}{3.5cm}{Multi-dimensional arrays} & 
+\nameref{code:SimulationAPI:Services:RoutingService.cs}, Line 34 & 
 2D jagged array List\textless long\textgreater{}[][] for spatial grid: \_cells[col][row] structure stores node IDs in geographic grid cells \\
 \cline{2-3}
-& \nameref{code:SimulationAPI:Services:InfectionService.cs}, Lines 502--520 & 
+& \nameref{code:SimulationAPI:Services:InfectionService.cs}, Lines 499--510 & 
 1D array simulating 2D grid: List\textless int\textgreater{}[] where index = y * GRID\_SIZE + x for spatial agent indexing \\
-\cline{2-3}
-& \nameref{code:SimulationAPI:Services:AgentService.cs}, Lines 730 & 
-short[] occupantCounts parallel to BuildingState[] for efficient capacity tracking during simulation \\
 \hline
 
 \multirow{4}{3.5cm}{Dictionaries} & 
-\nameref{code:SimulationAPI:Services:RoutingService.cs}, Lines 124--125, 148, 169 & 
+\nameref{code:SimulationAPI:Services:RoutingService.cs} & 
 Multiple dictionaries: Dictionary\textless long, Node\textgreater{} for graph nodes, Dictionary\textless long, List\textless Edge\textgreater\textgreater{} for adjacency lists, Dictionary\textless long, long\textgreater{} for pathfinding state \\
 \cline{2-3}
-& \nameref{code:SimulationAPI:Services:BuildingService.cs}, Lines 18, 27--35 & 
+& \nameref{code:SimulationAPI:Services:BuildingService.cs}, Lines 18, 19--37 & 
 Dictionary\textless Type, KDTree\textless Building\textgreater\textgreater{} mapping building types to spatial indexes, Dictionary\textless Type, List\textless Building\textgreater\textgreater{} for type-based queries \\
 \cline{2-3}
 & \nameref{code:SimulationAPI:Services:MovementSystem.cs}, Line 20 & 
 Dictionary\textless int, AgentMovementState\textgreater{} tracking movement state per agent ID \\
-\cline{2-3}
-& \nameref{code:SimulationAPI:Services:AgentService.cs}, Line 725 & 
-Dictionary\textless int, int\textgreater{} for building ID to array index mapping during state synchronization \\
 \hline
 
 \multirow{2}{3.5cm}{Records} & 
-\nameref{code:SimulationAPI:Simulation:Structs:RuntimeStates.cs}, Lines 14--32 & 
+\nameref{code:SimulationAPI:Simulation:Structs:RuntimeStates.cs} & 
 C\# struct records (AgentState, BuildingState, RoutineEventState) with value semantics for high-performance simulation state \\
 \cline{2-3}
 & \nameref{code:SimulationAPI:Services:RoutingService.cs}, Lines 10--25 & 
@@ -278,19 +272,14 @@ Record-like classes (Node, Edge) with init-only properties following immutable r
 
 Text files & 
 SimulationAPI/.env & 
-Environment configuration file for database connection strings, admin credentials, and JWT secrets \\
-\hline
-
-File(s) organised for sequential access & 
-\nameref{code:SimulationAPI:Simulation:SnapshotManager.cs} & 
-SimulationSnapshot entities stored with sequential tick numbers, loaded chronologically via OrderByDescending(s => s.Tick) for time-series analysis \\
+Environment configuration file for database connection strings, admin credentials, and JWT secrets. Not included as best practice \\
 \hline
 
 \multirow{2}{3.5cm}{Simple scientific / mathematical / robotics / control /business model} & 
-\nameref{code:SimulationAPI:Services:RoutingService.cs}, Lines 92--99, 416--424 & 
+\nameref{code:SimulationAPI:Services:RoutingService.cs}, Lines 99--109 & 
 Haversine formula for great-circle distance: implements spherical trigonometry to calculate distances between geographic coordinates in meters \\
 \cline{2-3}
-& \nameref{code:SimulationAPI:Services:MovementSystem.cs}, Lines 37--95 & 
+& \nameref{code:SimulationAPI:Services:MovementSystem.cs}, Lines 42--94 & 
 Linear interpolation for agent movement: calculates position along path segments using distance, speed, and time delta \\
 \hline
 
@@ -298,57 +287,42 @@ Linear interpolation for agent movement: calculates position along path segments
 \nameref{code:SimulationAPI:Models:MedicalProfile.cs} & 
 Simple composition: MedicalProfile class with properties (Age, HasChronicCondition, etc.) associated one-to-one with Agent \\
 \cline{2-3}
-& \nameref{code:SimulationAPI:DTOs:AuthDtos.cs} - (multiple files) & 
-Data Transfer Objects (LoginDto, CreateSimulationDto, UpdateProfileDto) encapsulating request/response data \\
+& \nameref{code:SimulationAPI:DTOs:AuthDtos.cs} & 
+Example of a Data Transfer Object (LoginDto, CreateSimulationDto, UpdateProfileDto) encapsulating request/response data between client and server\\
 \hline
 
 Simple client-server model & 
-\nameref{code:frontend:src:api:axios.js}, Lines 1--120 & 
-Axios HTTP client with interceptors for JWT token refresh, automatic retry logic, and centralized error handling \\
+\nameref{code:frontend:src:views:authentication.vue}& 
+Login Page making requests to my API server to transmit user login information \\
 \hline
 
 % GROUP B SKILLS - ALGORITHMS
 \hline
-\multicolumn{3}{|c|}{\cellcolor{green!20}\textbf{GROUP B SKILLS - ALGORITHMS}} \\
-\hline
-\multicolumn{3}{|c|}{\cellcolor{gray!20}\textit{Note: Whilst I believe my software hits Group A skills, I am including this here as backup}} \\
+\multicolumn{3}{|c|}{\cellcolor{green!20}\textbf{GROUP B TECHNIQUES - ALGORITHMS}} \\
 \hline
 
 \multirow{2}{3.5cm}{Single table or non-parameterised SQL} & 
-\nameref{code:SimulationAPI:Controllers:AuthController.cs}, Lines 117--120 & 
+\nameref{code:SimulationAPI:Controllers:AuthController.cs}, Lines 114--116 & 
 Simple User table query: .FirstOrDefault(u => u.Id == GetUserId()) with single-table access \\
 \cline{2-3}
-& \nameref{code:SimulationAPI:Services:PresetService.cs}, Lines 135--149 & 
+& \nameref{code:SimulationAPI:Services:PresetService.cs}, Lines 136--150 & 
 Non-parameterized checks: AnyAsync(u => u.Username == "admin") and AnyAsync(d => d.Name == "Covid-19") for seeding \\
 \hline
 
-Bubble sort & 
-Not explicitly implemented & 
-Project uses built-in $O(n \log n)$ sorting algorithms (Timsort) rather than $O(n^2)$ bubble sort due to performance requirements with large datasets \\
-\hline
-
 \multirow{2}{3.5cm}{Binary search} & 
-\nameref{code:SimulationAPI:Services:RoutingService.cs}, Lines 74--87 & 
+\nameref{code:SimulationAPI:Services:RoutingService.cs}, Lines 65--91 & 
 Spatial grid cell lookup using binary search principles: ToCell() converts coordinates to grid indices for $O(1)$ spatial queries \\
 \cline{2-3}
-& \nameref{code:SimulationAPI:Services:BuildingService.cs}, Lines 161--197 & 
+& \nameref{code:SimulationAPI:Services:BuildingService.cs}, Lines 156--191 & 
 KD-tree search implements binary search tree traversal: compares against splitting planes to prune search space \\
 \hline
 
-\multirow{2}{3.5cm}{Writing and reading from files} & 
-\nameref{code:SimulationAPI:Simulation:SnapshotManager.cs}, Lines 1--300 & 
-Snapshot persistence: SaveSnapshotAsync() writes AgentSnapshot and BuildingSnapshot entities to database, LoadFromSnapshotAsync() reads and restores state \\
-\cline{2-3}
-& Database Migrations & 
-Entity Framework writes migration files (C\# code) and reads them to execute DDL against PostgreSQL database \\
-\hline
-
 \multirow{3}{3.5cm}{Simple user defined algorithms (range of mathematical/statistical calculations)} & 
-\nameref{code:SimulationAPI:Services:InfectionService.cs}, Lines 28--50 & 
+\nameref{code:SimulationAPI:Services:InfectionService.cs}, Lines 39--57 & 
 Infection rate conversion: ticksPerHour = 3600f / tickLength, transmissionPerTick = InfectionRate / ticksPerHour \\
 \cline{2-3}
-& \nameref{code:SimulationAPI:Services:RoutingService.cs}, Lines 328--338 & 
-Travel time calculation: totalDistance / (avgSpeedMph * 0.44704) converting mph to meters per second \\
+& \nameref{code:SimulationAPI:Utils:SimulationTimeHelper.cs} & 
+Helper functions to convert between integer tick counts and dateTime objects \\
 \cline{2-3}
 & \nameref{code:SimulationAPI:Services:BuildingCapacityCalculator.cs} & 
 Capacity estimation formulas: area-based calculations, floor-level multipliers, and occupancy density factors \\
@@ -358,17 +332,154 @@ Capacity estimation formulas: area-based calculations, floor-level multipliers, 
 \nameref{code:SimulationAPI:Models:Routine.cs} & 
 RoutineEvent objects generated with EventType enum (Work, School, Leisure, etc.) and associated Building references \\
 \cline{2-3}
-& \nameref{code:SimulationAPI:Services:AgentService.cs}, Lines 619--720 & 
+& \nameref{code:SimulationAPI:Services:AgentService.cs}, Lines 601--781 & 
 Medical profile generation: instantiates MedicalProfile objects with age distribution, chronic condition prevalence, and immunity parameters \\
 \hline
 
 Server-side scripting using request and response objects and server-side extensions for a simple client-server model & 
-\nameref{code:SimulationAPI:Controllers:AuthController.cs}, Lines 1--253 & 
+\nameref{code:SimulationAPI:Controllers:AuthController.cs} & 
 JWT authentication endpoints: Register, Login, Refresh, and Logout with request DTOs and token-based responses \\
 \hline
 
 Calling Web service APIs and parsing JSON/XML to service a simple client-server model & 
-\nameref{code:frontend:src:api:axios.js}, Lines 8--60 & 
-Frontend API calls: axios.post("/Auth/login"), axios.get("/Simulation"), with JSON request/response handling \\
+\nameref{code:frontend:src:api:axios.js} & 
+Frontend API call wrapper handling auth session management and on failure retry\\
+\hline
+\end{longtable}
+
+\section{Coding Style}
+
+In addition to the techniques listed above, I have also adhered to best practices in coding style and maintainability. This includes consistent naming conventions, modular code organization, comprehensive commenting, and adherence to SOLID principles in object-oriented design. These practices ensure that my code is not only functional but also readable and maintainable for future developers who may work on this project.
+
+The SOLID principles applied throughout the project are outlined below:
+\begin{itemize}
+    \item \textbf{Single Responsibility Principle (SRP):} Each class and module is designed to have a single, well-defined responsibility. This reduces complexity and makes the code easier to understand, test, and modify.
+    \item \textbf{Open/Closed Principle (OCP):} Classes are open for extension but closed for modification. New functionality can be added through new classes or methods without altering existing, tested code.
+    \item \textbf{Liskov Substitution Principle (LSP):} Subclasses can be used interchangeably with their parent classes without affecting program correctness, ensuring predictable behaviour when using inheritance.
+    \item \textbf{Interface Segregation Principle (ISP):} Interfaces are kept small and focused so that classes only implement methods they actually require, avoiding unnecessary dependencies.
+    \item \textbf{Dependency Inversion Principle (DIP):} High-level components depend on abstractions rather than concrete implementations, improving flexibility and making the system easier to test and maintain.
+\end{itemize}
+
+To demonstrate my adherence to these principles please find a table below linking the AQA Coding Style criteria to specific examples in my codebase where I have applied these principles in practice. This table serves to highlight not only the techniques I have implemented but also the underlying design philosophies that guided my development process.
+
+
+\begin{longtable}{|L{3.5cm}|L{4.5cm}|L{5.5cm}|}
+\caption{Evidence of Technique} \label{tab:skills-evidence} \\
+
+% Header for first page
+\hline
+\rowcolor{gray!30}
+\textbf{AQA Code Style:} & \textbf{Location Evidenced} & \textbf{Notes on Implementation} \\
+\hline
+\endfirsthead
+
+% Header for subsequent pages
+\multicolumn{3}{c}%
+{\tablename\ \thetable\ -- \textit{Continued from previous page}} \\
+\hline
+\rowcolor{gray!30}
+\textbf{AQA Code Style:} & \textbf{Location Evidenced} & \textbf{Notes on Implementation} \\
+\hline
+\endhead
+
+% Footer for all pages except last
+\hline
+\multicolumn{3}{r}{\textit{Continued on next page}} \\
+\endfoot
+
+% Footer for last page
+\hline
+\endlastfoot
+
+% GROUP A SKILLS - MODEL
+\hline
+\multicolumn{3}{|c|}{\cellcolor{blue!20}\textbf{"EXCELLENT" BAND}} \\
+\hline
+
+
+
+\multirow{2}{3.5cm}{Modules (subroutines) with appropriate interfaces. } &
+\nameref{code:SimulationAPI:Simulation:SimulationEngine.cs} & My SimulationEngine class (which lies at the heart of every SimulationContext instance) is responsible for the simulation process computing each tick. The engines shield the complexity of starting snapshot timers, handling per tick computation and stopping on a requested tick by providing only three methods: Start and Stop which other modules can call to easily control simulation progress\\
+\cline{2-3}
+& \nameref{code:SimulationAPI:Simulation:SimulationManager.cs} & Sitting two tiers higher than the SimulationEngine is my SimulationManager singleton class which controls the SimulationContexts loaded in memory (each of which contains the aforementioned SimulationEngines). The SimulationManager utilises the primitive start/stop methods provided by the engine to orchestrate more powerful functions such as startAsync and SetSpeedAsync which mix these Start/Stop routines with exposed variables to grant clients connected via a SimulationController (the API route definition layer) powerful control\\
+\hline
+
+Loosely coupled modules (subroutines) – module code interacts with other
+parts of the program through its interface only. & 
+\nameref{code:SimulationAPI:Services:OsmService.cs} & My OSMService is a crucial component during simulation setup as it takes user provided parameters and communicates with the openStreetMaps TurboAPI to retrieve all required map data. By separating these functions into an isolated service (rather than keeping them within the SimulationSetup process) am able to update the service should the 3rd party API change easily or even fully replace it with another data source such as GoogleEarth without having to alter any methods that rely on map data \\
+\hline
+
+Cohesive modules (subroutines) – module code does just one thing. & 
+\nameref{code:SimulationAPI:Services:MovementSystem.cs} & My MovementSystem class serves the single role of managing the movement of agents between ticks and is called upon by the AgentService to interpolate path travel by each agent in turn. This separation of concerns into a dedicated module allows for easy logic modification and results in clean, maintainable code\\
+\hline
+
+Modules(collections of subroutines) – subroutines with common purpose
+grouped & \nameref{code:SimulationAPI:Services:BuildingService.cs} & My building service class which is separately instantiated and owned by each SimulationContext in memory, neatly groups together all functions relating to map buildings such as housing and workplace assignment and locating buildings of a specified type within a specified radius. By isolating this logic into BuildingServices, indexes and caches can be produced which dramatically reduces seek time once the Service is initiated by a new simulationContext\\
+\hline
+
+\multirow{3}{3.5cm}{Defensive programming} & 
+\nameref{code:SimulationAPI:Simulation:SimulationSetup.cs}, e.g. Lines 281--284 & 
+Defensive programming is first demonstrated within the frontend as user data is checked to ensure it conforms to the expected format, failing this results in a notification to the user and no request is made to the server\\
+\cline{2-3}
+& \nameref{code:SimulationAPI:DTOs:CreateSimulationDto.cs} & 
+Should a non-conforming request still be made to the server (most likely through a manual api call made during testing) then the use of Domain Transfer Objects (DTOs) within controllers rejects the API call as the data payload does not match the expected format. This also results in an error notification being displayed to the user \\
+\cline{2-3}
+& \nameref{code:SimulationAPI:Simulation:SimulationSetup.cs}, Lines 61--84 & 
+At this point it should be certain that all required data is present however as a third defensive layer the functions called by the API controller also verify that data is as expected. Using a new Exception the system will log the error that occurred (for later troubleshooting as this check failure would require a prior defensive step being misconfigured) \\
+\hline
+
+Good exception handling & 
+\nameref{code:SimulationAPI:Controllers:AdminController.cs} & As previously identified all functions accessible by APIs have exception checking for data validation however this also extends further to key processes which interact with the database. Ensuring stored data stays valid is crucial so should an error occur the current database write operation is aborted to preserve integrity. This exception handling notable does not occur on the frontend as data here is always considered 'dirty' (as it is outside the type safe conformity of the server) and is frequently refreshed via background WebSocket connections and on saving is re-sanitising via the above methods before being committed. Thus, exception handling here would only reduce performance for no net gain \\
+\hline
+
+\hline
+\multicolumn{3}{|c|}{\cellcolor{blue!20}\textbf{"GOOD" BAND}} \\
+\hline
+
+Well-designed user interface & \nameref{code:frontend:src:layouts:MainLayout.vue}, \nameref{code:frontend:src:components:Navbar.vue} \& \nameref{code:frontend:src:views:dashboard.vue} & My frontend design is focused on simplicity and ease of use whilst also remaining visually appealing. The main layout provides a consistent structure across all pages with a clean navbar for navigation and (as an example page) a dashboard that presents key information in an accessible format. User interactions are intuitive, and the design is responsive to different screen sizes (ranging from mobile phones to desktop monitors), ensuring a positive user experience. \\
+\hline
+
+Modularisation of code & 
+\nameref{code:SimulationAPI:Services:InfectionService.cs} & As identified above all core functions of the system are organised into services which are then owned by the SimulationContext. This modularisation allows for easy maintenance, readability and upgradeability as all related functions are grouped together and can be easily located. Additionally, this structure allows for the use of indexes and caches within services to optimise performance without affecting other parts of the system\\
+\hline
+
+Good use of local variables & 
+\nameref{code:SimulationAPI:Services:InfectionService.cs}& 
+Throughout the system I have made use of local variables to store intermediate values and results of calculations. This not only improves readability by giving meaningful names to values (that do not have to be unqiue thanks to their local scope) but also allows for easier debugging as these variables can be inspected at runtime to verify the correctness of calculations and logic flow. This is particularly important in complex algorithms such as the infection spread calculations where multiple factors are at play and intermediate results can provide insight into the system's behaviour\\
+\hline
+
+Minimal use of global variables & 
+\nameref{code:SimulationAPI:Simulation:SimulationManager.cs} & 
+One of very few global variables used within my system is the SimulationManager singleton which serves as a central point of control for all simulations loaded in memory. This is necessary to allow for the management of multiple concurrent simulations and to provide a consistent interface for starting, stopping, and controlling simulation progress. However, all other variables and state are encapsulated within their respective classes and services, ensuring that the global scope is not polluted with unnecessary variables and that the system remains modular and maintainable\\
+\hline
+
+\multirow{2}{3.5cm}{Managed casting of types} & 
+\nameref{code:SimulationAPI:Controllers:SimulationsController.cs}, Lines 48--164 & 
+Throughout my backend controllers and services I have made use of C\#'s type system to ensure that data is handled in a type-safe manner. This includes the use of explicit casting where necessary, as well as the use of generics and type constraints to ensure that functions can operate on a variety of types while still maintaining type safety. For example, in my SimulationsController, I use OfType\textless T\textgreater{} to filter entities based on their derived types, allowing for polymorphic queries while ensuring that the correct types are being handled. Additionally, I have made use of nullable types and null-coalescing operators to safely handle potential null values without risking runtime exceptions.\\
+\cline{2-3}
+& \nameref{code:frontend:src:api:simulation.ts} & My frontend is additionally built using TypeScript where practical which provides static type checking at compile time. This allows me to catch type-related errors early in the development process and ensures that the data being handled on the client side conforms to expected types. Additionally, I have implemented runtime checks for critical operations such as API calls and WebSocket communication to handle any unexpected data or connection issues gracefully, providing feedback to the user and preventing application crashes.\\
+\hline
+
+Use of constants & 
+\nameref{code:SimulationAPI:Services:InfectionService.cs}, Lines 16--18 & Within various services and modules I have made use of constants to store values that are used repeatedly throughout the codebase. This improves readability by giving meaningful names to these values. For example, within my InfectionService, I have defined constants for an indoor multiplier and outdoor decay for airborne disease spread which helps me simulate disease spread more accurately. As I was fine-tuning my algorithms through research I was able to easily adjust the values thanks to their singular named declaration rather than separated repeated assignment\\
+\hline
+
+Appropriate indentation \& Consistent style throughout & 
+Throughout the entire codebase & By using automated formatting enforcement within VS Code (using my Prettier extension's formatting rules) my codebase maintains consistent indentation which improves readability and helps to visually distinguish code blocks and control structures.\\
+\hline
+
+Self-documenting code & 
+Throughout the entire codebase & I have made a conscious effort to write self-documenting code through the use of clear service, method and variable names that convey their purpose and functionality. Additionally, I make use of Swagger, a platform to autogenerate API documentation from my controller code and added metadata to my API methods to further clarify their purpose and expected inputs/outputs. Please see \autoref{APIDocs} for the output of this process\\
+\hline
+
+\hline
+\multicolumn{3}{|c|}{\cellcolor{blue!20}\textbf{"BASIC" BAND}} \\
+\hline
+
+Meaningful identifier names & 
+Throughout the entire codebase & I have consistently used meaningful identifier names for variables, methods, classes, and other entities throughout my codebase. \\
+\hline
+Annotation used effectively where required & 
+Throughout the entire codebase & I have used comments and annotations to explain complex logic and to clarify the purpose of certain code blocks.  This includes inline comments for specific lines of code, as well as method-level comments that describe the overall purpose of functions. Additionally I have used XML documentation comments in C\# to provide structured documentation for my controllers and is shown in my auto docs\\
 \hline
 \end{longtable}
